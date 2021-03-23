@@ -9,7 +9,8 @@
 6) Unit Marketplace
 7) Matchmaking and Ranking
 8) Potential ICO Structure
-
+9) Areas for Expansion
+10) Contract Details
 ## Introduction
 
 ## Game Overview
@@ -18,9 +19,22 @@
 
 ### Units
 
+#### Leveling Up
+Maybe as a result of staying alive for a long time?
+
+#### Upgrades
+Maybe?
+
 ### Squads
+Size?
+Types?
+
+### Rounds 
+
 
 ### Victory Conditions
+Tokens for killing enemy units
+What about a bonus for fully eliminating someone elses squad?
 
 ## Reward System
 
@@ -53,4 +67,16 @@ How are ranks calculated? ELO?
 ## Potential ICO Structure
 
 ## GAS fees
+Give some mechanism for buying tokens with ethereum which can then be used to pay the gas fees for the contract
 How are we covering these?
+
+## Areas for Expansion
+
+
+## Contract Details
+
+### Structs
+
+### Functions
+
+###
