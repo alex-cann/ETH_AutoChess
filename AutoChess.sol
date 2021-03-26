@@ -6,39 +6,39 @@ pragma solidity ^0.8.1;
 ///Note these have been marked as virtual for now
 /// @title Interface for contracts conforming to ERC-721: Non-Fungible Tokens
 /// @author Dieter Shirley <dete@axiomzen.co> (https://github.com/dete)
-abstract contract ERC721 {
+interface ERC721 {
     // Required methods
-    function totalSupply() virtual public view returns (uint256 total);
-    function balanceOf(address _owner) virtual public view returns (uint256 balance);
-    function ownerOf(uint256 _tokenId) virtual external view returns (address owner);
-    function approve(address _to, uint256 _tokenId) virtual external;
-    function transfer(address _to, uint256 _tokenId) virtual external;
-    function transferFrom(address _from, address _to, uint256 _tokenId) virtual external;
+    function totalSupply() external view returns (uint256 total);
+    function balanceOf(address _owner) external view returns (uint256 balance);
+    function ownerOf(uint256 _tokenId)  external view returns (address owner);
+    function approve(address _to, uint256 _tokenId) external;
+    function transfer(address _to, uint256 _tokenId) external;
+    function transferFrom(address _from, address _to, uint256 _tokenId) external;
 
     // Events
     event Transfer(address from, address to, uint256 tokenId);
     event Approval(address owner, address approved, uint256 tokenId);
 
     // Optional
-    function name() virtual public view returns (string memory);
-    function symbol() virtual public view returns (string memory);
+    function name() external  view returns (string memory);
+    function symbol() external view returns (string memory);
     // function tokensOfOwner(address _owner) external view returns (uint256[] tokenIds);
     // function tokenMetadata(uint256 _tokenId, string _preferredTransport) public view returns (string infoUrl);
 
     // ERC-165 Compatibility (https://github.com/ethereum/EIPs/issues/165)
-    function supportsInterface(bytes4 _interfaceID) virtual external view returns (bool);
+    function supportsInterface(bytes4 _interfaceID) external view returns (bool);
 }
 
 
 /// @title Interface for contracts conforming to ERC-20: Fungible Tokens
-abstract contract ERC20 {
+interface ERC20 {
     // Required methods
-   function totalSupply() virtual public view returns (uint256);
-   function balanceOf(address _owner) virtual public view returns (uint256 balance);
-   function transfer(address _to, uint256 _value) virtual public returns (bool success);
-   function transferFrom(address _from, address _to, uint256 _value) virtual public returns (bool success);
-   function approve(address _spender, uint256 _value) virtual public returns (bool success);
-   function allowance(address _owner, address _spender) virtual public view returns (uint256 remaining);
+   function totalSupply() external view returns (uint256);
+   function balanceOf(address _owner) external view returns (uint256 balance);
+   function transfer(address _to, uint256 _value) external returns (bool success);
+   function transferFrom(address _from, address _to, uint256 _value) external returns (bool success);
+   function approve(address _spender, uint256 _value) external returns (bool success);
+   function allowance(address _owner, address _spender) external view returns (uint256 remaining);
    
     // Events
     event Transfer(address indexed _from, address indexed _to, uint256 _value);
@@ -46,12 +46,12 @@ abstract contract ERC20 {
     
     // Optional
     //If you label the return values remix screams so I've omitted them
-    function name() virtual public view returns (string memory);
-    function symbol() virtual public view returns (string memory);
-    function decimals() virtual public view returns (uint8);
+    function name() external view returns (string memory);
+    function symbol() external view returns (string memory);
+    //function decimals() external view returns (uint8);
     
     // ERC-165 Compatibility (https://github.com/ethereum/EIPs/issues/165)
-    function supportsInterface(bytes4 _interfaceID) virtual external view returns (bool);
+    function supportsInterface(bytes4 _interfaceID) external view returns (bool);
 }
 
 
@@ -79,7 +79,6 @@ contract AutoChessBase {
     }
     
     struct Unit{
-        
         uint16 attack;
         uint16 defence;
         //functions as a multiplier on the other attributes
@@ -128,19 +127,20 @@ contract AutoChessBase {
     mapping (uint256 => address) public squadIndexToOwner;
     
     ///@dev maps owners to their count of units
-    mapping (address => uint256) public OwnerToUnitCount;
+    mapping (address => uint256) public ownerToUnitCount;
     
     ///@dev maps units to users allowed to call transferFrom
-    mapping (uint256 => address) public UnitIndexToAllowed;
+    mapping (uint256 => address) public unitIndexToAllowed;
     
     mapping (uint256 => bool) unitIndexExists;
     
-    //TODO may need another mapping to recreate destroyed units
+    
+    
 }
 
 ///implementation based on https://medium.com/crypto-currently/the-anatomy-of-erc721-e9db77abfc24
 /// Handles ERC771 implementation of units
-contract UnitToken is AutoChessBase,ERC721{ 
+contract UnitToken is AutoChessBase, ERC721{ 
     //TODO fill these in
     // Required methods
     
@@ -154,7 +154,7 @@ contract UnitToken is AutoChessBase,ERC721{
     
     
     function balanceOf(address _owner) public view override returns (uint256 balance){
-        return OwnerToUnitCount[_owner];
+        return ownerToUnitCount[_owner];
     }
     
     function ownerOf(uint256 _tokenId) public view override returns (address owner){
@@ -168,8 +168,22 @@ contract UnitToken is AutoChessBase,ERC721{
         require(msg.sender != _to);
         //TODO set this check up later
         //allowed[msg.sender][_to] = _tokenId;
-        Approval(msg.sender, _to, _tokenId);
+        emit Approval(msg.sender, _to, _tokenId);
     }
+    
+    function _transfer(address _from, address _to, uint256 _tokenId) internal{
+        ownerToUnitCount[_from]-=1;
+        unitIndexToOwner[_tokenId] = _to;
+        //remove any allowances on transfering this unit
+        delete unitIndexToAllowed[_tokenId];
+        
+        ownerToUnitCount[_to]+=1;
+        //the contract calling this is the unit generator
+        //Trigger the transfer Event
+        Transfer(_from,_to,_tokenId);
+        
+    }
+    
     
     
     function transfer(address _to, uint256 _tokenId) override public{
@@ -182,42 +196,31 @@ contract UnitToken is AutoChessBase,ERC721{
         //Example uses double map
         require(unitIndexToSquadIndex[_tokenId] == 0);
         
-        OwnerToUnitCount[msg.sender]-=1;
-        unitIndexToOwner[_tokenId] = _to;
-        
-        OwnerToUnitCount[_to]+=1;
-        //Trigger the transfer Event
-        Transfer(msg.sender,_to,_tokenId);
+        _transfer(msg.sender,_to,_tokenId);
     }
     
     
     function transferFrom(address _from, address _to, uint256 _tokenId) public override {
         require(unitIndexExists[_tokenId]);
         require(_from != _to);
-        require(UnitIndexToAllowed[_tokenId] == _to);
+        require(unitIndexToAllowed[_tokenId] == _to);
         //Require that it is not in a squad (this could be changed to something smarter)
         //Example uses double map
         require(unitIndexToSquadIndex[_tokenId] == 0);
         
-        OwnerToUnitCount[_from]-=1;
-        unitIndexToOwner[_tokenId] = _to;
-        
-        OwnerToUnitCount[_to]+=1;
-        //Trigger the transfer Event
-        Transfer(msg.sender,_to,_tokenId);
-        
+        _transfer(_from,_to,_tokenId);
     }
 
    
-
     // Optional
-    function name() public view override returns (string memory) {
+    function name() public override pure returns (string memory) {
         return "AutoChess Unit Token";
     }
     
-    function symbol() public view override returns (string memory) {
-        return "ACHSS";
+    function symbol() public override pure returns (string memory) {
+        return "ACHSSU";
     }
+    
     //TODO fill these in
     //function tokensOfOwner(address _owner) public view override returns (uint256[] memory tokenIds){}
     
@@ -226,32 +229,73 @@ contract UnitToken is AutoChessBase,ERC721{
     // ERC-165 Compatibility (https://github.com/ethereum/EIPs/issues/165)
     function supportsInterface(bytes4 _interfaceID) public view override returns (bool){
         
-        
     }
 }
 
 ///ERC20 token used to buy units from the store etc
 contract StoreToken is ERC20 {
+    //TODO support fancy bidding where you can approve more than you actually have
     
+    
+    uint256 private totalTokens = 1000000000;
+    mapping (address => uint256) ownerToBalance;
+    mapping (address => mapping(address => uint256)) ownerToApprovedWithdrawals;
+    mapping (address => uint256) ownerToTotalApproved;
     //TODO fill these in
-   function totalSupply() virtual public view returns (uint256);
-   function balanceOf(address _owner) virtual public view returns (uint256 balance);
-   function transfer(address _to, uint256 _value) virtual public returns (bool success);
-   function transferFrom(address _from, address _to, uint256 _value) virtual public returns (bool success);
-   function approve(address _spender, uint256 _value) virtual public returns (bool success);
-   function allowance(address _owner, address _spender) virtual public view returns (uint256 remaining);
+   function totalSupply()  public view override returns (uint256){
+       return totalTokens;
+   }
    
-    // Events
-    event Transfer(address indexed _from, address indexed _to, uint256 _value);
-    event Approval(address indexed _owner, address indexed _spender, uint256 _value);
+   function balanceOf(address _owner) public view override returns (uint256 balance){
+       return ownerToBalance[_owner];
+   }
+   
+   function transfer(address _to, uint256 _value) public override returns (bool success){
+       assert(balanceOf(msg.sender) > _value);
+       ownerToBalance[msg.sender]-=_value;
+       //TODO check for edge cases
+       ownerToBalance[_to]+=_value;
+       return true;
+   }
+   
+   function transferFrom(address _from, address _to, uint256 _value) public override returns (bool success){
+       //is this person authorized to withdraw this money
+       assert(ownerToApprovedWithdrawals[_from][_to] > _value);
+       assert(ownerToBalance[_from] > _value);
+       
+       ownerToApprovedWithdrawals[_from][_to]-=_value;
+       ownerToTotalApproved[_from]-=_value;
+       ownerToBalance[_from]-=_value;
+       ownerToBalance[_to]+=_value;
+       return true;
+   }
+   
+   function approve(address _spender, uint256 _value) public override returns (bool success){
+       assert(ownerToBalance[msg.sender] > (_value + ownerToTotalApproved[msg.sender]));
+       ownerToApprovedWithdrawals[msg.sender][_spender]+=_value;
+       ownerToTotalApproved[msg.sender]+=_value;
+       return true;
+   }
+   
+   function allowance(address _owner, address _spender) public override view returns (uint256 remaining){
+       return ownerToApprovedWithdrawals[_owner][_spender];
+   }
+   
     
     // Optional
-    //function name() virtual public view returns (string name);
-    //function symbol() virtual public view returns (string);
-    function decimals() virtual public view returns (uint8);
+    function name() public override pure returns (string memory){
+        return "AutoChess Store Token";
+    }
+    function symbol() public override pure returns (string memory){
+        return "ACHSST";
+    }
+    //function decimals() virtual public view returns (uint8);
     
     // ERC-165 Compatibility (https://github.com/ethereum/EIPs/issues/165)
-    function supportsInterface(bytes4 _interfaceID) virtual external view returns (bool);
+    function supportsInterface(bytes4 _interfaceID) public override view returns (bool){
+        //TODO this is not the way to be
+        return true;
+    }
 }
 
 /// handles the auctioning of units etc
@@ -263,6 +307,47 @@ contract UnitMarketplace {
 /// handles the generation of new units
 contract UnitMinter is UnitToken{
     
+
+    
+    //TODO may need another mapping to recreate destroyed units
+    
+    // Predictable random number generator. Used for unit generation
+    //the 
+    //from https://fravoll.github.io/solidity-patterns/randomness.html
+    function randomNumber(uint options) internal view returns (uint16) {
+        return uint16(uint(blockhash(block.number - 1)) % options);
+    }
+
+    
+    /// @dev creates and stores a new unit
+    function _generateUnit() internal returns (uint)
+    {
+        //TODO make this dependent on unit type and less silly
+        Unit memory _unit = Unit({
+            attack: 5 + randomNumber(2),
+            defence: 5 + randomNumber(2),
+            //functions as a multiplier on the other attributes
+            level: 1,
+            //starting health of unit
+            maxHealth: 5 + randomNumber(2),
+            // health remaining on this unit
+            curHealth: 5 + randomNumber(2),
+            //what type of unit this is
+            utype: unitType(randomNumber(2)),
+            //A name associated with this unit
+            name: "default unit name"
+        });
+        units.push(_unit);
+        uint256 newUnitId = units.length  - 1;
+
+        //TODO change how this works. Maybe via auction
+        // This will assign ownership, and also emit the Transfer event as
+        // per ERC721 draft
+        unitIndexToOwner[newUnitId] = address(this);
+        
+        
+        return newUnitId;
+    }
     
 }
 
@@ -272,4 +357,6 @@ contract GameEngine {
     
     
 }
+
+
 
