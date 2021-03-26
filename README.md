@@ -47,7 +47,21 @@ How do people get coins?
 ### Units
 values?
 
+## Unit Minting
+Units are created daily and then set for auction 
+
 ## Unit Marketplace
+
+#### Actions etc
+1) List unit(s) for auction
+2) Make a bid on an Auction with tokens
+3) View auctions in Progress
+4) Claim their Tokens from an auction
+5) Cancel an auction in progress
+6) Hold reverse Auctions (tokens offered for units people put up)
+7) Autobidding(potentially set a spend limit etc)
+
+
 
 
 ## Matchmaking and Ranking
