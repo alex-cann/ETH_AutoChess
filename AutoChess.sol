@@ -3,6 +3,8 @@ pragma solidity ^0.8.1;
 /// see CryptoKitties codebase here
 /// https://ethfiddle.com/09YbyJRfiI and here https://medium.com/loom-network/how-to-code-your-own-cryptokitties-style-game-on-ethereum-7c8ac86a4eb3
 
+//TODO make sure everything conforms to https://docs.soliditylang.org/en/v0.5.3/style-guide.html
+
 ///Note these have been marked as virtual for now
 /// @title Interface for contracts conforming to ERC-721: Non-Fungible Tokens
 /// @author Dieter Shirley <dete@axiomzen.co> (https://github.com/dete)
@@ -285,6 +287,12 @@ contract StoreToken is ERC20 {
        return _approve(_from,StoreAddress,_value);
    }
    
+   function autoUnApprove(address _from, uint256 _value) public _storeOnly returns (bool success){
+       ownerToApprovedWithdrawals[_from][msg.sender]-=_value;
+       ownerToTotalApproved[_from]-=_value;
+       return true;
+   }
+   
    function _approve(address _from, address _to, uint256 _value) internal returns (bool success){
        assert(ownerToBalance[_from] > (_value + ownerToTotalApproved[msg.sender]));
        ownerToApprovedWithdrawals[_from][_to]+=_value;
@@ -336,6 +344,7 @@ contract UnitMarketplace is UnitToken{
         //this seems like fun
         string highestBidText;
         //add some stuff for timeout
+        uint256 endTime;
     }
     address ProviderAddress;
     StoreToken CurrencyProvider;
@@ -375,7 +384,8 @@ contract UnitMarketplace is UnitToken{
             host: msg.sender,
             name: "PLACEHOLDER",
             assetIds: _assets,
-            highestBidText: "Default Bid"
+            highestBidText: "Default Bid",
+            endTime: block.timestamp + 1 hours
         }));
         //transfer all the assets to the auctionhouse
         for(uint i =0; i < _assets.length; i++){
@@ -384,6 +394,19 @@ contract UnitMarketplace is UnitToken{
         //TODO add an auction event
         return true;
     }
+    
+    function withdrawAuction(uint256 _auctionId) public returns(bool success){
+        assert(_auctions[_auctionId].host == msg.sender);
+        assert(_auctions[_auctionId].endTime < block.timestamp);
+        //TODO call withdraw bid function
+        
+        //TODO reset ownership of units back to the host or use approval system instead
+        return true;
+    }
+    
+    
+    //TODO add withdraw bid function
+    
     //TODO add reverse auctions where someone offers tokens
     
     
@@ -452,7 +475,3 @@ contract GameEngine {
     
     
 }
-
-
-
-
