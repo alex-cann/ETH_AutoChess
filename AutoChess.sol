@@ -176,12 +176,11 @@ contract UnitToken is AutoChessBase, ERC721{
         unitIndexToOwner[_tokenId] = _to;
         //remove any allowances on transfering this unit
         delete unitIndexToAllowed[_tokenId];
-        
+        //TODO remove this unit from squads
         ownerToUnitCount[_to]+=1;
         //the contract calling this is the unit generator
         //Trigger the transfer Event
-        Transfer(_from,_to,_tokenId);
-        
+        emit Transfer(_from,_to,_tokenId);
     }
     
     
@@ -241,10 +240,21 @@ contract StoreToken is ERC20 {
     mapping (address => uint256) ownerToBalance;
     mapping (address => mapping(address => uint256)) ownerToApprovedWithdrawals;
     mapping (address => uint256) ownerToTotalApproved;
-    //TODO fill these in
-   function totalSupply()  public view override returns (uint256){
+    address StoreAddress;
+    constructor(){
+        //this contract is aware that the store owns it but not of the stores ABI
+        StoreAddress = msg.sender;
+    }
+    
+    ///@dev functions only accessible from the marketplace (so coins can be autoApproved for auctions)
+    modifier _storeOnly(){
+        assert(msg.sender == StoreAddress);
+        _;
+    }
+    
+    function totalSupply()  public view override returns (uint256){
        return totalTokens;
-   }
+    }
    
    function balanceOf(address _owner) public view override returns (uint256 balance){
        return ownerToBalance[_owner];
@@ -255,6 +265,7 @@ contract StoreToken is ERC20 {
        ownerToBalance[msg.sender]-=_value;
        //TODO check for edge cases
        ownerToBalance[_to]+=_value;
+       emit Transfer(msg.sender, _to,  _value);
        return true;
    }
    
@@ -270,11 +281,19 @@ contract StoreToken is ERC20 {
        return true;
    }
    
-   function approve(address _spender, uint256 _value) public override returns (bool success){
-       assert(ownerToBalance[msg.sender] > (_value + ownerToTotalApproved[msg.sender]));
-       ownerToApprovedWithdrawals[msg.sender][_spender]+=_value;
-       ownerToTotalApproved[msg.sender]+=_value;
+   function autoApprove(address _from, uint256 _value) public _storeOnly returns (bool success){
+       return _approve(_from,StoreAddress,_value);
+   }
+   
+   function _approve(address _from, address _to, uint256 _value) internal returns (bool success){
+       assert(ownerToBalance[_from] > (_value + ownerToTotalApproved[msg.sender]));
+       ownerToApprovedWithdrawals[_from][_to]+=_value;
+       ownerToTotalApproved[_from]+=_value;
        return true;
+   }
+   
+   function approve(address _spender, uint256 _value) public override returns (bool success){
+      return _approve(msg.sender, _spender, _value);
    }
    
    function allowance(address _owner, address _spender) public override view returns (uint256 remaining){
@@ -299,7 +318,74 @@ contract StoreToken is ERC20 {
 }
 
 /// handles the auctioning of units etc
-contract UnitMarketplace {
+//TODO add autobidding ()
+contract UnitMarketplace is UnitToken{
+    //objects:
+    //Owns the token contract 
+    // functions:
+    // list unit for auction
+    // view current Auctions
+    // bid on auction
+    
+    struct Auction {
+        uint256 highestBid;
+        uint256[] assetIds;
+        address highestBidder;
+        address host;
+        string name;
+        //this seems like fun
+        string highestBidText;
+        //add some stuff for timeout
+    }
+    address ProviderAddress;
+    StoreToken CurrencyProvider;
+    
+    //A list of all ongoing auctions
+    Auction[] _auctions;
+    
+    
+    constructor(){
+        CurrencyProvider = new StoreToken();
+        ProviderAddress = address(CurrencyProvider);
+    }
+    
+    function bid(uint256 _auctionId, uint256 _value) public returns(bool success){
+        Auction memory auction = _auctions[_auctionId];
+        //check if this bid is big enough
+        assert(_value > auction.highestBid);
+        //preapprove the transaction to the Auction
+        assert(CurrencyProvider.autoApprove(msg.sender, _value));
+        auction.highestBid = _value;
+        auction.highestBidder = msg.sender;
+        return true;
+    }
+    /// So people can bid with a message etc
+    /// just for funzies
+    function bid(uint256 _auctionId, uint256 _value,string calldata _msg) public returns(bool success){
+        assert(bid(_auctionId,_value));
+        _auctions[_auctionId].highestBidText = _msg;
+        return true;
+    }
+    
+    function startAuction(uint256[] calldata _assets, uint256 _asking) public returns(bool success){
+        //TODO verify that all the units up for auction aren't in a squad etc
+       _auctions.push(Auction({
+            highestBid:_asking,
+            highestBidder: msg.sender,
+            host: msg.sender,
+            name: "PLACEHOLDER",
+            assetIds: _assets,
+            highestBidText: "Default Bid"
+        }));
+        //transfer all the assets to the auctionhouse
+        for(uint i =0; i < _assets.length; i++){
+            _transfer(msg.sender,address(this),_assets[i]);
+        }
+        //TODO add an auction event
+        return true;
+    }
+    //TODO add reverse auctions where someone offers tokens
+    
     
     
 }
@@ -307,9 +393,10 @@ contract UnitMarketplace {
 /// handles the generation of new units
 contract UnitMinter is UnitToken{
     
-
     
-    //TODO may need another mapping to recreate destroyed units
+    //TODO implement this so that units can be efficiently deleted etc
+    //other approach is to update id of last unit(probably a bad idea)
+    uint256[] unusedIndices;
     
     // Predictable random number generator. Used for unit generation
     //the 
@@ -337,14 +424,22 @@ contract UnitMinter is UnitToken{
             //A name associated with this unit
             name: "default unit name"
         });
-        units.push(_unit);
-        uint256 newUnitId = units.length  - 1;
-
+        uint256 newUnitId;
+        if(unusedIndices.length == 0){
+            units.push(_unit);
+            newUnitId = units.length  - 1;
+        }else{
+            //get the latest unused Index
+            newUnitId = unusedIndices[unusedIndices.length - 1];
+            //delete from the list of unused Indices since it is now used
+            unusedIndices.pop();
+        }
+        
+        
         //TODO change how this works. Maybe via auction
         // This will assign ownership, and also emit the Transfer event as
         // per ERC721 draft
         unitIndexToOwner[newUnitId] = address(this);
-        
         
         return newUnitId;
     }
@@ -357,6 +452,7 @@ contract GameEngine {
     
     
 }
+
 
 
 
