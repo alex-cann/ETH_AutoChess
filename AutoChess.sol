@@ -468,10 +468,3 @@ contract UnitMinter is UnitToken{
     }
     
 }
-
-
-/// handles the game calculations and logic etc
-contract GameEngine {
-    
-    
-}
