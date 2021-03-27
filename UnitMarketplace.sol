@@ -3,16 +3,8 @@
 pragma solidity ^0.8.1;
 
 import "./UnitToken.sol";
-
-//TODO add autobidding ()
-contract UnitMarketplace is UnitToken{
-    //objects:
-    //Owns the token contract 
-    // functions:
-    // list unit for auction
-    // view current Auctions
-    // bid on auction
-    
+import "./StoreToken.sol";
+interface IUnitMarketplace {
     struct Auction {
         uint256 highestBid;
         uint256[] assetIds;
@@ -24,6 +16,17 @@ contract UnitMarketplace is UnitToken{
         //add some stuff for timeout
         uint256 endTime;
     }
+    
+    function bid(uint256 _auctionId, uint256 _value) external returns(bool success);
+    function bid(uint256 _auctionId, uint256 _value,string calldata _msg) external returns(bool success);
+    function startAuction(uint256[] calldata _assets, uint256 _asking) external returns(bool success);
+    function withdrawAuction(uint256 _auctionId) external returns(bool success);
+}
+
+//TODO add autobidding ()
+contract UnitMarketplace is UnitToken,IUnitMarketplace{
+    //objects:
+    
     address ProviderAddress;
     StoreToken CurrencyProvider;
     
@@ -36,7 +39,7 @@ contract UnitMarketplace is UnitToken{
         ProviderAddress = address(CurrencyProvider);
     }
     
-    function bid(uint256 _auctionId, uint256 _value) public returns(bool success){
+    function bid(uint256 _auctionId, uint256 _value) public override returns(bool success){
         Auction memory auction = _auctions[_auctionId];
         //check if this bid is big enough
         assert(_value > auction.highestBid);
@@ -48,13 +51,13 @@ contract UnitMarketplace is UnitToken{
     }
     /// So people can bid with a message etc
     /// just for funzies
-    function bid(uint256 _auctionId, uint256 _value,string calldata _msg) public returns(bool success){
+    function bid(uint256 _auctionId, uint256 _value,string calldata _msg) public override returns(bool success){
         assert(bid(_auctionId,_value));
         _auctions[_auctionId].highestBidText = _msg;
         return true;
     }
 
-    function startAuction(uint256[] calldata _assets, uint256 _asking) public returns(bool success){
+    function startAuction(uint256[] calldata _assets, uint256 _asking) public override returns(bool success){
         //TODO verify that all the units up for auction aren't in a squad etc
        _auctions.push(Auction({
             highestBid:_asking,
@@ -73,7 +76,7 @@ contract UnitMarketplace is UnitToken{
         return true;
     }
     
-    function withdrawAuction(uint256 _auctionId) public returns(bool success){
+    function withdrawAuction(uint256 _auctionId) public override returns(bool success){
         assert(_auctions[_auctionId].host == msg.sender);
         assert(_auctions[_auctionId].endTime < block.timestamp);
         //TODO call withdraw bid function

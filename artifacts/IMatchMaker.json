@@ -1,0 +1,318 @@
+{
+	"deploy": {
+		"VM:-": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"main:1": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"ropsten:3": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"rinkeby:4": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"kovan:42": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"görli:5": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"Custom": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		}
+	},
+	"data": {
+		"bytecode": {
+			"generatedSources": [],
+			"linkReferences": {},
+			"object": "",
+			"opcodes": "",
+			"sourceMap": ""
+		},
+		"deployedBytecode": {
+			"generatedSources": [],
+			"immutableReferences": {},
+			"linkReferences": {},
+			"object": "",
+			"opcodes": "",
+			"sourceMap": ""
+		},
+		"gasEstimates": null,
+		"methodIdentifiers": {
+			"bid(uint256,uint256)": "598647f8",
+			"bid(uint256,uint256,string)": "76d4fc57",
+			"randomChallenge(uint256)": "a32c87fb",
+			"startAuction(uint256[],uint256)": "40b53391",
+			"targetedChallenge(uint256,uint256)": "87d775d3",
+			"viewDeployedSquads(uint8)": "fa59fb62",
+			"withdrawAuction(uint256)": "b5fc9833",
+			"withdrawSquad(uint256)": "198b367d"
+		}
+	},
+	"abi": [
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "_auctionId",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "_value",
+					"type": "uint256"
+				}
+			],
+			"name": "bid",
+			"outputs": [
+				{
+					"internalType": "bool",
+					"name": "success",
+					"type": "bool"
+				}
+			],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "_auctionId",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "_value",
+					"type": "uint256"
+				},
+				{
+					"internalType": "string",
+					"name": "_msg",
+					"type": "string"
+				}
+			],
+			"name": "bid",
+			"outputs": [
+				{
+					"internalType": "bool",
+					"name": "success",
+					"type": "bool"
+				}
+			],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "_squadId",
+					"type": "uint256"
+				}
+			],
+			"name": "randomChallenge",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "winnings",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256[]",
+					"name": "_assets",
+					"type": "uint256[]"
+				},
+				{
+					"internalType": "uint256",
+					"name": "_asking",
+					"type": "uint256"
+				}
+			],
+			"name": "startAuction",
+			"outputs": [
+				{
+					"internalType": "bool",
+					"name": "success",
+					"type": "bool"
+				}
+			],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "_squadId",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "_targetId",
+					"type": "uint256"
+				}
+			],
+			"name": "targetedChallenge",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "winnings",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "enum IAutoChessBase.Tier",
+					"name": "_tier",
+					"type": "uint8"
+				}
+			],
+			"name": "viewDeployedSquads",
+			"outputs": [
+				{
+					"components": [
+						{
+							"components": [
+								{
+									"internalType": "uint16",
+									"name": "attack",
+									"type": "uint16"
+								},
+								{
+									"internalType": "uint16",
+									"name": "defence",
+									"type": "uint16"
+								},
+								{
+									"internalType": "uint16",
+									"name": "level",
+									"type": "uint16"
+								},
+								{
+									"internalType": "uint16",
+									"name": "maxHealth",
+									"type": "uint16"
+								},
+								{
+									"internalType": "uint16",
+									"name": "curHealth",
+									"type": "uint16"
+								},
+								{
+									"internalType": "enum IAutoChessBase.unitType",
+									"name": "utype",
+									"type": "uint8"
+								},
+								{
+									"internalType": "string",
+									"name": "name",
+									"type": "string"
+								}
+							],
+							"internalType": "struct IAutoChessBase.Unit[]",
+							"name": "units",
+							"type": "tuple[]"
+						},
+						{
+							"internalType": "uint8",
+							"name": "unitCount",
+							"type": "uint8"
+						},
+						{
+							"internalType": "uint16",
+							"name": "stashedTokens",
+							"type": "uint16"
+						},
+						{
+							"internalType": "bool",
+							"name": "isDeployed",
+							"type": "bool"
+						},
+						{
+							"internalType": "enum IAutoChessBase.Tier",
+							"name": "squadTier",
+							"type": "uint8"
+						},
+						{
+							"internalType": "uint16",
+							"name": "deployTime",
+							"type": "uint16"
+						},
+						{
+							"internalType": "uint16",
+							"name": "totalAttack",
+							"type": "uint16"
+						},
+						{
+							"internalType": "uint16",
+							"name": "totalDefence",
+							"type": "uint16"
+						}
+					],
+					"internalType": "struct IAutoChessBase.Squad[]",
+					"name": "deployed",
+					"type": "tuple[]"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "_auctionId",
+					"type": "uint256"
+				}
+			],
+			"name": "withdrawAuction",
+			"outputs": [
+				{
+					"internalType": "bool",
+					"name": "success",
+					"type": "bool"
+				}
+			],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "_squadId",
+					"type": "uint256"
+				}
+			],
+			"name": "withdrawSquad",
+			"outputs": [
+				{
+					"internalType": "bool",
+					"name": "success",
+					"type": "bool"
+				}
+			],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		}
+	]
+}

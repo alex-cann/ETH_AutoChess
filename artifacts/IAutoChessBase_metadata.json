@@ -1,0 +1,45 @@
+{
+	"compiler": {
+		"version": "0.8.1+commit.df193b15"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"notice": "see CryptoKitties codebase here https://ethfiddle.com/09YbyJRfiI and here https://medium.com/loom-network/how-to-code-your-own-cryptokitties-style-game-on-ethereum-7c8ac86a4eb3",
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"AutoChess.sol": "IAutoChessBase"
+		},
+		"evmVersion": "istanbul",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"AutoChess.sol": {
+			"keccak256": "0x8efc57e8b4926150b73f4a4fecad3ca335be876c124b8ae35472170b0209ad56",
+			"urls": [
+				"bzz-raw://d40a95b0c8effd418b1d4712c8eb9844a8cbc40bf3013d79a8d704ff7807d2ad",
+				"dweb:/ipfs/Qmc29rNYo4M7WhDt5t6wrdhh25AQLiugrcCfdwkWW91mAq"
+			]
+		}
+	},
+	"version": 1
+}

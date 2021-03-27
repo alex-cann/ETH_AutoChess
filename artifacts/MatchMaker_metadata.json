@@ -1,0 +1,647 @@
+{
+	"compiler": {
+		"version": "0.8.1+commit.df193b15"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "owner",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "approved",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "tokenId",
+						"type": "uint256"
+					}
+				],
+				"name": "Approval",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "from",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "tokenId",
+						"type": "uint256"
+					}
+				],
+				"name": "Transfer",
+				"type": "event"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_to",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_tokenId",
+						"type": "uint256"
+					}
+				],
+				"name": "approve",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_owner",
+						"type": "address"
+					}
+				],
+				"name": "balanceOf",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "balance",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_auctionId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_value",
+						"type": "uint256"
+					}
+				],
+				"name": "bid",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "success",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_auctionId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_value",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "_msg",
+						"type": "string"
+					}
+				],
+				"name": "bid",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "success",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "name",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_tokenId",
+						"type": "uint256"
+					}
+				],
+				"name": "ownerOf",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "owner",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "ownerToUnitCount",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_squadId",
+						"type": "uint256"
+					}
+				],
+				"name": "randomChallenge",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "winnings",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "squadIndexToOwner",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256[]",
+						"name": "_assets",
+						"type": "uint256[]"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_asking",
+						"type": "uint256"
+					}
+				],
+				"name": "startAuction",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "success",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes4",
+						"name": "_interfaceID",
+						"type": "bytes4"
+					}
+				],
+				"name": "supportsInterface",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "symbol",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_squadId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_targetId",
+						"type": "uint256"
+					}
+				],
+				"name": "targetedChallenge",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "winnings",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "totalSupply",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "total",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_to",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_tokenId",
+						"type": "uint256"
+					}
+				],
+				"name": "transfer",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_from",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_to",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_tokenId",
+						"type": "uint256"
+					}
+				],
+				"name": "transferFrom",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "unitIndexToAllowed",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "unitIndexToOwner",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "unitIndexToSquadIndex",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "enum IAutoChessBase.Tier",
+						"name": "_tier",
+						"type": "uint8"
+					}
+				],
+				"name": "viewDeployedSquads",
+				"outputs": [
+					{
+						"components": [
+							{
+								"components": [
+									{
+										"internalType": "uint16",
+										"name": "attack",
+										"type": "uint16"
+									},
+									{
+										"internalType": "uint16",
+										"name": "defence",
+										"type": "uint16"
+									},
+									{
+										"internalType": "uint16",
+										"name": "level",
+										"type": "uint16"
+									},
+									{
+										"internalType": "uint16",
+										"name": "maxHealth",
+										"type": "uint16"
+									},
+									{
+										"internalType": "uint16",
+										"name": "curHealth",
+										"type": "uint16"
+									},
+									{
+										"internalType": "enum IAutoChessBase.unitType",
+										"name": "utype",
+										"type": "uint8"
+									},
+									{
+										"internalType": "string",
+										"name": "name",
+										"type": "string"
+									}
+								],
+								"internalType": "struct IAutoChessBase.Unit[]",
+								"name": "units",
+								"type": "tuple[]"
+							},
+							{
+								"internalType": "uint8",
+								"name": "unitCount",
+								"type": "uint8"
+							},
+							{
+								"internalType": "uint16",
+								"name": "stashedTokens",
+								"type": "uint16"
+							},
+							{
+								"internalType": "bool",
+								"name": "isDeployed",
+								"type": "bool"
+							},
+							{
+								"internalType": "enum IAutoChessBase.Tier",
+								"name": "squadTier",
+								"type": "uint8"
+							},
+							{
+								"internalType": "uint16",
+								"name": "deployTime",
+								"type": "uint16"
+							},
+							{
+								"internalType": "uint16",
+								"name": "totalAttack",
+								"type": "uint16"
+							},
+							{
+								"internalType": "uint16",
+								"name": "totalDefence",
+								"type": "uint16"
+							}
+						],
+						"internalType": "struct IAutoChessBase.Squad[]",
+						"name": "deployed",
+						"type": "tuple[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_auctionId",
+						"type": "uint256"
+					}
+				],
+				"name": "withdrawAuction",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "success",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_squadId",
+						"type": "uint256"
+					}
+				],
+				"name": "withdrawSquad",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "success",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {
+				"bid(uint256,uint256,string)": {
+					"notice": "So people can bid with a message etc just for funzies"
+				}
+			},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"MatchMaker.sol": "MatchMaker"
+		},
+		"evmVersion": "istanbul",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"AutoChess.sol": {
+			"keccak256": "0x86027cc9362126f90766c1c46e2dde549f1f82b4c4e59d3f37df43625270e01e",
+			"urls": [
+				"bzz-raw://1a8b62ffa224f8e27082a3ba74ba0a3e69a430aa96c77d25155c8858a6d785ba",
+				"dweb:/ipfs/QmUb1i7k5MNrjrSLgPMhn8FhDsX5yq1K4Lz5RWCk4RFJUB"
+			]
+		},
+		"GameEngine.sol": {
+			"keccak256": "0x6b041bb1bdd238a09b6e9644a09c3fbe3828cc7f724f09c588b907e7bafd7f0e",
+			"urls": [
+				"bzz-raw://b0d2960273291c19d6bf4b9d612fabe21049c9536e5bed5009dfc77f1d408b83",
+				"dweb:/ipfs/Qmd6E3uNxBHam1wsRpAkaeQ2qWqDafv1egoAmDEkrSmk8q"
+			]
+		},
+		"MatchMaker.sol": {
+			"keccak256": "0xd95452808c654213398c4546b513b757f707d7d761bcd8aa146cf42a243197d9",
+			"urls": [
+				"bzz-raw://5be2c8dcf686d617da7ba9ab0dfd9dc236059944bf9ad4827977555a17df81ec",
+				"dweb:/ipfs/QmajqEDSBP8tPNCugHVb3DxMxxFGsPHMoa5a18B9bcm1N9"
+			]
+		},
+		"StoreToken.sol": {
+			"keccak256": "0xfd369ce31701eae8142e8274349a827bd6eaf34599af12156209b17dc41786a6",
+			"urls": [
+				"bzz-raw://94b0a95aa30ddc6e3d263acbd80554a34f9cbe12c326bf2d65c0658faa8ee7c3",
+				"dweb:/ipfs/QmdYCVzXL2JHkb6yyQgjbe4GF5dvQ6hC2juRJK2skuVJFA"
+			]
+		},
+		"UnitMarketplace.sol": {
+			"keccak256": "0xc3920057e18c2d9ea774157aab1e5c547094e7ccc6a68ea459eed10b584648f3",
+			"urls": [
+				"bzz-raw://0ef6f438b3c27c6e4bf51df4099b715a991546b72e2f8434a809f304b5ecdeaf",
+				"dweb:/ipfs/Qme1PrBf1kD4mjuqCgyWxmF77MgNVNQbzMJqfCDBcM22Kp"
+			]
+		},
+		"UnitMinter.sol": {
+			"keccak256": "0x822d2e52868c9b672e0cc4f2eb7e54b334253ef12887eabc51dce1f87a67844b",
+			"urls": [
+				"bzz-raw://3b0965babb9fa01edc048dcd8fe4b3954e5a75698cccc31beb08e3a6d9d2d8e4",
+				"dweb:/ipfs/QmaGgPQ5TsP16vgTUxxRQWY4vNG79ym7ZojhCqRMs4h2Am"
+			]
+		},
+		"UnitToken.sol": {
+			"keccak256": "0x03edcd61acc4f08bbf28f944b9fffa02d99e4fa0652cea5296a65140c5337675",
+			"urls": [
+				"bzz-raw://44c6bb09f6d17787bf05455eb1c9248c15d95c4e128014e5ab3f672068a2102f",
+				"dweb:/ipfs/QmZFgJdfbShxDoD69e8FSatfzvupaBityjp1QJLraov2Mp"
+			]
+		}
+	},
+	"version": 1
+}

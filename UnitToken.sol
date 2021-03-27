@@ -32,7 +32,11 @@ interface ERC721 {
 }
 
 
-contract UnitToken is AutoChessBase, ERC721{ 
+interface IUnitToken is IAutoChessBase, ERC721{
+    
+}
+
+contract UnitToken is AutoChessBase, IUnitToken{ 
     //TODO fill these in
     // Required methods
     
@@ -58,6 +62,7 @@ contract UnitToken is AutoChessBase, ERC721{
     function approve(address _to, uint256 _tokenId) public override{
         require (msg.sender == ownerOf(_tokenId));
         require(msg.sender != _to);
+        require(unitIndexToState[_tokenId] == UnitState.Default);
         //TODO set this check up later
         //allowed[msg.sender][_to] = _tokenId;
         emit Approval(msg.sender, _to, _tokenId);
@@ -68,7 +73,8 @@ contract UnitToken is AutoChessBase, ERC721{
         unitIndexToOwner[_tokenId] = _to;
         //remove any allowances on transfering this unit
         delete unitIndexToAllowed[_tokenId];
-        //TODO remove this unit from squads
+        //set it to default
+        unitIndexToState[_tokenId] = UnitState.Default;
         ownerToUnitCount[_to]+=1;
         //the contract calling this is the unit generator
         //Trigger the transfer Event
@@ -80,7 +86,7 @@ contract UnitToken is AutoChessBase, ERC721{
     function transfer(address _to, uint256 _tokenId) override public{
         require(unitIndexExists[_tokenId]);
         require (msg.sender == ownerOf(_tokenId));
-	require(msg.sender != _to);
+	    require(msg.sender != _to);
         //TODO Replace this so that address(0) is used for selling units to the contract
         require(_to != address(0));
         //Require that it is not in a squad (this could be changed to something smarter)
@@ -94,10 +100,9 @@ contract UnitToken is AutoChessBase, ERC721{
     function transferFrom(address _from, address _to, uint256 _tokenId) public override {
         require(unitIndexExists[_tokenId]);
         require(_from != _to);
-        require(unitIndexToAllowed[_tokenId] == _to);
+        require(unitIndexToAllowed[_tokenId] == _to); //this can only be set if the unit is in Promised
         //Require that it is not in a squad (this could be changed to something smarter)
         //Example uses double map
-        require(unitIndexToSquadIndex[_tokenId] == 0);
         
         _transfer(_from,_to,_tokenId);
     }

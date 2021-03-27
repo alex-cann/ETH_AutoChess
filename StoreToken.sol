@@ -56,7 +56,7 @@ contract StoreToken is ERC20 {
    }
    
    function transfer(address _to, uint256 _value) public override returns (bool success){
-       assert(balanceOf(msg.sender) > _value);
+       require(balanceOf(msg.sender) > _value);
        ownerToBalance[msg.sender]-=_value;
        //TODO check for edge cases
        ownerToBalance[_to]+=_value;
@@ -66,8 +66,8 @@ contract StoreToken is ERC20 {
    
    function transferFrom(address _from, address _to, uint256 _value) public override returns (bool success){
        //is this person authorized to withdraw this money
-       assert(ownerToApprovedWithdrawals[_from][_to] > _value);
-       assert(ownerToBalance[_from] > _value);
+       require(ownerToApprovedWithdrawals[_from][_to] > _value);
+       require(ownerToBalance[_from] > _value);
        
        ownerToApprovedWithdrawals[_from][_to]-=_value;
        ownerToTotalApproved[_from]-=_value;
@@ -87,7 +87,7 @@ contract StoreToken is ERC20 {
    }
    
    function _approve(address _from, address _to, uint256 _value) internal returns (bool success){
-       assert(ownerToBalance[_from] > (_value + ownerToTotalApproved[msg.sender]));
+       require(ownerToBalance[_from] > (_value + ownerToTotalApproved[msg.sender]));
        ownerToApprovedWithdrawals[_from][_to]+=_value;
        ownerToTotalApproved[_from]+=_value;
        return true;
@@ -100,7 +100,7 @@ contract StoreToken is ERC20 {
    function allowance(address _owner, address _spender) public override view returns (uint256 remaining){
        return ownerToApprovedWithdrawals[_owner][_spender];
    }
-   
+   //TODO add buy with ethereum functionality
     
     // Optional
     function name() public override pure returns (string memory){

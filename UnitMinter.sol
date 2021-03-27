@@ -1,22 +1,25 @@
 /// handles the generation of new units
 
-pragma solidity ^0.8.1
+pragma solidity ^0.8.1;
 
-import "./UnitToken.sol";
+import "./UnitMarketplace.sol";
 
-contract UnitMinter is UnitToken{
+interface IUnitMinter is IUnitMarketplace{
+    
+    
+}
+
+
+
+contract UnitMinter is UnitMarketplace,IUnitMinter{
     
     
     //TODO implement this so that units can be efficiently deleted etc
     //other approach is to update id of last unit(probably a bad idea)
     uint256[] unusedIndices;
     
-    // Predictable random number generator. Used for unit generation
-    //the 
-    //from https://fravoll.github.io/solidity-patterns/randomness.html
-    function randomNumber(uint options) internal view returns (uint16) {
-        return uint16(uint(blockhash(block.number - 1)) % options);
-    }
+    
+    
 
     
     /// @dev creates and stores a new unit
@@ -37,6 +40,7 @@ contract UnitMinter is UnitToken{
             //A name associated with this unit
             name: "default unit name"
         });
+        //TODO modify this now that unitIDS are permanent
         uint256 newUnitId;
         if(unusedIndices.length == 0){
             units.push(_unit);

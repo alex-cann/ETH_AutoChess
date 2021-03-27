@@ -4,9 +4,7 @@ pragma solidity ^0.8.1;
 /// https://ethfiddle.com/09YbyJRfiI and here https://medium.com/loom-network/how-to-code-your-own-cryptokitties-style-game-on-ethereum-7c8ac86a4eb3
 
 //TODO make sure everything conforms to https://docs.soliditylang.org/en/v0.5.3/style-guide.html
-
-// has all the basic data etc
-contract AutoChessBase {
+interface IAutoChessBase{
     /*** TYPES AND MAPPINGS ***/
     //unit structs etc
     enum unitType { 
@@ -32,25 +30,41 @@ contract AutoChessBase {
         triangle, square, circle
     }
     
+    enum UnitState {
+        Deployed,Dead,Auctioning,Default,Promised
+    }
+    
+    enum DeploymentState{
+        Retired,TierOne,TierTwo,TierThree,TierFour
+    }
+    
+    //TODO replace Unit[] with unitids to reduce copying of data
     struct Squad{
         //list of the units in this squad
-        Unit[] units;
+        uint256[] unitIds;
         //count of remaining units
         uint8 unitCount;
         //Tokens that will be returned when this squad returns
         uint16 stashedTokens;
         //tracks wether this unit is deployed
-        bool isDeployed;
+        DeploymentState state;
         //timer for when the squad was deployed
         uint16 deployTime;
         //total ammount of atk, defense in the squad for making calculations easier
         uint16 totalAttack;
-        uint16 totalDefence;
     }
+    
+    
+}
+// has all the basic data etc
+contract AutoChessBase is IAutoChessBase {
     
     ///@dev global list of all units and squads. Maybe there is a better way
     Unit[] units;
+    
     Squad[] squads;
+    mapping(DeploymentState => uint256[]) tierToSquadIndex;
+    mapping(address => uint256[]) ownerToSquadIndex;
     
     ///@dev maps the index of each unit to their squad
     mapping (uint256 => uint256) public unitIndexToSquadIndex;
@@ -67,5 +81,16 @@ contract AutoChessBase {
     ///@dev maps units to users allowed to call transferFrom
     mapping (uint256 => address) public unitIndexToAllowed;
     
-    mapping (uint256 => bool) unitIndexExists;    
+    ///@dev maps to the state of the unit for easy access
+    mapping (uint256 => UnitState) public unitIndexToState;
+    
+    
+    mapping (uint256 => bool) unitIndexExists;
+    
+    // Predictable random number generator. Used for unit generation
+    //the 
+    //from https://fravoll.github.io/solidity-patterns/randomness.html
+    function randomNumber(uint options) internal view returns (uint16) {
+        return uint16(uint(blockhash(block.number - 1)) % options);
+    }
 }
