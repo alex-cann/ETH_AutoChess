@@ -41,14 +41,14 @@ What about a bonus for fully eliminating someone elses squad?
 ## Token and Item Descriptions
 
 ### Token
-what can people do with coins?
-How do people get coins?
+Tokens can but used to participate in unit auctions or to buy units from other players. Tokens can be created by a user paying ethereum into the smart contract. The token value is pegged to gas costs for the contract.
 
 ### Units
 values?
 
 ## Unit Minting
-Units are created daily and then set for auction 
+Units that are destroyed are replaced with randomly generated units. The newly created units are owned by the game contract and will be put up for auction. 
+**NOTE**: Add a feature where units can be generated for some fixed amount of coinage
 
 ## Unit Marketplace
 
@@ -62,21 +62,20 @@ Units are created daily and then set for auction
 7) Autobidding(potentially set a spend limit etc)
 
 
+## Matchmaking 
 
-
-## Matchmaking and Ranking
 
 ### Challenging Players
-Who can be challenged?
-When can you challenge them?
+There are two different matchmaking modes **Pseudo-Random** and **User Choice**. In **Pseudo-Random** the user is restricted to one opponent chosen at random but potentially known to the user before hand(the randomness comes from the previous blocks hash). In **User Choice** the user can pick any opponent. To balance these options and encourage diverse choices picking **Pseudo-Random** will provide a bonus to any rewards earned.
+
+**NOTE**: ADD details about default squads here
 
 ### Being Challenged
-When can you be challenged?
-
+Once a player has challenged another user through either **Pseudo-Random** or **User Choice** they will be available as to be challenged. A squad can be challeneged atmost once before it is retired. Additionally, any squad that has been deployed can be recalled for a set amount of tokens calculated based on the time they were deployed for. Eventually, reaching 0 tokens once the squad has been deployed for a sufficiently long time.
 
 ### Ranking system
-How are ranks calculated? ELO?
 
+Squads will be divided into tiers based on the number of units in the squad. There will be several tiers with a fixed number of units at each tier. Likely 1,3,5, and 7 units.
 
 ## Potential ICO Structure
 
