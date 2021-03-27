@@ -146,6 +146,25 @@
 				"type": "function"
 			},
 			{
+				"inputs": [
+					{
+						"internalType": "enum IAutoChessBase.DeploymentState",
+						"name": "_tier",
+						"type": "uint8"
+					}
+				],
+				"name": "getSquadIdsInTier",
+				"outputs": [
+					{
+						"internalType": "uint256[]",
+						"name": "deployed",
+						"type": "uint256[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
 				"inputs": [],
 				"name": "name",
 				"outputs": [
@@ -199,9 +218,9 @@
 			{
 				"inputs": [
 					{
-						"internalType": "uint256",
-						"name": "_squadId",
-						"type": "uint256"
+						"internalType": "uint256[]",
+						"name": "_unitIds",
+						"type": "uint256[]"
 					}
 				],
 				"name": "randomChallenge",
@@ -293,9 +312,9 @@
 			{
 				"inputs": [
 					{
-						"internalType": "uint256",
-						"name": "_squadId",
-						"type": "uint256"
+						"internalType": "uint256[]",
+						"name": "_unitIds",
+						"type": "uint256[]"
 					},
 					{
 						"internalType": "uint256",
@@ -428,96 +447,17 @@
 			{
 				"inputs": [
 					{
-						"internalType": "enum IAutoChessBase.Tier",
-						"name": "_tier",
-						"type": "uint8"
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
 					}
 				],
-				"name": "viewDeployedSquads",
+				"name": "unitIndexToState",
 				"outputs": [
 					{
-						"components": [
-							{
-								"components": [
-									{
-										"internalType": "uint16",
-										"name": "attack",
-										"type": "uint16"
-									},
-									{
-										"internalType": "uint16",
-										"name": "defence",
-										"type": "uint16"
-									},
-									{
-										"internalType": "uint16",
-										"name": "level",
-										"type": "uint16"
-									},
-									{
-										"internalType": "uint16",
-										"name": "maxHealth",
-										"type": "uint16"
-									},
-									{
-										"internalType": "uint16",
-										"name": "curHealth",
-										"type": "uint16"
-									},
-									{
-										"internalType": "enum IAutoChessBase.unitType",
-										"name": "utype",
-										"type": "uint8"
-									},
-									{
-										"internalType": "string",
-										"name": "name",
-										"type": "string"
-									}
-								],
-								"internalType": "struct IAutoChessBase.Unit[]",
-								"name": "units",
-								"type": "tuple[]"
-							},
-							{
-								"internalType": "uint8",
-								"name": "unitCount",
-								"type": "uint8"
-							},
-							{
-								"internalType": "uint16",
-								"name": "stashedTokens",
-								"type": "uint16"
-							},
-							{
-								"internalType": "bool",
-								"name": "isDeployed",
-								"type": "bool"
-							},
-							{
-								"internalType": "enum IAutoChessBase.Tier",
-								"name": "squadTier",
-								"type": "uint8"
-							},
-							{
-								"internalType": "uint16",
-								"name": "deployTime",
-								"type": "uint16"
-							},
-							{
-								"internalType": "uint16",
-								"name": "totalAttack",
-								"type": "uint16"
-							},
-							{
-								"internalType": "uint16",
-								"name": "totalDefence",
-								"type": "uint16"
-							}
-						],
-						"internalType": "struct IAutoChessBase.Squad[]",
-						"name": "deployed",
-						"type": "tuple[]"
+						"internalType": "enum IAutoChessBase.UnitState",
+						"name": "",
+						"type": "uint8"
 					}
 				],
 				"stateMutability": "view",
@@ -594,31 +534,31 @@
 	},
 	"sources": {
 		"AutoChess.sol": {
-			"keccak256": "0x86027cc9362126f90766c1c46e2dde549f1f82b4c4e59d3f37df43625270e01e",
+			"keccak256": "0x8efc57e8b4926150b73f4a4fecad3ca335be876c124b8ae35472170b0209ad56",
 			"urls": [
-				"bzz-raw://1a8b62ffa224f8e27082a3ba74ba0a3e69a430aa96c77d25155c8858a6d785ba",
-				"dweb:/ipfs/QmUb1i7k5MNrjrSLgPMhn8FhDsX5yq1K4Lz5RWCk4RFJUB"
+				"bzz-raw://d40a95b0c8effd418b1d4712c8eb9844a8cbc40bf3013d79a8d704ff7807d2ad",
+				"dweb:/ipfs/Qmc29rNYo4M7WhDt5t6wrdhh25AQLiugrcCfdwkWW91mAq"
 			]
 		},
 		"GameEngine.sol": {
-			"keccak256": "0x6b041bb1bdd238a09b6e9644a09c3fbe3828cc7f724f09c588b907e7bafd7f0e",
+			"keccak256": "0xcddc08234b893a28f73c524e1f9ae06f09dc613653900ed513454ce29920beee",
 			"urls": [
-				"bzz-raw://b0d2960273291c19d6bf4b9d612fabe21049c9536e5bed5009dfc77f1d408b83",
-				"dweb:/ipfs/Qmd6E3uNxBHam1wsRpAkaeQ2qWqDafv1egoAmDEkrSmk8q"
+				"bzz-raw://6169b5efb8f428eaa7c689ebb4a7d057007104c57a31d98312c37f873ccf055d",
+				"dweb:/ipfs/QmdLktxYxAt3k7pqTtjhjZprkktH3kkSdbHvXjPFYVgN1v"
 			]
 		},
 		"MatchMaker.sol": {
-			"keccak256": "0xd95452808c654213398c4546b513b757f707d7d761bcd8aa146cf42a243197d9",
+			"keccak256": "0x16bc2089aac556042c99b693944fb39434dbc0c96710adb6a9a01d812cb5b8ac",
 			"urls": [
-				"bzz-raw://5be2c8dcf686d617da7ba9ab0dfd9dc236059944bf9ad4827977555a17df81ec",
-				"dweb:/ipfs/QmajqEDSBP8tPNCugHVb3DxMxxFGsPHMoa5a18B9bcm1N9"
+				"bzz-raw://4afa3e467945e4917cba9fa779e79f97ffbea19a41178b2f5de372d997f591bf",
+				"dweb:/ipfs/QmRSEo9AQc4Jrg7kwXvoy6PtvVuyggCdF48457MEknLoKo"
 			]
 		},
 		"StoreToken.sol": {
-			"keccak256": "0xfd369ce31701eae8142e8274349a827bd6eaf34599af12156209b17dc41786a6",
+			"keccak256": "0xc44635097425f38713f356fe224599f229eef7566b9c9409c7670b2435fbd677",
 			"urls": [
-				"bzz-raw://94b0a95aa30ddc6e3d263acbd80554a34f9cbe12c326bf2d65c0658faa8ee7c3",
-				"dweb:/ipfs/QmdYCVzXL2JHkb6yyQgjbe4GF5dvQ6hC2juRJK2skuVJFA"
+				"bzz-raw://208c306e2e1c1f0779aa5b8f0e9dc0c96ea33a385dd45c07ce7cc0ece2558f65",
+				"dweb:/ipfs/QmUXh8tyapoAwLjuJpqPLKniaik5gQt2gjkkNQtspcHyE5"
 			]
 		},
 		"UnitMarketplace.sol": {
@@ -629,17 +569,17 @@
 			]
 		},
 		"UnitMinter.sol": {
-			"keccak256": "0x822d2e52868c9b672e0cc4f2eb7e54b334253ef12887eabc51dce1f87a67844b",
+			"keccak256": "0x58c4d693833e7a91a6b8318883bb4ad96533f9bcfd71d1578709f1d5146a0e7a",
 			"urls": [
-				"bzz-raw://3b0965babb9fa01edc048dcd8fe4b3954e5a75698cccc31beb08e3a6d9d2d8e4",
-				"dweb:/ipfs/QmaGgPQ5TsP16vgTUxxRQWY4vNG79ym7ZojhCqRMs4h2Am"
+				"bzz-raw://7f20d3dcaf39dd5e28ab1177d334ed4d743ae8bc321ac795765295ce0281f3ff",
+				"dweb:/ipfs/QmQjFami5s9by5YhZW3xsZj2bg6dMKajsw7jm47DYr1yRQ"
 			]
 		},
 		"UnitToken.sol": {
-			"keccak256": "0x03edcd61acc4f08bbf28f944b9fffa02d99e4fa0652cea5296a65140c5337675",
+			"keccak256": "0x0580dbf22780645b97b971e5009d92b81b23f296807e0755badad16571be0cf8",
 			"urls": [
-				"bzz-raw://44c6bb09f6d17787bf05455eb1c9248c15d95c4e128014e5ab3f672068a2102f",
-				"dweb:/ipfs/QmZFgJdfbShxDoD69e8FSatfzvupaBityjp1QJLraov2Mp"
+				"bzz-raw://f76ba9d5b69a6c4a1d8ae4602ad51b6399e6c406d6a4a66e088b29efcba9e1eb",
+				"dweb:/ipfs/QmXi5dXa1nh15T63561SH72sgp8xN3JhY4UoPc8PahLpTX"
 			]
 		}
 	},

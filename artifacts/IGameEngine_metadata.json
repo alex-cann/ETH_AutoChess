@@ -4,7 +4,104 @@
 	},
 	"language": "Solidity",
 	"output": {
-		"abi": [],
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_auctionId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_value",
+						"type": "uint256"
+					}
+				],
+				"name": "bid",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "success",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_auctionId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_value",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "_msg",
+						"type": "string"
+					}
+				],
+				"name": "bid",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "success",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256[]",
+						"name": "_assets",
+						"type": "uint256[]"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_asking",
+						"type": "uint256"
+					}
+				],
+				"name": "startAuction",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "success",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_auctionId",
+						"type": "uint256"
+					}
+				],
+				"name": "withdrawAuction",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "success",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
 		"devdoc": {
 			"kind": "dev",
 			"methods": {},
@@ -33,45 +130,45 @@
 	},
 	"sources": {
 		"AutoChess.sol": {
-			"keccak256": "0xbfc3e16fb140119bacd324181a9040ac9440c3606defadfde0df3104bdcfcdb2",
+			"keccak256": "0x8efc57e8b4926150b73f4a4fecad3ca335be876c124b8ae35472170b0209ad56",
 			"urls": [
-				"bzz-raw://cae6a916bf367717b9ff2b9febf3a1dbd037f33947b98bc19aef691c280e0936",
-				"dweb:/ipfs/QmVBXVEeHamnaCw3BpRxat6DcAMw4F28thUjxqS9x9xsuz"
+				"bzz-raw://d40a95b0c8effd418b1d4712c8eb9844a8cbc40bf3013d79a8d704ff7807d2ad",
+				"dweb:/ipfs/Qmc29rNYo4M7WhDt5t6wrdhh25AQLiugrcCfdwkWW91mAq"
 			]
 		},
 		"GameEngine.sol": {
-			"keccak256": "0xa0421174b738efeb7f55ba3556819e837c295096f3a07bb0776811bf8ee63baa",
+			"keccak256": "0xcddc08234b893a28f73c524e1f9ae06f09dc613653900ed513454ce29920beee",
 			"urls": [
-				"bzz-raw://680b3ca6b9e1165c7e452d7390c6d063914ad7a86eea8c509073bfbcbe3e4d89",
-				"dweb:/ipfs/QmeruPc3PY9d13fS2k4GcqcXoN6Xpp2h6x8ZzfoJhJ2yNh"
+				"bzz-raw://6169b5efb8f428eaa7c689ebb4a7d057007104c57a31d98312c37f873ccf055d",
+				"dweb:/ipfs/QmdLktxYxAt3k7pqTtjhjZprkktH3kkSdbHvXjPFYVgN1v"
 			]
 		},
 		"StoreToken.sol": {
-			"keccak256": "0xfd369ce31701eae8142e8274349a827bd6eaf34599af12156209b17dc41786a6",
+			"keccak256": "0xc44635097425f38713f356fe224599f229eef7566b9c9409c7670b2435fbd677",
 			"urls": [
-				"bzz-raw://94b0a95aa30ddc6e3d263acbd80554a34f9cbe12c326bf2d65c0658faa8ee7c3",
-				"dweb:/ipfs/QmdYCVzXL2JHkb6yyQgjbe4GF5dvQ6hC2juRJK2skuVJFA"
+				"bzz-raw://208c306e2e1c1f0779aa5b8f0e9dc0c96ea33a385dd45c07ce7cc0ece2558f65",
+				"dweb:/ipfs/QmUXh8tyapoAwLjuJpqPLKniaik5gQt2gjkkNQtspcHyE5"
 			]
 		},
 		"UnitMarketplace.sol": {
-			"keccak256": "0x451bf6058d2dcb10acb1424c12b2a408807c9554b4c65fb5e90406d9f7f243b2",
+			"keccak256": "0xc3920057e18c2d9ea774157aab1e5c547094e7ccc6a68ea459eed10b584648f3",
 			"urls": [
-				"bzz-raw://397cee076ceecc1790d5ba73c1795769e6d9a1fae212d967117f5173325e65fd",
-				"dweb:/ipfs/QmYpNZ7hTdWmrbvPVLuUbgtf6aFvgGznsSQMDDM8G4njeq"
+				"bzz-raw://0ef6f438b3c27c6e4bf51df4099b715a991546b72e2f8434a809f304b5ecdeaf",
+				"dweb:/ipfs/Qme1PrBf1kD4mjuqCgyWxmF77MgNVNQbzMJqfCDBcM22Kp"
 			]
 		},
 		"UnitMinter.sol": {
-			"keccak256": "0x3098d0fbd75358c32672e8abf1e97541aa10dcd480360ff064d107d6cb7503fb",
+			"keccak256": "0x58c4d693833e7a91a6b8318883bb4ad96533f9bcfd71d1578709f1d5146a0e7a",
 			"urls": [
-				"bzz-raw://ce5017347066f193f84e35f79fe2c44135c55173076be821b7811d00a2817517",
-				"dweb:/ipfs/QmbfQeTmuZVDjXUXmu9CEj76iBdiEvpgPwfC95sncyt3HD"
+				"bzz-raw://7f20d3dcaf39dd5e28ab1177d334ed4d743ae8bc321ac795765295ce0281f3ff",
+				"dweb:/ipfs/QmQjFami5s9by5YhZW3xsZj2bg6dMKajsw7jm47DYr1yRQ"
 			]
 		},
 		"UnitToken.sol": {
-			"keccak256": "0x03edcd61acc4f08bbf28f944b9fffa02d99e4fa0652cea5296a65140c5337675",
+			"keccak256": "0x0580dbf22780645b97b971e5009d92b81b23f296807e0755badad16571be0cf8",
 			"urls": [
-				"bzz-raw://44c6bb09f6d17787bf05455eb1c9248c15d95c4e128014e5ab3f672068a2102f",
-				"dweb:/ipfs/QmZFgJdfbShxDoD69e8FSatfzvupaBityjp1QJLraov2Mp"
+				"bzz-raw://f76ba9d5b69a6c4a1d8ae4602ad51b6399e6c406d6a4a66e088b29efcba9e1eb",
+				"dweb:/ipfs/QmXi5dXa1nh15T63561SH72sgp8xN3JhY4UoPc8PahLpTX"
 			]
 		}
 	},

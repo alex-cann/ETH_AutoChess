@@ -10,15 +10,15 @@ import "./UnitMarketplace.sol";
 
 interface IMatchMaker is IGameEngine{
     
-    function randomChallenge(uint256 _squadId) external returns (uint256 winnings);
-    function targetedChallenge(uint256 _squadId, uint256 _targetId) external returns (uint256 winnings);
+    function randomChallenge(uint256[] calldata unitIds) external returns (uint256 winnings);
+    function targetedChallenge(uint256[] calldata unitIds, uint256 _targetId) external returns (uint256 winnings);
     function withdrawSquad(uint256 _squadId) external returns (bool success);
-    function viewSquadsByState(IAutoChessBase.DeploymentState _state) external view returns (IAutoChessBase.Squad[] memory deployed); //This is subject to change
+    function getSquadIdsInTier(IAutoChessBase.DeploymentState _tier) external view returns (uint256[] memory deployed); //This is subject to change
     
 }
 
 
-contract MatchMaker is GameEngine, IMatchMaker{
+contract MatchMaker is IMatchMaker, GameEngine{
     
     
     function _withdraw(uint256 _squadId) internal returns(bool success){
@@ -27,31 +27,29 @@ contract MatchMaker is GameEngine, IMatchMaker{
     }
     
     //TODO maybe move this to unit minter
-    function _createSquad(uint256[] calldata _unitIds) internal returns(uint256 squadId){
-        uint256 atkSum=0;
+    function _createSquad(uint256[] calldata _unitIds) internal returns(uint256 squadId, DeploymentState tier){
+        uint16 atkSum=0;
         for(uint8 i=0; i < _unitIds.length; i++){
-            require(unitIndexToOwner(_unitIds[i]) == msg.sender);
+            require(unitIndexToOwner[_unitIds[i]] == msg.sender);
             require(unitIndexToState[_unitIds[i]] == UnitState.Default);//check that this unit isn't doing something else
             unitIndexToState[_unitIds[i]] = UnitState.Deployed;
-            atkSum+=units[_unitIds[i]];
+            atkSum+=units[_unitIds[i]].attack;
         }
         
-        DeploymentState tier = _getTier(_unitIds.length);
+        DeploymentState _tier = _getTier(_unitIds.length);
         squads.push(Squad({
             unitIds:_unitIds,
-            unitCount:_unitIds.length,
-            state:tier,
-            deployTime:now,
-            totalAttack:atkSum
+            unitCount:uint8(_unitIds.length),
+            state:_tier,
+            deployTime:uint16(block.timestamp), //TODO this seems sketch
+            totalAttack:atkSum,
+            stashedTokens:0
         }));
+        return (squads.length ,_tier);
     }
    
-    function _deploy(uint256[] memory _unitIds) internal returns(uint256 squadId){
-        
-        
-    }
     
-    function _getTier(uint _unitCount) internal view returns(DeploymentState state){
+    function _getTier(uint _unitCount) internal pure returns(DeploymentState state){
         if(_unitCount == 1){
             return DeploymentState.TierOne;
         }else if(_unitCount == 3){
@@ -65,24 +63,29 @@ contract MatchMaker is GameEngine, IMatchMaker{
         assert(false);
     }
     
-    function _challenge(Squad memory _squad, uint256 _targetId) internal returns (uint256 winnings){
+    function _challenge(uint256 _squadId, uint256 _targetId) internal returns (uint256 winnings){
         
         
     }
     
     
     //TODO make this create a squad
-    function randomChallenge(uint256 _squadId) public override returns (uint256 winnings){
-        assert(msg.sender == squadIndexToOwner[_squadId]);
-        Squad memory squad = squads[_squadId];
-       
+    function randomChallenge(uint256[] calldata _unitIds) public override returns (uint256 winnings){
+        uint256 squadId;
+        DeploymentState tier;
+        (squadId, tier) = _createSquad(_unitIds);
+        uint256 targetId = randomNumber(tierToSquadIndex[tier].length);
+        return _attack(squadId,targetId);
     }
     
     
-    function targetedChallenge(uint256 _squadId, uint256 _targetId) public override returns (uint256 winnings){
-        assert(msg.sender == squadIndexToOwner[_squadId]);
-        Squad memory squad = squads[_squadId];
-        return _challenge(squad,_targetId);
+    function targetedChallenge(uint256[] calldata _unitIds, uint256 _targetId) public override returns (uint256 winnings){
+        uint256 squadId;
+        DeploymentState tier;
+        (squadId, tier) = _createSquad(_unitIds);
+        //make sure it's a valid target
+        assert(tierToSquadIndex[tier].length > _targetId);
+        return _attack(squadId,_targetId);
     }
     
     

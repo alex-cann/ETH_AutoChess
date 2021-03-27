@@ -49,10 +49,10 @@
 		"methodIdentifiers": {
 			"bid(uint256,uint256)": "598647f8",
 			"bid(uint256,uint256,string)": "76d4fc57",
-			"randomChallenge(uint256)": "a32c87fb",
+			"getSquadIdsInTier(uint8)": "64e0b81f",
+			"randomChallenge(uint256[])": "dba7f943",
 			"startAuction(uint256[],uint256)": "40b53391",
-			"targetedChallenge(uint256,uint256)": "87d775d3",
-			"viewDeployedSquads(uint8)": "fa59fb62",
+			"targetedChallenge(uint256[],uint256)": "e56053eb",
 			"withdrawAuction(uint256)": "b5fc9833",
 			"withdrawSquad(uint256)": "198b367d"
 		}
@@ -114,9 +114,28 @@
 		{
 			"inputs": [
 				{
-					"internalType": "uint256",
-					"name": "_squadId",
-					"type": "uint256"
+					"internalType": "enum IAutoChessBase.DeploymentState",
+					"name": "_tier",
+					"type": "uint8"
+				}
+			],
+			"name": "getSquadIdsInTier",
+			"outputs": [
+				{
+					"internalType": "uint256[]",
+					"name": "deployed",
+					"type": "uint256[]"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256[]",
+					"name": "unitIds",
+					"type": "uint256[]"
 				}
 			],
 			"name": "randomChallenge",
@@ -157,9 +176,9 @@
 		{
 			"inputs": [
 				{
-					"internalType": "uint256",
-					"name": "_squadId",
-					"type": "uint256"
+					"internalType": "uint256[]",
+					"name": "unitIds",
+					"type": "uint256[]"
 				},
 				{
 					"internalType": "uint256",
@@ -176,104 +195,6 @@
 				}
 			],
 			"stateMutability": "nonpayable",
-			"type": "function"
-		},
-		{
-			"inputs": [
-				{
-					"internalType": "enum IAutoChessBase.Tier",
-					"name": "_tier",
-					"type": "uint8"
-				}
-			],
-			"name": "viewDeployedSquads",
-			"outputs": [
-				{
-					"components": [
-						{
-							"components": [
-								{
-									"internalType": "uint16",
-									"name": "attack",
-									"type": "uint16"
-								},
-								{
-									"internalType": "uint16",
-									"name": "defence",
-									"type": "uint16"
-								},
-								{
-									"internalType": "uint16",
-									"name": "level",
-									"type": "uint16"
-								},
-								{
-									"internalType": "uint16",
-									"name": "maxHealth",
-									"type": "uint16"
-								},
-								{
-									"internalType": "uint16",
-									"name": "curHealth",
-									"type": "uint16"
-								},
-								{
-									"internalType": "enum IAutoChessBase.unitType",
-									"name": "utype",
-									"type": "uint8"
-								},
-								{
-									"internalType": "string",
-									"name": "name",
-									"type": "string"
-								}
-							],
-							"internalType": "struct IAutoChessBase.Unit[]",
-							"name": "units",
-							"type": "tuple[]"
-						},
-						{
-							"internalType": "uint8",
-							"name": "unitCount",
-							"type": "uint8"
-						},
-						{
-							"internalType": "uint16",
-							"name": "stashedTokens",
-							"type": "uint16"
-						},
-						{
-							"internalType": "bool",
-							"name": "isDeployed",
-							"type": "bool"
-						},
-						{
-							"internalType": "enum IAutoChessBase.Tier",
-							"name": "squadTier",
-							"type": "uint8"
-						},
-						{
-							"internalType": "uint16",
-							"name": "deployTime",
-							"type": "uint16"
-						},
-						{
-							"internalType": "uint16",
-							"name": "totalAttack",
-							"type": "uint16"
-						},
-						{
-							"internalType": "uint16",
-							"name": "totalDefence",
-							"type": "uint16"
-						}
-					],
-					"internalType": "struct IAutoChessBase.Squad[]",
-					"name": "deployed",
-					"type": "tuple[]"
-				}
-			],
-			"stateMutability": "view",
 			"type": "function"
 		},
 		{
