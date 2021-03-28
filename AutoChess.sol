@@ -103,9 +103,29 @@ contract AutoChessBase is IAutoChessBase {
     function randomNumber(uint options) internal view returns (uint16) {
         return uint16(uint(blockhash(block.number - 1)) % options);
     }
+<<<<<<< HEAD
     
     //TODO add constants for TIER sizes
     //TODO add constants for DEFAULT STATS
     
     
+=======
+
+    // TODO consider using enum directly instead of this function
+    //      not sure if solidity supports it
+    //      for now using this function
+    function _getTier(uint _unitCount) internal pure returns(DeploymentState state){
+        if(_unitCount == 2){
+            return DeploymentState.TierOne;
+        }else if(_unitCount == 3){
+            return DeploymentState.TierTwo;
+        }else if(_unitCount == 5){
+            return DeploymentState.TierThree;
+        }else if(_unitCount == 7){
+            return DeploymentState.TierFour;
+        }
+        //error otherwise
+        assert(false);
+    }
+>>>>>>> 57bcb0d13a9505f31a3be446b289f34623393568
 }
