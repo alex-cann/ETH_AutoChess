@@ -26,31 +26,8 @@ contract MatchMaker is IMatchMaker, GameEngine{
 
     }
 
-    //TODO maybe move this to unit minter
-    function _createSquad(uint256[] calldata _unitIds) internal returns(uint256 squadId, DeploymentState tier){
-        uint16 atkSum=0;
-        for(uint8 i=0; i < _unitIds.length; i++){
-            require(unitIndexToOwner[_unitIds[i]] == msg.sender);
-            require(unitIndexToState[_unitIds[i]] == UnitState.Default);//check that this unit isn't doing something else
-            unitIndexToState[_unitIds[i]] = UnitState.Deployed;
-            atkSum+=units[_unitIds[i]].attack;
-        }
-
-        DeploymentState _tier = _getTier(_unitIds.length);
-        squads.push(Squad({
-                    unitIds:_unitIds,
-                    unitCount:uint8(_unitIds.length),
-                    state:_tier,
-                    deployTime:uint16(block.timestamp), //TODO this seems sketch
-                    totalAttack:atkSum,
-                    stashedTokens:0
-                    }));
-        return (squads.length ,_tier);
-    }
-
-
     function _getTier(uint _unitCount) internal pure returns(DeploymentState state){
-        if(_unitCount == 1){
+        if(_unitCount == 2){
             return DeploymentState.TierOne;
         }else if(_unitCount == 3){
             return DeploymentState.TierTwo;

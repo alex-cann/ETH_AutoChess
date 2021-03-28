@@ -4,11 +4,11 @@ pragma solidity ^0.8.1;
 
 import "./UnitMarketplace.sol";
 
-interface IUnitMinter is IUnitMarketplace{
+interface ISquadBuilder is IUnitMarketplace{
 
 }
 
-contract UnitMinter is UnitMarketplace,IUnitMinter{
+contract SquadBuilder is UnitMarketplace, ISquadBuilder {
 
     //TODO implement this so that units can be efficiently deleted etc
     //other approach is to update id of last unit(probably a bad idea)
@@ -77,4 +77,27 @@ contract UnitMinter is UnitMarketplace,IUnitMinter{
     //TODO Add a create unit function to be called by user,
     //     Costs less token if random type chosen
     //     Specific cost token value for chosen unit type
+
+    // create squad
+    function _createSquad(uint256[] calldata _unitIds) internal returns(uint256 squadId, DeploymentState tier){
+        require(tier != DeploymentState.Retired);
+        uint16 atkSum=0;
+        for(uint8 i=0; i < _unitIds.length; i++){
+            require(unitIndexToOwner[_unitIds[i]] == msg.sender);
+            require(unitIndexToState[_unitIds[i]] == UnitState.Default);//check that this unit isn't doing something else
+            unitIndexToState[_unitIds[i]] = UnitState.Deployed;
+            atkSum+=units[_unitIds[i]].attack;
+        }
+
+        DeploymentState _tier = _getTier(_unitIds.length);
+        squads.push(Squad({
+                    unitIds:_unitIds,
+                    unitCount:uint8(_unitIds.length),
+                    state:_tier,
+                    deployTime:uint16(block.timestamp), //TODO this seems sketch
+                    totalAttack:atkSum,
+                    stashedTokens:0
+                    }));
+        return (squads.length ,_tier);
+    }
 }
