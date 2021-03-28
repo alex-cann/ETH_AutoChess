@@ -103,13 +103,9 @@ contract AutoChessBase is IAutoChessBase {
     function randomNumber(uint options) internal view returns (uint16) {
         return uint16(uint(blockhash(block.number - 1)) % options);
     }
-<<<<<<< HEAD
     
     //TODO add constants for TIER sizes
     //TODO add constants for DEFAULT STATS
-    
-    
-=======
 
     // TODO consider using enum directly instead of this function
     //      not sure if solidity supports it
@@ -127,5 +123,5 @@ contract AutoChessBase is IAutoChessBase {
         //error otherwise
         assert(false);
     }
->>>>>>> 57bcb0d13a9505f31a3be446b289f34623393568
+
 }

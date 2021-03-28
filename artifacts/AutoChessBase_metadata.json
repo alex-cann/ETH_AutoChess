@@ -124,11 +124,17 @@
 			"kind": "dev",
 			"methods": {},
 			"stateVariables": {
+				"ownerToSquadIndex": {
+					"details": "maps each owner to their squad indices used for allowing a user to view their squads"
+				},
 				"ownerToUnitCount": {
 					"details": "maps owners to their count of units"
 				},
 				"squadIndexToOwner": {
 					"details": "maps squads to the owner used to cash in a squad"
+				},
+				"tierToSquadIndex": {
+					"details": "lists of squads in each deployment tier/state This could be removed and replaced with a lot of if statements"
 				},
 				"unitIndexToAllowed": {
 					"details": "maps units to users allowed to call transferFrom"
@@ -171,10 +177,10 @@
 	},
 	"sources": {
 		"AutoChess.sol": {
-			"keccak256": "0x924ed2729d06fd720e842f4bafd11aaf05488aa36a9d168ecf9b67ceec139a6e",
+			"keccak256": "0x71b2dcd68bb18ddc20e0e2d3d910ef8bca1492d6b9125681a12c9985a5539fe6",
 			"urls": [
-				"bzz-raw://ae4db51382dc4b7778f53262c75a17b0e665d08430af9d22444f54843bed4bec",
-				"dweb:/ipfs/QmYSXjTAXm6w5LLMp8uZrRzJk52MPUStePnjhS4WHLGuHh"
+				"bzz-raw://f9e64fd6a038ee13aef96c67531826093688c250a21d462ff354cdcccdbe76d4",
+				"dweb:/ipfs/QmciJhmhKpNhZwGqEJRJwfNGEHKHaCWiZupbrnce3WpqfK"
 			]
 		}
 	},

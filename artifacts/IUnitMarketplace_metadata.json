@@ -130,31 +130,31 @@
 	},
 	"sources": {
 		"AutoChess.sol": {
-			"keccak256": "0x86027cc9362126f90766c1c46e2dde549f1f82b4c4e59d3f37df43625270e01e",
+			"keccak256": "0x71b2dcd68bb18ddc20e0e2d3d910ef8bca1492d6b9125681a12c9985a5539fe6",
 			"urls": [
-				"bzz-raw://1a8b62ffa224f8e27082a3ba74ba0a3e69a430aa96c77d25155c8858a6d785ba",
-				"dweb:/ipfs/QmUb1i7k5MNrjrSLgPMhn8FhDsX5yq1K4Lz5RWCk4RFJUB"
+				"bzz-raw://f9e64fd6a038ee13aef96c67531826093688c250a21d462ff354cdcccdbe76d4",
+				"dweb:/ipfs/QmciJhmhKpNhZwGqEJRJwfNGEHKHaCWiZupbrnce3WpqfK"
 			]
 		},
 		"StoreToken.sol": {
-			"keccak256": "0xfd369ce31701eae8142e8274349a827bd6eaf34599af12156209b17dc41786a6",
+			"keccak256": "0x4d3a67a03d93c0bcd82170bddd1c0efb7fcf47dcb73ab41e1ac7bd3dfc95f893",
 			"urls": [
-				"bzz-raw://94b0a95aa30ddc6e3d263acbd80554a34f9cbe12c326bf2d65c0658faa8ee7c3",
-				"dweb:/ipfs/QmdYCVzXL2JHkb6yyQgjbe4GF5dvQ6hC2juRJK2skuVJFA"
+				"bzz-raw://46dfb32e31d49f7c9005ffb68215d4c5ead416f7b717723a073d4d8ce687530f",
+				"dweb:/ipfs/QmQP4rog7agNmNaio6yiSMsSTbysdH4SVzYBsA2SZ54YG5"
 			]
 		},
 		"UnitMarketplace.sol": {
-			"keccak256": "0xc3920057e18c2d9ea774157aab1e5c547094e7ccc6a68ea459eed10b584648f3",
+			"keccak256": "0x32945fd3fa34c9026437f6c0b5b304dd5b114cac3f7c9f11545b2f09cf55057d",
 			"urls": [
-				"bzz-raw://0ef6f438b3c27c6e4bf51df4099b715a991546b72e2f8434a809f304b5ecdeaf",
-				"dweb:/ipfs/Qme1PrBf1kD4mjuqCgyWxmF77MgNVNQbzMJqfCDBcM22Kp"
+				"bzz-raw://49269f081fbfee9fd2f59895a0972a9d75aa373087416142dba890904d00d88d",
+				"dweb:/ipfs/QmPDMwyvQFoHMQGo2HGqcA8EZjTgMHH86bHRwGCbV6CE2m"
 			]
 		},
 		"UnitToken.sol": {
-			"keccak256": "0x03edcd61acc4f08bbf28f944b9fffa02d99e4fa0652cea5296a65140c5337675",
+			"keccak256": "0xfb97c49133185540a056eac3b318a93aeaa67952fd7c497468646bdc60ed8cd0",
 			"urls": [
-				"bzz-raw://44c6bb09f6d17787bf05455eb1c9248c15d95c4e128014e5ab3f672068a2102f",
-				"dweb:/ipfs/QmZFgJdfbShxDoD69e8FSatfzvupaBityjp1QJLraov2Mp"
+				"bzz-raw://25e178f5cc4cc94d80f3f182b8eb11e98cb4b5c487b714448a5593ee1a23636e",
+				"dweb:/ipfs/QmStApLxqkvo6XDyDptiYi3kKWMU5d3TCZT6YDBLDAfTrq"
 			]
 		}
 	},

@@ -520,17 +520,17 @@
 	},
 	"sources": {
 		"AutoChess.sol": {
-			"keccak256": "0x37b331f5a97014e953aca388ccad1fa202263266ee81b2405016a9e0ea576fb4",
+			"keccak256": "0x71b2dcd68bb18ddc20e0e2d3d910ef8bca1492d6b9125681a12c9985a5539fe6",
 			"urls": [
-				"bzz-raw://dde184fe2b0ba1c7944f28017e933af5f0d586a776f7df2d8da296f762d26924",
-				"dweb:/ipfs/QmcFxNgHMLBczPxnJvFpdAZmYvfT89jycLYKmkEzAvQJjB"
+				"bzz-raw://f9e64fd6a038ee13aef96c67531826093688c250a21d462ff354cdcccdbe76d4",
+				"dweb:/ipfs/QmciJhmhKpNhZwGqEJRJwfNGEHKHaCWiZupbrnce3WpqfK"
 			]
 		},
 		"SquadBuilder.sol": {
-			"keccak256": "0x972d7ff4dfb2a42f8e7fcb171348197cfcfb4278a6d84d83f92a5d498a8f59bf",
+			"keccak256": "0x26dc3c306fe8088b2456f7b9d000559260966e11e67e276eac626119deabbfe3",
 			"urls": [
-				"bzz-raw://f631b0f9e8caec2e53bfb33f5c8b3970ad22092d3ad22dce4a5a66d67964ca7a",
-				"dweb:/ipfs/QmPHTRbn8CDXCoANxTStXPSxWXpToj1K7KHKrkkStWWKjx"
+				"bzz-raw://13e05f229a8cadb15cc5af11ec78b732d9f7ff5df728dcdc11d2d42f2f099a4c",
+				"dweb:/ipfs/QmPhe2s6seV6koAdkW3Cw6AiRvpU2hRU58G6ejs3gvbQzW"
 			]
 		},
 		"StoreToken.sol": {

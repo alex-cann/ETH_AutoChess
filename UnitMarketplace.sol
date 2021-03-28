@@ -41,9 +41,11 @@ contract UnitMarketplace is UnitToken,IUnitMarketplace {
     function bid(uint256 _auctionId, uint256 _value) public override returns(bool success) {
         Auction memory auction = _auctions[_auctionId];
         //check if this bid is big enough
-        assert(_value > auction.highestBid);
+        require(_value > auction.highestBid);
         //preapprove the transaction to the Auction
-        assert(CurrencyProvider.autoApprove(msg.sender, _value));
+        CurrencyProvider.autoApprove(msg.sender, _value);
+        //remove hold on previous highest bidders currency
+        CurrencyProvider.autoUnApprove(auction.highestBidder,auction.highestBid);
         auction.highestBid = _value;
         auction.highestBidder = msg.sender;
         return true;
@@ -79,14 +81,12 @@ contract UnitMarketplace is UnitToken,IUnitMarketplace {
     function withdrawAuction(uint256 _auctionId) public override returns(bool success){
         assert(_auctions[_auctionId].host == msg.sender);
         assert(_auctions[_auctionId].endTime < block.timestamp);
-        //TODO call withdraw bid function
-
+        Auction memory auction = _auctions[_auctionId];
+        //withdraw the highestbidders bid
+        CurrencyProvider.autoUnApprove(auction.highestBidder,auction.highestBid);
         //TODO reset ownership of units back to the host or use approval system instead
         return true;
     }
 
-
-    //TODO add withdraw bid function
-
-    //TODO add reverse auctions where someone offers tokens    
+    //TODO add reverse auctions where someone offers tokens. Maybe?
 }

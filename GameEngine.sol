@@ -15,36 +15,38 @@ contract GameEngine is SquadBuilder {
         return true;
     }
 
-    function _attack(uint256 _attackerId,uint256 _defenderId) internal returns(uint256 winnings){
-        return 10;
-    }
-
+    
+    //TODO This doesn't match what was discussed on Friday
     function _squadBattle(uint attackerSquadId, uint defenderSquadId) internal returns(uint winnings) {
         Squad memory attacker = squads[attackerSquadId];
-        Squad storage defender = squads[defenderSquadId];
+        Squad memory  defender = squads[defenderSquadId];
 
         require(attacker.state == defender.state);
         require(attacker.state != DeploymentState.Retired);
-
-        Unit[] memory atkUnits;
-        Unit[] memory dfdUnits;
-        uint atkNum = _getTier(attacker.state);
-        uint dfdNum = atkNum;
-
+        
+        //Making these storage variables is very dubious
+       
+        uint8 atkNum = attacker.unitCount;
+        uint8 dfdNum = defender.unitCount;
+        Unit[] memory atkUnits = new Unit[](atkNum);
+        Unit[] memory dfdUnits = new Unit[](dfdNum);
+        
         for (uint8 i=0; i<atkNum; i++) {
-            atkUnits.push(units[attacker.unitIds[i]);
-            dfdUnits.push(units[defender.unitIds[i]);
+            atkUnits[i] = units[attacker.unitIds[i]];
+            dfdUnits[i] = units[defender.unitIds[i]];
         }
 
         //TODO include more details wrt squad formation
         //     also include formation in the Squad structure
-
-        uint atkNum = _getTier(attacker.state);
-        uint dfdNum = atkNum;
-        uint atkIdxAP, atkIdxDP, dfdIdxAP, dfdIdxDP;
+        uint atkIdxAP;
+        uint atkIdxDP;
+        uint dfdIdxAP;
+        uint dfdIdxDP;
 
         while (atkNum > 0 && dfdNum > 0) {
-
+            //TODO why is this random ordering it allows for users to structure squads better
+            //otherwise why does it matter that you have warriors etc if enemies will randomly hit your archers
+            
             // attacker attacks phase
             // choose attacker unit
             atkIdxAP = randomNumber(attacker.unitIds.length);
@@ -106,4 +108,6 @@ contract GameEngine is SquadBuilder {
             return 10;
         }
     }
+    
+    
 }

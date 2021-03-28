@@ -58,6 +58,30 @@
 			{
 				"inputs": [
 					{
+						"internalType": "enum IAutoChessBase.UnitType",
+						"name": "_type",
+						"type": "uint8"
+					},
+					{
+						"internalType": "string",
+						"name": "_name",
+						"type": "string"
+					}
+				],
+				"name": "_buyUnit",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "_unitId",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
 						"internalType": "address",
 						"name": "_to",
 						"type": "address"
@@ -140,6 +164,49 @@
 						"internalType": "bool",
 						"name": "success",
 						"type": "bool"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "enum IAutoChessBase.UnitType",
+						"name": "_type",
+						"type": "uint8"
+					}
+				],
+				"name": "buyUnit",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "_unitId",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "enum IAutoChessBase.UnitType",
+						"name": "_type",
+						"type": "uint8"
+					},
+					{
+						"internalType": "string",
+						"name": "_name",
+						"type": "string"
+					}
+				],
+				"name": "buyUnit",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "_unitId",
+						"type": "uint256"
 					}
 				],
 				"stateMutability": "nonpayable",
@@ -433,7 +500,7 @@
 					"notice": "So people can bid with a message etc just for funzies"
 				}
 			},
-			"notice": " Handles the actual playing of the game",
+			"notice": "Handles the actual playing of the game",
 			"version": 1
 		}
 	},
@@ -454,45 +521,45 @@
 	},
 	"sources": {
 		"AutoChess.sol": {
-			"keccak256": "0x8efc57e8b4926150b73f4a4fecad3ca335be876c124b8ae35472170b0209ad56",
+			"keccak256": "0x71b2dcd68bb18ddc20e0e2d3d910ef8bca1492d6b9125681a12c9985a5539fe6",
 			"urls": [
-				"bzz-raw://d40a95b0c8effd418b1d4712c8eb9844a8cbc40bf3013d79a8d704ff7807d2ad",
-				"dweb:/ipfs/Qmc29rNYo4M7WhDt5t6wrdhh25AQLiugrcCfdwkWW91mAq"
+				"bzz-raw://f9e64fd6a038ee13aef96c67531826093688c250a21d462ff354cdcccdbe76d4",
+				"dweb:/ipfs/QmciJhmhKpNhZwGqEJRJwfNGEHKHaCWiZupbrnce3WpqfK"
 			]
 		},
 		"GameEngine.sol": {
-			"keccak256": "0xcddc08234b893a28f73c524e1f9ae06f09dc613653900ed513454ce29920beee",
+			"keccak256": "0x1c9b6db13d7dd001690159e9fb412db5746b0f4821f3d582a8eccf8c68e89271",
 			"urls": [
-				"bzz-raw://6169b5efb8f428eaa7c689ebb4a7d057007104c57a31d98312c37f873ccf055d",
-				"dweb:/ipfs/QmdLktxYxAt3k7pqTtjhjZprkktH3kkSdbHvXjPFYVgN1v"
+				"bzz-raw://7aef3868c8d362364fc357a2e3f3b8aed4850b81f27a40e380f399cb75e73fc0",
+				"dweb:/ipfs/QmXkpd8QBzPysbjPQbgKsQuXCNPS2Vnutu5GmBrSERDRjP"
+			]
+		},
+		"SquadBuilder.sol": {
+			"keccak256": "0x26dc3c306fe8088b2456f7b9d000559260966e11e67e276eac626119deabbfe3",
+			"urls": [
+				"bzz-raw://13e05f229a8cadb15cc5af11ec78b732d9f7ff5df728dcdc11d2d42f2f099a4c",
+				"dweb:/ipfs/QmPhe2s6seV6koAdkW3Cw6AiRvpU2hRU58G6ejs3gvbQzW"
 			]
 		},
 		"StoreToken.sol": {
-			"keccak256": "0xc44635097425f38713f356fe224599f229eef7566b9c9409c7670b2435fbd677",
+			"keccak256": "0x4d3a67a03d93c0bcd82170bddd1c0efb7fcf47dcb73ab41e1ac7bd3dfc95f893",
 			"urls": [
-				"bzz-raw://208c306e2e1c1f0779aa5b8f0e9dc0c96ea33a385dd45c07ce7cc0ece2558f65",
-				"dweb:/ipfs/QmUXh8tyapoAwLjuJpqPLKniaik5gQt2gjkkNQtspcHyE5"
+				"bzz-raw://46dfb32e31d49f7c9005ffb68215d4c5ead416f7b717723a073d4d8ce687530f",
+				"dweb:/ipfs/QmQP4rog7agNmNaio6yiSMsSTbysdH4SVzYBsA2SZ54YG5"
 			]
 		},
 		"UnitMarketplace.sol": {
-			"keccak256": "0xc3920057e18c2d9ea774157aab1e5c547094e7ccc6a68ea459eed10b584648f3",
+			"keccak256": "0x754059024906c7baf927460e5b45301e2a913627cc94b01e141c1ceda9b23d1d",
 			"urls": [
-				"bzz-raw://0ef6f438b3c27c6e4bf51df4099b715a991546b72e2f8434a809f304b5ecdeaf",
-				"dweb:/ipfs/Qme1PrBf1kD4mjuqCgyWxmF77MgNVNQbzMJqfCDBcM22Kp"
-			]
-		},
-		"UnitMinter.sol": {
-			"keccak256": "0x58c4d693833e7a91a6b8318883bb4ad96533f9bcfd71d1578709f1d5146a0e7a",
-			"urls": [
-				"bzz-raw://7f20d3dcaf39dd5e28ab1177d334ed4d743ae8bc321ac795765295ce0281f3ff",
-				"dweb:/ipfs/QmQjFami5s9by5YhZW3xsZj2bg6dMKajsw7jm47DYr1yRQ"
+				"bzz-raw://70f9c7c35582be99bc74371a00630d282f9cfd33e8c537f67250f3b7765feed4",
+				"dweb:/ipfs/QmR3KXh2q5Aho7pmiKHB1rz7nQrDyD6TNY42o71S5BQKsK"
 			]
 		},
 		"UnitToken.sol": {
-			"keccak256": "0x0580dbf22780645b97b971e5009d92b81b23f296807e0755badad16571be0cf8",
+			"keccak256": "0xfb97c49133185540a056eac3b318a93aeaa67952fd7c497468646bdc60ed8cd0",
 			"urls": [
-				"bzz-raw://f76ba9d5b69a6c4a1d8ae4602ad51b6399e6c406d6a4a66e088b29efcba9e1eb",
-				"dweb:/ipfs/QmXi5dXa1nh15T63561SH72sgp8xN3JhY4UoPc8PahLpTX"
+				"bzz-raw://25e178f5cc4cc94d80f3f182b8eb11e98cb4b5c487b714448a5593ee1a23636e",
+				"dweb:/ipfs/QmStApLxqkvo6XDyDptiYi3kKWMU5d3TCZT6YDBLDAfTrq"
 			]
 		}
 	},
