@@ -7,8 +7,9 @@ pragma solidity ^0.8.1;
 interface IAutoChessBase{
     /*** TYPES AND MAPPINGS ***/
     //unit structs etc
-    enum unitType { 
-        archer, warrior, cavalry
+    //Made these capitals so that ENUMS are consistently styled
+    enum UnitType { 
+        Archer, Warrior, Cavalry
     }
 
     struct Unit{
@@ -21,7 +22,7 @@ interface IAutoChessBase{
         // health remaining on this unit
         uint16 curHealth;
         //what type of unit this is
-        unitType utype;
+        UnitType utype;
         //A name associated with this unit
         string name;
     }
@@ -54,7 +55,9 @@ interface IAutoChessBase{
         uint16 totalAttack;
     }
 
-
+    
+   
+    
 }
 // has all the basic data etc
 contract AutoChessBase is IAutoChessBase {
@@ -63,9 +66,16 @@ contract AutoChessBase is IAutoChessBase {
     Unit[] units;
 
     Squad[] squads;
+    ///@dev lists of squads in each deployment tier/state
+    /// This could be removed and replaced with a lot of if statements
     mapping(DeploymentState => uint256[]) tierToSquadIndex;
+    
+    ///@dev maps each owner to their squad indices
+    /// used for allowing a user to view their squads
     mapping(address => uint256[]) ownerToSquadIndex;
 
+
+    //TODO currently unused. SHould be used for determining what squad a unit is in(maybe not necessary)
     ///@dev maps the index of each unit to their squad
     mapping (uint256 => uint256) public unitIndexToSquadIndex;
 
@@ -84,13 +94,18 @@ contract AutoChessBase is IAutoChessBase {
     ///@dev maps to the state of the unit for easy access
     mapping (uint256 => UnitState) public unitIndexToState;
 
-
+    //TODO check if this is necessary since units can't be destroyed anymore
     mapping (uint256 => bool) unitIndexExists;
-
+    
     // Predictable random number generator. Used for unit generation
     //the 
     //from https://fravoll.github.io/solidity-patterns/randomness.html
     function randomNumber(uint options) internal view returns (uint16) {
         return uint16(uint(blockhash(block.number - 1)) % options);
     }
+    
+    //TODO add constants for TIER sizes
+    //TODO add constants for DEFAULT STATS
+    
+    
 }

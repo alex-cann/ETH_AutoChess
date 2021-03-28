@@ -26,19 +26,7 @@ contract MatchMaker is IMatchMaker, GameEngine{
 
     }
 
-    function _getTier(uint _unitCount) internal pure returns(DeploymentState state){
-        if(_unitCount == 2){
-            return DeploymentState.TierOne;
-        }else if(_unitCount == 3){
-            return DeploymentState.TierTwo;
-        }else if(_unitCount == 5){
-            return DeploymentState.TierThree;
-        }else if(_unitCount == 7){
-            return DeploymentState.TierFour;
-        }
-        //error otherwise
-        assert(false);
-    }
+    
 
     function _challenge(uint256 _squadId, uint256 _targetId) internal returns (uint256 winnings){
 

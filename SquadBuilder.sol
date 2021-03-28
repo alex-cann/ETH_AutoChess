@@ -13,11 +13,10 @@ contract SquadBuilder is UnitMarketplace, ISquadBuilder {
     //TODO implement this so that units can be efficiently deleted etc
     //other approach is to update id of last unit(probably a bad idea)
     uint256[] unusedIndices;
-
+    string constant DEFAULT_NAME = "Maurice, the Mediocre";
     /// @dev creates and stores a new unit
-    function _generateUnit(unitType type) internal returns (uint)
+    function _generateUnit(UnitType _type,string memory _name) internal returns (uint)
     {
-        //TODO make this dependent on unit type and less silly
         Unit memory _unit = Unit({
                             attack: randomNumber(3),
                             defence: randomNumber(2),
@@ -28,22 +27,22 @@ contract SquadBuilder is UnitMarketplace, ISquadBuilder {
                             // health remaining on this unit
                             curHealth: 0,
                             //what type of unit this is
-                            utype: type,
+                            utype: _type,
                             //A name associated with this unit
-                            name: "default unit name"
+                            name: _name
                             });
 
-        if (type == unitType.archer) {
+        if (_type == UnitType.Archer) {
             // archer, high attack
             _unit.attack += 15;
             _unit.defence += 1;
             _unit.maxHealth += 50;
-        } else if (type == unitType.warrior) {
+        } else if (_type == UnitType.Warrior) {
             // warrior, high defence
             _unit.attack += 10;
             _unit.defence += 5;
             _unit.maxHealth += 50;
-        } else {
+        } else if (_type == UnitType.Cavalry){
             // cavalry, high health
             _unit.attack += 10;
             _unit.defence += 1;
@@ -73,11 +72,45 @@ contract SquadBuilder is UnitMarketplace, ISquadBuilder {
 
         return newUnitId;
     }
-
-    //TODO Add a create unit function to be called by user,
-    //     Costs less token if random type chosen
-    //     Specific cost token value for chosen unit type
-
+    
+    function _buyUnit(UnitType _type, string memory _name) public returns (uint256 _unitId){
+        uint256 _cost = 0;
+        uint256 _id;
+        if(_type == UnitType.Warrior){
+            _cost+=10;
+        }else if(_type == UnitType.Archer){
+            _cost+=15;
+        }else if(_type == UnitType.Cavalry){
+            _cost+=20;
+        }
+        CurrencyProvider.spend(msg.sender,_cost);
+        _id = _generateUnit(_type, _name);
+        return _id;
+    }
+    
+    function buyUnit(UnitType _type) public returns (uint256 _unitId){
+        return _buyUnit(_type, DEFAULT_NAME);
+    }
+    
+    function buyUnit(UnitType _type, string calldata _name) public returns (uint256 _unitId){
+        return _buyUnit(_type,_name);
+    }
+    
+    
+    function _getTier(uint _unitCount) internal pure returns(DeploymentState state){
+        if(_unitCount == 2){
+            return DeploymentState.TierOne;
+        }else if(_unitCount == 3){
+            return DeploymentState.TierTwo;
+        }else if(_unitCount == 5){
+            return DeploymentState.TierThree;
+        }else if(_unitCount == 7){
+            return DeploymentState.TierFour;
+        }
+        //error otherwise
+        assert(false);
+    }
+    
     // create squad
     function _createSquad(uint256[] calldata _unitIds) internal returns(uint256 squadId, DeploymentState tier){
         require(tier != DeploymentState.Retired);

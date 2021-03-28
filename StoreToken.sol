@@ -43,7 +43,7 @@ contract StoreToken is ERC20 {
 
     ///@dev functions only accessible from the marketplace (so coins can be autoApproved for auctions)
     modifier _storeOnly() {
-        assert(msg.sender == StoreAddress);
+        require(msg.sender == StoreAddress);
         _;
     }
 
@@ -56,40 +56,55 @@ contract StoreToken is ERC20 {
     }
 
     function transfer(address _to, uint256 _value) public override returns (bool success) {
-        require(balanceOf(msg.sender) > _value);
+        require(unApprovedBalanceOf(msg.sender) > _value);
         ownerToBalance[msg.sender] -= _value;
-        //TODO check for edge cases
         ownerToBalance[_to] += _value;
         emit Transfer(msg.sender, _to, _value);
         return true;
     }
-
+    
+    ///@dev called by the store  when a user spends coin
+    function spend(address _from, uint256 _value) public  _storeOnly returns (bool success){
+        require(unApprovedBalanceOf(_from) > _value);
+        totalTokens-=_value;
+        ownerToBalance[_from] -= _value;
+        emit Transfer(_from, StoreAddress, _value);
+        return true;
+    }
+    
     function transferFrom(address _from, address _to, uint256 _value) public override returns (bool success) {
         //is this person authorized to withdraw this money
         require(ownerToApprovedWithdrawals[_from][_to] > _value);
-        require(ownerToBalance[_from] > _value);
-
+        
         ownerToApprovedWithdrawals[_from][_to] -= _value;
         ownerToTotalApproved[_from] -= _value;
         ownerToBalance[_from] -= _value;
         ownerToBalance[_to] += _value;
         return true;
     }
-
+    ///@dev The amount of funds the user has minus any preapproved amounts
+    function unApprovedBalanceOf(address _owner)  public view returns (uint256 remaining){
+        return ownerToBalance[_owner] - ownerToTotalApproved[_owner];
+    }
+    
+    //@dev A function for the store to preapprove transactions for a user
     function autoApprove(address _from, uint256 _value) public _storeOnly returns (bool success) {
         return _approve(_from, StoreAddress, _value);
     }
 
+    //@dev A function for the store to unapprove transactions for other users
     function autoUnApprove(address _from, uint256 _value) public _storeOnly returns (bool success) {
         ownerToApprovedWithdrawals[_from][msg.sender] -= _value;
         ownerToTotalApproved[_from] -= _value;
         return true;
     }
-
+    
+    
     function _approve(address _from, address _to, uint256 _value) internal returns (bool success) {
-        require(ownerToBalance[_from] > (_value + ownerToTotalApproved[msg.sender]));
+        require(unApprovedBalanceOf(_from) > _value);
         ownerToApprovedWithdrawals[_from][_to] += _value;
         ownerToTotalApproved[_from] += _value;
+        emit Approval(_from, _to, _value);
         return true;
     }
 
@@ -101,7 +116,12 @@ contract StoreToken is ERC20 {
         return ownerToApprovedWithdrawals[_owner][_spender];
     }
     //TODO add buy with ethereum functionality
-
+    
+    function verifyTransaction(uint256 _value) public view returns(bool success){
+        //TODO fill this in
+        return true;
+    }
+    
     // Optional
     function name() public override pure returns (string memory){
         return "AutoChess Store Token";
