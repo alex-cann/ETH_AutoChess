@@ -8,9 +8,9 @@ interface IAutoChessBase{
     /*** TYPES AND MAPPINGS ***/
     //unit structs etc
     enum unitType { 
-            archer, warrior
+        archer, warrior
     }
-    
+
     struct Unit{
         uint16 attack;
         uint16 defence;
@@ -25,19 +25,19 @@ interface IAutoChessBase{
         //A name associated with this unit
         string name;
     }
-    
+
     enum squadType {
         triangle, square, circle
     }
-    
+
     enum UnitState {
         Deployed,Dead,Auctioning,Default,Promised
     }
-    
+
     enum DeploymentState{
         Retired,TierOne,TierTwo,TierThree,TierFour
     }
-    
+
     //TODO replace Unit[] with unitids to reduce copying of data
     struct Squad{
         //list of the units in this squad
@@ -53,40 +53,40 @@ interface IAutoChessBase{
         //total ammount of atk, defense in the squad for making calculations easier
         uint16 totalAttack;
     }
-    
-    
+
+
 }
 // has all the basic data etc
 contract AutoChessBase is IAutoChessBase {
-    
+
     ///@dev global list of all units and squads. Maybe there is a better way
     Unit[] units;
-    
+
     Squad[] squads;
     mapping(DeploymentState => uint256[]) tierToSquadIndex;
     mapping(address => uint256[]) ownerToSquadIndex;
-    
+
     ///@dev maps the index of each unit to their squad
     mapping (uint256 => uint256) public unitIndexToSquadIndex;
-    
+
     ///@dev says who owns each unit
     mapping (uint256 => address) public unitIndexToOwner;
-    
+
     ///@dev maps squads to the owner used to cash in a squad
     mapping (uint256 => address) public squadIndexToOwner;
-    
+
     ///@dev maps owners to their count of units
     mapping (address => uint256) public ownerToUnitCount;
-    
+
     ///@dev maps units to users allowed to call transferFrom
     mapping (uint256 => address) public unitIndexToAllowed;
-    
+
     ///@dev maps to the state of the unit for easy access
     mapping (uint256 => UnitState) public unitIndexToState;
-    
-    
+
+
     mapping (uint256 => bool) unitIndexExists;
-    
+
     // Predictable random number generator. Used for unit generation
     //the 
     //from https://fravoll.github.io/solidity-patterns/randomness.html

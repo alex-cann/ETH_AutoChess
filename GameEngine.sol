@@ -10,13 +10,13 @@ interface IGameEngine is IUnitMinter{
 ///
 /// Handles the actual playing of the game
 contract GameEngine is UnitMinter{
-    
-        function unitDeath(uint256 _unitId) internal returns (bool success){
-            return true;
-        }
-        
-        function _attack(uint256 _attackerId,uint256 _defenderId) internal returns(uint256 winnings){
-            return 10;
-        }
-        
+
+    function unitDeath(uint256 _unitId) internal returns (bool success){
+        return true;
+    }
+
+    function _attack(uint256 _attackerId,uint256 _defenderId) internal returns(uint256 winnings){
+        return 10;
+    }
+
 }

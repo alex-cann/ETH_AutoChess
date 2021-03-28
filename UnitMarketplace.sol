@@ -16,7 +16,7 @@ interface IUnitMarketplace {
         //add some stuff for timeout
         uint256 endTime;
     }
-    
+
     function bid(uint256 _auctionId, uint256 _value) external returns(bool success);
     function bid(uint256 _auctionId, uint256 _value,string calldata _msg) external returns(bool success);
     function startAuction(uint256[] calldata _assets, uint256 _asking) external returns(bool success);
@@ -24,22 +24,21 @@ interface IUnitMarketplace {
 }
 
 //TODO add autobidding ()
-contract UnitMarketplace is UnitToken,IUnitMarketplace{
+contract UnitMarketplace is UnitToken,IUnitMarketplace {
     //objects:
-    
+
     address ProviderAddress;
     StoreToken CurrencyProvider;
-    
+
     //A list of all ongoing auctions
     Auction[] _auctions;
-    
-    
-    constructor(){
+
+    constructor() {
         CurrencyProvider = new StoreToken();
         ProviderAddress = address(CurrencyProvider);
     }
-    
-    function bid(uint256 _auctionId, uint256 _value) public override returns(bool success){
+
+    function bid(uint256 _auctionId, uint256 _value) public override returns(bool success) {
         Auction memory auction = _auctions[_auctionId];
         //check if this bid is big enough
         assert(_value > auction.highestBid);
@@ -49,25 +48,26 @@ contract UnitMarketplace is UnitToken,IUnitMarketplace{
         auction.highestBidder = msg.sender;
         return true;
     }
+
     /// So people can bid with a message etc
     /// just for funzies
-    function bid(uint256 _auctionId, uint256 _value,string calldata _msg) public override returns(bool success){
+    function bid(uint256 _auctionId, uint256 _value,string calldata _msg) public override returns(bool success) {
         assert(bid(_auctionId,_value));
         _auctions[_auctionId].highestBidText = _msg;
         return true;
     }
 
-    function startAuction(uint256[] calldata _assets, uint256 _asking) public override returns(bool success){
+    function startAuction(uint256[] calldata _assets, uint256 _asking) public override returns(bool success) {
         //TODO verify that all the units up for auction aren't in a squad etc
-       _auctions.push(Auction({
-            highestBid:_asking,
-            highestBidder: msg.sender,
-            host: msg.sender,
-            name: "PLACEHOLDER",
-            assetIds: _assets,
-            highestBidText: "Default Bid",
-            endTime: block.timestamp + 1 hours
-        }));
+        _auctions.push(Auction({
+                        highestBid:_asking,
+                        highestBidder: msg.sender,
+                        host: msg.sender,
+                        name: "PLACEHOLDER",
+                        assetIds: _assets,
+                        highestBidText: "Default Bid",
+                        endTime: block.timestamp + 1 hours
+                        }));
         //transfer all the assets to the auctionhouse
         for(uint i =0; i < _assets.length; i++){
             _transfer(msg.sender,address(this),_assets[i]);
@@ -75,18 +75,18 @@ contract UnitMarketplace is UnitToken,IUnitMarketplace{
         //TODO add an auction event
         return true;
     }
-    
+
     function withdrawAuction(uint256 _auctionId) public override returns(bool success){
         assert(_auctions[_auctionId].host == msg.sender);
         assert(_auctions[_auctionId].endTime < block.timestamp);
         //TODO call withdraw bid function
-        
+
         //TODO reset ownership of units back to the host or use approval system instead
         return true;
     }
-    
-    
+
+
     //TODO add withdraw bid function
-    
+
     //TODO add reverse auctions where someone offers tokens    
 }
