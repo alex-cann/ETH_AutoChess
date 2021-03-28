@@ -8,7 +8,7 @@ interface IAutoChessBase{
     /*** TYPES AND MAPPINGS ***/
     //unit structs etc
     enum unitType { 
-        archer, warrior
+        archer, warrior, cavalry
     }
 
     struct Unit{
@@ -46,7 +46,7 @@ interface IAutoChessBase{
         uint8 unitCount;
         //Tokens that will be returned when this squad returns
         uint16 stashedTokens;
-        //tracks wether this unit is deployed
+        //tracks wether this squad is deployed
         DeploymentState state;
         //timer for when the squad was deployed
         uint16 deployTime;
