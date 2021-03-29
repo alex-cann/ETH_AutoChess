@@ -79,9 +79,10 @@ contract UnitMarketplace is UnitToken,IUnitMarketplace {
     }
 
     function withdrawAuction(uint256 _auctionId) public override returns(bool success){
-        assert(_auctions[_auctionId].host == msg.sender);
-        assert(_auctions[_auctionId].endTime < block.timestamp);
+        //TODO make sure this auction actually exists
         Auction memory auction = _auctions[_auctionId];
+        assert(auction.host == msg.sender);
+        assert(auction.endTime < block.timestamp);
         //withdraw the highestbidders bid
         CurrencyProvider.autoUnApprove(auction.highestBidder,auction.highestBid);
         //TODO reset ownership of units back to the host or use approval system instead

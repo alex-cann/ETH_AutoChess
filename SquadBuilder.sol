@@ -99,7 +99,6 @@ contract SquadBuilder is UnitMarketplace, ISquadBuilder {
     
     // create squad
     function _createSquad(uint256[] calldata _unitIds) internal returns(uint256 squadId, DeploymentState tier){
-        require(tier != DeploymentState.Retired);
         uint16 atkSum=0;
         for(uint8 i=0; i < _unitIds.length; i++){
             require(unitIndexToOwner[_unitIds[i]] == msg.sender);

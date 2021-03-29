@@ -21,21 +21,6 @@ interface IMatchMaker is IGameEngine{
 contract MatchMaker is IMatchMaker, GameEngine{
 
 
-    function _withdraw(uint256 _squadId) internal returns(bool success){
-
-
-    }
-
-<<<<<<< HEAD
-    
-
-=======
->>>>>>> 57bcb0d13a9505f31a3be446b289f34623393568
-    function _challenge(uint256 _squadId, uint256 _targetId) internal returns (uint256 winnings){
-
-
-    }
-
 
     //TODO make this create a squad
     function randomChallenge(uint256[] calldata _unitIds) public override returns (uint256 winnings){
@@ -43,7 +28,7 @@ contract MatchMaker is IMatchMaker, GameEngine{
         DeploymentState tier;
         (squadId, tier) = _createSquad(_unitIds);
         uint256 targetId = randomNumber(tierToSquadIndex[tier].length);
-        return _attack(squadId,targetId);
+        return _squadBattle(squadId,targetId);
     }
 
 
@@ -53,7 +38,7 @@ contract MatchMaker is IMatchMaker, GameEngine{
         (squadId, tier) = _createSquad(_unitIds);
         //make sure it's a valid target
         assert(tierToSquadIndex[tier].length > _targetId);
-        return _attack(squadId,_targetId);
+        return _squadBattle(squadId,_targetId);
     }
 
 

@@ -242,17 +242,17 @@
 	},
 	"sources": {
 		"AutoChess.sol": {
-			"keccak256": "0x0aeef78066c3ec882d5e7ad6379c1687d584607bb24d1f345b510f960d42b464",
+			"keccak256": "0x71b2dcd68bb18ddc20e0e2d3d910ef8bca1492d6b9125681a12c9985a5539fe6",
 			"urls": [
-				"bzz-raw://6486b7e67bf2d54c6c96e29ec523a976a89a643a48a410d41042f861fd8c4df3",
-				"dweb:/ipfs/QmZ6KzLzGF16ybvVZRyAtyn2tPyr8Rdj7cuc7ZeV7Yqy3V"
+				"bzz-raw://f9e64fd6a038ee13aef96c67531826093688c250a21d462ff354cdcccdbe76d4",
+				"dweb:/ipfs/QmciJhmhKpNhZwGqEJRJwfNGEHKHaCWiZupbrnce3WpqfK"
 			]
 		},
 		"UnitToken.sol": {
-			"keccak256": "0x58b7953e232389cd6fd6e84e830d6eb22bd2ba3581878a9c935231560eea12e5",
+			"keccak256": "0xfb97c49133185540a056eac3b318a93aeaa67952fd7c497468646bdc60ed8cd0",
 			"urls": [
-				"bzz-raw://ee53cc391b2d2d0bb85299f513949da1c9858f2b119c018106e6e848b7638641",
-				"dweb:/ipfs/QmcBmudx4CR7Z94cChktiDv5qGC7X3cMx8MA6rD54d226T"
+				"bzz-raw://25e178f5cc4cc94d80f3f182b8eb11e98cb4b5c487b714448a5593ee1a23636e",
+				"dweb:/ipfs/QmStApLxqkvo6XDyDptiYi3kKWMU5d3TCZT6YDBLDAfTrq"
 			]
 		}
 	},
