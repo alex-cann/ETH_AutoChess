@@ -26,7 +26,7 @@ contract MatchMaker is IMatchMaker, GameEngine{
     function randomChallenge(uint256[] calldata _unitIds) public override returns (uint256 winnings){
         uint256 squadId;
         DeploymentState tier;
-        (squadId, tier) = _createSquad(_unitIds);
+        (squadId, tier) = _createSquad(msg.sender,_unitIds);
         uint256 targetId = randomNumber(tierToSquadIndex[tier].length);
         return _squadBattle(squadId,targetId);
     }
@@ -35,7 +35,7 @@ contract MatchMaker is IMatchMaker, GameEngine{
     function targetedChallenge(uint256[] calldata _unitIds, uint256 _targetId) public override returns (uint256 winnings){
         uint256 squadId;
         DeploymentState tier;
-        (squadId, tier) = _createSquad(_unitIds);
+        (squadId, tier) = _createSquad(msg.sender,_unitIds);
         //make sure it's a valid target
         assert(tierToSquadIndex[tier].length > _targetId);
         return _squadBattle(squadId,_targetId);

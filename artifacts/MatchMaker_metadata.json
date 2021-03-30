@@ -748,17 +748,17 @@
 			]
 		},
 		"MatchMaker.sol": {
-			"keccak256": "0x9de59acab73768a8e83c92110f83ffcb6e9100dbfb3229fb28dfc7d84136a55e",
+			"keccak256": "0x431f585adc2479dcf162f9922e4ebb2171d2eac4701aeecc5aab5c18e36f892c",
 			"urls": [
-				"bzz-raw://302a44dbd51074e9de5cc72f36bd861221aa40d65c0745a6bfc47aca68870f31",
-				"dweb:/ipfs/QmPYBXgewgLSTdruhRRL6ed2D7fD8TqPgzpiSwDiVUgLq7"
+				"bzz-raw://c3ffcd9a83667648473d3f14a7c555973992f60cd982300e709e2761a565bcaa",
+				"dweb:/ipfs/QmUydqg1cK648SbKfAeA5xLuXnn7HbrmtQ9XUFjJbSAV7Z"
 			]
 		},
 		"SquadBuilder.sol": {
-			"keccak256": "0x2bc1e4c6bb63d503caf5849b6cf9c4d330fe77b9023fe971eeb825abcbf7a1b3",
+			"keccak256": "0x79b525d8fa70e6d5e29531ab0eeafe22cf447856295dc1de72e92479886ca3ac",
 			"urls": [
-				"bzz-raw://41ad73214eeddb34ad1548c4f1effbc6aea878f64afaa5fe38881bf554d56195",
-				"dweb:/ipfs/QmPNtSkHTK7VFNSCFz4ar7W11T1D9WvDZ7fYNYLLjPKptV"
+				"bzz-raw://4a44ba1ef21bde57994a69df01c072f3632b235650807fa03fb4287b8e1d83da",
+				"dweb:/ipfs/QmQukA7qVKgFrcvZseSoRrnHn9Vp44Bhh1bBdZtfHKosGy"
 			]
 		},
 		"StoreToken.sol": {
@@ -769,10 +769,10 @@
 			]
 		},
 		"UnitMarketplace.sol": {
-			"keccak256": "0xc9b252d8058b28529bc236e2c6d525a4334efcfb4b760e2663b2b66d7aa8595a",
+			"keccak256": "0xb3c34a8fe99e9f05d7d5a9edc0e2ac3195b34d8de087f24490c587935937914d",
 			"urls": [
-				"bzz-raw://3113617bdcfb0636515485589fcedd00f742af74211c2e16c82501574c5e44da",
-				"dweb:/ipfs/QmaLpShvovhFxiPokPbksjjPbCh24hTj9MbgH23vvsx4TC"
+				"bzz-raw://36bec2e334d34723768b977cee3e8dae7709532e724d5a4c7caaf4b1614ad4f7",
+				"dweb:/ipfs/QmaemWTsSWMzXDrTMhpMRPZa1WrPqnAY8LrAWcmEFntHoi"
 			]
 		},
 		"UnitToken.sol": {

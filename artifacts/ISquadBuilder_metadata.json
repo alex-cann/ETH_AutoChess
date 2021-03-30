@@ -115,7 +115,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"Total.sol": "ISquadBuilder"
+			"SquadBuilder.sol": "ISquadBuilder"
 		},
 		"evmVersion": "istanbul",
 		"libraries": {},
@@ -129,11 +129,39 @@
 		"remappings": []
 	},
 	"sources": {
-		"Total.sol": {
-			"keccak256": "0x6dc03d8909a8e9802bb84899d1d62adb0ba4e09124263c7b3330b5738c23d4dc",
+		"AutoChess.sol": {
+			"keccak256": "0x0bd6727c062cd6cdce3daa9d28ca0b97dfc7eb57dd0789886937a157a51cdc29",
 			"urls": [
-				"bzz-raw://9e4d0a7ef860eab1a3be72f15ebf5055d71a4d4e40af4a3b2ed4b8598c40fc58",
-				"dweb:/ipfs/QmYbBqTwyRqEwUqQEM1PN2fA5xJybbRqVkDKVf2zwVYYdb"
+				"bzz-raw://03ffc95ff2ff456e09b10310c185971e5d8370ef376ead7e610157c433300fb7",
+				"dweb:/ipfs/QmeMYqWAWffh4eYVBV7hcbMG5p9aTFwPapuCj4BEoxpJWx"
+			]
+		},
+		"SquadBuilder.sol": {
+			"keccak256": "0x79b525d8fa70e6d5e29531ab0eeafe22cf447856295dc1de72e92479886ca3ac",
+			"urls": [
+				"bzz-raw://4a44ba1ef21bde57994a69df01c072f3632b235650807fa03fb4287b8e1d83da",
+				"dweb:/ipfs/QmQukA7qVKgFrcvZseSoRrnHn9Vp44Bhh1bBdZtfHKosGy"
+			]
+		},
+		"StoreToken.sol": {
+			"keccak256": "0xd42d4284a6ab86c27c3a4a37d7233a3cde51de2f716068f67fd7043f80034519",
+			"urls": [
+				"bzz-raw://00c73636589ba2189bc4d9183577d7cfd3a6644d6fd3aa4d3b9cb130ae645001",
+				"dweb:/ipfs/QmRdPHSkVbuVdARPQfEQD5EiPj12HDLoRiQZGNnhXTsyee"
+			]
+		},
+		"UnitMarketplace.sol": {
+			"keccak256": "0xb3c34a8fe99e9f05d7d5a9edc0e2ac3195b34d8de087f24490c587935937914d",
+			"urls": [
+				"bzz-raw://36bec2e334d34723768b977cee3e8dae7709532e724d5a4c7caaf4b1614ad4f7",
+				"dweb:/ipfs/QmaemWTsSWMzXDrTMhpMRPZa1WrPqnAY8LrAWcmEFntHoi"
+			]
+		},
+		"UnitToken.sol": {
+			"keccak256": "0xfb97c49133185540a056eac3b318a93aeaa67952fd7c497468646bdc60ed8cd0",
+			"urls": [
+				"bzz-raw://25e178f5cc4cc94d80f3f182b8eb11e98cb4b5c487b714448a5593ee1a23636e",
+				"dweb:/ipfs/QmStApLxqkvo6XDyDptiYi3kKWMU5d3TCZT6YDBLDAfTrq"
 			]
 		}
 	},

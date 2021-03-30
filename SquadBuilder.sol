@@ -118,8 +118,8 @@ contract SquadBuilder is UnitMarketplace, ISquadBuilder {
          for(uint8 i=0; i < _unitIds.length; i++){
             squads[squads.length - 1].unitIds.push(_unitIds[i]);
         }
-        ownerToSquadIndex[_owner] = squads.length -1;
-        squadToOwnerIndex[squads.length - 1] = _owner;
+        ownerToSquadIndex[_owner].push(squads.length -1);
+        squadIndexToOwner[squads.length - 1] = _owner;
         return (squads.length-1,_tier);
     }
 }
