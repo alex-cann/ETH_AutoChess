@@ -51,8 +51,6 @@ interface ERC20 {
     function supportsInterface(bytes4 _interfaceID) external view returns (bool);
 }
 
-
-
 interface IAutoChessBase{
     /*** TYPES AND MAPPINGS ***/
     //unit structs etc
@@ -79,9 +77,9 @@ interface IAutoChessBase{
     enum squadType {
         triangle, square, circle
     }
-
+    //To check if a unit exists check if it's sate is dead
     enum UnitState {
-        Deployed,Dead,Auctioning,Default,Promised
+        Dead,Deployed,Auctioning,Default,Promised
     }
 
     enum DeploymentState{
@@ -105,34 +103,6 @@ interface IAutoChessBase{
     }
 }
 
-interface IUnitToken is IAutoChessBase, ERC721{
-
-}
-
-
-interface IUnitMarketplace {
-    struct Auction {
-        uint256 highestBid;
-        uint256[] assetIds;
-        address highestBidder;
-        address host;
-        string name;
-        //this seems like fun
-        string highestBidText;
-        //add some stuff for timeout
-        uint256 endTime;
-    }
-
-    function bid(uint256 _auctionId, uint256 _value) external returns(bool success);
-    function bid(uint256 _auctionId, uint256 _value,string calldata _msg) external returns(bool success);
-    function startAuction(uint256[] calldata _assets, uint256 _asking) external returns(bool success);
-    function withdrawAuction(uint256 _auctionId) external returns(bool success);
-}
-
-interface ISquadBuilder is IUnitMarketplace{
-
-}
-// has all the basic data etc
 contract AutoChessBase is IAutoChessBase {
 
     ///@dev global list of all units and squads. Maybe there is a better way
@@ -171,9 +141,6 @@ contract AutoChessBase is IAutoChessBase {
     mapping (address => uint256[]) public ownerToUnitIndices;
     
     
-    //TODO check if this is necessary since units can't be destroyed anymore
-    mapping (uint256 => bool) unitIndexExists;
-    
     // Predictable random number generator. Used for unit generation
     //the 
     //from https://fravoll.github.io/solidity-patterns/randomness.html
@@ -203,6 +170,10 @@ contract AutoChessBase is IAutoChessBase {
 
 }
 
+interface IUnitToken is IAutoChessBase, ERC721{
+
+}
+
 contract UnitToken is AutoChessBase, IUnitToken {
     //TODO fill these in
     // Required methods
@@ -210,7 +181,14 @@ contract UnitToken is AutoChessBase, IUnitToken {
     //TODO remove hard coded value
     uint256 private totalUnits = 1000000000;
 
-
+    modifier _validTx(address _from, address _to, uint256 _tokenId){
+        require(_from == ownerOf(_tokenId),"You don't own this unit");
+        require(_from != _to, "You already own this unit");
+        require(unitIndexToState[_tokenId] == UnitState.Default, "Unit is unavailable");
+        require(_to != address(0), "Not a valid address. Sorry!");
+        _;
+    }
+    
     function totalSupply() public view override returns (uint256 total) {
         return totalUnits;
     }
@@ -220,16 +198,12 @@ contract UnitToken is AutoChessBase, IUnitToken {
     }
 
     function ownerOf(uint256 _tokenId) public view override returns (address owner) {
-        //TODO set this check up later
-        require(unitIndexExists[_tokenId]);
         return unitIndexToOwner[_tokenId];
     }
-
-    function approve(address _to, uint256 _tokenId) public override {
-        require (msg.sender == ownerOf(_tokenId),"You don't own this token");
-        require(msg.sender != _to, "No self approved transactions!");
-        require(unitIndexToState[_tokenId] == UnitState.Default, "Unit is Occupied!");
-        allowed[msg.sender][_to] = _tokenId;
+    
+    function approve(address _to, uint256 _tokenId) public _validTx(msg.sender,_to, _tokenId) override {
+        unitIndexToAllowed[_tokenId] = _to;
+        unitIndexToState[_tokenId] = UnitState.Promised;
         emit Approval(msg.sender, _to, _tokenId);
     }
 
@@ -247,28 +221,15 @@ contract UnitToken is AutoChessBase, IUnitToken {
     }
 
 
-
-    function transfer(address _to, uint256 _tokenId) override public {
-        require(unitIndexExists[_tokenId]);
-        require (msg.sender == ownerOf(_tokenId));
-        require(msg.sender != _to);
-        //TODO Replace this so that address(0) is used for selling units to the contract
-        require(_to != address(0));
-        //Require that it is not in a squad (this could be changed to something smarter)
-        //Example uses double map
-        require(unitIndexToSquadIndex[_tokenId] == 0);
-
+    function transfer(address _to, uint256 _tokenId) public _validTx(msg.sender,_to, _tokenId) override {
         _transfer(msg.sender,_to,_tokenId);
     }
 
 
-    function transferFrom(address _from, address _to, uint256 _tokenId) public override {
-        require(unitIndexExists[_tokenId]);
-        require(_from != _to);
-        require(unitIndexToAllowed[_tokenId] == _to); //this can only be set if the unit is in Promised
+    function transferFrom(address _from, address _to, uint256 _tokenId) public _validTx(_from,_to,_tokenId) override {
+        require(unitIndexToAllowed[_tokenId] == _to, "Unit is not promised to that user");
         //Require that it is not in a squad (this could be changed to something smarter)
         //Example uses double map
-
         _transfer(_from,_to,_tokenId);
     }
 
@@ -292,6 +253,7 @@ contract UnitToken is AutoChessBase, IUnitToken {
 
     }
 }	
+
 contract StoreToken is ERC20 {
     //TODO support fancy bidding where you can approve more than you actually have
 
@@ -304,6 +266,7 @@ contract StoreToken is ERC20 {
     constructor() {
         //this contract is aware that the store owns it but not of the stores ABI
         StoreAddress = msg.sender;
+        ownerToBalance[msg.sender] = totalTokens;
     }
 
     ///@dev functions only accessible from the marketplace (so coins can be autoApproved for auctions)
@@ -411,7 +374,25 @@ contract StoreToken is ERC20 {
     }
 }   
 
-//TODO add autobidding ()
+interface IUnitMarketplace is IUnitToken{
+    struct Auction {
+        uint256 highestBid;
+        uint256[] assetIds;
+        address highestBidder;
+        address host;
+        string name;
+        //this seems like fun
+        string highestBidText;
+        //add some stuff for timeout
+        uint256 endTime;
+    }
+
+    function bid(uint256 _auctionId, uint256 _value) external returns(bool success);
+    function bid(uint256 _auctionId, uint256 _value,string calldata _msg) external returns(bool success);
+    function startAuction(uint256[] calldata _assets, uint256 _asking) external returns(bool success);
+    function withdrawAuction(uint256 _auctionId) external returns(bool success);
+}
+
 contract UnitMarketplace is UnitToken,IUnitMarketplace {
     //objects:
 
@@ -481,6 +462,10 @@ contract UnitMarketplace is UnitToken,IUnitMarketplace {
     //TODO add reverse auctions where someone offers tokens. Maybe?
 }
 
+interface ISquadBuilder is IUnitMarketplace{
+    function buyUnit(UnitType _type) external returns (uint256 _unitId);
+    function buyUnit(UnitType _type, string calldata _name) external returns (uint256 _unitId);
+}
 
 contract SquadBuilder is UnitMarketplace, ISquadBuilder {
 
@@ -540,7 +525,7 @@ contract SquadBuilder is UnitMarketplace, ISquadBuilder {
         return newUnitId;
     }
     
-    function _buyUnit(UnitType _type, string memory _name) public returns (uint256 _unitId){
+    function _buyUnit(address _owner, UnitType _type, string memory _name) public returns (uint256 _unitId){
         uint256 _cost = 0;
         uint256 _id;
         if(_type == UnitType.Warrior){
@@ -550,29 +535,30 @@ contract SquadBuilder is UnitMarketplace, ISquadBuilder {
         }else if(_type == UnitType.Cavalry){
             _cost+=20;
         }
-        CurrencyProvider.spend(msg.sender,_cost);
+        CurrencyProvider.spend(_owner,_cost);
         _id = _generateUnit(_type, _name);
-        unitIndexToOwner[_id] = msg.sender;
-        ownerToUnitCount[msg.sender]+=1;
-        ownerToUnitIndices[msg.sender].push(_id);
+        unitIndexToOwner[_id] = _owner;
+        ownerToUnitCount[_owner]+=1;
+        ownerToUnitIndices[_owner].push(_id);
         return _id;
     }
     
-    function buyUnit(UnitType _type) public returns (uint256 _unitId){
-        return _buyUnit(_type, DEFAULT_NAME);
+    function buyUnit(UnitType _type) public override returns (uint256 _unitId){
+        return _buyUnit(msg.sender, _type, DEFAULT_NAME);
     }
     
-    function buyUnit(UnitType _type, string calldata _name) public returns (uint256 _unitId){
-        return _buyUnit(_type,_name);
+    function buyUnit(UnitType _type, string calldata _name) public override returns (uint256 _unitId){
+        return _buyUnit(msg.sender,_type,_name);
     }
     
     
     // create squad
-    function _createSquad(uint256[] calldata _unitIds) internal returns(uint256 squadId, DeploymentState tier){
+    //TODO remove the workaround where you have to send 7 unitIds
+    function _createSquad(address _owner, uint256[] memory _unitIds) internal returns(uint256 squadId, DeploymentState tier){
         uint16 atkSum=0;
         //TODO make sure that _unitIds is one of the correct lengths
-        for(uint8 i=0; i < _unitIds.length; i++){
-            require(unitIndexToOwner[_unitIds[i]] == msg.sender);
+        for(uint8 i=0; i < _unitIds.length && i < 7; i++){
+            require(unitIndexToOwner[_unitIds[i]] == msg.sender, "You don't own this unit!");
             require(unitIndexToState[_unitIds[i]] == UnitState.Default);//check that this unit isn't doing something else
             unitIndexToState[_unitIds[i]] = UnitState.Deployed;
             atkSum+=units[_unitIds[i]].attack;
@@ -589,10 +575,172 @@ contract SquadBuilder is UnitMarketplace, ISquadBuilder {
                     }));
         //TODO figure out a better way of making this work
         //https://medium.com/loom-network/ethereum-solidity-memory-vs-storage-how-to-initialize-an-array-inside-a-struct-184baf6aa2eb
-         for(uint8 i=0; i < _unitIds.length; i++){
+         for(uint8 i=0; i < _unitIds.length && i < 7; i++){
             squads[squads.length - 1].unitIds.push(_unitIds[i]);
-        }            
-        return (squads.length ,_tier);
+        }
+        ownerToSquadIndex[_owner].push(squads.length -1);
+        squadIndexToOwner[squads.length - 1] = _owner;
+        return (squads.length-1,_tier);
     }
 }
 
+
+interface IGameEngine is ISquadBuilder{
+    //TODO add events here
+}
+
+/// Handles the actual playing of the game
+contract GameEngine is SquadBuilder, IGameEngine {
+
+    function unitDeath(uint256 _unitId) internal returns (bool success){
+        return true;
+    }
+
+    //TODO This doesn't match what was discussed on Friday
+    function _squadBattle(uint attackerSquadId, uint defenderSquadId) internal returns(uint winnings) {
+        Squad memory attacker = squads[attackerSquadId];
+        Squad memory  defender = squads[defenderSquadId];
+
+        require(attacker.state == defender.state);
+        require(attacker.state != DeploymentState.Retired);
+        
+        //Making these storage variables is very dubious
+       
+        uint8 atkNum = attacker.unitCount;
+        uint8 dfdNum = defender.unitCount;
+        Unit[] memory atkUnits = new Unit[](atkNum);
+        Unit[] memory dfdUnits = new Unit[](dfdNum);
+        
+        for (uint8 i=0; i<atkNum; i++) {
+            atkUnits[i] = units[attacker.unitIds[i]];
+            dfdUnits[i] = units[defender.unitIds[i]];
+        }
+
+        //TODO include more details wrt squad formation
+        //     also include formation in the Squad structure
+        uint atkIdxAP;
+        uint atkIdxDP;
+        uint dfdIdxAP;
+        uint dfdIdxDP;
+
+        while (atkNum > 0 && dfdNum > 0) {
+            //TODO why is this random ordering it allows for users to structure squads better
+            //otherwise why does it matter that you have warriors etc if enemies will randomly hit your archers
+            
+            // attacker attacks phase
+            // choose attacker unit
+            atkIdxAP = randomNumber(attacker.unitIds.length);
+            while(atkUnits[atkIdxAP].curHealth <= 0) {
+                atkIdxAP = (atkIdxAP + 1) % attacker.unitIds.length;
+            }
+
+            // choose defending unit
+            dfdIdxAP = randomNumber(defender.unitIds.length);
+            while(dfdUnits[dfdIdxAP].curHealth <= 0) {
+                dfdIdxAP = (dfdIdxAP + 1) % defender.unitIds.length;
+            }
+
+            // attack happens
+            // TODO maybe add fancy stuff here
+            //      like counter attack or something similar
+            dfdUnits[dfdIdxAP].curHealth -= (atkUnits[atkIdxAP].attack - dfdUnits[dfdIdxAP].defence);
+
+            if (dfdUnits[dfdIdxAP].curHealth <= 0) {
+                //TODO handle unit death
+                dfdNum--;
+            }
+
+            // defender attacks phase
+            // choose attacker unit
+            atkIdxDP = randomNumber(defender.unitIds.length);
+            while(dfdUnits[atkIdxDP].curHealth <= 0) {
+                atkIdxDP = (atkIdxDP + 1) % defender.unitIds.length;
+            }
+
+            // choose defender unit
+            dfdIdxDP = randomNumber(attacker.unitIds.length);
+            while(atkUnits[dfdIdxDP].curHealth <= 0) {
+                dfdIdxDP = (dfdIdxDP + 1) % attacker.unitIds.length;
+            }
+
+            // attack happens
+            atkUnits[dfdIdxDP].curHealth -= (dfdUnits[atkIdxDP].attack - atkUnits[dfdIdxDP].defence);
+
+            if (atkUnits[dfdIdxDP].curHealth <= 0) {
+                //TODO handle unit death
+                atkNum--;
+            }
+        }
+
+        // copy defender squad units state back to chain
+        for (uint8 i=0; i<dfdUnits.length; i++) {
+            units[defender.unitIds[i]] = dfdUnits[i];
+        }
+        defender.unitCount = dfdNum;
+        // TODO should squad be retired if all died
+
+        if (atkNum == 0) {
+            // attacker lost the battle
+            return 0;
+        } else {
+            // calculate winnings here
+            // for now returning static value of 10
+            return 10;
+        }
+    }
+    
+    
+}
+
+interface IMatchMaker is IGameEngine{
+
+    function randomChallenge(uint256[] calldata unitIds) external returns (uint256 winnings);
+    function targetedChallenge(uint256[] calldata unitIds, uint256 _targetId) external returns (uint256 winnings);
+    function withdrawSquad(uint256 _squadId) external returns (bool success);
+    function getSquadIdsInTier(DeploymentState _tier) external view returns (uint256[] memory deployed); //This is subject to change
+
+}
+
+
+contract MatchMaker is IMatchMaker, GameEngine{
+    
+    /// Calls the parent constructor
+    constructor() GameEngine(){
+        //Generate some units
+        for(uint i=0; i < 7;i++){
+            _buyUnit(address(this),UnitType.Cavalry,"DEFAULT");
+        }
+        //make all the units into a squad
+        _createSquad(address(this), ownerToUnitIndices[address(this)]);
+    }
+
+    //TODO make this create a squad
+    function randomChallenge(uint256[] calldata _unitIds) public override returns (uint256 winnings){
+        uint256 squadId;
+        DeploymentState tier;
+        (squadId, tier) = _createSquad(msg.sender, _unitIds);
+        uint256 targetId = randomNumber(tierToSquadIndex[tier].length);
+        return _squadBattle(squadId,targetId);
+    }
+
+
+    function targetedChallenge(uint256[] calldata _unitIds, uint256 _targetId) public override returns (uint256 winnings){
+        uint256 squadId;
+        DeploymentState tier;
+        (squadId, tier) = _createSquad(msg.sender,_unitIds);
+        //make sure it's a valid target
+        assert(tierToSquadIndex[tier].length > _targetId);
+        return _squadBattle(squadId,_targetId);
+    }
+
+
+    function getSquadIdsInTier(DeploymentState _tier) public override view returns (uint256[] memory deployed){
+        return tierToSquadIndex[_tier];
+    }
+
+
+
+    function withdrawSquad(uint256 _squadId) public override returns (bool success){
+
+    }
+}

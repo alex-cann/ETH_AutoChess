@@ -644,7 +644,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"GameEngine.sol": "GameEngine"
+			"Total.sol": "GameEngine"
 		},
 		"evmVersion": "istanbul",
 		"libraries": {},
@@ -658,51 +658,11 @@
 		"remappings": []
 	},
 	"sources": {
-		"AutoChess.sol": {
-			"keccak256": "0xd3346fedddc2ba6d863177a2027510dbf3b23b2bc109464c689e8c71df9468fe",
-			"license": "UNLICENSED",
+		"Total.sol": {
+			"keccak256": "0x2bd55bc4d3daeace6b101949429b78cbb742973f7ec822cedc6eb9707721f536",
 			"urls": [
-				"bzz-raw://b80a7b74c7619f76e824df498bd3bf48c6342875225766f2f43d294b74bee70d",
-				"dweb:/ipfs/QmXVCM5M73GUKnVA18QdvPk4DxRxwdPzAiSPFoBAFT1gTu"
-			]
-		},
-		"GameEngine.sol": {
-			"keccak256": "0xcc484de4df637c0cce37e04ca385028c108a40fa0b7b8816a1573b1cf5aa61c5",
-			"license": "UNLICENSED",
-			"urls": [
-				"bzz-raw://b0fbd8a934c488687fe575ebf7fa8710bd6ce098980c3d9d10030b8ac1b8cf7a",
-				"dweb:/ipfs/QmP9npkYXYTqDnwyVh7gZZfhcoEaQB8ma4nmTKa56bd2MT"
-			]
-		},
-		"SquadBuilder.sol": {
-			"keccak256": "0xc8ea0f737b0f17664abf36bcb0e3a06adc9b255040a9d70c6ae4c9c1d2edc24b",
-			"urls": [
-				"bzz-raw://c4c95962b4eaee793b63e1a783bc45a65fe2ca7299821a32b9edfd65db6aef32",
-				"dweb:/ipfs/QmdYgjmnaAnZTyyfCnMii3c15duRFnwoqzZKntGTJ1AQEb"
-			]
-		},
-		"StoreToken.sol": {
-			"keccak256": "0xf5075106dff2d202de99ee5e2685beeb196a6eac4c3c47a6a7bb7766ff4ea9dd",
-			"license": "UNLICENSED",
-			"urls": [
-				"bzz-raw://449c81417acd447f8fda8d9eeabbcd099037956b1d6c62c8cb5600312f25c2fc",
-				"dweb:/ipfs/QmZeswq5Yc4YAncbhmeucY3ffgc6V5AEynNTRftMW6hhxc"
-			]
-		},
-		"UnitMarketplace.sol": {
-			"keccak256": "0xc1708628820ccbc52ba07de6049a276524822b1731e77bda03338717236fc93c",
-			"license": "UNLICENSED",
-			"urls": [
-				"bzz-raw://a1b57ad3430096dc04153a4695517dc11794039bc67d15732aeff908513edf36",
-				"dweb:/ipfs/QmanEwSssoJA9ncJfEf4ZyfUUVCk14dcQstdZ8FQ4Dwujh"
-			]
-		},
-		"UnitToken.sol": {
-			"keccak256": "0x0715f2f48dac210884491453f97809066c087c0b84dadf4d7f163eb3dce4b02a",
-			"license": "UNLICENSED",
-			"urls": [
-				"bzz-raw://370cd977f7fba16858994abbd7f29b389d92ebe18bd41ac5f44a5db355c7408d",
-				"dweb:/ipfs/Qmcx11vFLz7dZxUFG4uv9r4CQQDh2xWvzd9cJjL25oGHEn"
+				"bzz-raw://56aa81eb47c7bb2374ffa6546680035ad2d194684cd01d207c5ecf1c3fedc868",
+				"dweb:/ipfs/QmW6N1VKFYQFGqFaprzGF9CwDetvMtiVaW9NegC323yvZr"
 			]
 		}
 	},

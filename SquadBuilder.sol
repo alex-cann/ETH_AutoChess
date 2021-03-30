@@ -4,8 +4,8 @@ pragma solidity ^0.8.1;
 import "./UnitMarketplace.sol";
 
 interface ISquadBuilder is IUnitMarketplace{
-    function buyUnit(IAutoChessBase.UnitType _type) external returns (uint256 _unitId);
-    function buyUnit(IAutoChessBase.UnitType _type, string calldata _name) external returns (uint256 _unitId);
+    function buyUnit(UnitType _type) external returns (uint256 _unitId);
+    function buyUnit(UnitType _type, string calldata _name) external returns (uint256 _unitId);
 }
 
 contract SquadBuilder is UnitMarketplace, ISquadBuilder {

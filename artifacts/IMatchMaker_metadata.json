@@ -6,6 +6,93 @@
 	"output": {
 		"abi": [
 			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "owner",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "approved",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "tokenId",
+						"type": "uint256"
+					}
+				],
+				"name": "Approval",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "from",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "tokenId",
+						"type": "uint256"
+					}
+				],
+				"name": "Transfer",
+				"type": "event"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_to",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_tokenId",
+						"type": "uint256"
+					}
+				],
+				"name": "approve",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_owner",
+						"type": "address"
+					}
+				],
+				"name": "balanceOf",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "balance",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
 				"inputs": [
 					{
 						"internalType": "uint256",
@@ -121,6 +208,38 @@
 				"type": "function"
 			},
 			{
+				"inputs": [],
+				"name": "name",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_tokenId",
+						"type": "uint256"
+					}
+				],
+				"name": "ownerOf",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "owner",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
 				"inputs": [
 					{
 						"internalType": "uint256[]",
@@ -166,6 +285,38 @@
 			{
 				"inputs": [
 					{
+						"internalType": "bytes4",
+						"name": "_interfaceID",
+						"type": "bytes4"
+					}
+				],
+				"name": "supportsInterface",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "symbol",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
 						"internalType": "uint256[]",
 						"name": "unitIds",
 						"type": "uint256[]"
@@ -184,6 +335,60 @@
 						"type": "uint256"
 					}
 				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "totalSupply",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "total",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_to",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_tokenId",
+						"type": "uint256"
+					}
+				],
+				"name": "transfer",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_from",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_to",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_tokenId",
+						"type": "uint256"
+					}
+				],
+				"name": "transferFrom",
+				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
 			},
@@ -234,13 +439,12 @@
 		"userdoc": {
 			"kind": "user",
 			"methods": {},
-			"notice": "handles all the adding of units and whatnot",
 			"version": 1
 		}
 	},
 	"settings": {
 		"compilationTarget": {
-			"MatchMaker.sol": "IMatchMaker"
+			"Total.sol": "IMatchMaker"
 		},
 		"evmVersion": "istanbul",
 		"libraries": {},
@@ -254,57 +458,11 @@
 		"remappings": []
 	},
 	"sources": {
-		"AutoChess.sol": {
-			"keccak256": "0xd3346fedddc2ba6d863177a2027510dbf3b23b2bc109464c689e8c71df9468fe",
-			"license": "UNLICENSED",
+		"Total.sol": {
+			"keccak256": "0x2bd55bc4d3daeace6b101949429b78cbb742973f7ec822cedc6eb9707721f536",
 			"urls": [
-				"bzz-raw://b80a7b74c7619f76e824df498bd3bf48c6342875225766f2f43d294b74bee70d",
-				"dweb:/ipfs/QmXVCM5M73GUKnVA18QdvPk4DxRxwdPzAiSPFoBAFT1gTu"
-			]
-		},
-		"GameEngine.sol": {
-			"keccak256": "0xc2a21390e0260d40d81152a7ce726941d8522da91a1e52dd908ef4b2748fcf5c",
-			"urls": [
-				"bzz-raw://ba395554fe8401ea5870ae15bcf8fa020e45f80adb85c4ef487588ebf9e771fe",
-				"dweb:/ipfs/QmUQi3jKbsXaCXmTddeuLU3FsGfJozpGwysmSUhtVgQjXZ"
-			]
-		},
-		"MatchMaker.sol": {
-			"keccak256": "0x537c8d03261fb2ded24581e284b635d33a265616e320dc8b6d57d64bad5640dc",
-			"license": "UNLICENSED",
-			"urls": [
-				"bzz-raw://8e84f6a0ffb0542df7843b5b054b4fd83c4be3219ff267390e7bf30017788e2c",
-				"dweb:/ipfs/QmaFi3XLwsXGJrtuTCxwU5hzGWpTQrosHw2SCJPE1aDcRf"
-			]
-		},
-		"SquadBuilder.sol": {
-			"keccak256": "0xc8ea0f737b0f17664abf36bcb0e3a06adc9b255040a9d70c6ae4c9c1d2edc24b",
-			"urls": [
-				"bzz-raw://c4c95962b4eaee793b63e1a783bc45a65fe2ca7299821a32b9edfd65db6aef32",
-				"dweb:/ipfs/QmdYgjmnaAnZTyyfCnMii3c15duRFnwoqzZKntGTJ1AQEb"
-			]
-		},
-		"StoreToken.sol": {
-			"keccak256": "0x1f95e117ed13866f6300a41aa55b970020b8a214cf4529f7642adb7c46d96a2b",
-			"urls": [
-				"bzz-raw://d4707c44ba49293be2402a356afdb6de43d7a5a808ce9e7c6c4b7e42331dfb2f",
-				"dweb:/ipfs/QmTKZgWZSPhNFvv5YbnhfqLnQRY5HazNDqyd1gt1cKZFxw"
-			]
-		},
-		"UnitMarketplace.sol": {
-			"keccak256": "0xc1708628820ccbc52ba07de6049a276524822b1731e77bda03338717236fc93c",
-			"license": "UNLICENSED",
-			"urls": [
-				"bzz-raw://a1b57ad3430096dc04153a4695517dc11794039bc67d15732aeff908513edf36",
-				"dweb:/ipfs/QmanEwSssoJA9ncJfEf4ZyfUUVCk14dcQstdZ8FQ4Dwujh"
-			]
-		},
-		"UnitToken.sol": {
-			"keccak256": "0x0715f2f48dac210884491453f97809066c087c0b84dadf4d7f163eb3dce4b02a",
-			"license": "UNLICENSED",
-			"urls": [
-				"bzz-raw://370cd977f7fba16858994abbd7f29b389d92ebe18bd41ac5f44a5db355c7408d",
-				"dweb:/ipfs/Qmcx11vFLz7dZxUFG4uv9r4CQQDh2xWvzd9cJjL25oGHEn"
+				"bzz-raw://56aa81eb47c7bb2374ffa6546680035ad2d194684cd01d207c5ecf1c3fedc868",
+				"dweb:/ipfs/QmW6N1VKFYQFGqFaprzGF9CwDetvMtiVaW9NegC323yvZr"
 			]
 		}
 	},

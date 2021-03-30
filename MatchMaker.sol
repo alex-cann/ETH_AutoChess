@@ -14,7 +14,7 @@ interface IMatchMaker is IGameEngine{
     function randomChallenge(uint256[] calldata unitIds) external returns (uint256 winnings);
     function targetedChallenge(uint256[] calldata unitIds, uint256 _targetId) external returns (uint256 winnings);
     function withdrawSquad(uint256 _squadId) external returns (bool success);
-    function getSquadIdsInTier(IAutoChessBase.DeploymentState _tier) external view returns (uint256[] memory deployed); //This is subject to change
+    function getSquadIdsInTier(DeploymentState _tier) external view returns (uint256[] memory deployed); //This is subject to change
 
 }
 

@@ -224,7 +224,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"UnitToken.sol": "IUnitToken"
+			"Total.sol": "IUnitToken"
 		},
 		"evmVersion": "istanbul",
 		"libraries": {},
@@ -238,20 +238,11 @@
 		"remappings": []
 	},
 	"sources": {
-		"AutoChess.sol": {
-			"keccak256": "0xd3346fedddc2ba6d863177a2027510dbf3b23b2bc109464c689e8c71df9468fe",
-			"license": "UNLICENSED",
+		"Total.sol": {
+			"keccak256": "0x2bd55bc4d3daeace6b101949429b78cbb742973f7ec822cedc6eb9707721f536",
 			"urls": [
-				"bzz-raw://b80a7b74c7619f76e824df498bd3bf48c6342875225766f2f43d294b74bee70d",
-				"dweb:/ipfs/QmXVCM5M73GUKnVA18QdvPk4DxRxwdPzAiSPFoBAFT1gTu"
-			]
-		},
-		"UnitToken.sol": {
-			"keccak256": "0x373793b43220657cb8221e9045a23ad2be201f4064e9e0678658df92c7612b4f",
-			"license": "UNLICENSED",
-			"urls": [
-				"bzz-raw://a9a94b4dc664bb5a530bc50459678b4c073e154bda69b7f9fdff9351cfdb4ed5",
-				"dweb:/ipfs/QmZFCqBXVUyqkEEK9Qe7aNt662CNTfsy21Xg1aPbRiQM7c"
+				"bzz-raw://56aa81eb47c7bb2374ffa6546680035ad2d194684cd01d207c5ecf1c3fedc868",
+				"dweb:/ipfs/QmW6N1VKFYQFGqFaprzGF9CwDetvMtiVaW9NegC323yvZr"
 			]
 		}
 	},

@@ -1,425 +1,522 @@
-<svg width="1667pt" height="1688pt"
- viewBox="0.00 0.00 1666.74 1688.20" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 1684.2)">
+<svg width="2203pt" height="2062pt"
+ viewBox="0.00 0.00 2202.93 2062.20" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 2058.2)">
 <title>UmlClassDiagram</title>
-<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-1684.2 1662.7399,-1684.2 1662.7399,4 -4,4"/>
-<!-- 0 -->
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-2058.2 2198.9265,-2058.2 2198.9265,4 -4,4"/>
+<!-- 219 -->
 <g id="node1" class="node">
-<title>0</title>
-<polygon fill="#f2f2f2" stroke="#000000" points="894.1269,-1386.9 894.1269,-1679.7 1344.4671,-1679.7 1344.4671,-1386.9 894.1269,-1386.9"/>
-<text text-anchor="middle" x="1119.297" y="-1663.1" font-family="Times,serif" font-size="14.00" fill="#000000">&lt;&lt;Interface&gt;&gt;</text>
-<text text-anchor="middle" x="1119.297" y="-1646.3" font-family="Times,serif" font-size="14.00" fill="#000000">ERC721</text>
-<polyline fill="none" stroke="#000000" points="894.1269,-1638.1 1344.4671,-1638.1 "/>
-<text text-anchor="middle" x="1119.297" y="-1621.5" font-family="Times,serif" font-size="14.00" fill="#000000"> </text>
-<polyline fill="none" stroke="#000000" points="894.1269,-1613.3 1344.4671,-1613.3 "/>
-<text text-anchor="start" x="902.1269" y="-1596.7" font-family="Times,serif" font-size="14.00" fill="#000000">External:</text>
-<text text-anchor="start" x="902.1269" y="-1579.9" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;totalSupply(): (total: uint256)</text>
-<text text-anchor="start" x="902.1269" y="-1563.1" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;balanceOf(_owner: address): (balance: uint256)</text>
-<text text-anchor="start" x="902.1269" y="-1546.3" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;ownerOf(_tokenId: uint256): (owner: address)</text>
-<text text-anchor="start" x="902.1269" y="-1529.5" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;approve(_to: address, _tokenId: uint256)</text>
-<text text-anchor="start" x="902.1269" y="-1512.7" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;transfer(_to: address, _tokenId: uint256)</text>
-<text text-anchor="start" x="902.1269" y="-1495.9" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;transferFrom(_from: address, _to: address, _tokenId: uint256)</text>
-<text text-anchor="start" x="902.1269" y="-1479.1" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;name(): string</text>
-<text text-anchor="start" x="902.1269" y="-1462.3" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;symbol(): string</text>
-<text text-anchor="start" x="902.1269" y="-1445.5" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;supportsInterface(_interfaceID: bytes4): bool</text>
-<text text-anchor="start" x="902.1269" y="-1428.7" font-family="Times,serif" font-size="14.00" fill="#000000">Public:</text>
-<text text-anchor="start" x="902.1269" y="-1411.9" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&lt;&lt;event&gt;&gt; Transfer(from: address, to: address, tokenId: uint256)</text>
-<text text-anchor="start" x="902.1269" y="-1395.1" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&lt;&lt;event&gt;&gt; Approval(owner: address, approved: address, tokenId: uint256)</text>
+<title>219</title>
+<polygon fill="#f2f2f2" stroke="#000000" points="1385.2728,-1760.9 1385.2728,-2053.7 1835.613,-2053.7 1835.613,-1760.9 1385.2728,-1760.9"/>
+<text text-anchor="middle" x="1610.4429" y="-2037.1" font-family="Times,serif" font-size="14.00" fill="#000000">&lt;&lt;Interface&gt;&gt;</text>
+<text text-anchor="middle" x="1610.4429" y="-2020.3" font-family="Times,serif" font-size="14.00" fill="#000000">ERC721</text>
+<polyline fill="none" stroke="#000000" points="1385.2728,-2012.1 1835.613,-2012.1 "/>
+<text text-anchor="middle" x="1610.4429" y="-1995.5" font-family="Times,serif" font-size="14.00" fill="#000000"> </text>
+<polyline fill="none" stroke="#000000" points="1385.2728,-1987.3 1835.613,-1987.3 "/>
+<text text-anchor="start" x="1393.2728" y="-1970.7" font-family="Times,serif" font-size="14.00" fill="#000000">External:</text>
+<text text-anchor="start" x="1393.2728" y="-1953.9" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;totalSupply(): (total: uint256)</text>
+<text text-anchor="start" x="1393.2728" y="-1937.1" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;balanceOf(_owner: address): (balance: uint256)</text>
+<text text-anchor="start" x="1393.2728" y="-1920.3" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;ownerOf(_tokenId: uint256): (owner: address)</text>
+<text text-anchor="start" x="1393.2728" y="-1903.5" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;approve(_to: address, _tokenId: uint256)</text>
+<text text-anchor="start" x="1393.2728" y="-1886.7" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;transfer(_to: address, _tokenId: uint256)</text>
+<text text-anchor="start" x="1393.2728" y="-1869.9" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;transferFrom(_from: address, _to: address, _tokenId: uint256)</text>
+<text text-anchor="start" x="1393.2728" y="-1853.1" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;name(): string</text>
+<text text-anchor="start" x="1393.2728" y="-1836.3" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;symbol(): string</text>
+<text text-anchor="start" x="1393.2728" y="-1819.5" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;supportsInterface(_interfaceID: bytes4): bool</text>
+<text text-anchor="start" x="1393.2728" y="-1802.7" font-family="Times,serif" font-size="14.00" fill="#000000">Public:</text>
+<text text-anchor="start" x="1393.2728" y="-1785.9" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&lt;&lt;event&gt;&gt; Transfer(from: address, to: address, tokenId: uint256)</text>
+<text text-anchor="start" x="1393.2728" y="-1769.1" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&lt;&lt;event&gt;&gt; Approval(owner: address, approved: address, tokenId: uint256)</text>
 </g>
-<!-- 1 -->
+<!-- 220 -->
 <g id="node2" class="node">
-<title>1</title>
-<polygon fill="#f2f2f2" stroke="#000000" points="1185.6945,-1048.7 1185.6945,-1341.5 1644.8995,-1341.5 1644.8995,-1048.7 1185.6945,-1048.7"/>
-<text text-anchor="middle" x="1415.297" y="-1324.9" font-family="Times,serif" font-size="14.00" fill="#000000">&lt;&lt;Interface&gt;&gt;</text>
-<text text-anchor="middle" x="1415.297" y="-1308.1" font-family="Times,serif" font-size="14.00" fill="#000000">ERC20</text>
-<polyline fill="none" stroke="#000000" points="1185.6945,-1299.9 1644.8995,-1299.9 "/>
-<text text-anchor="middle" x="1415.297" y="-1283.3" font-family="Times,serif" font-size="14.00" fill="#000000"> </text>
-<polyline fill="none" stroke="#000000" points="1185.6945,-1275.1 1644.8995,-1275.1 "/>
-<text text-anchor="start" x="1193.6945" y="-1258.5" font-family="Times,serif" font-size="14.00" fill="#000000">External:</text>
-<text text-anchor="start" x="1193.6945" y="-1241.7" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;totalSupply(): uint256</text>
-<text text-anchor="start" x="1193.6945" y="-1224.9" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;balanceOf(_owner: address): (balance: uint256)</text>
-<text text-anchor="start" x="1193.6945" y="-1208.1" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;transfer(_to: address, _value: uint256): (success: bool)</text>
-<text text-anchor="start" x="1193.6945" y="-1191.3" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;transferFrom(_from: address, _to: address, _value: uint256): (success: bool)</text>
-<text text-anchor="start" x="1193.6945" y="-1174.5" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;approve(_spender: address, _value: uint256): (success: bool)</text>
-<text text-anchor="start" x="1193.6945" y="-1157.7" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;allowance(_owner: address, _spender: address): (remaining: uint256)</text>
-<text text-anchor="start" x="1193.6945" y="-1140.9" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;name(): string</text>
-<text text-anchor="start" x="1193.6945" y="-1124.1" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;symbol(): string</text>
-<text text-anchor="start" x="1193.6945" y="-1107.3" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;supportsInterface(_interfaceID: bytes4): bool</text>
-<text text-anchor="start" x="1193.6945" y="-1090.5" font-family="Times,serif" font-size="14.00" fill="#000000">Public:</text>
-<text text-anchor="start" x="1193.6945" y="-1073.7" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&lt;&lt;event&gt;&gt; Transfer(_from: address, _to: address, _value: uint256)</text>
-<text text-anchor="start" x="1193.6945" y="-1056.9" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&lt;&lt;event&gt;&gt; Approval(_owner: address, _spender: address, _value: uint256)</text>
+<title>220</title>
+<polygon fill="#f2f2f2" stroke="#000000" points="13.8404,-1431.1 13.8404,-1723.9 473.0454,-1723.9 473.0454,-1431.1 13.8404,-1431.1"/>
+<text text-anchor="middle" x="243.4429" y="-1707.3" font-family="Times,serif" font-size="14.00" fill="#000000">&lt;&lt;Interface&gt;&gt;</text>
+<text text-anchor="middle" x="243.4429" y="-1690.5" font-family="Times,serif" font-size="14.00" fill="#000000">ERC20</text>
+<polyline fill="none" stroke="#000000" points="13.8404,-1682.3 473.0454,-1682.3 "/>
+<text text-anchor="middle" x="243.4429" y="-1665.7" font-family="Times,serif" font-size="14.00" fill="#000000"> </text>
+<polyline fill="none" stroke="#000000" points="13.8404,-1657.5 473.0454,-1657.5 "/>
+<text text-anchor="start" x="21.8404" y="-1640.9" font-family="Times,serif" font-size="14.00" fill="#000000">External:</text>
+<text text-anchor="start" x="21.8404" y="-1624.1" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;totalSupply(): uint256</text>
+<text text-anchor="start" x="21.8404" y="-1607.3" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;balanceOf(_owner: address): (balance: uint256)</text>
+<text text-anchor="start" x="21.8404" y="-1590.5" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;transfer(_to: address, _value: uint256): (success: bool)</text>
+<text text-anchor="start" x="21.8404" y="-1573.7" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;transferFrom(_from: address, _to: address, _value: uint256): (success: bool)</text>
+<text text-anchor="start" x="21.8404" y="-1556.9" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;approve(_spender: address, _value: uint256): (success: bool)</text>
+<text text-anchor="start" x="21.8404" y="-1540.1" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;allowance(_owner: address, _spender: address): (remaining: uint256)</text>
+<text text-anchor="start" x="21.8404" y="-1523.3" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;name(): string</text>
+<text text-anchor="start" x="21.8404" y="-1506.5" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;symbol(): string</text>
+<text text-anchor="start" x="21.8404" y="-1489.7" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;supportsInterface(_interfaceID: bytes4): bool</text>
+<text text-anchor="start" x="21.8404" y="-1472.9" font-family="Times,serif" font-size="14.00" fill="#000000">Public:</text>
+<text text-anchor="start" x="21.8404" y="-1456.1" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&lt;&lt;event&gt;&gt; Transfer(_from: address, _to: address, _value: uint256)</text>
+<text text-anchor="start" x="21.8404" y="-1439.3" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&lt;&lt;event&gt;&gt; Approval(_owner: address, _spender: address, _value: uint256)</text>
 </g>
-<!-- 2 -->
+<!-- 221 -->
 <g id="node3" class="node">
-<title>2</title>
-<polygon fill="#f2f2f2" stroke="#000000" points="432.6427,-1487.7 432.6427,-1578.9 541.9513,-1578.9 541.9513,-1487.7 432.6427,-1487.7"/>
-<text text-anchor="middle" x="487.297" y="-1562.3" font-family="Times,serif" font-size="14.00" fill="#000000">&lt;&lt;Interface&gt;&gt;</text>
-<text text-anchor="middle" x="487.297" y="-1545.5" font-family="Times,serif" font-size="14.00" fill="#000000">IAutoChessBase</text>
-<polyline fill="none" stroke="#000000" points="432.6427,-1537.3 541.9513,-1537.3 "/>
-<text text-anchor="middle" x="487.297" y="-1520.7" font-family="Times,serif" font-size="14.00" fill="#000000"> </text>
-<polyline fill="none" stroke="#000000" points="432.6427,-1512.5 541.9513,-1512.5 "/>
-<text text-anchor="middle" x="487.297" y="-1495.9" font-family="Times,serif" font-size="14.00" fill="#000000"> </text>
+<title>221</title>
+<polygon fill="#f2f2f2" stroke="#000000" points="923.7886,-1861.7 923.7886,-1952.9 1033.0972,-1952.9 1033.0972,-1861.7 923.7886,-1861.7"/>
+<text text-anchor="middle" x="978.4429" y="-1936.3" font-family="Times,serif" font-size="14.00" fill="#000000">&lt;&lt;Interface&gt;&gt;</text>
+<text text-anchor="middle" x="978.4429" y="-1919.5" font-family="Times,serif" font-size="14.00" fill="#000000">IAutoChessBase</text>
+<polyline fill="none" stroke="#000000" points="923.7886,-1911.3 1033.0972,-1911.3 "/>
+<text text-anchor="middle" x="978.4429" y="-1894.7" font-family="Times,serif" font-size="14.00" fill="#000000"> </text>
+<polyline fill="none" stroke="#000000" points="923.7886,-1886.5 1033.0972,-1886.5 "/>
+<text text-anchor="middle" x="978.4429" y="-1869.9" font-family="Times,serif" font-size="14.00" fill="#000000"> </text>
 </g>
-<!-- 2struct0 -->
+<!-- 221struct0 -->
 <g id="node4" class="node">
-<title>2struct0</title>
-<polygon fill="#f2f2f2" stroke="#000000" points="0,-1111.5 0,-1278.7 120.594,-1278.7 120.594,-1111.5 0,-1111.5"/>
-<text text-anchor="middle" x="60.297" y="-1262.1" font-family="Times,serif" font-size="14.00" fill="#000000">&lt;&lt;struct&gt;&gt;</text>
-<text text-anchor="middle" x="60.297" y="-1245.3" font-family="Times,serif" font-size="14.00" fill="#000000">Unit</text>
-<polyline fill="none" stroke="#000000" points="0,-1237.1 120.594,-1237.1 "/>
-<text text-anchor="start" x="8" y="-1220.5" font-family="Times,serif" font-size="14.00" fill="#000000">attack: uint16</text>
-<text text-anchor="start" x="8" y="-1203.7" font-family="Times,serif" font-size="14.00" fill="#000000">defence: uint16</text>
-<text text-anchor="start" x="8" y="-1186.9" font-family="Times,serif" font-size="14.00" fill="#000000">level: uint16</text>
-<text text-anchor="start" x="8" y="-1170.1" font-family="Times,serif" font-size="14.00" fill="#000000">maxHealth: uint16</text>
-<text text-anchor="start" x="8" y="-1153.3" font-family="Times,serif" font-size="14.00" fill="#000000">curHealth: uint16</text>
-<text text-anchor="start" x="8" y="-1136.5" font-family="Times,serif" font-size="14.00" fill="#000000">utype: UnitType</text>
-<text text-anchor="start" x="8" y="-1119.7" font-family="Times,serif" font-size="14.00" fill="#000000">name: string</text>
+<title>221struct0</title>
+<polygon fill="#f2f2f2" stroke="#000000" points="491.1459,-1493.9 491.1459,-1661.1 611.7399,-1661.1 611.7399,-1493.9 491.1459,-1493.9"/>
+<text text-anchor="middle" x="551.4429" y="-1644.5" font-family="Times,serif" font-size="14.00" fill="#000000">&lt;&lt;struct&gt;&gt;</text>
+<text text-anchor="middle" x="551.4429" y="-1627.7" font-family="Times,serif" font-size="14.00" fill="#000000">Unit</text>
+<polyline fill="none" stroke="#000000" points="491.1459,-1619.5 611.7399,-1619.5 "/>
+<text text-anchor="start" x="499.1459" y="-1602.9" font-family="Times,serif" font-size="14.00" fill="#000000">attack: uint16</text>
+<text text-anchor="start" x="499.1459" y="-1586.1" font-family="Times,serif" font-size="14.00" fill="#000000">defence: uint16</text>
+<text text-anchor="start" x="499.1459" y="-1569.3" font-family="Times,serif" font-size="14.00" fill="#000000">level: uint16</text>
+<text text-anchor="start" x="499.1459" y="-1552.5" font-family="Times,serif" font-size="14.00" fill="#000000">maxHealth: uint16</text>
+<text text-anchor="start" x="499.1459" y="-1535.7" font-family="Times,serif" font-size="14.00" fill="#000000">curHealth: uint16</text>
+<text text-anchor="start" x="499.1459" y="-1518.9" font-family="Times,serif" font-size="14.00" fill="#000000">utype: UnitType</text>
+<text text-anchor="start" x="499.1459" y="-1502.1" font-family="Times,serif" font-size="14.00" fill="#000000">name: string</text>
 </g>
-<!-- 2struct0&#45;&gt;2 -->
+<!-- 221struct0&#45;&gt;221 -->
 <g id="edge1" class="edge">
-<title>2struct0&#45;&gt;2</title>
-<path fill="none" stroke="#000000" d="M85.3082,-1278.7723C95.8567,-1303.9786 110.2256,-1330.2654 129.297,-1350.4 210.901,-1436.553 342.022,-1488.9452 420.8917,-1514.4194"/>
-<polygon fill="#000000" stroke="#000000" points="421.1711,-1514.5078 428.0987,-1512.5059 432.6112,-1518.1307 425.6835,-1520.1326 421.1711,-1514.5078"/>
+<title>221struct0&#45;&gt;221</title>
+<path fill="none" stroke="#000000" d="M579.3149,-1661.2334C589.6626,-1683.6507 603.2033,-1706.5783 620.4429,-1724.4 702.8323,-1809.5715 833.4071,-1862.2186 912.0125,-1888.0194"/>
+<polygon fill="#000000" stroke="#000000" points="912.2714,-1888.1027 919.2087,-1886.1346 923.6936,-1891.7814 916.7563,-1893.7495 912.2714,-1888.1027"/>
 </g>
-<!-- 2struct1 -->
+<!-- 221struct1 -->
 <g id="node5" class="node">
-<title>2struct1</title>
-<polygon fill="#f2f2f2" stroke="#000000" points="138.1739,-1119.9 138.1739,-1270.3 284.4201,-1270.3 284.4201,-1119.9 138.1739,-1119.9"/>
-<text text-anchor="middle" x="211.297" y="-1253.7" font-family="Times,serif" font-size="14.00" fill="#000000">&lt;&lt;struct&gt;&gt;</text>
-<text text-anchor="middle" x="211.297" y="-1236.9" font-family="Times,serif" font-size="14.00" fill="#000000">Squad</text>
-<polyline fill="none" stroke="#000000" points="138.1739,-1228.7 284.4201,-1228.7 "/>
-<text text-anchor="start" x="146.1739" y="-1212.1" font-family="Times,serif" font-size="14.00" fill="#000000">unitIds: uint256[]</text>
-<text text-anchor="start" x="146.1739" y="-1195.3" font-family="Times,serif" font-size="14.00" fill="#000000">unitCount: uint8</text>
-<text text-anchor="start" x="146.1739" y="-1178.5" font-family="Times,serif" font-size="14.00" fill="#000000">stashedTokens: uint16</text>
-<text text-anchor="start" x="146.1739" y="-1161.7" font-family="Times,serif" font-size="14.00" fill="#000000">state: DeploymentState</text>
-<text text-anchor="start" x="146.1739" y="-1144.9" font-family="Times,serif" font-size="14.00" fill="#000000">deployTime: uint16</text>
-<text text-anchor="start" x="146.1739" y="-1128.1" font-family="Times,serif" font-size="14.00" fill="#000000">totalAttack: uint16</text>
+<title>221struct1</title>
+<polygon fill="#f2f2f2" stroke="#000000" points="629.3198,-1502.3 629.3198,-1652.7 775.566,-1652.7 775.566,-1502.3 629.3198,-1502.3"/>
+<text text-anchor="middle" x="702.4429" y="-1636.1" font-family="Times,serif" font-size="14.00" fill="#000000">&lt;&lt;struct&gt;&gt;</text>
+<text text-anchor="middle" x="702.4429" y="-1619.3" font-family="Times,serif" font-size="14.00" fill="#000000">Squad</text>
+<polyline fill="none" stroke="#000000" points="629.3198,-1611.1 775.566,-1611.1 "/>
+<text text-anchor="start" x="637.3198" y="-1594.5" font-family="Times,serif" font-size="14.00" fill="#000000">unitIds: uint256[]</text>
+<text text-anchor="start" x="637.3198" y="-1577.7" font-family="Times,serif" font-size="14.00" fill="#000000">unitCount: uint8</text>
+<text text-anchor="start" x="637.3198" y="-1560.9" font-family="Times,serif" font-size="14.00" fill="#000000">stashedTokens: uint16</text>
+<text text-anchor="start" x="637.3198" y="-1544.1" font-family="Times,serif" font-size="14.00" fill="#000000">state: DeploymentState</text>
+<text text-anchor="start" x="637.3198" y="-1527.3" font-family="Times,serif" font-size="14.00" fill="#000000">deployTime: uint16</text>
+<text text-anchor="start" x="637.3198" y="-1510.5" font-family="Times,serif" font-size="14.00" fill="#000000">totalAttack: uint16</text>
 </g>
-<!-- 2struct1&#45;&gt;2 -->
+<!-- 221struct1&#45;&gt;221 -->
 <g id="edge2" class="edge">
-<title>2struct1&#45;&gt;2</title>
-<path fill="none" stroke="#000000" d="M244.7718,-1270.3947C258.1217,-1296.8385 274.7451,-1326.0125 293.297,-1350.4 330.997,-1399.9588 382.6442,-1447.9368 423.1709,-1482.311"/>
-<polygon fill="#000000" stroke="#000000" points="423.2407,-1482.3696 430.4075,-1483.1679 432.4271,-1490.0904 425.2603,-1489.2922 423.2407,-1482.3696"/>
+<title>221struct1&#45;&gt;221</title>
+<path fill="none" stroke="#000000" d="M738.7092,-1652.7553C751.6977,-1676.6412 767.3871,-1702.5135 784.4429,-1724.4 822.5861,-1773.3466 873.9801,-1821.1855 914.2873,-1855.6545"/>
+<polygon fill="#000000" stroke="#000000" points="914.3405,-1855.6996 921.5037,-1856.529 923.4932,-1863.4603 916.3299,-1862.6308 914.3405,-1855.6996"/>
 </g>
-<!-- 2enum0 -->
+<!-- 221enum0 -->
 <g id="node6" class="node">
-<title>2enum0</title>
-<polygon fill="#f2f2f2" stroke="#000000" points="301.9552,-1145.1 301.9552,-1245.1 380.6388,-1245.1 380.6388,-1145.1 301.9552,-1145.1"/>
-<text text-anchor="middle" x="341.297" y="-1228.5" font-family="Times,serif" font-size="14.00" fill="#000000">&lt;&lt;enum&gt;&gt;</text>
-<text text-anchor="middle" x="341.297" y="-1211.7" font-family="Times,serif" font-size="14.00" fill="#000000">UnitType</text>
-<polyline fill="none" stroke="#000000" points="301.9552,-1203.5 380.6388,-1203.5 "/>
-<text text-anchor="start" x="309.9552" y="-1186.9" font-family="Times,serif" font-size="14.00" fill="#000000">Archer</text>
-<text text-anchor="start" x="309.9552" y="-1170.1" font-family="Times,serif" font-size="14.00" fill="#000000">Warrior</text>
-<text text-anchor="start" x="309.9552" y="-1153.3" font-family="Times,serif" font-size="14.00" fill="#000000">Cavalry</text>
+<title>221enum0</title>
+<polygon fill="#f2f2f2" stroke="#000000" points="793.1011,-1527.5 793.1011,-1627.5 871.7847,-1627.5 871.7847,-1527.5 793.1011,-1527.5"/>
+<text text-anchor="middle" x="832.4429" y="-1610.9" font-family="Times,serif" font-size="14.00" fill="#000000">&lt;&lt;enum&gt;&gt;</text>
+<text text-anchor="middle" x="832.4429" y="-1594.1" font-family="Times,serif" font-size="14.00" fill="#000000">UnitType</text>
+<polyline fill="none" stroke="#000000" points="793.1011,-1585.9 871.7847,-1585.9 "/>
+<text text-anchor="start" x="801.1011" y="-1569.3" font-family="Times,serif" font-size="14.00" fill="#000000">Archer</text>
+<text text-anchor="start" x="801.1011" y="-1552.5" font-family="Times,serif" font-size="14.00" fill="#000000">Warrior</text>
+<text text-anchor="start" x="801.1011" y="-1535.7" font-family="Times,serif" font-size="14.00" fill="#000000">Cavalry</text>
 </g>
-<!-- 2enum0&#45;&gt;2 -->
+<!-- 221enum0&#45;&gt;221 -->
 <g id="edge3" class="edge">
-<title>2enum0&#45;&gt;2</title>
-<path fill="none" stroke="#000000" d="M354.6017,-1245.2345C363.3984,-1276.0689 375.9348,-1316.1085 390.297,-1350.4 408.6058,-1394.1146 433.7882,-1441.3204 453.9059,-1476.8234"/>
-<polygon fill="#000000" stroke="#000000" points="454.0229,-1477.0283 460.4717,-1480.2551 459.9735,-1487.449 453.5246,-1484.2222 454.0229,-1477.0283"/>
+<title>221enum0&#45;&gt;221</title>
+<path fill="none" stroke="#000000" d="M846.8825,-1627.5644C855.736,-1656.3303 867.9432,-1692.892 881.4429,-1724.4 900.1079,-1767.9637 925.2795,-1815.1741 945.303,-1850.717"/>
+<polygon fill="#000000" stroke="#000000" points="945.4175,-1850.9188 951.8573,-1854.1635 951.3391,-1861.356 944.8992,-1858.1112 945.4175,-1850.9188"/>
 </g>
-<!-- 2enum1 -->
+<!-- 221enum1 -->
 <g id="node7" class="node">
-<title>2enum1</title>
-<polygon fill="#f2f2f2" stroke="#000000" points="398.9552,-1145.1 398.9552,-1245.1 477.6388,-1245.1 477.6388,-1145.1 398.9552,-1145.1"/>
-<text text-anchor="middle" x="438.297" y="-1228.5" font-family="Times,serif" font-size="14.00" fill="#000000">&lt;&lt;enum&gt;&gt;</text>
-<text text-anchor="middle" x="438.297" y="-1211.7" font-family="Times,serif" font-size="14.00" fill="#000000">squadType</text>
-<polyline fill="none" stroke="#000000" points="398.9552,-1203.5 477.6388,-1203.5 "/>
-<text text-anchor="start" x="406.9552" y="-1186.9" font-family="Times,serif" font-size="14.00" fill="#000000">triangle</text>
-<text text-anchor="start" x="406.9552" y="-1170.1" font-family="Times,serif" font-size="14.00" fill="#000000">square</text>
-<text text-anchor="start" x="406.9552" y="-1153.3" font-family="Times,serif" font-size="14.00" fill="#000000">circle</text>
+<title>221enum1</title>
+<polygon fill="#f2f2f2" stroke="#000000" points="890.1011,-1527.5 890.1011,-1627.5 968.7847,-1627.5 968.7847,-1527.5 890.1011,-1527.5"/>
+<text text-anchor="middle" x="929.4429" y="-1610.9" font-family="Times,serif" font-size="14.00" fill="#000000">&lt;&lt;enum&gt;&gt;</text>
+<text text-anchor="middle" x="929.4429" y="-1594.1" font-family="Times,serif" font-size="14.00" fill="#000000">squadType</text>
+<polyline fill="none" stroke="#000000" points="890.1011,-1585.9 968.7847,-1585.9 "/>
+<text text-anchor="start" x="898.1011" y="-1569.3" font-family="Times,serif" font-size="14.00" fill="#000000">triangle</text>
+<text text-anchor="start" x="898.1011" y="-1552.5" font-family="Times,serif" font-size="14.00" fill="#000000">square</text>
+<text text-anchor="start" x="898.1011" y="-1535.7" font-family="Times,serif" font-size="14.00" fill="#000000">circle</text>
 </g>
-<!-- 2enum1&#45;&gt;2 -->
+<!-- 221enum1&#45;&gt;221 -->
 <g id="edge4" class="edge">
-<title>2enum1&#45;&gt;2</title>
-<path fill="none" stroke="#000000" d="M445.5799,-1245.3668C454.4962,-1306.9074 469.5642,-1410.9073 478.9426,-1475.6379"/>
-<polygon fill="#000000" stroke="#000000" points="478.9611,-1475.7662 483.7802,-1481.1306 480.6819,-1487.6422 475.8628,-1482.2777 478.9611,-1475.7662"/>
+<title>221enum1&#45;&gt;221</title>
+<path fill="none" stroke="#000000" d="M936.8849,-1627.5895C945.745,-1687.2232 960.5137,-1786.6256 969.8512,-1849.4727"/>
+<polygon fill="#000000" stroke="#000000" points="969.8793,-1849.6624 974.7177,-1855.0094 971.6429,-1861.5321 966.8046,-1856.1851 969.8793,-1849.6624"/>
 </g>
-<!-- 2enum2 -->
+<!-- 221enum2 -->
 <g id="node8" class="node">
-<title>2enum2</title>
-<polygon fill="#f2f2f2" stroke="#000000" points="495.8005,-1128.3 495.8005,-1261.9 574.7935,-1261.9 574.7935,-1128.3 495.8005,-1128.3"/>
-<text text-anchor="middle" x="535.297" y="-1245.3" font-family="Times,serif" font-size="14.00" fill="#000000">&lt;&lt;enum&gt;&gt;</text>
-<text text-anchor="middle" x="535.297" y="-1228.5" font-family="Times,serif" font-size="14.00" fill="#000000">UnitState</text>
-<polyline fill="none" stroke="#000000" points="495.8005,-1220.3 574.7935,-1220.3 "/>
-<text text-anchor="start" x="503.8005" y="-1203.7" font-family="Times,serif" font-size="14.00" fill="#000000">Deployed</text>
-<text text-anchor="start" x="503.8005" y="-1186.9" font-family="Times,serif" font-size="14.00" fill="#000000">Dead</text>
-<text text-anchor="start" x="503.8005" y="-1170.1" font-family="Times,serif" font-size="14.00" fill="#000000">Auctioning</text>
-<text text-anchor="start" x="503.8005" y="-1153.3" font-family="Times,serif" font-size="14.00" fill="#000000">Default</text>
-<text text-anchor="start" x="503.8005" y="-1136.5" font-family="Times,serif" font-size="14.00" fill="#000000">Promised</text>
+<title>221enum2</title>
+<polygon fill="#f2f2f2" stroke="#000000" points="986.9464,-1510.7 986.9464,-1644.3 1065.9394,-1644.3 1065.9394,-1510.7 986.9464,-1510.7"/>
+<text text-anchor="middle" x="1026.4429" y="-1627.7" font-family="Times,serif" font-size="14.00" fill="#000000">&lt;&lt;enum&gt;&gt;</text>
+<text text-anchor="middle" x="1026.4429" y="-1610.9" font-family="Times,serif" font-size="14.00" fill="#000000">UnitState</text>
+<polyline fill="none" stroke="#000000" points="986.9464,-1602.7 1065.9394,-1602.7 "/>
+<text text-anchor="start" x="994.9464" y="-1586.1" font-family="Times,serif" font-size="14.00" fill="#000000">Dead</text>
+<text text-anchor="start" x="994.9464" y="-1569.3" font-family="Times,serif" font-size="14.00" fill="#000000">Deployed</text>
+<text text-anchor="start" x="994.9464" y="-1552.5" font-family="Times,serif" font-size="14.00" fill="#000000">Auctioning</text>
+<text text-anchor="start" x="994.9464" y="-1535.7" font-family="Times,serif" font-size="14.00" fill="#000000">Default</text>
+<text text-anchor="start" x="994.9464" y="-1518.9" font-family="Times,serif" font-size="14.00" fill="#000000">Promised</text>
 </g>
-<!-- 2enum2&#45;&gt;2 -->
+<!-- 221enum2&#45;&gt;221 -->
 <g id="edge5" class="edge">
-<title>2enum2&#45;&gt;2</title>
-<path fill="none" stroke="#000000" d="M525.8137,-1261.9174C516.9755,-1324.1905 503.9299,-1416.1071 495.5218,-1475.3497"/>
-<polygon fill="#000000" stroke="#000000" points="495.4874,-1475.5922 498.6046,-1482.0947 493.8011,-1487.4731 490.684,-1480.9705 495.4874,-1475.5922"/>
+<title>221enum2&#45;&gt;221</title>
+<path fill="none" stroke="#000000" d="M1016.6715,-1644.6375C1007.9122,-1704.8211 995.1954,-1792.1963 986.8731,-1849.3775"/>
+<polygon fill="#000000" stroke="#000000" points="986.8438,-1849.5793 989.9379,-1856.0929 985.1154,-1861.4542 982.0213,-1854.9407 986.8438,-1849.5793"/>
 </g>
-<!-- 2enum3 -->
+<!-- 221enum3 -->
 <g id="node9" class="node">
-<title>2enum3</title>
-<polygon fill="#f2f2f2" stroke="#000000" points="592.6967,-1128.3 592.6967,-1261.9 705.8973,-1261.9 705.8973,-1128.3 592.6967,-1128.3"/>
-<text text-anchor="middle" x="649.297" y="-1245.3" font-family="Times,serif" font-size="14.00" fill="#000000">&lt;&lt;enum&gt;&gt;</text>
-<text text-anchor="middle" x="649.297" y="-1228.5" font-family="Times,serif" font-size="14.00" fill="#000000">DeploymentState</text>
-<polyline fill="none" stroke="#000000" points="592.6967,-1220.3 705.8973,-1220.3 "/>
-<text text-anchor="start" x="600.6967" y="-1203.7" font-family="Times,serif" font-size="14.00" fill="#000000">Retired</text>
-<text text-anchor="start" x="600.6967" y="-1186.9" font-family="Times,serif" font-size="14.00" fill="#000000">TierOne</text>
-<text text-anchor="start" x="600.6967" y="-1170.1" font-family="Times,serif" font-size="14.00" fill="#000000">TierTwo</text>
-<text text-anchor="start" x="600.6967" y="-1153.3" font-family="Times,serif" font-size="14.00" fill="#000000">TierThree</text>
-<text text-anchor="start" x="600.6967" y="-1136.5" font-family="Times,serif" font-size="14.00" fill="#000000">TierFour</text>
+<title>221enum3</title>
+<polygon fill="#f2f2f2" stroke="#000000" points="1083.8426,-1510.7 1083.8426,-1644.3 1197.0432,-1644.3 1197.0432,-1510.7 1083.8426,-1510.7"/>
+<text text-anchor="middle" x="1140.4429" y="-1627.7" font-family="Times,serif" font-size="14.00" fill="#000000">&lt;&lt;enum&gt;&gt;</text>
+<text text-anchor="middle" x="1140.4429" y="-1610.9" font-family="Times,serif" font-size="14.00" fill="#000000">DeploymentState</text>
+<polyline fill="none" stroke="#000000" points="1083.8426,-1602.7 1197.0432,-1602.7 "/>
+<text text-anchor="start" x="1091.8426" y="-1586.1" font-family="Times,serif" font-size="14.00" fill="#000000">Retired</text>
+<text text-anchor="start" x="1091.8426" y="-1569.3" font-family="Times,serif" font-size="14.00" fill="#000000">TierOne</text>
+<text text-anchor="start" x="1091.8426" y="-1552.5" font-family="Times,serif" font-size="14.00" fill="#000000">TierTwo</text>
+<text text-anchor="start" x="1091.8426" y="-1535.7" font-family="Times,serif" font-size="14.00" fill="#000000">TierThree</text>
+<text text-anchor="start" x="1091.8426" y="-1518.9" font-family="Times,serif" font-size="14.00" fill="#000000">TierFour</text>
 </g>
-<!-- 2enum3&#45;&gt;2 -->
+<!-- 221enum3&#45;&gt;221 -->
 <g id="edge6" class="edge">
-<title>2enum3&#45;&gt;2</title>
-<path fill="none" stroke="#000000" d="M622.2129,-1262.1339C610.7118,-1289.7022 596.8479,-1321.8095 583.297,-1350.4 562.9051,-1393.4241 537.8439,-1441.0154 518.4413,-1476.8649"/>
-<polygon fill="#000000" stroke="#000000" points="518.3404,-1477.0506 518.9916,-1484.2323 512.6128,-1487.5955 511.9617,-1480.4139 518.3404,-1477.0506"/>
+<title>221enum3&#45;&gt;221</title>
+<path fill="none" stroke="#000000" d="M1111.3985,-1644.4455C1100.1866,-1669.6661 1087.0417,-1698.5041 1074.4429,-1724.4 1053.6131,-1767.2138 1028.5683,-1814.813 1009.2828,-1850.7187"/>
+<polygon fill="#000000" stroke="#000000" points="1009.1836,-1850.903 1009.8603,-1858.0823 1003.4936,-1861.4682 1002.8168,-1854.2889 1009.1836,-1850.903"/>
 </g>
-<!-- 3 -->
+<!-- 222 -->
 <g id="node10" class="node">
-<title>3</title>
-<polygon fill="#f2f2f2" stroke="#000000" points="1070.6424,-1149.5 1070.6424,-1240.7 1167.9516,-1240.7 1167.9516,-1149.5 1070.6424,-1149.5"/>
-<text text-anchor="middle" x="1119.297" y="-1224.1" font-family="Times,serif" font-size="14.00" fill="#000000">&lt;&lt;Interface&gt;&gt;</text>
-<text text-anchor="middle" x="1119.297" y="-1207.3" font-family="Times,serif" font-size="14.00" fill="#000000">IUnitToken</text>
-<polyline fill="none" stroke="#000000" points="1070.6424,-1199.1 1167.9516,-1199.1 "/>
-<text text-anchor="middle" x="1119.297" y="-1182.5" font-family="Times,serif" font-size="14.00" fill="#000000"> </text>
-<polyline fill="none" stroke="#000000" points="1070.6424,-1174.3 1167.9516,-1174.3 "/>
-<text text-anchor="middle" x="1119.297" y="-1157.7" font-family="Times,serif" font-size="14.00" fill="#000000"> </text>
+<title>222</title>
+<polygon fill="#f2f2f2" stroke="#000000" points="1214.6226,-1431.1 1214.6226,-1723.9 1544.2632,-1723.9 1544.2632,-1431.1 1214.6226,-1431.1"/>
+<text text-anchor="middle" x="1379.4429" y="-1707.3" font-family="Times,serif" font-size="14.00" fill="#000000">AutoChessBase</text>
+<polyline fill="none" stroke="#000000" points="1214.6226,-1699.1 1544.2632,-1699.1 "/>
+<text text-anchor="start" x="1222.6226" y="-1682.5" font-family="Times,serif" font-size="14.00" fill="#000000">Public:</text>
+<text text-anchor="start" x="1222.6226" y="-1665.7" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;units: Unit[]</text>
+<text text-anchor="start" x="1222.6226" y="-1648.9" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;squads: Squad[]</text>
+<text text-anchor="start" x="1222.6226" y="-1632.1" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;tierToSquadIndex: mapping(undefined=&gt;uint256[])</text>
+<text text-anchor="start" x="1222.6226" y="-1615.3" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;ownerToSquadIndex: mapping(address=&gt;uint256[])</text>
+<text text-anchor="start" x="1222.6226" y="-1598.5" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;unitIndexToSquadIndex: mapping(uint256=&gt;uint256)</text>
+<text text-anchor="start" x="1222.6226" y="-1581.7" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;unitIndexToOwner: mapping(uint256=&gt;address)</text>
+<text text-anchor="start" x="1222.6226" y="-1564.9" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;squadIndexToOwner: mapping(uint256=&gt;address)</text>
+<text text-anchor="start" x="1222.6226" y="-1548.1" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;ownerToUnitCount: mapping(address=&gt;uint256)</text>
+<text text-anchor="start" x="1222.6226" y="-1531.3" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;unitIndexToAllowed: mapping(uint256=&gt;address)</text>
+<text text-anchor="start" x="1222.6226" y="-1514.5" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;unitIndexToState: mapping(uint256=&gt;UnitState)</text>
+<text text-anchor="start" x="1222.6226" y="-1497.7" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;ownerToUnitIndices: mapping(address=&gt;uint256[])</text>
+<polyline fill="none" stroke="#000000" points="1214.6226,-1489.5 1544.2632,-1489.5 "/>
+<text text-anchor="start" x="1222.6226" y="-1472.9" font-family="Times,serif" font-size="14.00" fill="#000000">Internal:</text>
+<text text-anchor="start" x="1222.6226" y="-1456.1" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;randomNumber(options: uint): uint16</text>
+<text text-anchor="start" x="1222.6226" y="-1439.3" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;_getTier(_unitCount: uint): (state: DeploymentState)</text>
 </g>
-<!-- 3&#45;&gt;0 -->
-<g id="edge9" class="edge">
-<title>3&#45;&gt;0</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1119.297,-1240.7112C1119.297,-1271.2549 1119.297,-1313.6175 1119.297,-1356.6343"/>
-<polygon fill="none" stroke="#000000" points="1108.7971,-1356.7624 1119.297,-1386.7625 1129.7971,-1356.7625 1108.7971,-1356.7624"/>
-</g>
-<!-- 3&#45;&gt;2 -->
+<!-- 222&#45;&gt;221 -->
 <g id="edge8" class="edge">
-<title>3&#45;&gt;2</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1114.4487,-1240.9823C1108.2642,-1276.0832 1094.2098,-1322.9788 1062.297,-1350.4 1001.4095,-1402.7178 962.5115,-1364.4373 885.297,-1386.4 774.1434,-1418.0162 649.7369,-1466.0587 570.076,-1498.5163"/>
-<polygon fill="none" stroke="#000000" points="565.857,-1488.898 542.1076,-1510.022 573.8464,-1508.3189 565.857,-1488.898"/>
+<title>222&#45;&gt;221</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1214.2452,-1717.9467C1211.628,-1720.1157 1209.0259,-1722.268 1206.4429,-1724.4 1157.0257,-1765.1886 1100.8884,-1810.2371 1056.6827,-1845.4198"/>
+<polygon fill="none" stroke="#000000" points="1050.1059,-1837.2345 1033.1474,-1864.1169 1063.1686,-1853.6774 1050.1059,-1837.2345"/>
 </g>
-<!-- 4 -->
+<!-- 223 -->
 <g id="node11" class="node">
-<title>4</title>
-<polygon fill="#f2f2f2" stroke="#000000" points="287.8825,-668.5 287.8825,-826.9 720.7115,-826.9 720.7115,-668.5 287.8825,-668.5"/>
-<text text-anchor="middle" x="504.297" y="-810.3" font-family="Times,serif" font-size="14.00" fill="#000000">&lt;&lt;Interface&gt;&gt;</text>
-<text text-anchor="middle" x="504.297" y="-793.5" font-family="Times,serif" font-size="14.00" fill="#000000">IUnitMarketplace</text>
-<polyline fill="none" stroke="#000000" points="287.8825,-785.3 720.7115,-785.3 "/>
-<text text-anchor="middle" x="504.297" y="-768.7" font-family="Times,serif" font-size="14.00" fill="#000000"> </text>
-<polyline fill="none" stroke="#000000" points="287.8825,-760.5 720.7115,-760.5 "/>
-<text text-anchor="start" x="295.8825" y="-743.9" font-family="Times,serif" font-size="14.00" fill="#000000">External:</text>
-<text text-anchor="start" x="295.8825" y="-727.1" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;bid(_auctionId: uint256, _value: uint256): (success: bool)</text>
-<text text-anchor="start" x="295.8825" y="-710.3" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;bid(_auctionId: uint256, _value: uint256, _msg: string): (success: bool)</text>
-<text text-anchor="start" x="295.8825" y="-693.5" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;startAuction(_assets: uint256[], _asking: uint256): (success: bool)</text>
-<text text-anchor="start" x="295.8825" y="-676.7" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;withdrawAuction(_auctionId: uint256): (success: bool)</text>
+<title>223</title>
+<polygon fill="#f2f2f2" stroke="#000000" points="1561.7883,-1531.9 1561.7883,-1623.1 1659.0975,-1623.1 1659.0975,-1531.9 1561.7883,-1531.9"/>
+<text text-anchor="middle" x="1610.4429" y="-1606.5" font-family="Times,serif" font-size="14.00" fill="#000000">&lt;&lt;Interface&gt;&gt;</text>
+<text text-anchor="middle" x="1610.4429" y="-1589.7" font-family="Times,serif" font-size="14.00" fill="#000000">IUnitToken</text>
+<polyline fill="none" stroke="#000000" points="1561.7883,-1581.5 1659.0975,-1581.5 "/>
+<text text-anchor="middle" x="1610.4429" y="-1564.9" font-family="Times,serif" font-size="14.00" fill="#000000"> </text>
+<polyline fill="none" stroke="#000000" points="1561.7883,-1556.7 1659.0975,-1556.7 "/>
+<text text-anchor="middle" x="1610.4429" y="-1540.1" font-family="Times,serif" font-size="14.00" fill="#000000"> </text>
 </g>
-<!-- 4struct0 -->
-<g id="node12" class="node">
-<title>4struct0</title>
-<polygon fill="#f2f2f2" stroke="#000000" points="432.3408,-267.1 432.3408,-434.3 576.2532,-434.3 576.2532,-267.1 432.3408,-267.1"/>
-<text text-anchor="middle" x="504.297" y="-417.7" font-family="Times,serif" font-size="14.00" fill="#000000">&lt;&lt;struct&gt;&gt;</text>
-<text text-anchor="middle" x="504.297" y="-400.9" font-family="Times,serif" font-size="14.00" fill="#000000">Auction</text>
-<polyline fill="none" stroke="#000000" points="432.3408,-392.7 576.2532,-392.7 "/>
-<text text-anchor="start" x="440.3408" y="-376.1" font-family="Times,serif" font-size="14.00" fill="#000000">highestBid: uint256</text>
-<text text-anchor="start" x="440.3408" y="-359.3" font-family="Times,serif" font-size="14.00" fill="#000000">assetIds: uint256[]</text>
-<text text-anchor="start" x="440.3408" y="-342.5" font-family="Times,serif" font-size="14.00" fill="#000000">highestBidder: address</text>
-<text text-anchor="start" x="440.3408" y="-325.7" font-family="Times,serif" font-size="14.00" fill="#000000">host: address</text>
-<text text-anchor="start" x="440.3408" y="-308.9" font-family="Times,serif" font-size="14.00" fill="#000000">name: string</text>
-<text text-anchor="start" x="440.3408" y="-292.1" font-family="Times,serif" font-size="14.00" fill="#000000">highestBidText: string</text>
-<text text-anchor="start" x="440.3408" y="-275.3" font-family="Times,serif" font-size="14.00" fill="#000000">endTime: uint256</text>
-</g>
-<!-- 4struct0&#45;&gt;4 -->
-<g id="edge7" class="edge">
-<title>4struct0&#45;&gt;4</title>
-<path fill="none" stroke="#000000" d="M504.297,-434.4084C504.297,-499.2992 504.297,-589.1267 504.297,-655.9642"/>
-<polygon fill="#000000" stroke="#000000" points="504.2971,-656.1655 508.297,-662.1656 504.297,-668.1655 500.297,-662.1655 504.2971,-656.1655"/>
-</g>
-<!-- 5 -->
-<g id="node13" class="node">
-<title>5</title>
-<polygon fill="#f2f2f2" stroke="#000000" points="594.4716,-305.1 594.4716,-396.3 692.1224,-396.3 692.1224,-305.1 594.4716,-305.1"/>
-<text text-anchor="middle" x="643.297" y="-379.7" font-family="Times,serif" font-size="14.00" fill="#000000">&lt;&lt;Interface&gt;&gt;</text>
-<text text-anchor="middle" x="643.297" y="-362.9" font-family="Times,serif" font-size="14.00" fill="#000000">ISquadBuilder</text>
-<polyline fill="none" stroke="#000000" points="594.4716,-354.7 692.1224,-354.7 "/>
-<text text-anchor="middle" x="643.297" y="-338.1" font-family="Times,serif" font-size="14.00" fill="#000000"> </text>
-<polyline fill="none" stroke="#000000" points="594.4716,-329.9 692.1224,-329.9 "/>
-<text text-anchor="middle" x="643.297" y="-313.3" font-family="Times,serif" font-size="14.00" fill="#000000"> </text>
-</g>
-<!-- 5&#45;&gt;4 -->
+<!-- 223&#45;&gt;219 -->
 <g id="edge10" class="edge">
-<title>5&#45;&gt;4</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M627.2161,-396.6288C606.5218,-455.7341 569.9159,-560.2848 542.0171,-639.967"/>
-<polygon fill="none" stroke="#000000" points="532.088,-636.5517 532.0843,-668.3362 551.9082,-643.4914 532.088,-636.5517"/>
+<title>223&#45;&gt;219</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1610.4429,-1623.3573C1610.4429,-1651.988 1610.4429,-1690.8705 1610.4429,-1730.6689"/>
+<polygon fill="none" stroke="#000000" points="1599.943,-1730.7618 1610.4429,-1760.7618 1620.943,-1730.7619 1599.943,-1730.7618"/>
 </g>
-<!-- 6 -->
-<g id="node14" class="node">
-<title>6</title>
-<polygon fill="#f2f2f2" stroke="#000000" points="723.4767,-1040.3 723.4767,-1349.9 1053.1173,-1349.9 1053.1173,-1040.3 723.4767,-1040.3"/>
-<text text-anchor="middle" x="888.297" y="-1333.3" font-family="Times,serif" font-size="14.00" fill="#000000">AutoChessBase</text>
-<polyline fill="none" stroke="#000000" points="723.4767,-1325.1 1053.1173,-1325.1 "/>
-<text text-anchor="start" x="731.4767" y="-1308.5" font-family="Times,serif" font-size="14.00" fill="#000000">Public:</text>
-<text text-anchor="start" x="731.4767" y="-1291.7" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;units: Unit[]</text>
-<text text-anchor="start" x="731.4767" y="-1274.9" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;squads: Squad[]</text>
-<text text-anchor="start" x="731.4767" y="-1258.1" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;tierToSquadIndex: mapping(undefined=&gt;uint256[])</text>
-<text text-anchor="start" x="731.4767" y="-1241.3" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;ownerToSquadIndex: mapping(address=&gt;uint256[])</text>
-<text text-anchor="start" x="731.4767" y="-1224.5" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;unitIndexToSquadIndex: mapping(uint256=&gt;uint256)</text>
-<text text-anchor="start" x="731.4767" y="-1207.7" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;unitIndexToOwner: mapping(uint256=&gt;address)</text>
-<text text-anchor="start" x="731.4767" y="-1190.9" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;squadIndexToOwner: mapping(uint256=&gt;address)</text>
-<text text-anchor="start" x="731.4767" y="-1174.1" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;ownerToUnitCount: mapping(address=&gt;uint256)</text>
-<text text-anchor="start" x="731.4767" y="-1157.3" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;unitIndexToAllowed: mapping(uint256=&gt;address)</text>
-<text text-anchor="start" x="731.4767" y="-1140.5" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;unitIndexToState: mapping(uint256=&gt;UnitState)</text>
-<text text-anchor="start" x="731.4767" y="-1123.7" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;ownerToUnitIndices: mapping(address=&gt;uint256[])</text>
-<text text-anchor="start" x="731.4767" y="-1106.9" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;unitIndexExists: mapping(uint256=&gt;bool)</text>
-<polyline fill="none" stroke="#000000" points="723.4767,-1098.7 1053.1173,-1098.7 "/>
-<text text-anchor="start" x="731.4767" y="-1082.1" font-family="Times,serif" font-size="14.00" fill="#000000">Internal:</text>
-<text text-anchor="start" x="731.4767" y="-1065.3" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;randomNumber(options: uint): uint16</text>
-<text text-anchor="start" x="731.4767" y="-1048.5" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;_getTier(_unitCount: uint): (state: DeploymentState)</text>
+<!-- 223&#45;&gt;221 -->
+<g id="edge9" class="edge">
+<title>223&#45;&gt;221</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1604.4088,-1623.3559C1597.6276,-1656.2979 1583.3463,-1699.1791 1553.4429,-1724.4 1492.0774,-1776.1564 1453.6574,-1738.4373 1376.4429,-1760.4 1265.2893,-1792.0162 1140.8828,-1840.0587 1061.2219,-1872.5163"/>
+<polygon fill="none" stroke="#000000" points="1057.0029,-1862.898 1033.2535,-1884.022 1064.9923,-1882.3189 1057.0029,-1862.898"/>
 </g>
-<!-- 6&#45;&gt;2 -->
+<!-- 224 -->
+<g id="node12" class="node">
+<title>224</title>
+<polygon fill="#f2f2f2" stroke="#000000" points="1160.4755,-992.1 1160.4755,-1284.9 1598.4103,-1284.9 1598.4103,-992.1 1160.4755,-992.1"/>
+<text text-anchor="middle" x="1379.4429" y="-1268.3" font-family="Times,serif" font-size="14.00" fill="#000000">UnitToken</text>
+<polyline fill="none" stroke="#000000" points="1160.4755,-1260.1 1598.4103,-1260.1 "/>
+<text text-anchor="start" x="1168.4755" y="-1243.5" font-family="Times,serif" font-size="14.00" fill="#000000">Private:</text>
+<text text-anchor="start" x="1168.4755" y="-1226.7" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;totalUnits: uint256</text>
+<polyline fill="none" stroke="#000000" points="1160.4755,-1218.5 1598.4103,-1218.5 "/>
+<text text-anchor="start" x="1168.4755" y="-1201.9" font-family="Times,serif" font-size="14.00" fill="#000000">Internal:</text>
+<text text-anchor="start" x="1168.4755" y="-1185.1" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;_transfer(_from: address, _to: address, _tokenId: uint256)</text>
+<text text-anchor="start" x="1168.4755" y="-1168.3" font-family="Times,serif" font-size="14.00" fill="#000000">Public:</text>
+<text text-anchor="start" x="1168.4755" y="-1151.5" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&lt;&lt;modifier&gt;&gt; _validTx(_from: address, _to: address, _tokenId: uint256)</text>
+<text text-anchor="start" x="1168.4755" y="-1134.7" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;totalSupply(): (total: uint256)</text>
+<text text-anchor="start" x="1168.4755" y="-1117.9" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;balanceOf(_owner: address): (balance: uint256)</text>
+<text text-anchor="start" x="1168.4755" y="-1101.1" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;ownerOf(_tokenId: uint256): (owner: address)</text>
+<text text-anchor="start" x="1168.4755" y="-1084.3" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;approve(_to: address, _tokenId: uint256)</text>
+<text text-anchor="start" x="1168.4755" y="-1067.5" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;transfer(_to: address, _tokenId: uint256)</text>
+<text text-anchor="start" x="1168.4755" y="-1050.7" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;transferFrom(_from: address, _to: address, _tokenId: uint256)</text>
+<text text-anchor="start" x="1168.4755" y="-1033.9" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;name(): string</text>
+<text text-anchor="start" x="1168.4755" y="-1017.1" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;symbol(): string</text>
+<text text-anchor="start" x="1168.4755" y="-1000.3" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;supportsInterface(_interfaceID: bytes4): bool</text>
+</g>
+<!-- 224&#45;&gt;222 -->
 <g id="edge11" class="edge">
-<title>6&#45;&gt;2</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M723.1906,-1343.6724C720.5451,-1345.936 717.9125,-1348.1799 715.297,-1350.4 666.4462,-1391.8653 610.3166,-1436.9229 565.9732,-1471.9412"/>
-<polygon fill="none" stroke="#000000" points="559.4317,-1463.7276 542.3476,-1490.5304 572.4173,-1480.2314 559.4317,-1463.7276"/>
+<title>224&#45;&gt;222</title>
+<path fill="none" stroke="#000000" d="M1379.4429,-1284.9857C1379.4429,-1322.1642 1379.4429,-1362.4967 1379.4429,-1400.9929"/>
+<polygon fill="none" stroke="#000000" points="1368.943,-1401.0282 1379.4429,-1431.0283 1389.943,-1401.0283 1368.943,-1401.0282"/>
 </g>
-<!-- 7 -->
-<g id="node15" class="node">
-<title>7</title>
-<polygon fill="#f2f2f2" stroke="#000000" points="738.7068,-609.7 738.7068,-885.7 1115.8872,-885.7 1115.8872,-609.7 738.7068,-609.7"/>
-<text text-anchor="middle" x="927.297" y="-869.1" font-family="Times,serif" font-size="14.00" fill="#000000">UnitToken</text>
-<polyline fill="none" stroke="#000000" points="738.7068,-860.9 1115.8872,-860.9 "/>
-<text text-anchor="start" x="746.7068" y="-844.3" font-family="Times,serif" font-size="14.00" fill="#000000">Private:</text>
-<text text-anchor="start" x="746.7068" y="-827.5" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;totalUnits: uint256</text>
-<polyline fill="none" stroke="#000000" points="738.7068,-819.3 1115.8872,-819.3 "/>
-<text text-anchor="start" x="746.7068" y="-802.7" font-family="Times,serif" font-size="14.00" fill="#000000">Internal:</text>
-<text text-anchor="start" x="746.7068" y="-785.9" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;_transfer(_from: address, _to: address, _tokenId: uint256)</text>
-<text text-anchor="start" x="746.7068" y="-769.1" font-family="Times,serif" font-size="14.00" fill="#000000">Public:</text>
-<text text-anchor="start" x="746.7068" y="-752.3" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;totalSupply(): (total: uint256)</text>
-<text text-anchor="start" x="746.7068" y="-735.5" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;balanceOf(_owner: address): (balance: uint256)</text>
-<text text-anchor="start" x="746.7068" y="-718.7" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;ownerOf(_tokenId: uint256): (owner: address)</text>
-<text text-anchor="start" x="746.7068" y="-701.9" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;approve(_to: address, _tokenId: uint256)</text>
-<text text-anchor="start" x="746.7068" y="-685.1" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;transfer(_to: address, _tokenId: uint256)</text>
-<text text-anchor="start" x="746.7068" y="-668.3" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;transferFrom(_from: address, _to: address, _tokenId: uint256)</text>
-<text text-anchor="start" x="746.7068" y="-651.5" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;name(): string</text>
-<text text-anchor="start" x="746.7068" y="-634.7" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;symbol(): string</text>
-<text text-anchor="start" x="746.7068" y="-617.9" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;supportsInterface(_interfaceID: bytes4): bool</text>
-</g>
-<!-- 7&#45;&gt;3 -->
-<g id="edge13" class="edge">
-<title>7&#45;&gt;3</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M993.9987,-885.9762C1016.5475,-934.27 1041.31,-989.0825 1062.297,-1039.8 1073.1104,-1065.9318 1084.0383,-1094.9374 1093.3929,-1120.74"/>
-<polygon fill="none" stroke="#000000" points="1083.5757,-1124.4707 1103.5505,-1149.1943 1103.3533,-1117.4105 1083.5757,-1124.4707"/>
-</g>
-<!-- 7&#45;&gt;6 -->
+<!-- 224&#45;&gt;223 -->
 <g id="edge12" class="edge">
-<title>7&#45;&gt;6</title>
-<path fill="none" stroke="#000000" d="M915.2509,-885.8907C911.8208,-925.24 908.0285,-968.7446 904.3983,-1010.389"/>
-<polygon fill="none" stroke="#000000" points="893.9361,-1009.4993 901.7912,-1040.2978 914.8568,-1011.323 893.9361,-1009.4993"/>
+<title>224&#45;&gt;223</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1473.3245,-1285.1922C1500.7925,-1330.8947 1529.7712,-1382.0538 1553.4429,-1430.6 1564.7395,-1453.7671 1575.4417,-1479.7796 1584.457,-1503.4049"/>
+<polygon fill="none" stroke="#000000" points="1574.6488,-1507.1553 1594.8918,-1531.6598 1594.3483,-1499.88 1574.6488,-1507.1553"/>
 </g>
-<!-- 8 -->
-<g id="node16" class="node">
-<title>8</title>
-<polygon fill="#f2f2f2" stroke="#000000" points="1171.8541,-492.1 1171.8541,-1003.3 1658.7399,-1003.3 1658.7399,-492.1 1171.8541,-492.1"/>
-<text text-anchor="middle" x="1415.297" y="-986.7" font-family="Times,serif" font-size="14.00" fill="#000000">StoreToken</text>
-<polyline fill="none" stroke="#000000" points="1171.8541,-978.5 1658.7399,-978.5 "/>
-<text text-anchor="start" x="1179.8541" y="-961.9" font-family="Times,serif" font-size="14.00" fill="#000000">Private:</text>
-<text text-anchor="start" x="1179.8541" y="-945.1" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;totalTokens: uint256</text>
-<text text-anchor="start" x="1179.8541" y="-928.3" font-family="Times,serif" font-size="14.00" fill="#000000">Public:</text>
-<text text-anchor="start" x="1179.8541" y="-911.5" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;ownerToBalance: mapping(address=&gt;uint256)</text>
-<text text-anchor="start" x="1179.8541" y="-894.7" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;ownerToApprovedWithdrawals: mapping(address=&gt;mapping(address=&gt;uint256))</text>
-<text text-anchor="start" x="1179.8541" y="-877.9" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;ownerToTotalApproved: mapping(address=&gt;uint256)</text>
-<text text-anchor="start" x="1179.8541" y="-861.1" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;StoreAddress: address</text>
-<polyline fill="none" stroke="#000000" points="1171.8541,-852.9 1658.7399,-852.9 "/>
-<text text-anchor="start" x="1179.8541" y="-836.3" font-family="Times,serif" font-size="14.00" fill="#000000">Internal:</text>
-<text text-anchor="start" x="1179.8541" y="-819.5" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;_approve(_from: address, _to: address, _value: uint256): (success: bool)</text>
-<text text-anchor="start" x="1179.8541" y="-802.7" font-family="Times,serif" font-size="14.00" fill="#000000">Public:</text>
-<text text-anchor="start" x="1179.8541" y="-785.9" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&lt;&lt;payable&gt;&gt; purchaseTokens()</text>
-<text text-anchor="start" x="1179.8541" y="-769.1" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&lt;&lt;modifier&gt;&gt; _storeOnly()</text>
-<text text-anchor="start" x="1179.8541" y="-752.3" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;constructor()</text>
-<text text-anchor="start" x="1179.8541" y="-735.5" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;totalSupply(): uint256</text>
-<text text-anchor="start" x="1179.8541" y="-718.7" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;balanceOf(_owner: address): (balance: uint256)</text>
-<text text-anchor="start" x="1179.8541" y="-701.9" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;transfer(_to: address, _value: uint256): (success: bool)</text>
-<text text-anchor="start" x="1179.8541" y="-685.1" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;spend(_from: address, _value: uint256): (success: bool)</text>
-<text text-anchor="start" x="1179.8541" y="-668.3" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;transferFrom(_from: address, _to: address, _value: uint256): (success: bool)</text>
-<text text-anchor="start" x="1179.8541" y="-651.5" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;unApprovedBalanceOf(_owner: address): (remaining: uint256)</text>
-<text text-anchor="start" x="1179.8541" y="-634.7" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;autoApprove(_from: address, _value: uint256): (success: bool)</text>
-<text text-anchor="start" x="1179.8541" y="-617.9" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;autoUnApprove(_from: address, _value: uint256): (success: bool)</text>
-<text text-anchor="start" x="1179.8541" y="-601.1" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;approve(_spender: address, _value: uint256): (success: bool)</text>
-<text text-anchor="start" x="1179.8541" y="-584.3" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;allowance(_owner: address, _spender: address): (remaining: uint256)</text>
-<text text-anchor="start" x="1179.8541" y="-567.5" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;tokenFaucet()</text>
-<text text-anchor="start" x="1179.8541" y="-550.7" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;verifyTransaction(_value: uint256): (success: bool)</text>
-<text text-anchor="start" x="1179.8541" y="-533.9" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;name(): string</text>
-<text text-anchor="start" x="1179.8541" y="-517.1" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;symbol(): string</text>
-<text text-anchor="start" x="1179.8541" y="-500.3" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;supportsInterface(_interfaceID: bytes4): bool</text>
+<!-- 225 -->
+<g id="node13" class="node">
+<title>225</title>
+<polygon fill="#f2f2f2" stroke="#000000" points="0,-882.9 0,-1394.1 486.8858,-1394.1 486.8858,-882.9 0,-882.9"/>
+<text text-anchor="middle" x="243.4429" y="-1377.5" font-family="Times,serif" font-size="14.00" fill="#000000">StoreToken</text>
+<polyline fill="none" stroke="#000000" points="0,-1369.3 486.8858,-1369.3 "/>
+<text text-anchor="start" x="8" y="-1352.7" font-family="Times,serif" font-size="14.00" fill="#000000">Private:</text>
+<text text-anchor="start" x="8" y="-1335.9" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;totalTokens: uint256</text>
+<text text-anchor="start" x="8" y="-1319.1" font-family="Times,serif" font-size="14.00" fill="#000000">Public:</text>
+<text text-anchor="start" x="8" y="-1302.3" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;ownerToBalance: mapping(address=&gt;uint256)</text>
+<text text-anchor="start" x="8" y="-1285.5" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;ownerToApprovedWithdrawals: mapping(address=&gt;mapping(address=&gt;uint256))</text>
+<text text-anchor="start" x="8" y="-1268.7" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;ownerToTotalApproved: mapping(address=&gt;uint256)</text>
+<text text-anchor="start" x="8" y="-1251.9" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;StoreAddress: address</text>
+<polyline fill="none" stroke="#000000" points="0,-1243.7 486.8858,-1243.7 "/>
+<text text-anchor="start" x="8" y="-1227.1" font-family="Times,serif" font-size="14.00" fill="#000000">Internal:</text>
+<text text-anchor="start" x="8" y="-1210.3" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;_approve(_from: address, _to: address, _value: uint256): (success: bool)</text>
+<text text-anchor="start" x="8" y="-1193.5" font-family="Times,serif" font-size="14.00" fill="#000000">Public:</text>
+<text text-anchor="start" x="8" y="-1176.7" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&lt;&lt;payable&gt;&gt; purchaseTokens()</text>
+<text text-anchor="start" x="8" y="-1159.9" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&lt;&lt;modifier&gt;&gt; _storeOnly()</text>
+<text text-anchor="start" x="8" y="-1143.1" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;constructor()</text>
+<text text-anchor="start" x="8" y="-1126.3" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;totalSupply(): uint256</text>
+<text text-anchor="start" x="8" y="-1109.5" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;balanceOf(_owner: address): (balance: uint256)</text>
+<text text-anchor="start" x="8" y="-1092.7" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;transfer(_to: address, _value: uint256): (success: bool)</text>
+<text text-anchor="start" x="8" y="-1075.9" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;spend(_from: address, _value: uint256): (success: bool)</text>
+<text text-anchor="start" x="8" y="-1059.1" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;transferFrom(_from: address, _to: address, _value: uint256): (success: bool)</text>
+<text text-anchor="start" x="8" y="-1042.3" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;unApprovedBalanceOf(_owner: address): (remaining: uint256)</text>
+<text text-anchor="start" x="8" y="-1025.5" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;autoApprove(_from: address, _value: uint256): (success: bool)</text>
+<text text-anchor="start" x="8" y="-1008.7" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;autoUnApprove(_from: address, _value: uint256): (success: bool)</text>
+<text text-anchor="start" x="8" y="-991.9" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;approve(_spender: address, _value: uint256): (success: bool)</text>
+<text text-anchor="start" x="8" y="-975.1" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;allowance(_owner: address, _spender: address): (remaining: uint256)</text>
+<text text-anchor="start" x="8" y="-958.3" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;tokenFaucet()</text>
+<text text-anchor="start" x="8" y="-941.5" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;verifyTransaction(_value: uint256): (success: bool)</text>
+<text text-anchor="start" x="8" y="-924.7" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;name(): string</text>
+<text text-anchor="start" x="8" y="-907.9" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;symbol(): string</text>
+<text text-anchor="start" x="8" y="-891.1" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;supportsInterface(_interfaceID: bytes4): bool</text>
 </g>
-<!-- 8&#45;&gt;1 -->
+<!-- 225&#45;&gt;220 -->
+<g id="edge13" class="edge">
+<title>225&#45;&gt;220</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M243.4429,-1394.1858C243.4429,-1396.3227 243.4429,-1398.4549 243.4429,-1400.5816"/>
+<polygon fill="none" stroke="#000000" points="232.943,-1400.8413 243.4429,-1430.8414 253.943,-1400.8414 232.943,-1400.8413"/>
+</g>
+<!-- 226 -->
+<g id="node14" class="node">
+<title>226</title>
+<polygon fill="#f2f2f2" stroke="#000000" points="1616.0284,-1059.3 1616.0284,-1217.7 2048.8574,-1217.7 2048.8574,-1059.3 1616.0284,-1059.3"/>
+<text text-anchor="middle" x="1832.4429" y="-1201.1" font-family="Times,serif" font-size="14.00" fill="#000000">&lt;&lt;Interface&gt;&gt;</text>
+<text text-anchor="middle" x="1832.4429" y="-1184.3" font-family="Times,serif" font-size="14.00" fill="#000000">IUnitMarketplace</text>
+<polyline fill="none" stroke="#000000" points="1616.0284,-1176.1 2048.8574,-1176.1 "/>
+<text text-anchor="middle" x="1832.4429" y="-1159.5" font-family="Times,serif" font-size="14.00" fill="#000000"> </text>
+<polyline fill="none" stroke="#000000" points="1616.0284,-1151.3 2048.8574,-1151.3 "/>
+<text text-anchor="start" x="1624.0284" y="-1134.7" font-family="Times,serif" font-size="14.00" fill="#000000">External:</text>
+<text text-anchor="start" x="1624.0284" y="-1117.9" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;bid(_auctionId: uint256, _value: uint256): (success: bool)</text>
+<text text-anchor="start" x="1624.0284" y="-1101.1" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;bid(_auctionId: uint256, _value: uint256, _msg: string): (success: bool)</text>
+<text text-anchor="start" x="1624.0284" y="-1084.3" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;startAuction(_assets: uint256[], _asking: uint256): (success: bool)</text>
+<text text-anchor="start" x="1624.0284" y="-1067.5" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;withdrawAuction(_auctionId: uint256): (success: bool)</text>
+</g>
+<!-- 226&#45;&gt;223 -->
 <g id="edge14" class="edge">
-<title>8&#45;&gt;1</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1415.297,-1003.4151C1415.297,-1008.457 1415.297,-1013.4767 1415.297,-1018.4637"/>
-<polygon fill="none" stroke="#000000" points="1404.7971,-1018.5966 1415.297,-1048.5966 1425.7971,-1018.5967 1404.7971,-1018.5966"/>
+<title>226&#45;&gt;223</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1792.3689,-1217.7454C1751.0462,-1299.4602 1687.1575,-1425.7987 1647.1248,-1504.9623"/>
+<polygon fill="none" stroke="#000000" points="1637.7096,-1500.3134 1633.5413,-1531.8234 1656.4497,-1509.7902 1637.7096,-1500.3134"/>
 </g>
-<!-- 9 -->
-<g id="node17" class="node">
-<title>9</title>
-<polygon fill="#f2f2f2" stroke="#000000" points="709.6325,-246.3 709.6325,-455.1 1138.9615,-455.1 1138.9615,-246.3 709.6325,-246.3"/>
-<text text-anchor="middle" x="924.297" y="-438.5" font-family="Times,serif" font-size="14.00" fill="#000000">UnitMarketplace</text>
-<polyline fill="none" stroke="#000000" points="709.6325,-430.3 1138.9615,-430.3 "/>
-<text text-anchor="start" x="717.6325" y="-413.7" font-family="Times,serif" font-size="14.00" fill="#000000">Public:</text>
-<text text-anchor="start" x="717.6325" y="-396.9" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;ProviderAddress: address</text>
-<text text-anchor="start" x="717.6325" y="-380.1" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;CurrencyProvider: StoreToken</text>
-<text text-anchor="start" x="717.6325" y="-363.3" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;_auctions: Auction[]</text>
-<polyline fill="none" stroke="#000000" points="709.6325,-355.1 1138.9615,-355.1 "/>
-<text text-anchor="start" x="717.6325" y="-338.5" font-family="Times,serif" font-size="14.00" fill="#000000">Public:</text>
-<text text-anchor="start" x="717.6325" y="-321.7" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;constructor()</text>
-<text text-anchor="start" x="717.6325" y="-304.9" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;bid(_auctionId: uint256, _value: uint256): (success: bool)</text>
-<text text-anchor="start" x="717.6325" y="-288.1" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;bid(_auctionId: uint256, _value: uint256, _msg: string): (success: bool)</text>
-<text text-anchor="start" x="717.6325" y="-271.3" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;startAuction(_assets: uint256[], _asking: uint256): (success: bool)</text>
-<text text-anchor="start" x="717.6325" y="-254.5" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;withdrawAuction(_auctionId: uint256): (success: bool)</text>
+<!-- 226struct0 -->
+<g id="node15" class="node">
+<title>226struct0</title>
+<polygon fill="#f2f2f2" stroke="#000000" points="1612.4867,-657.9 1612.4867,-825.1 1756.3991,-825.1 1756.3991,-657.9 1612.4867,-657.9"/>
+<text text-anchor="middle" x="1684.4429" y="-808.5" font-family="Times,serif" font-size="14.00" fill="#000000">&lt;&lt;struct&gt;&gt;</text>
+<text text-anchor="middle" x="1684.4429" y="-791.7" font-family="Times,serif" font-size="14.00" fill="#000000">Auction</text>
+<polyline fill="none" stroke="#000000" points="1612.4867,-783.5 1756.3991,-783.5 "/>
+<text text-anchor="start" x="1620.4867" y="-766.9" font-family="Times,serif" font-size="14.00" fill="#000000">highestBid: uint256</text>
+<text text-anchor="start" x="1620.4867" y="-750.1" font-family="Times,serif" font-size="14.00" fill="#000000">assetIds: uint256[]</text>
+<text text-anchor="start" x="1620.4867" y="-733.3" font-family="Times,serif" font-size="14.00" fill="#000000">highestBidder: address</text>
+<text text-anchor="start" x="1620.4867" y="-716.5" font-family="Times,serif" font-size="14.00" fill="#000000">host: address</text>
+<text text-anchor="start" x="1620.4867" y="-699.7" font-family="Times,serif" font-size="14.00" fill="#000000">name: string</text>
+<text text-anchor="start" x="1620.4867" y="-682.9" font-family="Times,serif" font-size="14.00" fill="#000000">highestBidText: string</text>
+<text text-anchor="start" x="1620.4867" y="-666.1" font-family="Times,serif" font-size="14.00" fill="#000000">endTime: uint256</text>
 </g>
-<!-- 9&#45;&gt;4 -->
-<g id="edge16" class="edge">
-<title>9&#45;&gt;4</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M772.5746,-455.11C757.5793,-466.9627 742.895,-479.2377 729.297,-491.6 677.7389,-538.4725 626.0146,-596.3989 585.182,-645.2978"/>
-<polygon fill="none" stroke="#000000" points="577.0436,-638.6631 566.0603,-668.4896 593.2464,-652.0224 577.0436,-638.6631"/>
+<!-- 226struct0&#45;&gt;226 -->
+<g id="edge7" class="edge">
+<title>226struct0&#45;&gt;226</title>
+<path fill="none" stroke="#000000" d="M1715.649,-825.2084C1739.9405,-890.3685 1773.6055,-980.6726 1798.5539,-1047.595"/>
+<polygon fill="#000000" stroke="#000000" points="1798.601,-1047.7214 1804.4449,-1051.9462 1802.7928,-1058.9655 1796.9488,-1054.7408 1798.601,-1047.7214"/>
 </g>
-<!-- 9&#45;&gt;7 -->
+<!-- 227 -->
+<g id="node16" class="node">
+<title>227</title>
+<polygon fill="#f2f2f2" stroke="#000000" points="1164.7784,-637.1 1164.7784,-845.9 1594.1074,-845.9 1594.1074,-637.1 1164.7784,-637.1"/>
+<text text-anchor="middle" x="1379.4429" y="-829.3" font-family="Times,serif" font-size="14.00" fill="#000000">UnitMarketplace</text>
+<polyline fill="none" stroke="#000000" points="1164.7784,-821.1 1594.1074,-821.1 "/>
+<text text-anchor="start" x="1172.7784" y="-804.5" font-family="Times,serif" font-size="14.00" fill="#000000">Public:</text>
+<text text-anchor="start" x="1172.7784" y="-787.7" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;ProviderAddress: address</text>
+<text text-anchor="start" x="1172.7784" y="-770.9" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;CurrencyProvider: StoreToken</text>
+<text text-anchor="start" x="1172.7784" y="-754.1" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;_auctions: Auction[]</text>
+<polyline fill="none" stroke="#000000" points="1164.7784,-745.9 1594.1074,-745.9 "/>
+<text text-anchor="start" x="1172.7784" y="-729.3" font-family="Times,serif" font-size="14.00" fill="#000000">Public:</text>
+<text text-anchor="start" x="1172.7784" y="-712.5" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;constructor()</text>
+<text text-anchor="start" x="1172.7784" y="-695.7" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;bid(_auctionId: uint256, _value: uint256): (success: bool)</text>
+<text text-anchor="start" x="1172.7784" y="-678.9" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;bid(_auctionId: uint256, _value: uint256, _msg: string): (success: bool)</text>
+<text text-anchor="start" x="1172.7784" y="-662.1" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;startAuction(_assets: uint256[], _asking: uint256): (success: bool)</text>
+<text text-anchor="start" x="1172.7784" y="-645.3" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;withdrawAuction(_auctionId: uint256): (success: bool)</text>
+</g>
+<!-- 227&#45;&gt;224 -->
 <g id="edge15" class="edge">
-<title>9&#45;&gt;7</title>
-<path fill="none" stroke="#000000" d="M925.0872,-455.2666C925.3742,-493.2556 925.7064,-537.2102 926.0246,-579.3142"/>
-<polygon fill="none" stroke="#000000" points="915.5264,-579.6138 926.2529,-609.5335 936.5258,-579.455 915.5264,-579.6138"/>
+<title>227&#45;&gt;224</title>
+<path fill="none" stroke="#000000" d="M1379.4429,-846.0666C1379.4429,-881.4945 1379.4429,-922.1107 1379.4429,-961.5757"/>
+<polygon fill="none" stroke="#000000" points="1368.943,-961.781 1379.4429,-991.7811 1389.943,-961.7811 1368.943,-961.781"/>
 </g>
-<!-- 9&#45;&gt;8 -->
+<!-- 227&#45;&gt;225 -->
 <g id="edge17" class="edge">
-<title>9&#45;&gt;8</title>
-<path fill="none" stroke="#000000" d="M1077.3457,-455.2895C1093.7241,-467.2784 1109.9836,-479.5326 1125.297,-491.6 1137.9669,-501.5842 1150.8118,-511.949 1163.6874,-522.5351"/>
-<polygon fill="#000000" stroke="#000000" points="1161.7665,-525.4878 1171.707,-529.1536 1166.2222,-520.0889 1161.7665,-525.4878"/>
+<title>227&#45;&gt;225</title>
+<path fill="none" stroke="#000000" d="M1164.7686,-816.5226C974.7712,-882.9214 697.2794,-979.8969 496.5262,-1050.0545"/>
+<polygon fill="#000000" stroke="#000000" points="495.3106,-1046.7717 487.0252,-1053.3749 497.62,-1053.3798 495.3106,-1046.7717"/>
 </g>
-<!-- 10 -->
-<g id="node18" class="node">
-<title>10</title>
-<polygon fill="#f2f2f2" stroke="#000000" points="693.5178,-.5 693.5178,-209.3 1155.0762,-209.3 1155.0762,-.5 693.5178,-.5"/>
-<text text-anchor="middle" x="924.297" y="-192.7" font-family="Times,serif" font-size="14.00" fill="#000000">SquadBuilder</text>
-<polyline fill="none" stroke="#000000" points="693.5178,-184.5 1155.0762,-184.5 "/>
-<text text-anchor="start" x="701.5178" y="-167.9" font-family="Times,serif" font-size="14.00" fill="#000000">Public:</text>
-<text text-anchor="start" x="701.5178" y="-151.1" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;unusedIndices: uint256[]</text>
-<text text-anchor="start" x="701.5178" y="-134.3" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;DEFAULT_NAME: string</text>
-<polyline fill="none" stroke="#000000" points="693.5178,-126.1 1155.0762,-126.1 "/>
-<text text-anchor="start" x="701.5178" y="-109.5" font-family="Times,serif" font-size="14.00" fill="#000000">Internal:</text>
-<text text-anchor="start" x="701.5178" y="-92.7" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;_generateUnit(_type: UnitType, _name: string): uint</text>
-<text text-anchor="start" x="701.5178" y="-75.9" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;_createSquad(_unitIds: uint256[]): (squadId: uint256, tier: DeploymentState)</text>
-<text text-anchor="start" x="701.5178" y="-59.1" font-family="Times,serif" font-size="14.00" fill="#000000">Public:</text>
-<text text-anchor="start" x="701.5178" y="-42.3" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;_buyUnit(_type: UnitType, _name: string): (_unitId: uint256)</text>
-<text text-anchor="start" x="701.5178" y="-25.5" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;buyUnit(_type: UnitType): (_unitId: uint256)</text>
-<text text-anchor="start" x="701.5178" y="-8.7" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;buyUnit(_type: UnitType, _name: string): (_unitId: uint256)</text>
+<!-- 227&#45;&gt;226 -->
+<g id="edge16" class="edge">
+<title>227&#45;&gt;226</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1560.0523,-846.0273C1576.5445,-857.6607 1592.6061,-869.8588 1607.4429,-882.4 1661.047,-927.7102 1713.2727,-986.0007 1753.8933,-1035.5212"/>
+<polygon fill="none" stroke="#000000" points="1745.8496,-1042.2733 1772.8573,-1059.0314 1762.1949,-1029.0887 1745.8496,-1042.2733"/>
 </g>
-<!-- 10&#45;&gt;5 -->
-<g id="edge19" class="edge">
-<title>10&#45;&gt;5</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M739.9022,-209.4871C725.7522,-220.8528 712.3208,-232.9843 700.297,-245.8 691.2828,-255.4078 683.231,-266.7115 676.2193,-278.2766"/>
-<polygon fill="none" stroke="#000000" points="666.7736,-273.6711 661.783,-305.0613 685.2595,-283.6346 666.7736,-273.6711"/>
+<!-- 228 -->
+<g id="node17" class="node">
+<title>228</title>
+<polygon fill="#f2f2f2" stroke="#000000" points="1774.5519,-679.1 1774.5519,-803.9 2146.3339,-803.9 2146.3339,-679.1 1774.5519,-679.1"/>
+<text text-anchor="middle" x="1960.4429" y="-787.3" font-family="Times,serif" font-size="14.00" fill="#000000">&lt;&lt;Interface&gt;&gt;</text>
+<text text-anchor="middle" x="1960.4429" y="-770.5" font-family="Times,serif" font-size="14.00" fill="#000000">ISquadBuilder</text>
+<polyline fill="none" stroke="#000000" points="1774.5519,-762.3 2146.3339,-762.3 "/>
+<text text-anchor="middle" x="1960.4429" y="-745.7" font-family="Times,serif" font-size="14.00" fill="#000000"> </text>
+<polyline fill="none" stroke="#000000" points="1774.5519,-737.5 2146.3339,-737.5 "/>
+<text text-anchor="start" x="1782.5519" y="-720.9" font-family="Times,serif" font-size="14.00" fill="#000000">External:</text>
+<text text-anchor="start" x="1782.5519" y="-704.1" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;buyUnit(_type: UnitType): (_unitId: uint256)</text>
+<text text-anchor="start" x="1782.5519" y="-687.3" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;buyUnit(_type: UnitType, _name: string): (_unitId: uint256)</text>
 </g>
-<!-- 10&#45;&gt;9 -->
+<!-- 228&#45;&gt;226 -->
 <g id="edge18" class="edge">
-<title>10&#45;&gt;9</title>
-<path fill="none" stroke="#000000" d="M924.297,-209.4977C924.297,-211.6813 924.297,-213.8727 924.297,-216.0692"/>
-<polygon fill="none" stroke="#000000" points="913.7971,-216.1962 924.297,-246.1962 934.7971,-216.1963 913.7971,-216.1962"/>
+<title>228&#45;&gt;226</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1940.3021,-803.968C1920.7486,-864.6143 1890.6709,-957.9021 1867.2404,-1030.5734"/>
+<polygon fill="none" stroke="#000000" points="1857.1918,-1027.5228 1857.9792,-1059.2975 1877.1786,-1033.9669 1857.1918,-1027.5228"/>
+</g>
+<!-- 229 -->
+<g id="node18" class="node">
+<title>229</title>
+<polygon fill="#f2f2f2" stroke="#000000" points="1197.488,-391.3 1197.488,-600.1 1757.3978,-600.1 1757.3978,-391.3 1197.488,-391.3"/>
+<text text-anchor="middle" x="1477.4429" y="-583.5" font-family="Times,serif" font-size="14.00" fill="#000000">SquadBuilder</text>
+<polyline fill="none" stroke="#000000" points="1197.488,-575.3 1757.3978,-575.3 "/>
+<text text-anchor="start" x="1205.488" y="-558.7" font-family="Times,serif" font-size="14.00" fill="#000000">Public:</text>
+<text text-anchor="start" x="1205.488" y="-541.9" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;unusedIndices: uint256[]</text>
+<text text-anchor="start" x="1205.488" y="-525.1" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;DEFAULT_NAME: string</text>
+<polyline fill="none" stroke="#000000" points="1197.488,-516.9 1757.3978,-516.9 "/>
+<text text-anchor="start" x="1205.488" y="-500.3" font-family="Times,serif" font-size="14.00" fill="#000000">Internal:</text>
+<text text-anchor="start" x="1205.488" y="-483.5" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;_generateUnit(_type: UnitType, _name: string): uint</text>
+<text text-anchor="start" x="1205.488" y="-466.7" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;_createSquad(_owner: address, _unitIds: uint256[]): (squadId: uint256, tier: DeploymentState)</text>
+<text text-anchor="start" x="1205.488" y="-449.9" font-family="Times,serif" font-size="14.00" fill="#000000">Public:</text>
+<text text-anchor="start" x="1205.488" y="-433.1" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;_buyUnit(_owner: address, _type: UnitType, _name: string): (_unitId: uint256)</text>
+<text text-anchor="start" x="1205.488" y="-416.3" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;buyUnit(_type: UnitType): (_unitId: uint256)</text>
+<text text-anchor="start" x="1205.488" y="-399.5" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;buyUnit(_type: UnitType, _name: string): (_unitId: uint256)</text>
+</g>
+<!-- 229&#45;&gt;227 -->
+<g id="edge19" class="edge">
+<title>229&#45;&gt;227</title>
+<path fill="none" stroke="#000000" d="M1435.74,-600.2977C1434.6044,-603.1458 1433.4636,-606.0073 1432.3199,-608.876"/>
+<polygon fill="none" stroke="#000000" points="1422.4655,-605.2408 1421.1084,-636.9962 1441.9722,-613.0181 1422.4655,-605.2408"/>
+</g>
+<!-- 229&#45;&gt;228 -->
+<g id="edge20" class="edge">
+<title>229&#45;&gt;228</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1693.347,-600.2058C1717.7332,-612.3422 1742.1688,-624.6522 1765.4429,-636.6 1782.9755,-645.6004 1801.3062,-655.2028 1819.4123,-664.8053"/>
+<polygon fill="none" stroke="#000000" points="1814.7088,-674.1967 1846.1204,-679.0508 1824.5918,-655.6677 1814.7088,-674.1967"/>
+</g>
+<!-- 230 -->
+<g id="node19" class="node">
+<title>230</title>
+<polygon fill="#f2f2f2" stroke="#000000" points="1911.7883,-450.1 1911.7883,-541.3 2009.0975,-541.3 2009.0975,-450.1 1911.7883,-450.1"/>
+<text text-anchor="middle" x="1960.4429" y="-524.7" font-family="Times,serif" font-size="14.00" fill="#000000">&lt;&lt;Interface&gt;&gt;</text>
+<text text-anchor="middle" x="1960.4429" y="-507.9" font-family="Times,serif" font-size="14.00" fill="#000000">IGameEngine</text>
+<polyline fill="none" stroke="#000000" points="1911.7883,-499.7 2009.0975,-499.7 "/>
+<text text-anchor="middle" x="1960.4429" y="-483.1" font-family="Times,serif" font-size="14.00" fill="#000000"> </text>
+<polyline fill="none" stroke="#000000" points="1911.7883,-474.9 2009.0975,-474.9 "/>
+<text text-anchor="middle" x="1960.4429" y="-458.3" font-family="Times,serif" font-size="14.00" fill="#000000"> </text>
+</g>
+<!-- 230&#45;&gt;228 -->
+<g id="edge21" class="edge">
+<title>230&#45;&gt;228</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1960.4429,-541.357C1960.4429,-571.4674 1960.4429,-611.9804 1960.4429,-648.6804"/>
+<polygon fill="none" stroke="#000000" points="1949.943,-648.944 1960.4429,-678.944 1970.943,-648.944 1949.943,-648.944"/>
+</g>
+<!-- 231 -->
+<g id="node20" class="node">
+<title>231</title>
+<polygon fill="#f2f2f2" stroke="#000000" points="1246.6637,-221.1 1246.6637,-329.1 1708.2221,-329.1 1708.2221,-221.1 1246.6637,-221.1"/>
+<text text-anchor="middle" x="1477.4429" y="-312.5" font-family="Times,serif" font-size="14.00" fill="#000000">GameEngine</text>
+<polyline fill="none" stroke="#000000" points="1246.6637,-304.3 1708.2221,-304.3 "/>
+<text text-anchor="middle" x="1477.4429" y="-287.7" font-family="Times,serif" font-size="14.00" fill="#000000"> </text>
+<polyline fill="none" stroke="#000000" points="1246.6637,-279.5 1708.2221,-279.5 "/>
+<text text-anchor="start" x="1254.6637" y="-262.9" font-family="Times,serif" font-size="14.00" fill="#000000">Internal:</text>
+<text text-anchor="start" x="1254.6637" y="-246.1" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;unitDeath(_unitId: uint256): (success: bool)</text>
+<text text-anchor="start" x="1254.6637" y="-229.3" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;_squadBattle(attackerSquadId: uint, defenderSquadId: uint): (winnings: uint)</text>
+</g>
+<!-- 231&#45;&gt;229 -->
+<g id="edge22" class="edge">
+<title>231&#45;&gt;229</title>
+<path fill="none" stroke="#000000" d="M1477.4429,-329.3474C1477.4429,-339.1635 1477.4429,-349.7864 1477.4429,-360.7518"/>
+<polygon fill="none" stroke="#000000" points="1466.943,-361.2035 1477.4429,-391.2035 1487.943,-361.2035 1466.943,-361.2035"/>
+</g>
+<!-- 231&#45;&gt;230 -->
+<g id="edge23" class="edge">
+<title>231&#45;&gt;230</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1621.7903,-329.1196C1668.4404,-347.5757 1720.0745,-369.0698 1766.4429,-390.8 1806.3462,-409.5004 1849.5819,-432.5888 1885.0882,-452.3399"/>
+<polygon fill="none" stroke="#000000" points="1880.114,-461.5892 1911.4077,-467.1532 1890.4141,-443.2886 1880.114,-461.5892"/>
+</g>
+<!-- 232 -->
+<g id="node21" class="node">
+<title>232</title>
+<polygon fill="#f2f2f2" stroke="#000000" points="1725.9593,-195.9 1725.9593,-354.3 2194.9265,-354.3 2194.9265,-195.9 1725.9593,-195.9"/>
+<text text-anchor="middle" x="1960.4429" y="-337.7" font-family="Times,serif" font-size="14.00" fill="#000000">&lt;&lt;Interface&gt;&gt;</text>
+<text text-anchor="middle" x="1960.4429" y="-320.9" font-family="Times,serif" font-size="14.00" fill="#000000">IMatchMaker</text>
+<polyline fill="none" stroke="#000000" points="1725.9593,-312.7 2194.9265,-312.7 "/>
+<text text-anchor="middle" x="1960.4429" y="-296.1" font-family="Times,serif" font-size="14.00" fill="#000000"> </text>
+<polyline fill="none" stroke="#000000" points="1725.9593,-287.9 2194.9265,-287.9 "/>
+<text text-anchor="start" x="1733.9593" y="-271.3" font-family="Times,serif" font-size="14.00" fill="#000000">External:</text>
+<text text-anchor="start" x="1733.9593" y="-254.5" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;randomChallenge(unitIds: uint256[]): (winnings: uint256)</text>
+<text text-anchor="start" x="1733.9593" y="-237.7" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;targetedChallenge(unitIds: uint256[], _targetId: uint256): (winnings: uint256)</text>
+<text text-anchor="start" x="1733.9593" y="-220.9" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;withdrawSquad(_squadId: uint256): (success: bool)</text>
+<text text-anchor="start" x="1733.9593" y="-204.1" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;getSquadIdsInTier(_tier: DeploymentState): (deployed: uint256[])</text>
+</g>
+<!-- 232&#45;&gt;230 -->
+<g id="edge24" class="edge">
+<title>232&#45;&gt;230</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1960.4429,-354.43C1960.4429,-375.757 1960.4429,-398.7651 1960.4429,-419.8951"/>
+<polygon fill="none" stroke="#000000" points="1949.943,-420.0605 1960.4429,-450.0605 1970.943,-420.0606 1949.943,-420.0605"/>
+</g>
+<!-- 233 -->
+<g id="node22" class="node">
+<title>233</title>
+<polygon fill="#f2f2f2" stroke="#000000" points="1241.2093,-.5 1241.2093,-158.9 1713.6765,-158.9 1713.6765,-.5 1241.2093,-.5"/>
+<text text-anchor="middle" x="1477.4429" y="-142.3" font-family="Times,serif" font-size="14.00" fill="#000000">MatchMaker</text>
+<polyline fill="none" stroke="#000000" points="1241.2093,-134.1 1713.6765,-134.1 "/>
+<text text-anchor="middle" x="1477.4429" y="-117.5" font-family="Times,serif" font-size="14.00" fill="#000000"> </text>
+<polyline fill="none" stroke="#000000" points="1241.2093,-109.3 1713.6765,-109.3 "/>
+<text text-anchor="start" x="1249.2093" y="-92.7" font-family="Times,serif" font-size="14.00" fill="#000000">Public:</text>
+<text text-anchor="start" x="1249.2093" y="-75.9" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;constructor()</text>
+<text text-anchor="start" x="1249.2093" y="-59.1" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;randomChallenge(_unitIds: uint256[]): (winnings: uint256)</text>
+<text text-anchor="start" x="1249.2093" y="-42.3" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;targetedChallenge(_unitIds: uint256[], _targetId: uint256): (winnings: uint256)</text>
+<text text-anchor="start" x="1249.2093" y="-25.5" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;getSquadIdsInTier(_tier: DeploymentState): (deployed: uint256[])</text>
+<text text-anchor="start" x="1249.2093" y="-8.7" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;withdrawSquad(_squadId: uint256): (success: bool)</text>
+</g>
+<!-- 233&#45;&gt;231 -->
+<g id="edge26" class="edge">
+<title>233&#45;&gt;231</title>
+<path fill="none" stroke="#000000" d="M1477.4429,-159.1767C1477.4429,-169.5841 1477.4429,-180.2776 1477.4429,-190.7618"/>
+<polygon fill="none" stroke="#000000" points="1466.943,-191.0917 1477.4429,-221.0917 1487.943,-191.0917 1466.943,-191.0917"/>
+</g>
+<!-- 233&#45;&gt;232 -->
+<g id="edge25" class="edge">
+<title>233&#45;&gt;232</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1673.5493,-159.0358C1694.2382,-167.4056 1715.3882,-175.9619 1736.3621,-184.447"/>
+<polygon fill="none" stroke="#000000" points="1732.5356,-194.2256 1764.2838,-195.7429 1740.4112,-174.7583 1732.5356,-194.2256"/>
 </g>
 </g>
 </svg>

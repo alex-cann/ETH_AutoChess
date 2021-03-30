@@ -4,7 +4,7 @@ pragma solidity ^0.8.1;
 import "./UnitToken.sol";
 import "./StoreToken.sol";
 
-interface IUnitMarketplace {
+interface IUnitMarketplace is IUnitToken{
     struct Auction {
         uint256 highestBid;
         uint256[] assetIds;
