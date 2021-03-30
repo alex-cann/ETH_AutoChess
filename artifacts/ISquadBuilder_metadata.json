@@ -137,10 +137,10 @@
 			]
 		},
 		"SquadBuilder.sol": {
-			"keccak256": "0x0494cfb6bb18d4e73868222ccca2c2576770d7460211ec7ab4af59d667b9cf69",
+			"keccak256": "0x9f6da1378f20f5479e43b7ba56958d76c2dd96e7d77fe4263d6803699ccf1eb5",
 			"urls": [
-				"bzz-raw://a721e9b2d2a4a95e1de81f36314a0567a9e799e22f9cc4aa942dfe464d589424",
-				"dweb:/ipfs/QmfXFunrBzrhhTcFXczB5Pw2A64yLJc3Ey98ip42WMFJmP"
+				"bzz-raw://99c7c15b9787853c502cb8493106bc1c05242ea414bcf94e9e2c5ba088bb696d",
+				"dweb:/ipfs/QmYS12r63jzizPTndRBAUsAceFeZzYEGiufky7VqAhPQYr"
 			]
 		},
 		"StoreToken.sol": {

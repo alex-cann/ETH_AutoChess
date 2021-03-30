@@ -39,7 +39,7 @@ interface IAutoChessBase{
         Retired,TierOne,TierTwo,TierThree,TierFour
     }
 
-    //TODO replace Unit[] with unitids to reduce copying of data
+    
     struct Squad{
         //list of the units in this squad
         uint256[] unitIds;
@@ -77,7 +77,7 @@ contract AutoChessBase is IAutoChessBase {
 
     //TODO currently unused. SHould be used for determining what squad a unit is in(maybe not necessary)
     ///@dev maps the index of each unit to their squad
-    mapping (uint256 => uint256) public unitIndexToSquadIndex;
+    //mapping (uint256 => uint256) public unitIndexToSquadIndex;
 
     ///@dev says who owns each unit
     mapping (uint256 => address) public unitIndexToOwner;
@@ -94,6 +94,9 @@ contract AutoChessBase is IAutoChessBase {
     ///@dev maps to the state of the unit for easy access
     mapping (uint256 => UnitState) public unitIndexToState;
 
+    mapping (address => uint256[]) public ownerToUnitIndices;
+    
+    
     //TODO check if this is necessary since units can't be destroyed anymore
     mapping (uint256 => bool) unitIndexExists;
     

@@ -63,13 +63,6 @@ contract SquadBuilder is UnitMarketplace, ISquadBuilder {
             //delete from the list of unused Indices since it is now used
             unusedIndices.pop();
         }
-
-
-        //TODO change how this works. Maybe via auction
-        // This will assign ownership, and also emit the Transfer event as
-        // per ERC721 draft
-        unitIndexToOwner[newUnitId] = address(this);
-
         return newUnitId;
     }
     
@@ -85,6 +78,9 @@ contract SquadBuilder is UnitMarketplace, ISquadBuilder {
         }
         CurrencyProvider.spend(msg.sender,_cost);
         _id = _generateUnit(_type, _name);
+        unitIndexToOwner[_id] = msg.sender;
+        ownerToUnitCount[msg.sender]+=1;
+        ownerToUnitIndices.push(_id);
         return _id;
     }
     
