@@ -20,7 +20,7 @@ interface IMatchMaker is IGameEngine{
 
 contract MatchMaker is IMatchMaker, GameEngine{
 
-
+    
 
     //TODO make this create a squad
     function randomChallenge(uint256[] calldata _unitIds) public override returns (uint256 winnings){

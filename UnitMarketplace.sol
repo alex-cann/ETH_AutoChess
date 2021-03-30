@@ -23,7 +23,7 @@ interface IUnitMarketplace {
     function withdrawAuction(uint256 _auctionId) external returns(bool success);
 }
 
-//TODO add autobidding ()
+
 contract UnitMarketplace is UnitToken,IUnitMarketplace {
     //objects:
 
