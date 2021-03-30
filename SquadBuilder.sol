@@ -80,7 +80,7 @@ contract SquadBuilder is UnitMarketplace, ISquadBuilder {
         _id = _generateUnit(_type, _name);
         unitIndexToOwner[_id] = msg.sender;
         ownerToUnitCount[msg.sender]+=1;
-        ownerToUnitIndices.push(_id);
+        ownerToUnitIndices[msg.sender].push(_id);
         return _id;
     }
     

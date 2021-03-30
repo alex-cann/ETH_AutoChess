@@ -113,6 +113,25 @@
 						"type": "uint256"
 					}
 				],
+				"name": "unitIndexToSquadIndex",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
 				"name": "unitIndexToState",
 				"outputs": [
 					{
@@ -147,6 +166,9 @@
 				"unitIndexToOwner": {
 					"details": "says who owns each unit"
 				},
+				"unitIndexToSquadIndex": {
+					"details": "maps the index of each unit to their squad"
+				},
 				"unitIndexToState": {
 					"details": "maps to the state of the unit for easy access"
 				},
@@ -179,10 +201,10 @@
 	},
 	"sources": {
 		"AutoChess.sol": {
-			"keccak256": "0x73fca46851be59b91d99d407fb44bdf5236559d3f2da8e64594ae24c105a284c",
+			"keccak256": "0x8a29c6edcf3fc64d59deb175137a5020900bd3e90d74f66dfef71c39939f9655",
 			"urls": [
-				"bzz-raw://4b88550b887271dafb2fb1adf075d4dc5e7c1288db9b598470be495d6dc48070",
-				"dweb:/ipfs/QmQdWpRVANaLf7eojpoA47b4ztgdGNd24iuzWfjGzcHUuk"
+				"bzz-raw://a0b006e3864b5e66256a385e634b5bbf3a3a75a6719d89ccebc2fd0f15add9fc",
+				"dweb:/ipfs/QmcPcUD8yJ5sHVMkHGvMoTLhAcPxXPBAj6H9Rr14seceoB"
 			]
 		}
 	},

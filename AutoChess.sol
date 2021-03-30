@@ -75,9 +75,10 @@ contract AutoChessBase is IAutoChessBase {
     mapping(address => uint256[]) ownerToSquadIndex;
 
 
-    //TODO currently unused. SHould be used for determining what squad a unit is in(maybe not necessary)
+    //TODO  Is used for determining if a unit is in a squad should be able to 
+    //get rid of this with some careful coding
     ///@dev maps the index of each unit to their squad
-    //mapping (uint256 => uint256) public unitIndexToSquadIndex;
+    mapping (uint256 => uint256) public unitIndexToSquadIndex;
 
     ///@dev says who owns each unit
     mapping (uint256 => address) public unitIndexToOwner;

@@ -204,6 +204,30 @@
 			{
 				"inputs": [
 					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "ownerToUnitIndices",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
 						"internalType": "uint256",
 						"name": "",
 						"type": "uint256"
@@ -458,10 +482,10 @@
 	},
 	"sources": {
 		"AutoChess.sol": {
-			"keccak256": "0x71b2dcd68bb18ddc20e0e2d3d910ef8bca1492d6b9125681a12c9985a5539fe6",
+			"keccak256": "0x8a29c6edcf3fc64d59deb175137a5020900bd3e90d74f66dfef71c39939f9655",
 			"urls": [
-				"bzz-raw://f9e64fd6a038ee13aef96c67531826093688c250a21d462ff354cdcccdbe76d4",
-				"dweb:/ipfs/QmciJhmhKpNhZwGqEJRJwfNGEHKHaCWiZupbrnce3WpqfK"
+				"bzz-raw://a0b006e3864b5e66256a385e634b5bbf3a3a75a6719d89ccebc2fd0f15add9fc",
+				"dweb:/ipfs/QmcPcUD8yJ5sHVMkHGvMoTLhAcPxXPBAj6H9Rr14seceoB"
 			]
 		},
 		"StoreToken.sol": {
