@@ -99,7 +99,7 @@ contract SquadBuilder is UnitMarketplace, ISquadBuilder {
         uint16 atkSum=0;
         //TODO make sure that _unitIds is one of the correct lengths
         for(uint8 i=0; i < _unitIds.length && i < 7; i++){
-            require(unitIndexToOwner[_unitIds[i]] == msg.sender, "You don't own this unit!");
+            require(unitIndexToOwner[_unitIds[i]] == _owner, "You don't own this unit!");
             require(unitIndexToState[_unitIds[i]] == UnitState.Default);//check that this unit isn't doing something else
             unitIndexToState[_unitIds[i]] = UnitState.Deployed;
             atkSum+=units[_unitIds[i]].attack;
