@@ -212,10 +212,10 @@
 	},
 	"sources": {
 		"AutoChess.sol": {
-			"keccak256": "0x71b2dcd68bb18ddc20e0e2d3d910ef8bca1492d6b9125681a12c9985a5539fe6",
+			"keccak256": "0x0bd6727c062cd6cdce3daa9d28ca0b97dfc7eb57dd0789886937a157a51cdc29",
 			"urls": [
-				"bzz-raw://f9e64fd6a038ee13aef96c67531826093688c250a21d462ff354cdcccdbe76d4",
-				"dweb:/ipfs/QmciJhmhKpNhZwGqEJRJwfNGEHKHaCWiZupbrnce3WpqfK"
+				"bzz-raw://03ffc95ff2ff456e09b10310c185971e5d8370ef376ead7e610157c433300fb7",
+				"dweb:/ipfs/QmeMYqWAWffh4eYVBV7hcbMG5p9aTFwPapuCj4BEoxpJWx"
 			]
 		},
 		"GameEngine.sol": {
@@ -226,31 +226,31 @@
 			]
 		},
 		"MatchMaker.sol": {
-			"keccak256": "0x7169dac4122ae0deebb3168889b9ad668a56e3acad37e8ec95066daf4b8431e1",
+			"keccak256": "0x9de59acab73768a8e83c92110f83ffcb6e9100dbfb3229fb28dfc7d84136a55e",
 			"urls": [
-				"bzz-raw://f8e24bc56e96cd0379df975eb24cd178317a550e83086821331fbc25dd925737",
-				"dweb:/ipfs/QmZ6yahp3c6BYghgHHS9x1dWdWcegsm1FHAmevgGTMeQfs"
+				"bzz-raw://302a44dbd51074e9de5cc72f36bd861221aa40d65c0745a6bfc47aca68870f31",
+				"dweb:/ipfs/QmPYBXgewgLSTdruhRRL6ed2D7fD8TqPgzpiSwDiVUgLq7"
 			]
 		},
 		"SquadBuilder.sol": {
-			"keccak256": "0x0494cfb6bb18d4e73868222ccca2c2576770d7460211ec7ab4af59d667b9cf69",
+			"keccak256": "0x2bc1e4c6bb63d503caf5849b6cf9c4d330fe77b9023fe971eeb825abcbf7a1b3",
 			"urls": [
-				"bzz-raw://a721e9b2d2a4a95e1de81f36314a0567a9e799e22f9cc4aa942dfe464d589424",
-				"dweb:/ipfs/QmfXFunrBzrhhTcFXczB5Pw2A64yLJc3Ey98ip42WMFJmP"
+				"bzz-raw://41ad73214eeddb34ad1548c4f1effbc6aea878f64afaa5fe38881bf554d56195",
+				"dweb:/ipfs/QmPNtSkHTK7VFNSCFz4ar7W11T1D9WvDZ7fYNYLLjPKptV"
 			]
 		},
 		"StoreToken.sol": {
-			"keccak256": "0x4d3a67a03d93c0bcd82170bddd1c0efb7fcf47dcb73ab41e1ac7bd3dfc95f893",
+			"keccak256": "0xd42d4284a6ab86c27c3a4a37d7233a3cde51de2f716068f67fd7043f80034519",
 			"urls": [
-				"bzz-raw://46dfb32e31d49f7c9005ffb68215d4c5ead416f7b717723a073d4d8ce687530f",
-				"dweb:/ipfs/QmQP4rog7agNmNaio6yiSMsSTbysdH4SVzYBsA2SZ54YG5"
+				"bzz-raw://00c73636589ba2189bc4d9183577d7cfd3a6644d6fd3aa4d3b9cb130ae645001",
+				"dweb:/ipfs/QmRdPHSkVbuVdARPQfEQD5EiPj12HDLoRiQZGNnhXTsyee"
 			]
 		},
 		"UnitMarketplace.sol": {
-			"keccak256": "0x39f22dca7e8e3f9477031d5f4b3f414048c2de144aa7ec0a64712f8884148128",
+			"keccak256": "0xc9b252d8058b28529bc236e2c6d525a4334efcfb4b760e2663b2b66d7aa8595a",
 			"urls": [
-				"bzz-raw://8d5fbfbeee2d7b308bff10f4f037058c006e88c9aedf1e6fe7124feb9668dc08",
-				"dweb:/ipfs/QmWCYqdUcbsN1qhjdgDD2tvDdrUoyVBwDSjGnJiFZf6XGT"
+				"bzz-raw://3113617bdcfb0636515485589fcedd00f742af74211c2e16c82501574c5e44da",
+				"dweb:/ipfs/QmaLpShvovhFxiPokPbksjjPbCh24hTj9MbgH23vvsx4TC"
 			]
 		},
 		"UnitToken.sol": {

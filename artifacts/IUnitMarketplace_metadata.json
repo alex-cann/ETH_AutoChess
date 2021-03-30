@@ -137,17 +137,17 @@
 			]
 		},
 		"StoreToken.sol": {
-			"keccak256": "0x5860503eb0e8423c8864365aee83c17564d219528e5738420fdfd680a319eeed",
+			"keccak256": "0xd42d4284a6ab86c27c3a4a37d7233a3cde51de2f716068f67fd7043f80034519",
 			"urls": [
-				"bzz-raw://5a5b9f26d68395b78261243fb722246b43fbe7df09449bf45a3308371c6869a2",
-				"dweb:/ipfs/QmQuqXNNFZiKUZ1rLV7m9qFatLiCqQZLFj1GEpG29ocrrN"
+				"bzz-raw://00c73636589ba2189bc4d9183577d7cfd3a6644d6fd3aa4d3b9cb130ae645001",
+				"dweb:/ipfs/QmRdPHSkVbuVdARPQfEQD5EiPj12HDLoRiQZGNnhXTsyee"
 			]
 		},
 		"UnitMarketplace.sol": {
-			"keccak256": "0x7deecac2fd35c45133601ed9e7ea083a4239260ab30a99b7e9fbcc4b7f8445da",
+			"keccak256": "0xc9b252d8058b28529bc236e2c6d525a4334efcfb4b760e2663b2b66d7aa8595a",
 			"urls": [
-				"bzz-raw://a9d17b68e762b764f01f61592fb35f3b2bc1dd04399173d21b5741e81bdca955",
-				"dweb:/ipfs/QmedKX6M7sw2syJuPgw933MCjuQkaBGvSo6sZXE81kUtTm"
+				"bzz-raw://3113617bdcfb0636515485589fcedd00f742af74211c2e16c82501574c5e44da",
+				"dweb:/ipfs/QmaLpShvovhFxiPokPbksjjPbCh24hTj9MbgH23vvsx4TC"
 			]
 		},
 		"UnitToken.sol": {

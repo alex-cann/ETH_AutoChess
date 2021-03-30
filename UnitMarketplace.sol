@@ -66,13 +66,14 @@ contract UnitMarketplace is UnitToken,IUnitMarketplace {
                         highestBidder: msg.sender,
                         host: msg.sender,
                         name: "PLACEHOLDER",
-                        assetIds: _assets,
+                        assetIds: new uint256[](0),
                         highestBidText: "Default Bid",
                         endTime: block.timestamp + 1 hours
                         }));
         //transfer all the assets to the auctionhouse
         for(uint i =0; i < _assets.length; i++){
             _transfer(msg.sender,address(this),_assets[i]);
+            _auctions[_auctions.length - 1].assetIds.push(_assets[i]);
         }
         //TODO add an auction event
         return true;
