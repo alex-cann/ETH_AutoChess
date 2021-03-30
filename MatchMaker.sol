@@ -1,6 +1,7 @@
 /// connects players and arranges for who plays what games
 
 pragma solidity ^0.8.1;
+//SPDX-License-Identifier: UNLICENSED
 import "./GameEngine.sol";
 import "./AutoChess.sol";
 import "./StoreToken.sol";

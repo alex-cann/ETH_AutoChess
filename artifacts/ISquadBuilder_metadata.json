@@ -61,6 +61,49 @@
 			{
 				"inputs": [
 					{
+						"internalType": "enum IAutoChessBase.UnitType",
+						"name": "_type",
+						"type": "uint8"
+					}
+				],
+				"name": "buyUnit",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "_unitId",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "enum IAutoChessBase.UnitType",
+						"name": "_type",
+						"type": "uint8"
+					},
+					{
+						"internalType": "string",
+						"name": "_name",
+						"type": "string"
+					}
+				],
+				"name": "buyUnit",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "_unitId",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
 						"internalType": "uint256[]",
 						"name": "_assets",
 						"type": "uint256[]"
@@ -130,38 +173,43 @@
 	},
 	"sources": {
 		"AutoChess.sol": {
-			"keccak256": "0x44bea775319d6be18084a01ec862a763c6a3b9850a99553e26a2583bb7d7819d",
+			"keccak256": "0xd3346fedddc2ba6d863177a2027510dbf3b23b2bc109464c689e8c71df9468fe",
+			"license": "UNLICENSED",
 			"urls": [
-				"bzz-raw://95563886153773b288d080e0960cc991c09d4992e6a5cf8621ca82a99672c73d",
-				"dweb:/ipfs/QmNRTxXURuhJSEXsPHXkspjd76A9oiLmQRYYVhmsxJfzYG"
+				"bzz-raw://b80a7b74c7619f76e824df498bd3bf48c6342875225766f2f43d294b74bee70d",
+				"dweb:/ipfs/QmXVCM5M73GUKnVA18QdvPk4DxRxwdPzAiSPFoBAFT1gTu"
 			]
 		},
 		"SquadBuilder.sol": {
-			"keccak256": "0x0e33c25c2ce37ef7fe94d44fc790121c0532b2d48c01ab5acd61912a258e3762",
+			"keccak256": "0x0d5d1e3161ff5da147e4954e5678577dce76f2a13830c6211ea053645e6cb3ff",
+			"license": "UNLICENSED",
 			"urls": [
-				"bzz-raw://bcf891120365e054d974d6d913a7bb0e0f16834480727d63aba6db176ff0093f",
-				"dweb:/ipfs/QmdnozVgHunGVxcDo6j1rfRbzE7LYnM8ANi3pnAwWnQSj6"
+				"bzz-raw://16615f5945a42dbe1658f48e2d2cd031c695ec8e9758d1ff9ca8c78df6473b57",
+				"dweb:/ipfs/QmXRcFAMrF8Js7m7vBSUgqgou16voiKhbv7kDDrVYhnxeS"
 			]
 		},
 		"StoreToken.sol": {
-			"keccak256": "0x1f95e117ed13866f6300a41aa55b970020b8a214cf4529f7642adb7c46d96a2b",
+			"keccak256": "0xf5075106dff2d202de99ee5e2685beeb196a6eac4c3c47a6a7bb7766ff4ea9dd",
+			"license": "UNLICENSED",
 			"urls": [
-				"bzz-raw://d4707c44ba49293be2402a356afdb6de43d7a5a808ce9e7c6c4b7e42331dfb2f",
-				"dweb:/ipfs/QmTKZgWZSPhNFvv5YbnhfqLnQRY5HazNDqyd1gt1cKZFxw"
+				"bzz-raw://449c81417acd447f8fda8d9eeabbcd099037956b1d6c62c8cb5600312f25c2fc",
+				"dweb:/ipfs/QmZeswq5Yc4YAncbhmeucY3ffgc6V5AEynNTRftMW6hhxc"
 			]
 		},
 		"UnitMarketplace.sol": {
-			"keccak256": "0xb3c34a8fe99e9f05d7d5a9edc0e2ac3195b34d8de087f24490c587935937914d",
+			"keccak256": "0xc1708628820ccbc52ba07de6049a276524822b1731e77bda03338717236fc93c",
+			"license": "UNLICENSED",
 			"urls": [
-				"bzz-raw://36bec2e334d34723768b977cee3e8dae7709532e724d5a4c7caaf4b1614ad4f7",
-				"dweb:/ipfs/QmaemWTsSWMzXDrTMhpMRPZa1WrPqnAY8LrAWcmEFntHoi"
+				"bzz-raw://a1b57ad3430096dc04153a4695517dc11794039bc67d15732aeff908513edf36",
+				"dweb:/ipfs/QmanEwSssoJA9ncJfEf4ZyfUUVCk14dcQstdZ8FQ4Dwujh"
 			]
 		},
 		"UnitToken.sol": {
-			"keccak256": "0x78841fe637b0ff58781a0025e32e21b4697ad8c0c451f1e3ffd26d2ac73cf3aa",
+			"keccak256": "0x0715f2f48dac210884491453f97809066c087c0b84dadf4d7f163eb3dce4b02a",
+			"license": "UNLICENSED",
 			"urls": [
-				"bzz-raw://d9b85b1eadb9be8ff5bc1bff5628c942e91236764ac7679f9dceee9fc72e0500",
-				"dweb:/ipfs/QmUYgXJrNVaRkxLpAhpURLDMgKndjmZLbNreCsnE6FGS86"
+				"bzz-raw://370cd977f7fba16858994abbd7f29b389d92ebe18bd41ac5f44a5db355c7408d",
+				"dweb:/ipfs/Qmcx11vFLz7dZxUFG4uv9r4CQQDh2xWvzd9cJjL25oGHEn"
 			]
 		}
 	},

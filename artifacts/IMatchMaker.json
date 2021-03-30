@@ -49,6 +49,8 @@
 		"methodIdentifiers": {
 			"bid(uint256,uint256)": "598647f8",
 			"bid(uint256,uint256,string)": "76d4fc57",
+			"buyUnit(uint8)": "27e78202",
+			"buyUnit(uint8,string)": "898f4299",
 			"getSquadIdsInTier(uint8)": "64e0b81f",
 			"randomChallenge(uint256[])": "dba7f943",
 			"startAuction(uint256[],uint256)": "40b53391",
@@ -106,6 +108,49 @@
 					"internalType": "bool",
 					"name": "success",
 					"type": "bool"
+				}
+			],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "enum IAutoChessBase.UnitType",
+					"name": "_type",
+					"type": "uint8"
+				}
+			],
+			"name": "buyUnit",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "_unitId",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "enum IAutoChessBase.UnitType",
+					"name": "_type",
+					"type": "uint8"
+				},
+				{
+					"internalType": "string",
+					"name": "_name",
+					"type": "string"
+				}
+			],
+			"name": "buyUnit",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "_unitId",
+					"type": "uint256"
 				}
 			],
 			"stateMutability": "nonpayable",

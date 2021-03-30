@@ -1,11 +1,11 @@
-/// handles the generation of new units
-
 pragma solidity ^0.8.1;
+//SPDX-License-Identifier: UNLICENSED
 
 import "./UnitMarketplace.sol";
 
 interface ISquadBuilder is IUnitMarketplace{
-
+    function buyUnit(IAutoChessBase.UnitType _type) external returns (uint256 _unitId);
+    function buyUnit(IAutoChessBase.UnitType _type, string calldata _name) external returns (uint256 _unitId);
 }
 
 contract SquadBuilder is UnitMarketplace, ISquadBuilder {
@@ -84,11 +84,11 @@ contract SquadBuilder is UnitMarketplace, ISquadBuilder {
         return _id;
     }
     
-    function buyUnit(UnitType _type) public returns (uint256 _unitId){
+    function buyUnit(UnitType _type) public override returns (uint256 _unitId){
         return _buyUnit(msg.sender, _type, DEFAULT_NAME);
     }
     
-    function buyUnit(UnitType _type, string calldata _name) public returns (uint256 _unitId){
+    function buyUnit(UnitType _type, string calldata _name) public override returns (uint256 _unitId){
         return _buyUnit(msg.sender,_type,_name);
     }
     

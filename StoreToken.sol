@@ -1,7 +1,7 @@
 ///ERC20 token used to buy units from the store etc
 
 pragma solidity ^0.8.1;
-
+//SPDX-License-Identifier: UNLICENSED
 /// @title Interface for contracts conforming to ERC-20: Fungible Tokens
 interface ERC20 {
     // Required methods

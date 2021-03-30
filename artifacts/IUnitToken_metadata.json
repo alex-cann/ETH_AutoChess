@@ -239,17 +239,19 @@
 	},
 	"sources": {
 		"AutoChess.sol": {
-			"keccak256": "0x44bea775319d6be18084a01ec862a763c6a3b9850a99553e26a2583bb7d7819d",
+			"keccak256": "0xd3346fedddc2ba6d863177a2027510dbf3b23b2bc109464c689e8c71df9468fe",
+			"license": "UNLICENSED",
 			"urls": [
-				"bzz-raw://95563886153773b288d080e0960cc991c09d4992e6a5cf8621ca82a99672c73d",
-				"dweb:/ipfs/QmNRTxXURuhJSEXsPHXkspjd76A9oiLmQRYYVhmsxJfzYG"
+				"bzz-raw://b80a7b74c7619f76e824df498bd3bf48c6342875225766f2f43d294b74bee70d",
+				"dweb:/ipfs/QmXVCM5M73GUKnVA18QdvPk4DxRxwdPzAiSPFoBAFT1gTu"
 			]
 		},
 		"UnitToken.sol": {
-			"keccak256": "0x78841fe637b0ff58781a0025e32e21b4697ad8c0c451f1e3ffd26d2ac73cf3aa",
+			"keccak256": "0x373793b43220657cb8221e9045a23ad2be201f4064e9e0678658df92c7612b4f",
+			"license": "UNLICENSED",
 			"urls": [
-				"bzz-raw://d9b85b1eadb9be8ff5bc1bff5628c942e91236764ac7679f9dceee9fc72e0500",
-				"dweb:/ipfs/QmUYgXJrNVaRkxLpAhpURLDMgKndjmZLbNreCsnE6FGS86"
+				"bzz-raw://a9a94b4dc664bb5a530bc50459678b4c073e154bda69b7f9fdff9351cfdb4ed5",
+				"dweb:/ipfs/QmZFCqBXVUyqkEEK9Qe7aNt662CNTfsy21Xg1aPbRiQM7c"
 			]
 		}
 	},

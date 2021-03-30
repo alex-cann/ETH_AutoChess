@@ -240,10 +240,11 @@
 	},
 	"sources": {
 		"AutoChess.sol": {
-			"keccak256": "0x44bea775319d6be18084a01ec862a763c6a3b9850a99553e26a2583bb7d7819d",
+			"keccak256": "0x3d64485e7e765356d6d855b035a8737624d7566010a756c06d04b9dd4d01972a",
+			"license": "UNLICENSED",
 			"urls": [
-				"bzz-raw://95563886153773b288d080e0960cc991c09d4992e6a5cf8621ca82a99672c73d",
-				"dweb:/ipfs/QmNRTxXURuhJSEXsPHXkspjd76A9oiLmQRYYVhmsxJfzYG"
+				"bzz-raw://b35704edf5d7f752969ee87278c0cde62c89f1f6376c84b19c171db38f968430",
+				"dweb:/ipfs/QmbKS3Kpzkotq7JHfh68Jdd6mJrb2iEJFHbtaztmQHtkTR"
 			]
 		}
 	},

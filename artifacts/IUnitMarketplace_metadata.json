@@ -130,31 +130,35 @@
 	},
 	"sources": {
 		"AutoChess.sol": {
-			"keccak256": "0x0bd6727c062cd6cdce3daa9d28ca0b97dfc7eb57dd0789886937a157a51cdc29",
+			"keccak256": "0xd3346fedddc2ba6d863177a2027510dbf3b23b2bc109464c689e8c71df9468fe",
+			"license": "UNLICENSED",
 			"urls": [
-				"bzz-raw://03ffc95ff2ff456e09b10310c185971e5d8370ef376ead7e610157c433300fb7",
-				"dweb:/ipfs/QmeMYqWAWffh4eYVBV7hcbMG5p9aTFwPapuCj4BEoxpJWx"
+				"bzz-raw://b80a7b74c7619f76e824df498bd3bf48c6342875225766f2f43d294b74bee70d",
+				"dweb:/ipfs/QmXVCM5M73GUKnVA18QdvPk4DxRxwdPzAiSPFoBAFT1gTu"
 			]
 		},
 		"StoreToken.sol": {
-			"keccak256": "0x1f95e117ed13866f6300a41aa55b970020b8a214cf4529f7642adb7c46d96a2b",
+			"keccak256": "0xf5075106dff2d202de99ee5e2685beeb196a6eac4c3c47a6a7bb7766ff4ea9dd",
+			"license": "UNLICENSED",
 			"urls": [
-				"bzz-raw://d4707c44ba49293be2402a356afdb6de43d7a5a808ce9e7c6c4b7e42331dfb2f",
-				"dweb:/ipfs/QmTKZgWZSPhNFvv5YbnhfqLnQRY5HazNDqyd1gt1cKZFxw"
+				"bzz-raw://449c81417acd447f8fda8d9eeabbcd099037956b1d6c62c8cb5600312f25c2fc",
+				"dweb:/ipfs/QmZeswq5Yc4YAncbhmeucY3ffgc6V5AEynNTRftMW6hhxc"
 			]
 		},
 		"UnitMarketplace.sol": {
-			"keccak256": "0xb3c34a8fe99e9f05d7d5a9edc0e2ac3195b34d8de087f24490c587935937914d",
+			"keccak256": "0xef405c0bae4e9a142f4eff309cf17b154d13c62061386b1b16bf442e73fa9339",
+			"license": "UNLICENSED",
 			"urls": [
-				"bzz-raw://36bec2e334d34723768b977cee3e8dae7709532e724d5a4c7caaf4b1614ad4f7",
-				"dweb:/ipfs/QmaemWTsSWMzXDrTMhpMRPZa1WrPqnAY8LrAWcmEFntHoi"
+				"bzz-raw://97aa120c18b17bf7744f3910c3ec6cb13b22ee1a509a2cfd27de496c1c0f6c92",
+				"dweb:/ipfs/QmX8DDLRjmxzJxstBLMwXKwcevq7NJg859jpjtPFXJEav4"
 			]
 		},
 		"UnitToken.sol": {
-			"keccak256": "0xfb97c49133185540a056eac3b318a93aeaa67952fd7c497468646bdc60ed8cd0",
+			"keccak256": "0x373793b43220657cb8221e9045a23ad2be201f4064e9e0678658df92c7612b4f",
+			"license": "UNLICENSED",
 			"urls": [
-				"bzz-raw://25e178f5cc4cc94d80f3f182b8eb11e98cb4b5c487b714448a5593ee1a23636e",
-				"dweb:/ipfs/QmStApLxqkvo6XDyDptiYi3kKWMU5d3TCZT6YDBLDAfTrq"
+				"bzz-raw://a9a94b4dc664bb5a530bc50459678b4c073e154bda69b7f9fdff9351cfdb4ed5",
+				"dweb:/ipfs/QmZFCqBXVUyqkEEK9Qe7aNt662CNTfsy21Xg1aPbRiQM7c"
 			]
 		}
 	},

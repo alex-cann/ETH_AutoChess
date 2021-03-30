@@ -1,4 +1,5 @@
 pragma solidity ^0.8.1; 
+//SPDX-License-Identifier: UNLICENSED
 
 /// see CryptoKitties codebase here
 /// https://ethfiddle.com/09YbyJRfiI and here https://medium.com/loom-network/how-to-code-your-own-cryptokitties-style-game-on-ethereum-7c8ac86a4eb3
@@ -54,11 +55,8 @@ interface IAutoChessBase{
         //total ammount of atk, defense in the squad for making calculations easier
         uint16 totalAttack;
     }
-
-    
-   
-    
 }
+
 // has all the basic data etc
 contract AutoChessBase is IAutoChessBase {
 

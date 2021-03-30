@@ -1,9 +1,9 @@
-/// handles the auctioning of units etc
-
 pragma solidity ^0.8.1;
+//SPDX-License-Identifier: UNLICENSED
 
 import "./UnitToken.sol";
 import "./StoreToken.sol";
+
 interface IUnitMarketplace {
     struct Auction {
         uint256 highestBid;

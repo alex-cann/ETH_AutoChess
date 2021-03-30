@@ -1,7 +1,9 @@
+pragma solidity ^0.8.1;
+//SPDX-License-Identifier: UNLICENSED
+
+
 ///implementation based on https://medium.com/crypto-currently/the-anatomy-of-erc721-e9db77abfc24
 /// Handles ERC771 implementation of units
-
-pragma solidity ^0.8.1;
 
 import "./AutoChess.sol";
 

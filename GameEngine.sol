@@ -1,6 +1,7 @@
 /// handles the game calculations and logic etc
 
 pragma solidity ^0.8.1;
+//SPDX-License-Identifier: UNLICENSED
 
 import "./SquadBuilder.sol";
 

@@ -383,7 +383,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"Total.sol": "StoreToken"
+			"StoreToken.sol": "StoreToken"
 		},
 		"evmVersion": "istanbul",
 		"libraries": {},
@@ -397,11 +397,12 @@
 		"remappings": []
 	},
 	"sources": {
-		"Total.sol": {
-			"keccak256": "0x6dc03d8909a8e9802bb84899d1d62adb0ba4e09124263c7b3330b5738c23d4dc",
+		"StoreToken.sol": {
+			"keccak256": "0xf5075106dff2d202de99ee5e2685beeb196a6eac4c3c47a6a7bb7766ff4ea9dd",
+			"license": "UNLICENSED",
 			"urls": [
-				"bzz-raw://9e4d0a7ef860eab1a3be72f15ebf5055d71a4d4e40af4a3b2ed4b8598c40fc58",
-				"dweb:/ipfs/QmYbBqTwyRqEwUqQEM1PN2fA5xJybbRqVkDKVf2zwVYYdb"
+				"bzz-raw://449c81417acd447f8fda8d9eeabbcd099037956b1d6c62c8cb5600312f25c2fc",
+				"dweb:/ipfs/QmZeswq5Yc4YAncbhmeucY3ffgc6V5AEynNTRftMW6hhxc"
 			]
 		}
 	},
