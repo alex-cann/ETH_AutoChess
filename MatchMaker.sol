@@ -19,14 +19,22 @@ interface IMatchMaker is IGameEngine{
 
 
 contract MatchMaker is IMatchMaker, GameEngine{
-
     
+    /// Calls the parent constructor
+    constructor() GameEngine(){
+        //Generate some units
+        for(uint i=0; i < 7;i++){
+            _buyUnit(address(this),UnitType.Cavalry,"DEFAULT");
+        }
+        //make all the units into a squad
+        _createSquad(address(this), ownerToUnitIndices[address(this)]);
+    }
 
     //TODO make this create a squad
     function randomChallenge(uint256[] calldata _unitIds) public override returns (uint256 winnings){
         uint256 squadId;
         DeploymentState tier;
-        (squadId, tier) = _createSquad(msg.sender,_unitIds);
+        (squadId, tier) = _createSquad(msg.sender, _unitIds);
         uint256 targetId = randomNumber(tierToSquadIndex[tier].length);
         return _squadBattle(squadId,targetId);
     }

@@ -15,7 +15,6 @@ contract GameEngine is SquadBuilder {
         return true;
     }
 
-    
     //TODO This doesn't match what was discussed on Friday
     function _squadBattle(uint attackerSquadId, uint defenderSquadId) internal returns(uint winnings) {
         Squad memory attacker = squads[attackerSquadId];

@@ -128,6 +128,11 @@
 			{
 				"inputs": [
 					{
+						"internalType": "address",
+						"name": "_owner",
+						"type": "address"
+					},
+					{
 						"internalType": "enum IAutoChessBase.UnitType",
 						"name": "_type",
 						"type": "uint8"
@@ -660,17 +665,17 @@
 			]
 		},
 		"SquadBuilder.sol": {
-			"keccak256": "0x79b525d8fa70e6d5e29531ab0eeafe22cf447856295dc1de72e92479886ca3ac",
+			"keccak256": "0xb058c8de58b4b76e69494e328ea413760a0bdad8b753c021d6d121057015e6e6",
 			"urls": [
-				"bzz-raw://4a44ba1ef21bde57994a69df01c072f3632b235650807fa03fb4287b8e1d83da",
-				"dweb:/ipfs/QmQukA7qVKgFrcvZseSoRrnHn9Vp44Bhh1bBdZtfHKosGy"
+				"bzz-raw://83f0d5145f5b5670fb992af455bf3958557976a2d225fcbe420ccde2b45f4dce",
+				"dweb:/ipfs/QmTb5uFNrRnUjzRGB1Wc6Ta6BKZuk5H7m9Z6NvYmEpnk2G"
 			]
 		},
 		"StoreToken.sol": {
-			"keccak256": "0xd42d4284a6ab86c27c3a4a37d7233a3cde51de2f716068f67fd7043f80034519",
+			"keccak256": "0x1f95e117ed13866f6300a41aa55b970020b8a214cf4529f7642adb7c46d96a2b",
 			"urls": [
-				"bzz-raw://00c73636589ba2189bc4d9183577d7cfd3a6644d6fd3aa4d3b9cb130ae645001",
-				"dweb:/ipfs/QmRdPHSkVbuVdARPQfEQD5EiPj12HDLoRiQZGNnhXTsyee"
+				"bzz-raw://d4707c44ba49293be2402a356afdb6de43d7a5a808ce9e7c6c4b7e42331dfb2f",
+				"dweb:/ipfs/QmTKZgWZSPhNFvv5YbnhfqLnQRY5HazNDqyd1gt1cKZFxw"
 			]
 		},
 		"UnitMarketplace.sol": {

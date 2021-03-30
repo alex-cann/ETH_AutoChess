@@ -66,7 +66,7 @@ contract SquadBuilder is UnitMarketplace, ISquadBuilder {
         return newUnitId;
     }
     
-    function _buyUnit(UnitType _type, string memory _name) public returns (uint256 _unitId){
+    function _buyUnit(address _owner, UnitType _type, string memory _name) public returns (uint256 _unitId){
         uint256 _cost = 0;
         uint256 _id;
         if(_type == UnitType.Warrior){
@@ -76,25 +76,26 @@ contract SquadBuilder is UnitMarketplace, ISquadBuilder {
         }else if(_type == UnitType.Cavalry){
             _cost+=20;
         }
-        CurrencyProvider.spend(msg.sender,_cost);
+        CurrencyProvider.spend(_owner,_cost);
         _id = _generateUnit(_type, _name);
-        unitIndexToOwner[_id] = msg.sender;
-        ownerToUnitCount[msg.sender]+=1;
-        ownerToUnitIndices[msg.sender].push(_id);
+        unitIndexToOwner[_id] = _owner;
+        ownerToUnitCount[_owner]+=1;
+        ownerToUnitIndices[_owner].push(_id);
         return _id;
     }
     
     function buyUnit(UnitType _type) public returns (uint256 _unitId){
-        return _buyUnit(_type, DEFAULT_NAME);
+        return _buyUnit(msg.sender, _type, DEFAULT_NAME);
     }
     
     function buyUnit(UnitType _type, string calldata _name) public returns (uint256 _unitId){
-        return _buyUnit(_type,_name);
+        return _buyUnit(msg.sender,_type,_name);
     }
     
     
     // create squad
-    function _createSquad(address _owner, uint256[] calldata _unitIds) internal returns(uint256 squadId, DeploymentState tier){
+    //TODO remove the workaround where you have to send 7 unitIds
+    function _createSquad(address _owner, uint256[] memory _unitIds) internal returns(uint256 squadId, DeploymentState tier){
         uint16 atkSum=0;
         //TODO make sure that _unitIds is one of the correct lengths
         for(uint8 i=0; i < _unitIds.length; i++){

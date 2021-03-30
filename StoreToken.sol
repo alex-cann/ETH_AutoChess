@@ -39,6 +39,7 @@ contract StoreToken is ERC20 {
     constructor() {
         //this contract is aware that the store owns it but not of the stores ABI
         StoreAddress = msg.sender;
+        ownerToBalance[msg.sender] = totalTokens;
     }
 
     ///@dev functions only accessible from the marketplace (so coins can be autoApproved for auctions)

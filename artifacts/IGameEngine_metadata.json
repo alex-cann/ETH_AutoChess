@@ -137,31 +137,31 @@
 			]
 		},
 		"GameEngine.sol": {
-			"keccak256": "0x1c9b6db13d7dd001690159e9fb412db5746b0f4821f3d582a8eccf8c68e89271",
+			"keccak256": "0xc2a21390e0260d40d81152a7ce726941d8522da91a1e52dd908ef4b2748fcf5c",
 			"urls": [
-				"bzz-raw://7aef3868c8d362364fc357a2e3f3b8aed4850b81f27a40e380f399cb75e73fc0",
-				"dweb:/ipfs/QmXkpd8QBzPysbjPQbgKsQuXCNPS2Vnutu5GmBrSERDRjP"
+				"bzz-raw://ba395554fe8401ea5870ae15bcf8fa020e45f80adb85c4ef487588ebf9e771fe",
+				"dweb:/ipfs/QmUQi3jKbsXaCXmTddeuLU3FsGfJozpGwysmSUhtVgQjXZ"
 			]
 		},
 		"SquadBuilder.sol": {
-			"keccak256": "0x2bc1e4c6bb63d503caf5849b6cf9c4d330fe77b9023fe971eeb825abcbf7a1b3",
+			"keccak256": "0xbc59d88165d00ac5481aedf7921187a7b2528ce637906acb71a8be1b2565b156",
 			"urls": [
-				"bzz-raw://41ad73214eeddb34ad1548c4f1effbc6aea878f64afaa5fe38881bf554d56195",
-				"dweb:/ipfs/QmPNtSkHTK7VFNSCFz4ar7W11T1D9WvDZ7fYNYLLjPKptV"
+				"bzz-raw://1c7493e3a3c1723e654b8375ec83912e9cbe24471228345754ea42b9de2d9498",
+				"dweb:/ipfs/Qmar3tsTQiNS2GTnAkULnF7CL5hNS6ju49Pb8tEgdJ23Q4"
 			]
 		},
 		"StoreToken.sol": {
-			"keccak256": "0xd42d4284a6ab86c27c3a4a37d7233a3cde51de2f716068f67fd7043f80034519",
+			"keccak256": "0x1f95e117ed13866f6300a41aa55b970020b8a214cf4529f7642adb7c46d96a2b",
 			"urls": [
-				"bzz-raw://00c73636589ba2189bc4d9183577d7cfd3a6644d6fd3aa4d3b9cb130ae645001",
-				"dweb:/ipfs/QmRdPHSkVbuVdARPQfEQD5EiPj12HDLoRiQZGNnhXTsyee"
+				"bzz-raw://d4707c44ba49293be2402a356afdb6de43d7a5a808ce9e7c6c4b7e42331dfb2f",
+				"dweb:/ipfs/QmTKZgWZSPhNFvv5YbnhfqLnQRY5HazNDqyd1gt1cKZFxw"
 			]
 		},
 		"UnitMarketplace.sol": {
-			"keccak256": "0xc9b252d8058b28529bc236e2c6d525a4334efcfb4b760e2663b2b66d7aa8595a",
+			"keccak256": "0xb3c34a8fe99e9f05d7d5a9edc0e2ac3195b34d8de087f24490c587935937914d",
 			"urls": [
-				"bzz-raw://3113617bdcfb0636515485589fcedd00f742af74211c2e16c82501574c5e44da",
-				"dweb:/ipfs/QmaLpShvovhFxiPokPbksjjPbCh24hTj9MbgH23vvsx4TC"
+				"bzz-raw://36bec2e334d34723768b977cee3e8dae7709532e724d5a4c7caaf4b1614ad4f7",
+				"dweb:/ipfs/QmaemWTsSWMzXDrTMhpMRPZa1WrPqnAY8LrAWcmEFntHoi"
 			]
 		},
 		"UnitToken.sol": {
