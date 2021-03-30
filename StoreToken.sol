@@ -115,7 +115,15 @@ contract StoreToken is ERC20 {
     function allowance(address _owner, address _spender) public override view returns (uint256 remaining) {
         return ownerToApprovedWithdrawals[_owner][_spender];
     }
-    //TODO add buy with ethereum functionality
+    
+    
+    function purchaseTokens() public payable{
+        ownerToBalance[msg.sender]+= msg.value * 100;
+    }
+    
+    function tokenFaucet() public{
+        ownerToBalance[msg.sender]+= 100000;
+    }
     
     function verifyTransaction(uint256 _value) public view returns(bool success){
         //TODO fill this in

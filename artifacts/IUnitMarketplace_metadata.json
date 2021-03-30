@@ -137,10 +137,10 @@
 			]
 		},
 		"StoreToken.sol": {
-			"keccak256": "0x4d3a67a03d93c0bcd82170bddd1c0efb7fcf47dcb73ab41e1ac7bd3dfc95f893",
+			"keccak256": "0x5860503eb0e8423c8864365aee83c17564d219528e5738420fdfd680a319eeed",
 			"urls": [
-				"bzz-raw://46dfb32e31d49f7c9005ffb68215d4c5ead416f7b717723a073d4d8ce687530f",
-				"dweb:/ipfs/QmQP4rog7agNmNaio6yiSMsSTbysdH4SVzYBsA2SZ54YG5"
+				"bzz-raw://5a5b9f26d68395b78261243fb722246b43fbe7df09449bf45a3308371c6869a2",
+				"dweb:/ipfs/QmQuqXNNFZiKUZ1rLV7m9qFatLiCqQZLFj1GEpG29ocrrN"
 			]
 		},
 		"UnitMarketplace.sol": {
