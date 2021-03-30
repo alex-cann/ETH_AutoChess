@@ -130,31 +130,31 @@
 	},
 	"sources": {
 		"AutoChess.sol": {
-			"keccak256": "0x71b2dcd68bb18ddc20e0e2d3d910ef8bca1492d6b9125681a12c9985a5539fe6",
+			"keccak256": "0x0bd6727c062cd6cdce3daa9d28ca0b97dfc7eb57dd0789886937a157a51cdc29",
 			"urls": [
-				"bzz-raw://f9e64fd6a038ee13aef96c67531826093688c250a21d462ff354cdcccdbe76d4",
-				"dweb:/ipfs/QmciJhmhKpNhZwGqEJRJwfNGEHKHaCWiZupbrnce3WpqfK"
+				"bzz-raw://03ffc95ff2ff456e09b10310c185971e5d8370ef376ead7e610157c433300fb7",
+				"dweb:/ipfs/QmeMYqWAWffh4eYVBV7hcbMG5p9aTFwPapuCj4BEoxpJWx"
 			]
 		},
 		"SquadBuilder.sol": {
-			"keccak256": "0x9f6da1378f20f5479e43b7ba56958d76c2dd96e7d77fe4263d6803699ccf1eb5",
+			"keccak256": "0x2bc1e4c6bb63d503caf5849b6cf9c4d330fe77b9023fe971eeb825abcbf7a1b3",
 			"urls": [
-				"bzz-raw://99c7c15b9787853c502cb8493106bc1c05242ea414bcf94e9e2c5ba088bb696d",
-				"dweb:/ipfs/QmYS12r63jzizPTndRBAUsAceFeZzYEGiufky7VqAhPQYr"
+				"bzz-raw://41ad73214eeddb34ad1548c4f1effbc6aea878f64afaa5fe38881bf554d56195",
+				"dweb:/ipfs/QmPNtSkHTK7VFNSCFz4ar7W11T1D9WvDZ7fYNYLLjPKptV"
 			]
 		},
 		"StoreToken.sol": {
-			"keccak256": "0x4d3a67a03d93c0bcd82170bddd1c0efb7fcf47dcb73ab41e1ac7bd3dfc95f893",
+			"keccak256": "0xd42d4284a6ab86c27c3a4a37d7233a3cde51de2f716068f67fd7043f80034519",
 			"urls": [
-				"bzz-raw://46dfb32e31d49f7c9005ffb68215d4c5ead416f7b717723a073d4d8ce687530f",
-				"dweb:/ipfs/QmQP4rog7agNmNaio6yiSMsSTbysdH4SVzYBsA2SZ54YG5"
+				"bzz-raw://00c73636589ba2189bc4d9183577d7cfd3a6644d6fd3aa4d3b9cb130ae645001",
+				"dweb:/ipfs/QmRdPHSkVbuVdARPQfEQD5EiPj12HDLoRiQZGNnhXTsyee"
 			]
 		},
 		"UnitMarketplace.sol": {
-			"keccak256": "0x39f22dca7e8e3f9477031d5f4b3f414048c2de144aa7ec0a64712f8884148128",
+			"keccak256": "0x7deecac2fd35c45133601ed9e7ea083a4239260ab30a99b7e9fbcc4b7f8445da",
 			"urls": [
-				"bzz-raw://8d5fbfbeee2d7b308bff10f4f037058c006e88c9aedf1e6fe7124feb9668dc08",
-				"dweb:/ipfs/QmWCYqdUcbsN1qhjdgDD2tvDdrUoyVBwDSjGnJiFZf6XGT"
+				"bzz-raw://a9d17b68e762b764f01f61592fb35f3b2bc1dd04399173d21b5741e81bdca955",
+				"dweb:/ipfs/QmedKX6M7sw2syJuPgw933MCjuQkaBGvSo6sZXE81kUtTm"
 			]
 		},
 		"UnitToken.sol": {

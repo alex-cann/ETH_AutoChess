@@ -96,6 +96,7 @@ contract SquadBuilder is UnitMarketplace, ISquadBuilder {
     // create squad
     function _createSquad(uint256[] calldata _unitIds) internal returns(uint256 squadId, DeploymentState tier){
         uint16 atkSum=0;
+        //TODO make sure that _unitIds is one of the correct lengths
         for(uint8 i=0; i < _unitIds.length; i++){
             require(unitIndexToOwner[_unitIds[i]] == msg.sender);
             require(unitIndexToState[_unitIds[i]] == UnitState.Default);//check that this unit isn't doing something else
@@ -105,13 +106,18 @@ contract SquadBuilder is UnitMarketplace, ISquadBuilder {
 
         DeploymentState _tier = _getTier(_unitIds.length);
         squads.push(Squad({
-                    unitIds:_unitIds,
+                    unitIds: new uint256[](0),
                     unitCount:uint8(_unitIds.length),
                     state:_tier,
                     deployTime:uint16(block.timestamp), //TODO this seems sketch
                     totalAttack:atkSum,
                     stashedTokens:0
                     }));
+        //TODO figure out a better way of making this work
+        //https://medium.com/loom-network/ethereum-solidity-memory-vs-storage-how-to-initialize-an-array-inside-a-struct-184baf6aa2eb
+         for(uint8 i=0; i < _unitIds.length; i++){
+            squads[squads.length - 1].unitIds.push(_unitIds[i]);
+        }            
         return (squads.length ,_tier);
     }
 }

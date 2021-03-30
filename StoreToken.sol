@@ -56,7 +56,7 @@ contract StoreToken is ERC20 {
     }
 
     function transfer(address _to, uint256 _value) public override returns (bool success) {
-        require(unApprovedBalanceOf(msg.sender) > _value);
+        require(unApprovedBalanceOf(msg.sender) > _value, "Too few tokens are unlocked in your account!");
         ownerToBalance[msg.sender] -= _value;
         ownerToBalance[_to] += _value;
         emit Transfer(msg.sender, _to, _value);
@@ -65,7 +65,7 @@ contract StoreToken is ERC20 {
     
     ///@dev called by the store  when a user spends coin
     function spend(address _from, uint256 _value) public  _storeOnly returns (bool success){
-        require(unApprovedBalanceOf(_from) > _value);
+        require(unApprovedBalanceOf(_from) > _value, "Too few tokens are unlocked in your account!");
         totalTokens-=_value;
         ownerToBalance[_from] -= _value;
         emit Transfer(_from, StoreAddress, _value);

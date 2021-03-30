@@ -41,7 +41,7 @@ contract UnitMarketplace is UnitToken,IUnitMarketplace {
     function bid(uint256 _auctionId, uint256 _value) public override returns(bool success) {
         Auction memory auction = _auctions[_auctionId];
         //check if this bid is big enough
-        require(_value > auction.highestBid);
+        require(_value > auction.highestBid, "This is not a new highest bid!");
         //preapprove the transaction to the Auction
         CurrencyProvider.autoApprove(msg.sender, _value);
         //remove hold on previous highest bidders currency
@@ -81,8 +81,8 @@ contract UnitMarketplace is UnitToken,IUnitMarketplace {
     function withdrawAuction(uint256 _auctionId) public override returns(bool success){
         //TODO make sure this auction actually exists
         Auction memory auction = _auctions[_auctionId];
-        assert(auction.host == msg.sender);
-        assert(auction.endTime < block.timestamp);
+        require(auction.host == msg.sender, "You are not the host of this auction!");
+        require(auction.endTime > block.timestamp, "It is too late to withdraw this auction!");
         //withdraw the highestbidders bid
         CurrencyProvider.autoUnApprove(auction.highestBidder,auction.highestBid);
         //TODO reset ownership of units back to the host or use approval system instead

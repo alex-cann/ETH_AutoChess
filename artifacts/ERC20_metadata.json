@@ -263,10 +263,10 @@
 	},
 	"sources": {
 		"StoreToken.sol": {
-			"keccak256": "0x5860503eb0e8423c8864365aee83c17564d219528e5738420fdfd680a319eeed",
+			"keccak256": "0xd42d4284a6ab86c27c3a4a37d7233a3cde51de2f716068f67fd7043f80034519",
 			"urls": [
-				"bzz-raw://5a5b9f26d68395b78261243fb722246b43fbe7df09449bf45a3308371c6869a2",
-				"dweb:/ipfs/QmQuqXNNFZiKUZ1rLV7m9qFatLiCqQZLFj1GEpG29ocrrN"
+				"bzz-raw://00c73636589ba2189bc4d9183577d7cfd3a6644d6fd3aa4d3b9cb130ae645001",
+				"dweb:/ipfs/QmRdPHSkVbuVdARPQfEQD5EiPj12HDLoRiQZGNnhXTsyee"
 			]
 		}
 	},

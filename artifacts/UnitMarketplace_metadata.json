@@ -317,6 +317,45 @@
 			{
 				"inputs": [
 					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "squads",
+				"outputs": [
+					{
+						"internalType": "uint8",
+						"name": "unitCount",
+						"type": "uint8"
+					},
+					{
+						"internalType": "uint16",
+						"name": "stashedTokens",
+						"type": "uint16"
+					},
+					{
+						"internalType": "enum IAutoChessBase.DeploymentState",
+						"name": "state",
+						"type": "uint8"
+					},
+					{
+						"internalType": "uint16",
+						"name": "deployTime",
+						"type": "uint16"
+					},
+					{
+						"internalType": "uint16",
+						"name": "totalAttack",
+						"type": "uint16"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
 						"internalType": "uint256[]",
 						"name": "_assets",
 						"type": "uint256[]"
@@ -552,10 +591,10 @@
 	},
 	"sources": {
 		"AutoChess.sol": {
-			"keccak256": "0x8a29c6edcf3fc64d59deb175137a5020900bd3e90d74f66dfef71c39939f9655",
+			"keccak256": "0x0bd6727c062cd6cdce3daa9d28ca0b97dfc7eb57dd0789886937a157a51cdc29",
 			"urls": [
-				"bzz-raw://a0b006e3864b5e66256a385e634b5bbf3a3a75a6719d89ccebc2fd0f15add9fc",
-				"dweb:/ipfs/QmcPcUD8yJ5sHVMkHGvMoTLhAcPxXPBAj6H9Rr14seceoB"
+				"bzz-raw://03ffc95ff2ff456e09b10310c185971e5d8370ef376ead7e610157c433300fb7",
+				"dweb:/ipfs/QmeMYqWAWffh4eYVBV7hcbMG5p9aTFwPapuCj4BEoxpJWx"
 			]
 		},
 		"StoreToken.sol": {
@@ -566,10 +605,10 @@
 			]
 		},
 		"UnitMarketplace.sol": {
-			"keccak256": "0x62fe8e4f055a3be6c2762ebf1e31d43c40c1311a94978b0e8c0efe348f62e2a1",
+			"keccak256": "0x7deecac2fd35c45133601ed9e7ea083a4239260ab30a99b7e9fbcc4b7f8445da",
 			"urls": [
-				"bzz-raw://93bae4b73da5d04ea6ec426b77fd2eb2c2c1ce4173bc5b9108c8ef9749bc77ff",
-				"dweb:/ipfs/QmaV7MdqH3bTnCttVWEgGiZZkecWSBPCvH64Y6PWQMsgM8"
+				"bzz-raw://a9d17b68e762b764f01f61592fb35f3b2bc1dd04399173d21b5741e81bdca955",
+				"dweb:/ipfs/QmedKX6M7sw2syJuPgw933MCjuQkaBGvSo6sZXE81kUtTm"
 			]
 		},
 		"UnitToken.sol": {
