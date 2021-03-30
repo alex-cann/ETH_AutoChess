@@ -227,7 +227,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"Total.sol": "ERC721"
+			"UnitToken.sol": "ERC721"
 		},
 		"evmVersion": "istanbul",
 		"libraries": {},
@@ -241,11 +241,18 @@
 		"remappings": []
 	},
 	"sources": {
-		"Total.sol": {
-			"keccak256": "0x6dc03d8909a8e9802bb84899d1d62adb0ba4e09124263c7b3330b5738c23d4dc",
+		"AutoChess.sol": {
+			"keccak256": "0x44bea775319d6be18084a01ec862a763c6a3b9850a99553e26a2583bb7d7819d",
 			"urls": [
-				"bzz-raw://9e4d0a7ef860eab1a3be72f15ebf5055d71a4d4e40af4a3b2ed4b8598c40fc58",
-				"dweb:/ipfs/QmYbBqTwyRqEwUqQEM1PN2fA5xJybbRqVkDKVf2zwVYYdb"
+				"bzz-raw://95563886153773b288d080e0960cc991c09d4992e6a5cf8621ca82a99672c73d",
+				"dweb:/ipfs/QmNRTxXURuhJSEXsPHXkspjd76A9oiLmQRYYVhmsxJfzYG"
+			]
+		},
+		"UnitToken.sol": {
+			"keccak256": "0x78841fe637b0ff58781a0025e32e21b4697ad8c0c451f1e3ffd26d2ac73cf3aa",
+			"urls": [
+				"bzz-raw://d9b85b1eadb9be8ff5bc1bff5628c942e91236764ac7679f9dceee9fc72e0500",
+				"dweb:/ipfs/QmUYgXJrNVaRkxLpAhpURLDMgKndjmZLbNreCsnE6FGS86"
 			]
 		}
 	},

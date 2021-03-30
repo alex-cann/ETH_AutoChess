@@ -228,7 +228,7 @@ contract UnitToken is AutoChessBase, IUnitToken {
     function approve(address _to, uint256 _tokenId) public override {
         require (msg.sender == ownerOf(_tokenId),"You don't own this token");
         require(msg.sender != _to, "No self approved transactions!");
-        require(unitIndexToState[_tokenId] == UnitState.Default);
+        require(unitIndexToState[_tokenId] == UnitState.Default, "Unit is Occupied!");
         allowed[msg.sender][_to] = _tokenId;
         emit Approval(msg.sender, _to, _tokenId);
     }

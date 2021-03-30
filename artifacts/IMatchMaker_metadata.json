@@ -212,10 +212,10 @@
 	},
 	"sources": {
 		"AutoChess.sol": {
-			"keccak256": "0x0bd6727c062cd6cdce3daa9d28ca0b97dfc7eb57dd0789886937a157a51cdc29",
+			"keccak256": "0x44bea775319d6be18084a01ec862a763c6a3b9850a99553e26a2583bb7d7819d",
 			"urls": [
-				"bzz-raw://03ffc95ff2ff456e09b10310c185971e5d8370ef376ead7e610157c433300fb7",
-				"dweb:/ipfs/QmeMYqWAWffh4eYVBV7hcbMG5p9aTFwPapuCj4BEoxpJWx"
+				"bzz-raw://95563886153773b288d080e0960cc991c09d4992e6a5cf8621ca82a99672c73d",
+				"dweb:/ipfs/QmNRTxXURuhJSEXsPHXkspjd76A9oiLmQRYYVhmsxJfzYG"
 			]
 		},
 		"GameEngine.sol": {
@@ -233,10 +233,10 @@
 			]
 		},
 		"SquadBuilder.sol": {
-			"keccak256": "0xb058c8de58b4b76e69494e328ea413760a0bdad8b753c021d6d121057015e6e6",
+			"keccak256": "0x0e33c25c2ce37ef7fe94d44fc790121c0532b2d48c01ab5acd61912a258e3762",
 			"urls": [
-				"bzz-raw://83f0d5145f5b5670fb992af455bf3958557976a2d225fcbe420ccde2b45f4dce",
-				"dweb:/ipfs/QmTb5uFNrRnUjzRGB1Wc6Ta6BKZuk5H7m9Z6NvYmEpnk2G"
+				"bzz-raw://bcf891120365e054d974d6d913a7bb0e0f16834480727d63aba6db176ff0093f",
+				"dweb:/ipfs/QmdnozVgHunGVxcDo6j1rfRbzE7LYnM8ANi3pnAwWnQSj6"
 			]
 		},
 		"StoreToken.sol": {
@@ -254,10 +254,10 @@
 			]
 		},
 		"UnitToken.sol": {
-			"keccak256": "0xfb97c49133185540a056eac3b318a93aeaa67952fd7c497468646bdc60ed8cd0",
+			"keccak256": "0x78841fe637b0ff58781a0025e32e21b4697ad8c0c451f1e3ffd26d2ac73cf3aa",
 			"urls": [
-				"bzz-raw://25e178f5cc4cc94d80f3f182b8eb11e98cb4b5c487b714448a5593ee1a23636e",
-				"dweb:/ipfs/QmStApLxqkvo6XDyDptiYi3kKWMU5d3TCZT6YDBLDAfTrq"
+				"bzz-raw://d9b85b1eadb9be8ff5bc1bff5628c942e91236764ac7679f9dceee9fc72e0500",
+				"dweb:/ipfs/QmUYgXJrNVaRkxLpAhpURLDMgKndjmZLbNreCsnE6FGS86"
 			]
 		}
 	},

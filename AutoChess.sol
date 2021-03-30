@@ -30,9 +30,9 @@ interface IAutoChessBase{
     enum squadType {
         triangle, square, circle
     }
-
+    //To check if a unit exists check if it's sate is dead
     enum UnitState {
-        Deployed,Dead,Auctioning,Default,Promised
+        Dead,Deployed,Auctioning,Default,Promised
     }
 
     enum DeploymentState{
@@ -97,9 +97,6 @@ contract AutoChessBase is IAutoChessBase {
 
     mapping (address => uint256[]) public ownerToUnitIndices;
     
-    
-    //TODO check if this is necessary since units can't be destroyed anymore
-    mapping (uint256 => bool) unitIndexExists;
     
     // Predictable random number generator. Used for unit generation
     //the 

@@ -43,7 +43,14 @@ contract UnitToken is AutoChessBase, IUnitToken {
     //TODO remove hard coded value
     uint256 private totalUnits = 1000000000;
 
-
+    modifier _validTx(address _from, address _to, uint256 _tokenId){
+        require(_from == ownerOf(_tokenId),"You don't own this unit");
+        require(_from != _to, "You already own this unit");
+        require(unitIndexToState[_tokenId] == UnitState.Default, "Unit is unavailable");
+        require(_to != address(0), "Not a valid address. Sorry!");
+        _;
+    }
+    
     function totalSupply() public view override returns (uint256 total) {
         return totalUnits;
     }
@@ -53,17 +60,12 @@ contract UnitToken is AutoChessBase, IUnitToken {
     }
 
     function ownerOf(uint256 _tokenId) public view override returns (address owner) {
-        //TODO set this check up later
-        require(unitIndexExists[_tokenId]);
         return unitIndexToOwner[_tokenId];
     }
-
-    function approve(address _to, uint256 _tokenId) public override {
-        require (msg.sender == ownerOf(_tokenId));
-        require(msg.sender != _to);
-        require(unitIndexToState[_tokenId] == UnitState.Default);
-        //TODO set this check up later
-        //allowed[msg.sender][_to] = _tokenId;
+    
+    function approve(address _to, uint256 _tokenId) public _validTx(msg.sender,_to, _tokenId) override {
+        unitIndexToAllowed[_tokenId] = _to;
+        unitIndexToState[_tokenId] = UnitState.Promised;
         emit Approval(msg.sender, _to, _tokenId);
     }
 
@@ -81,28 +83,15 @@ contract UnitToken is AutoChessBase, IUnitToken {
     }
 
 
-
-    function transfer(address _to, uint256 _tokenId) override public {
-        require(unitIndexExists[_tokenId]);
-        require (msg.sender == ownerOf(_tokenId));
-        require(msg.sender != _to);
-        //TODO Replace this so that address(0) is used for selling units to the contract
-        require(_to != address(0));
-        //Require that it is not in a squad (this could be changed to something smarter)
-        //Example uses double map
-        require(unitIndexToSquadIndex[_tokenId] == 0);
-
+    function transfer(address _to, uint256 _tokenId) public _validTx(msg.sender,_to, _tokenId) override {
         _transfer(msg.sender,_to,_tokenId);
     }
 
 
-    function transferFrom(address _from, address _to, uint256 _tokenId) public override {
-        require(unitIndexExists[_tokenId]);
-        require(_from != _to);
-        require(unitIndexToAllowed[_tokenId] == _to); //this can only be set if the unit is in Promised
+    function transferFrom(address _from, address _to, uint256 _tokenId) public _validTx(_from,_to,_tokenId) override {
+        require(unitIndexToAllowed[_tokenId] == _to, "Unit is not promised to that user");
         //Require that it is not in a squad (this could be changed to something smarter)
         //Example uses double map
-
         _transfer(_from,_to,_tokenId);
     }
 
