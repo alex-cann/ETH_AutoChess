@@ -54,19 +54,13 @@ contract SquadBuilder is UnitMarketplace, ISquadBuilder {
 
         //TODO modify this now that unitIDS are permanent
         uint256 newUnitId;
-        if(unusedIndices.length == 0){
-            units.push(_unit);
-            newUnitId = units.length  - 1;
-        }else{
-            //get the latest unused Index
-            newUnitId = unusedIndices[unusedIndices.length - 1];
-            //delete from the list of unused Indices since it is now used
-            unusedIndices.pop();
-        }
+		units.push(_unit);
+		newUnitId = units.length  - 1;
+        
         return newUnitId;
     }
     
-    function _buyUnit(address _owner, UnitType _type, string memory _name) public returns (uint256 _unitId){
+    function _buyUnit(address _owner, UnitType _type, string memory _name) internal returns (uint256 _unitId){
         uint256 _cost = 0;
         uint256 _id;
         if(_type == UnitType.Warrior){
@@ -100,7 +94,7 @@ contract SquadBuilder is UnitMarketplace, ISquadBuilder {
         //TODO make sure that _unitIds is one of the correct lengths
         for(uint8 i=0; i < _unitIds.length && i < 7; i++){
             require(unitIndexToOwner[_unitIds[i]] == _owner, "You don't own this unit!");
-            require(unitIndexToState[_unitIds[i]] == UnitState.Default);//check that this unit isn't doing something else
+            require(unitIndexToState[_unitIds[i]] == UnitState.Default, "Unit is busy");//check that this unit isn't doing something else
             unitIndexToState[_unitIds[i]] = UnitState.Deployed;
             atkSum+=units[_unitIds[i]].attack;
         }

@@ -44,7 +44,7 @@ contract StoreToken is ERC20 {
 
     ///@dev functions only accessible from the marketplace (so coins can be autoApproved for auctions)
     modifier _storeOnly() {
-        require(msg.sender == StoreAddress);
+        require(msg.sender == StoreAddress, "Only the StoreFront is allowed to use this.");
         _;
     }
 
@@ -75,8 +75,7 @@ contract StoreToken is ERC20 {
     
     function transferFrom(address _from, address _to, uint256 _value) public override returns (bool success) {
         //is this person authorized to withdraw this money
-        require(ownerToApprovedWithdrawals[_from][_to] > _value);
-        
+        require(ownerToApprovedWithdrawals[_from][_to] > _value, "Amount too large");
         ownerToApprovedWithdrawals[_from][_to] -= _value;
         ownerToTotalApproved[_from] -= _value;
         ownerToBalance[_from] -= _value;
@@ -102,7 +101,7 @@ contract StoreToken is ERC20 {
     
     
     function _approve(address _from, address _to, uint256 _value) internal returns (bool success) {
-        require(unApprovedBalanceOf(_from) > _value);
+        require(unApprovedBalanceOf(_from) > _value, "Too few tokens are unlocked in your account");
         ownerToApprovedWithdrawals[_from][_to] += _value;
         ownerToTotalApproved[_from] += _value;
         emit Approval(_from, _to, _value);
