@@ -61,6 +61,32 @@
 				"type": "event"
 			},
 			{
+				"inputs": [],
+				"name": "CurrencyProvider",
+				"outputs": [
+					{
+						"internalType": "contract StoreToken",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "ProviderAddress",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
 				"inputs": [
 					{
 						"internalType": "address",
@@ -496,10 +522,10 @@
 			]
 		},
 		"UnitMarketplace.sol": {
-			"keccak256": "0x39f22dca7e8e3f9477031d5f4b3f414048c2de144aa7ec0a64712f8884148128",
+			"keccak256": "0x98b1c3752c299f59d6c356260cb8efd167886098aa3a4953932b08e7e3f1062e",
 			"urls": [
-				"bzz-raw://8d5fbfbeee2d7b308bff10f4f037058c006e88c9aedf1e6fe7124feb9668dc08",
-				"dweb:/ipfs/QmWCYqdUcbsN1qhjdgDD2tvDdrUoyVBwDSjGnJiFZf6XGT"
+				"bzz-raw://e51bf89ae15d620e6a32b444abe3d1b218d4051db25f0b17609e4b474d4e6a6b",
+				"dweb:/ipfs/QmcZN5HckBXMq2APgfHZoELVYxgMvqBBJPJr5vfy2ys1rw"
 			]
 		},
 		"UnitToken.sol": {

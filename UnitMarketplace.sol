@@ -27,8 +27,8 @@ interface IUnitMarketplace {
 contract UnitMarketplace is UnitToken,IUnitMarketplace {
     //objects:
 
-    address ProviderAddress;
-    StoreToken CurrencyProvider;
+    address public ProviderAddress;
+    StoreToken public CurrencyProvider;
 
     //A list of all ongoing auctions
     Auction[] _auctions;
