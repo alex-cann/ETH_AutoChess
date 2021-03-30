@@ -144,10 +144,10 @@
 			]
 		},
 		"UnitMarketplace.sol": {
-			"keccak256": "0x98b1c3752c299f59d6c356260cb8efd167886098aa3a4953932b08e7e3f1062e",
+			"keccak256": "0x62fe8e4f055a3be6c2762ebf1e31d43c40c1311a94978b0e8c0efe348f62e2a1",
 			"urls": [
-				"bzz-raw://e51bf89ae15d620e6a32b444abe3d1b218d4051db25f0b17609e4b474d4e6a6b",
-				"dweb:/ipfs/QmcZN5HckBXMq2APgfHZoELVYxgMvqBBJPJr5vfy2ys1rw"
+				"bzz-raw://93bae4b73da5d04ea6ec426b77fd2eb2c2c1ce4173bc5b9108c8ef9749bc77ff",
+				"dweb:/ipfs/QmaV7MdqH3bTnCttVWEgGiZZkecWSBPCvH64Y6PWQMsgM8"
 			]
 		},
 		"UnitToken.sol": {

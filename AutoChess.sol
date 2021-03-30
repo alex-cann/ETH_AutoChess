@@ -65,7 +65,7 @@ contract AutoChessBase is IAutoChessBase {
     ///@dev global list of all units and squads. Maybe there is a better way
     Unit[] units;
 
-    Squad[] squads;
+    Squad[] public squads;
     ///@dev lists of squads in each deployment tier/state
     /// This could be removed and replaced with a lot of if statements
     mapping(DeploymentState => uint256[]) tierToSquadIndex;

@@ -34,10 +34,10 @@
 	},
 	"sources": {
 		"AutoChess.sol": {
-			"keccak256": "0x8a29c6edcf3fc64d59deb175137a5020900bd3e90d74f66dfef71c39939f9655",
+			"keccak256": "0x0bd6727c062cd6cdce3daa9d28ca0b97dfc7eb57dd0789886937a157a51cdc29",
 			"urls": [
-				"bzz-raw://a0b006e3864b5e66256a385e634b5bbf3a3a75a6719d89ccebc2fd0f15add9fc",
-				"dweb:/ipfs/QmcPcUD8yJ5sHVMkHGvMoTLhAcPxXPBAj6H9Rr14seceoB"
+				"bzz-raw://03ffc95ff2ff456e09b10310c185971e5d8370ef376ead7e610157c433300fb7",
+				"dweb:/ipfs/QmeMYqWAWffh4eYVBV7hcbMG5p9aTFwPapuCj4BEoxpJWx"
 			]
 		}
 	},
