@@ -5,7 +5,6 @@ pragma solidity ^0.8.1;
 import "./GameEngine.sol";
 import "./AutoChess.sol";
 import "./StoreToken.sol";
-import "./GameEngine.sol";
 import "./UnitMarketplace.sol";
 ///handles all the adding of units and whatnot
 
@@ -19,17 +18,20 @@ interface IMatchMaker is IGameEngine{
 }
 
 
-contract MatchMaker is IMatchMaker, GameEngine{
+contract MatchMaker is GameEngine, IMatchMaker{
     
     /// Calls the parent constructor
-    constructor() GameEngine(){
+    //constructor() GameEngine(){
         //Generate some units
-        for(uint i=0; i < 7;i++){
-            _buyUnit(address(this),UnitType.Cavalry,"DEFAULT");
-        }
+        //for(uint i=0; i < 7;i+=1){
+            //_buyUnit(address(this),UnitType.Cavalry,"DEFAULT");
+        //}
+        //require(units.length<=7,"too many units created");
+        //TODO figure out why this fixes things
+        //require(ownerToUnitIndices[address(this)].length <= 7, "hmmm");
         //make all the units into a squad
-        _createSquad(address(this), ownerToUnitIndices[address(this)]);
-    }
+        //_createSquad(address(this), ownerToUnitIndices[address(this)]);
+   // }
 
     //TODO make this create a squad
     function randomChallenge(uint256[] calldata _unitIds) public override returns (uint256 winnings){

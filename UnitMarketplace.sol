@@ -34,7 +34,7 @@ contract UnitMarketplace is UnitToken,IUnitMarketplace {
     Auction[] public _auctions;
 
     constructor() {
-        CurrencyProvider = new StoreToken();
+        CurrencyProvider = new StoreToken(address(this));
         ProviderAddress = address(CurrencyProvider);
     }
 

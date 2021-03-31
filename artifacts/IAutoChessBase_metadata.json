@@ -13,12 +13,13 @@
 		"userdoc": {
 			"kind": "user",
 			"methods": {},
+			"notice": "see CryptoKitties codebase here https://ethfiddle.com/09YbyJRfiI and here https://medium.com/loom-network/how-to-code-your-own-cryptokitties-style-game-on-ethereum-7c8ac86a4eb3",
 			"version": 1
 		}
 	},
 	"settings": {
 		"compilationTarget": {
-			"Total.sol": "IAutoChessBase"
+			"MatchMaker_flat.sol": "IAutoChessBase"
 		},
 		"evmVersion": "istanbul",
 		"libraries": {},
@@ -32,11 +33,12 @@
 		"remappings": []
 	},
 	"sources": {
-		"Total.sol": {
-			"keccak256": "0x2bd55bc4d3daeace6b101949429b78cbb742973f7ec822cedc6eb9707721f536",
+		"MatchMaker_flat.sol": {
+			"keccak256": "0xb88f43dd99987f16308a3facec2d28573f3b833f302e12f12994fec8623da32a",
+			"license": "UNLICENSED",
 			"urls": [
-				"bzz-raw://56aa81eb47c7bb2374ffa6546680035ad2d194684cd01d207c5ecf1c3fedc868",
-				"dweb:/ipfs/QmW6N1VKFYQFGqFaprzGF9CwDetvMtiVaW9NegC323yvZr"
+				"bzz-raw://24dbdc88dcab20150669f90fdb25e357cc1d3237cf0844aa4608a19532685220",
+				"dweb:/ipfs/QmYxgxoynSnBgJqA9B3EGL7huSCJfEWGNWuYahFY6Ftk8e"
 			]
 		}
 	},

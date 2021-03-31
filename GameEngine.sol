@@ -7,11 +7,14 @@ import "./SquadBuilder.sol";
 
 interface IGameEngine is ISquadBuilder{
     //TODO add events here
+    
 }
 
 /// Handles the actual playing of the game
-contract GameEngine is SquadBuilder {
+contract GameEngine is SquadBuilder,IGameEngine {
 
+    constructor() SquadBuilder(){}
+    
     function unitDeath(uint256 _unitId) internal returns (bool success){
         return true;
     }

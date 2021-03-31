@@ -5,7 +5,9 @@ import "./UnitMarketplace.sol";
 
 interface ISquadBuilder is IUnitMarketplace{
     function buyUnit(UnitType _type) external returns (uint256 _unitId);
-    function buyUnit(UnitType _type, string calldata _name) external returns (uint256 _unitId);
+    function buyUnit(UnitType _type, string memory _name) external returns (uint256 _unitId);
+    event UnitCreated(address owner, uint256 indexed  id);
+    event SquadCreated(address owner, uint256 _id);
 }
 
 contract SquadBuilder is UnitMarketplace, ISquadBuilder {
@@ -15,15 +17,18 @@ contract SquadBuilder is UnitMarketplace, ISquadBuilder {
     uint256[] unusedIndices;
     string constant DEFAULT_NAME = "Maurice, the Mediocre";
     /// @dev creates and stores a new unit
+    
+    constructor() UnitMarketplace(){}
+    
     function _generateUnit(UnitType _type,string memory _name) internal returns (uint)
     {
         Unit memory _unit = Unit({
-                            attack: randomNumber(3),
-                            defence: randomNumber(2),
+                            attack: 0,
+                            defence: 0,
                             //functions as a multiplier on the other attributes
                             level: 1,
                             //starting health of unit
-                            maxHealth: randomNumber(20),
+                            maxHealth: 0,
                             // health remaining on this unit
                             curHealth: 0,
                             //what type of unit this is
@@ -55,8 +60,9 @@ contract SquadBuilder is UnitMarketplace, ISquadBuilder {
         //TODO modify this now that unitIDS are permanent
         uint256 newUnitId;
 		units.push(_unit);
+		require(units.length > 0, "units should not be empty");
 		newUnitId = units.length  - 1;
-        
+        unitIndexToState[newUnitId] = UnitState.Default;
         return newUnitId;
     }
     
@@ -69,9 +75,13 @@ contract SquadBuilder is UnitMarketplace, ISquadBuilder {
             _cost+=15;
         }else if(_type == UnitType.Cavalry){
             _cost+=20;
+        }else{
+            require(false, "Not a valid unit type");
         }
+        
         CurrencyProvider.spend(_owner,_cost);
         _id = _generateUnit(_type, _name);
+        emit UnitCreated(_owner,_id);
         unitIndexToOwner[_id] = _owner;
         ownerToUnitCount[_owner]+=1;
         ownerToUnitIndices[_owner].push(_id);
@@ -92,29 +102,33 @@ contract SquadBuilder is UnitMarketplace, ISquadBuilder {
     function _createSquad(address _owner, uint256[] memory _unitIds) internal returns(uint256 squadId, DeploymentState tier){
         uint16 atkSum=0;
         //TODO make sure that _unitIds is one of the correct lengths
-        for(uint8 i=0; i < _unitIds.length && i < 7; i++){
+        require(_unitIds.length <= 7, "Invalid number of units");
+        for(uint8 i=0; i < _unitIds.length; i+=1){
             require(unitIndexToOwner[_unitIds[i]] == _owner, "You don't own this unit!");
             require(unitIndexToState[_unitIds[i]] == UnitState.Default, "Unit is busy");//check that this unit isn't doing something else
             unitIndexToState[_unitIds[i]] = UnitState.Deployed;
             atkSum+=units[_unitIds[i]].attack;
         }
-
         DeploymentState _tier = _getTier(_unitIds.length);
-        squads.push(Squad({
+        Squad memory _squad = Squad({
                     unitIds: new uint256[](0),
                     unitCount:uint8(_unitIds.length),
                     state:_tier,
                     deployTime:uint16(block.timestamp), //TODO this seems sketch
                     totalAttack:atkSum,
                     stashedTokens:0
-                    }));
+                    });
+                    
+        squads.push(_squad);
         //TODO figure out a better way of making this work
         //https://medium.com/loom-network/ethereum-solidity-memory-vs-storage-how-to-initialize-an-array-inside-a-struct-184baf6aa2eb
-         for(uint8 i=0; i < _unitIds.length && i < 7; i++){
+         for(uint8 i=0; i < _unitIds.length; i+=1){
             squads[squads.length - 1].unitIds.push(_unitIds[i]);
         }
+        
         ownerToSquadIndex[_owner].push(squads.length -1);
         squadIndexToOwner[squads.length - 1] = _owner;
+        emit SquadCreated(_owner,squads.length-1);
         return (squads.length-1,_tier);
     }
 }

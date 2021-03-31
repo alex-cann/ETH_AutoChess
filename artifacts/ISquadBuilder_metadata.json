@@ -36,6 +36,25 @@
 					{
 						"indexed": false,
 						"internalType": "address",
+						"name": "owner",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "_id",
+						"type": "uint256"
+					}
+				],
+				"name": "SquadCreated",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
 						"name": "from",
 						"type": "address"
 					},
@@ -53,6 +72,25 @@
 					}
 				],
 				"name": "Transfer",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "owner",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "id",
+						"type": "uint256"
+					}
+				],
+				"name": "UnitCreated",
 				"type": "event"
 			},
 			{
@@ -363,7 +401,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"SquadBuilder.sol": "ISquadBuilder"
+			"MatchMaker_flat.sol": "ISquadBuilder"
 		},
 		"evmVersion": "istanbul",
 		"libraries": {},
@@ -377,44 +415,12 @@
 		"remappings": []
 	},
 	"sources": {
-		"AutoChess.sol": {
-			"keccak256": "0xd3346fedddc2ba6d863177a2027510dbf3b23b2bc109464c689e8c71df9468fe",
+		"MatchMaker_flat.sol": {
+			"keccak256": "0xb88f43dd99987f16308a3facec2d28573f3b833f302e12f12994fec8623da32a",
 			"license": "UNLICENSED",
 			"urls": [
-				"bzz-raw://b80a7b74c7619f76e824df498bd3bf48c6342875225766f2f43d294b74bee70d",
-				"dweb:/ipfs/QmXVCM5M73GUKnVA18QdvPk4DxRxwdPzAiSPFoBAFT1gTu"
-			]
-		},
-		"SquadBuilder.sol": {
-			"keccak256": "0x30810f4b7415f1903117c35f0af39a619fb842947e8c4009b3613197a4d03231",
-			"license": "UNLICENSED",
-			"urls": [
-				"bzz-raw://0610fcae16bb6a09a77c81f9768540adce41a0e3f95f6a12206ada96cc580aaa",
-				"dweb:/ipfs/Qmc5MmjQS3b1FxQ2Nk2nvp55DfbwACVSNisdidrNvwMnAY"
-			]
-		},
-		"StoreToken.sol": {
-			"keccak256": "0xf5075106dff2d202de99ee5e2685beeb196a6eac4c3c47a6a7bb7766ff4ea9dd",
-			"license": "UNLICENSED",
-			"urls": [
-				"bzz-raw://449c81417acd447f8fda8d9eeabbcd099037956b1d6c62c8cb5600312f25c2fc",
-				"dweb:/ipfs/QmZeswq5Yc4YAncbhmeucY3ffgc6V5AEynNTRftMW6hhxc"
-			]
-		},
-		"UnitMarketplace.sol": {
-			"keccak256": "0x8067fe8706ca4203000b978f1b6c70505817bcdacedb1c5d6131af94653712e4",
-			"license": "UNLICENSED",
-			"urls": [
-				"bzz-raw://29e2de581b22b75c83c7d6e8ca6a8a9694753231691207d2982b1a8ab228bfaf",
-				"dweb:/ipfs/QmVVLF4qj66twMswXEtWH297K6N2poVX4pUizAW7KzNFw9"
-			]
-		},
-		"UnitToken.sol": {
-			"keccak256": "0x373793b43220657cb8221e9045a23ad2be201f4064e9e0678658df92c7612b4f",
-			"license": "UNLICENSED",
-			"urls": [
-				"bzz-raw://a9a94b4dc664bb5a530bc50459678b4c073e154bda69b7f9fdff9351cfdb4ed5",
-				"dweb:/ipfs/QmZFCqBXVUyqkEEK9Qe7aNt662CNTfsy21Xg1aPbRiQM7c"
+				"bzz-raw://24dbdc88dcab20150669f90fdb25e357cc1d3237cf0844aa4608a19532685220",
+				"dweb:/ipfs/QmYxgxoynSnBgJqA9B3EGL7huSCJfEWGNWuYahFY6Ftk8e"
 			]
 		}
 	},
