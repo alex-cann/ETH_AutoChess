@@ -212,7 +212,7 @@ interface IAutoChessBase{
 contract AutoChessBase is IAutoChessBase {
 
     ///@dev global list of all units and squads. Maybe there is a better way
-    Unit[] units;
+    Unit[] public units;
 
     Squad[] public squads;
     ///@dev lists of squads in each deployment tier/state
@@ -261,7 +261,7 @@ contract AutoChessBase is IAutoChessBase {
     //      not sure if solidity supports it
     //      for now using this function
     function _getTier(uint _unitCount) internal pure returns(DeploymentState state){
-        if(_unitCount == 2){
+        if(_unitCount == 1){
             return DeploymentState.TierOne;
         }else if(_unitCount == 3){
             return DeploymentState.TierTwo;
@@ -303,7 +303,7 @@ interface ERC721 {
     // Optional
     function name() external  view returns (string memory);
     function symbol() external view returns (string memory);
-    // function tokensOfOwner(address _owner) external view returns (uint256[] tokenIds);
+    function tokensOfOwner(address _owner) external view returns (uint256[] memory tokenIds);
     // function tokenMetadata(uint256 _tokenId, string _preferredTransport) public view returns (string infoUrl);
 
     // ERC-165 Compatibility (https://github.com/ethereum/EIPs/issues/165)
@@ -385,7 +385,9 @@ contract UnitToken is AutoChessBase, IUnitToken {
     }
 
     //TODO fill these in
-    //function tokensOfOwner(address _owner) public view override returns (uint256[] memory tokenIds){}
+    function tokensOfOwner(address _owner) public view override returns (uint256[] memory tokenIds){
+        return ownerToUnitIndices[_owner];
+    }
 
     //function tokenMetadata(uint256 _tokenId, string calldata _preferredTransport) public view override returns (string memory infoUrl){}
 
@@ -630,11 +632,10 @@ contract SquadBuilder is UnitMarketplace, ISquadBuilder {
 
 interface IGameEngine is ISquadBuilder{
     //TODO add events here
-    
 }
 
 /// Handles the actual playing of the game
-contract GameEngine is SquadBuilder,IGameEngine {
+contract GameEngine is SquadBuilder, IGameEngine{
 
     constructor() SquadBuilder(){}
     
@@ -760,15 +761,33 @@ contract MatchMaker is GameEngine, IMatchMaker{
     
     /// Calls the parent constructor
     constructor() GameEngine(){
-        //Generate some units
+        //Generate enough units to fill each tier
+        uint256[] memory _ids7 = new uint256[](7);
+        uint256[] memory _ids5 = new uint256[](5);
+        uint256[] memory _ids3 = new uint256[](3);
+        uint256[] memory _ids1 = new uint256[](1);
         for(uint i=0; i < 7;i+=1){
-            _buyUnit(address(this),UnitType.Cavalry,"DEFAULT");
+            _ids7[i] = _buyUnit(address(this),UnitType.Cavalry,"DEFAULT");
         }
-        require(units.length<=7,"too many units created");
+        
+        for(uint i=0; i < 5;i+=1){
+            _ids5[i] = _buyUnit(address(this),UnitType.Cavalry,"DEFAULT");
+        }
+        for(uint i=0; i < 3;i+=1){
+            _ids3[i] = _buyUnit(address(this),UnitType.Cavalry,"DEFAULT");
+        }
+        for(uint i=0; i < 1;i+=1){
+            _ids1[i] = _buyUnit(address(this),UnitType.Cavalry,"DEFAULT");
+        }
+        
+        require(units.length<=16,"too many units created");
         //TODO figure out why this fixes things
-        require(ownerToUnitIndices[address(this)].length <= 7, "hmmm");
+        require(ownerToUnitIndices[address(this)].length <= 16, "hmmm");
         //make all the units into a squad
-        _createSquad(address(this), ownerToUnitIndices[address(this)]);
+        _createSquad(address(this), _ids7);
+        _createSquad(address(this), _ids5);
+        _createSquad(address(this), _ids3);
+        _createSquad(address(this), _ids1);
    }
 
     //TODO make this create a squad
@@ -777,7 +796,7 @@ contract MatchMaker is GameEngine, IMatchMaker{
         DeploymentState tier;
         (squadId, tier) = _createSquad(msg.sender, _unitIds);
         uint256 targetId = randomNumber(tierToSquadIndex[tier].length);
-        return _squadBattle(squadId,targetId);
+        return _squadBattle(squadId,targetId);//TODO update this so that wining sgo on the squad and the id is returned instead
     }
 
 

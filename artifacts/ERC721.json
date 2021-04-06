@@ -53,6 +53,7 @@
 			"ownerOf(uint256)": "6352211e",
 			"supportsInterface(bytes4)": "01ffc9a7",
 			"symbol()": "95d89b41",
+			"tokensOfOwner(address)": "8462151c",
 			"totalSupply()": "18160ddd",
 			"transfer(address,uint256)": "a9059cbb",
 			"transferFrom(address,address,uint256)": "23b872dd"
@@ -205,6 +206,25 @@
 					"internalType": "string",
 					"name": "",
 					"type": "string"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "address",
+					"name": "_owner",
+					"type": "address"
+				}
+			],
+			"name": "tokensOfOwner",
+			"outputs": [
+				{
+					"internalType": "uint256[]",
+					"name": "tokenIds",
+					"type": "uint256[]"
 				}
 			],
 			"stateMutability": "view",

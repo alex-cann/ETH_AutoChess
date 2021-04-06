@@ -1,0 +1,96 @@
+{
+	"compiler": {
+		"version": "0.8.1+commit.df193b15"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"name": "beforeAll",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "testBuyUnit",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "testCreateAuction",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "testCreateSquad",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "testCreateSquadRandom",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"tests/AutoChess_test.sol": "testSuite"
+		},
+		"evmVersion": "istanbul",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": true,
+			"runs": 1
+		},
+		"remappings": []
+	},
+	"sources": {
+		"MatchMaker_flat.sol": {
+			"keccak256": "0x234052094371dd209aaed90196acd8fb7244238fc288a795f6ec14436e3ca330",
+			"license": "UNLICENSED",
+			"urls": [
+				"bzz-raw://566f584f6ea0f063346814cd8121376dc4bd2b2514a17aea2a50b0410a2e412d",
+				"dweb:/ipfs/QmT4bQVHiNKVPxy9Zr4bvtthrHw8wtrrkQuNwZEGbM1AiF"
+			]
+		},
+		"remix_tests.sol": {
+			"keccak256": "0xe2783cdc204cba8c72494119339f1d90f9022b15d6c718c668b7f097d8e29787",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://bb6a22e64c7f16bcaab63b1c1a1b269d5be8a6d37bdd9dec1718477ab916b18e",
+				"dweb:/ipfs/QmdkW1tT5iadBvaHMCoskhDGZKnfdg8o1D9CcoQYtdJet7"
+			]
+		},
+		"tests/AutoChess_test.sol": {
+			"keccak256": "0x16c41ec3ad635c944dc72205e4955da0ea1b7fc4d5d7c3e903e901e45326a794",
+			"urls": [
+				"bzz-raw://fd8beb6f8e3907e3dec10c8fb6e26d1e6eaaf91481c08f1cf079f33816da3a66",
+				"dweb:/ipfs/Qmdv4bJbYJkmrhaWya5w2q9jN7AeYp5ECZw6zKMHLCSJtg"
+			]
+		}
+	},
+	"version": 1
+}

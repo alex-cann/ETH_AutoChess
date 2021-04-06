@@ -1,0 +1,120 @@
+{
+	"compiler": {
+		"version": "0.8.1+commit.df193b15"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"name": "beforeAll",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "testBuyUnit",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "success",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "testCreateAuction",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "success",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "testCreateSquad",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "success",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "testCreateSquadRandom",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "success",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"tests/AutoChessTests.sol": "GameTest"
+		},
+		"evmVersion": "istanbul",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": true,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"MatchMaker_flat.sol": {
+			"keccak256": "0x9470546fe9a54dc45874b1b03470ad189fd74446a9f74d37fd26439c985eec78",
+			"license": "UNLICENSED",
+			"urls": [
+				"bzz-raw://41b5ce22ec13f9c7fc89eef4b60e303576ca9b477cb7d45effdc36c2c29f2bd0",
+				"dweb:/ipfs/QmcRChGEujX2FHciLhnVfiBLMHAFNFwthTgFYLmn8mpSD8"
+			]
+		},
+		"remix_tests.sol": {
+			"keccak256": "0xe2783cdc204cba8c72494119339f1d90f9022b15d6c718c668b7f097d8e29787",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://bb6a22e64c7f16bcaab63b1c1a1b269d5be8a6d37bdd9dec1718477ab916b18e",
+				"dweb:/ipfs/QmdkW1tT5iadBvaHMCoskhDGZKnfdg8o1D9CcoQYtdJet7"
+			]
+		},
+		"tests/AutoChessTests.sol": {
+			"keccak256": "0xf9b86e2e3445b0f3527a407e4e8046897d307a623fc7da869cdf801fcd56dbf2",
+			"urls": [
+				"bzz-raw://fa6ea972c1ef256fa44882fbc04722a1c00dd3fafbcd6c5a32b9ba2a55331f41",
+				"dweb:/ipfs/QmUkAmApAbQZLpEBKBxRQucptiNcD6UECFNvEZUx7sDNf2"
+			]
+		}
+	},
+	"version": 1
+}
