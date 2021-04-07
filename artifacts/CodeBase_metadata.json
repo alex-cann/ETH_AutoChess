@@ -18,7 +18,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"MatchMaker_flat.sol": "IAutoChessBase"
+			"MatchMaker_flat.sol": "CodeBase"
 		},
 		"evmVersion": "istanbul",
 		"libraries": {},
@@ -27,17 +27,17 @@
 		},
 		"optimizer": {
 			"enabled": true,
-			"runs": 1
+			"runs": 100
 		},
 		"remappings": []
 	},
 	"sources": {
 		"MatchMaker_flat.sol": {
-			"keccak256": "0x25c262b4f8b8cf378cd62efc840b3e38d61f3a7c101eddbfb9d283a5681d1fe6",
+			"keccak256": "0x1034615be9a096561a98f24ecddd6d96c0894537c9904756ec18a44a0704ecee",
 			"license": "UNLICENSED",
 			"urls": [
-				"bzz-raw://c4fc53e30e0fa256bdf3cad6fc7acfaa87f321eca21748949ab48d856fb8e145",
-				"dweb:/ipfs/QmUmAoX2vwRURcjYJp3eVVd4f8BU8KRLQDVf5KTtR3ywCc"
+				"bzz-raw://71a6fdb39345fd94bf0f4481b4728456f59bb36ccc81f312fc5aa200b3b86584",
+				"dweb:/ipfs/QmZ4A6iBj5dAejw5iFqnH6Kh51GeuqbREgESgvRNRNxyWJ"
 			]
 		}
 	},

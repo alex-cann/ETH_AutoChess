@@ -16,62 +16,12 @@
 					},
 					{
 						"indexed": false,
-						"internalType": "address",
-						"name": "approved",
-						"type": "address"
-					},
-					{
-						"indexed": false,
-						"internalType": "uint256",
-						"name": "tokenId",
-						"type": "uint256"
-					}
-				],
-				"name": "Approval",
-				"type": "event"
-			},
-			{
-				"anonymous": false,
-				"inputs": [
-					{
-						"indexed": false,
-						"internalType": "address",
-						"name": "owner",
-						"type": "address"
-					},
-					{
-						"indexed": false,
 						"internalType": "uint256",
 						"name": "_id",
 						"type": "uint256"
 					}
 				],
 				"name": "SquadCreated",
-				"type": "event"
-			},
-			{
-				"anonymous": false,
-				"inputs": [
-					{
-						"indexed": false,
-						"internalType": "address",
-						"name": "from",
-						"type": "address"
-					},
-					{
-						"indexed": false,
-						"internalType": "address",
-						"name": "to",
-						"type": "address"
-					},
-					{
-						"indexed": false,
-						"internalType": "uint256",
-						"name": "tokenId",
-						"type": "uint256"
-					}
-				],
-				"name": "Transfer",
 				"type": "event"
 			},
 			{
@@ -92,43 +42,6 @@
 				],
 				"name": "UnitCreated",
 				"type": "event"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "_to",
-						"type": "address"
-					},
-					{
-						"internalType": "uint256",
-						"name": "_tokenId",
-						"type": "uint256"
-					}
-				],
-				"name": "approve",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "_owner",
-						"type": "address"
-					}
-				],
-				"name": "balanceOf",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "balance",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
 			},
 			{
 				"inputs": [
@@ -186,7 +99,7 @@
 			{
 				"inputs": [
 					{
-						"internalType": "enum IAutoChessBase.UnitType",
+						"internalType": "enum UnitType",
 						"name": "_type",
 						"type": "uint8"
 					}
@@ -195,7 +108,7 @@
 				"outputs": [
 					{
 						"internalType": "uint256",
-						"name": "_unitId",
+						"name": "",
 						"type": "uint256"
 					}
 				],
@@ -205,7 +118,7 @@
 			{
 				"inputs": [
 					{
-						"internalType": "enum IAutoChessBase.UnitType",
+						"internalType": "enum UnitType",
 						"name": "_type",
 						"type": "uint8"
 					},
@@ -219,43 +132,11 @@
 				"outputs": [
 					{
 						"internalType": "uint256",
-						"name": "_unitId",
+						"name": "",
 						"type": "uint256"
 					}
 				],
 				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "name",
-				"outputs": [
-					{
-						"internalType": "string",
-						"name": "",
-						"type": "string"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "_tokenId",
-						"type": "uint256"
-					}
-				],
-				"name": "ownerOf",
-				"outputs": [
-					{
-						"internalType": "address",
-						"name": "owner",
-						"type": "address"
-					}
-				],
-				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -279,111 +160,6 @@
 						"type": "bool"
 					}
 				],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "bytes4",
-						"name": "_interfaceID",
-						"type": "bytes4"
-					}
-				],
-				"name": "supportsInterface",
-				"outputs": [
-					{
-						"internalType": "bool",
-						"name": "",
-						"type": "bool"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "symbol",
-				"outputs": [
-					{
-						"internalType": "string",
-						"name": "",
-						"type": "string"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "_owner",
-						"type": "address"
-					}
-				],
-				"name": "tokensOfOwner",
-				"outputs": [
-					{
-						"internalType": "uint256[]",
-						"name": "tokenIds",
-						"type": "uint256[]"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "totalSupply",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "total",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "_to",
-						"type": "address"
-					},
-					{
-						"internalType": "uint256",
-						"name": "_tokenId",
-						"type": "uint256"
-					}
-				],
-				"name": "transfer",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "_from",
-						"type": "address"
-					},
-					{
-						"internalType": "address",
-						"name": "_to",
-						"type": "address"
-					},
-					{
-						"internalType": "uint256",
-						"name": "_tokenId",
-						"type": "uint256"
-					}
-				],
-				"name": "transferFrom",
-				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
 			},
@@ -430,17 +206,17 @@
 		},
 		"optimizer": {
 			"enabled": true,
-			"runs": 200
+			"runs": 1
 		},
 		"remappings": []
 	},
 	"sources": {
 		"MatchMaker_flat.sol": {
-			"keccak256": "0xca6915ac8eebe87a0245abf12570876f38d005f876e86f2527c0d49e8f244a31",
+			"keccak256": "0xd023f3871d27555a9b49ed365f54d8e4538b7d0707c61bb3a2a8d5192a9e4b34",
 			"license": "UNLICENSED",
 			"urls": [
-				"bzz-raw://9fde37dadaa388c777dd571af83809557954d2e77655beab9e714482c5b14a3e",
-				"dweb:/ipfs/QmesojfX7vxrq9ywc9v6PDtHyGMsKKqCrb1XydhvM6XvfL"
+				"bzz-raw://c542dbcea1511f84e22a96541bfe069785587b3c8f6704367abe339c251a9773",
+				"dweb:/ipfs/QmNWYAxC8aHoNnVrgha66kyYuhFsp64UQgShYSPK632ez9"
 			]
 		}
 	},

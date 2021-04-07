@@ -47,54 +47,19 @@
 		},
 		"gasEstimates": null,
 		"methodIdentifiers": {
-			"approve(address,uint256)": "095ea7b3",
-			"balanceOf(address)": "70a08231",
 			"bid(uint256,uint256)": "598647f8",
 			"bid(uint256,uint256,string)": "76d4fc57",
 			"buyUnit(uint8)": "27e78202",
 			"buyUnit(uint8,string)": "898f4299",
 			"getSquadIdsInTier(uint8)": "64e0b81f",
-			"name()": "06fdde03",
-			"ownerOf(uint256)": "6352211e",
 			"randomChallenge(uint256[])": "dba7f943",
 			"startAuction(uint256[],uint256)": "40b53391",
-			"supportsInterface(bytes4)": "01ffc9a7",
-			"symbol()": "95d89b41",
 			"targetedChallenge(uint256[],uint256)": "e56053eb",
-			"tokensOfOwner(address)": "8462151c",
-			"totalSupply()": "18160ddd",
-			"transfer(address,uint256)": "a9059cbb",
-			"transferFrom(address,address,uint256)": "23b872dd",
 			"withdrawAuction(uint256)": "b5fc9833",
 			"withdrawSquad(uint256)": "198b367d"
 		}
 	},
 	"abi": [
-		{
-			"anonymous": false,
-			"inputs": [
-				{
-					"indexed": false,
-					"internalType": "address",
-					"name": "owner",
-					"type": "address"
-				},
-				{
-					"indexed": false,
-					"internalType": "address",
-					"name": "approved",
-					"type": "address"
-				},
-				{
-					"indexed": false,
-					"internalType": "uint256",
-					"name": "tokenId",
-					"type": "uint256"
-				}
-			],
-			"name": "Approval",
-			"type": "event"
-		},
 		{
 			"anonymous": false,
 			"inputs": [
@@ -120,31 +85,6 @@
 				{
 					"indexed": false,
 					"internalType": "address",
-					"name": "from",
-					"type": "address"
-				},
-				{
-					"indexed": false,
-					"internalType": "address",
-					"name": "to",
-					"type": "address"
-				},
-				{
-					"indexed": false,
-					"internalType": "uint256",
-					"name": "tokenId",
-					"type": "uint256"
-				}
-			],
-			"name": "Transfer",
-			"type": "event"
-		},
-		{
-			"anonymous": false,
-			"inputs": [
-				{
-					"indexed": false,
-					"internalType": "address",
 					"name": "owner",
 					"type": "address"
 				},
@@ -157,43 +97,6 @@
 			],
 			"name": "UnitCreated",
 			"type": "event"
-		},
-		{
-			"inputs": [
-				{
-					"internalType": "address",
-					"name": "_to",
-					"type": "address"
-				},
-				{
-					"internalType": "uint256",
-					"name": "_tokenId",
-					"type": "uint256"
-				}
-			],
-			"name": "approve",
-			"outputs": [],
-			"stateMutability": "nonpayable",
-			"type": "function"
-		},
-		{
-			"inputs": [
-				{
-					"internalType": "address",
-					"name": "_owner",
-					"type": "address"
-				}
-			],
-			"name": "balanceOf",
-			"outputs": [
-				{
-					"internalType": "uint256",
-					"name": "balance",
-					"type": "uint256"
-				}
-			],
-			"stateMutability": "view",
-			"type": "function"
 		},
 		{
 			"inputs": [
@@ -251,7 +154,7 @@
 		{
 			"inputs": [
 				{
-					"internalType": "enum IAutoChessBase.UnitType",
+					"internalType": "enum UnitType",
 					"name": "_type",
 					"type": "uint8"
 				}
@@ -260,7 +163,7 @@
 			"outputs": [
 				{
 					"internalType": "uint256",
-					"name": "_unitId",
+					"name": "",
 					"type": "uint256"
 				}
 			],
@@ -270,7 +173,7 @@
 		{
 			"inputs": [
 				{
-					"internalType": "enum IAutoChessBase.UnitType",
+					"internalType": "enum UnitType",
 					"name": "_type",
 					"type": "uint8"
 				},
@@ -284,7 +187,7 @@
 			"outputs": [
 				{
 					"internalType": "uint256",
-					"name": "_unitId",
+					"name": "",
 					"type": "uint256"
 				}
 			],
@@ -294,7 +197,7 @@
 		{
 			"inputs": [
 				{
-					"internalType": "enum IAutoChessBase.DeploymentState",
+					"internalType": "enum DeploymentState",
 					"name": "_tier",
 					"type": "uint8"
 				}
@@ -305,38 +208,6 @@
 					"internalType": "uint256[]",
 					"name": "deployed",
 					"type": "uint256[]"
-				}
-			],
-			"stateMutability": "view",
-			"type": "function"
-		},
-		{
-			"inputs": [],
-			"name": "name",
-			"outputs": [
-				{
-					"internalType": "string",
-					"name": "",
-					"type": "string"
-				}
-			],
-			"stateMutability": "view",
-			"type": "function"
-		},
-		{
-			"inputs": [
-				{
-					"internalType": "uint256",
-					"name": "_tokenId",
-					"type": "uint256"
-				}
-			],
-			"name": "ownerOf",
-			"outputs": [
-				{
-					"internalType": "address",
-					"name": "owner",
-					"type": "address"
 				}
 			],
 			"stateMutability": "view",
@@ -354,7 +225,7 @@
 			"outputs": [
 				{
 					"internalType": "uint256",
-					"name": "winnings",
+					"name": "squadId",
 					"type": "uint256"
 				}
 			],
@@ -388,38 +259,6 @@
 		{
 			"inputs": [
 				{
-					"internalType": "bytes4",
-					"name": "_interfaceID",
-					"type": "bytes4"
-				}
-			],
-			"name": "supportsInterface",
-			"outputs": [
-				{
-					"internalType": "bool",
-					"name": "",
-					"type": "bool"
-				}
-			],
-			"stateMutability": "view",
-			"type": "function"
-		},
-		{
-			"inputs": [],
-			"name": "symbol",
-			"outputs": [
-				{
-					"internalType": "string",
-					"name": "",
-					"type": "string"
-				}
-			],
-			"stateMutability": "view",
-			"type": "function"
-		},
-		{
-			"inputs": [
-				{
 					"internalType": "uint256[]",
 					"name": "unitIds",
 					"type": "uint256[]"
@@ -434,83 +273,10 @@
 			"outputs": [
 				{
 					"internalType": "uint256",
-					"name": "winnings",
+					"name": "squadId",
 					"type": "uint256"
 				}
 			],
-			"stateMutability": "nonpayable",
-			"type": "function"
-		},
-		{
-			"inputs": [
-				{
-					"internalType": "address",
-					"name": "_owner",
-					"type": "address"
-				}
-			],
-			"name": "tokensOfOwner",
-			"outputs": [
-				{
-					"internalType": "uint256[]",
-					"name": "tokenIds",
-					"type": "uint256[]"
-				}
-			],
-			"stateMutability": "view",
-			"type": "function"
-		},
-		{
-			"inputs": [],
-			"name": "totalSupply",
-			"outputs": [
-				{
-					"internalType": "uint256",
-					"name": "total",
-					"type": "uint256"
-				}
-			],
-			"stateMutability": "view",
-			"type": "function"
-		},
-		{
-			"inputs": [
-				{
-					"internalType": "address",
-					"name": "_to",
-					"type": "address"
-				},
-				{
-					"internalType": "uint256",
-					"name": "_tokenId",
-					"type": "uint256"
-				}
-			],
-			"name": "transfer",
-			"outputs": [],
-			"stateMutability": "nonpayable",
-			"type": "function"
-		},
-		{
-			"inputs": [
-				{
-					"internalType": "address",
-					"name": "_from",
-					"type": "address"
-				},
-				{
-					"internalType": "address",
-					"name": "_to",
-					"type": "address"
-				},
-				{
-					"internalType": "uint256",
-					"name": "_tokenId",
-					"type": "uint256"
-				}
-			],
-			"name": "transferFrom",
-			"outputs": [],
 			"stateMutability": "nonpayable",
 			"type": "function"
 		},

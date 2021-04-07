@@ -149,67 +149,151 @@ contract StoreToken is ERC20 {
     }
 }   
 
-// File: AutoChess.sol
 
-
-/// see CryptoKitties codebase here
-/// https://ethfiddle.com/09YbyJRfiI and here https://medium.com/loom-network/how-to-code-your-own-cryptokitties-style-game-on-ethereum-7c8ac86a4eb3
-
-//TODO make sure everything conforms to https://docs.soliditylang.org/en/v0.5.3/style-guide.html
-interface IAutoChessBase{
-    /*** TYPES AND MAPPINGS ***/
-    //unit structs etc
-    //Made these capitals so that ENUMS are consistently styled
-    enum UnitType { 
+ /*** TYPES AND MAPPINGS ***/
+enum UnitType { 
         Archer, Warrior, Cavalry
     }
 
-    struct Unit{
-        uint16 attack;
-        uint16 defence;
-        //functions as a multiplier on the other attributes
-        uint16 level;
-        //starting health of unit
-        uint16 maxHealth;
-        // health remaining on this unit
-        uint16 curHealth;
-        //what type of unit this is
-        UnitType utype;
-        //A name associated with this unit
+struct Unit{
+    uint16 attack;
+    uint16 defence;
+    //functions as a multiplier on the other attributes
+    uint16 level;
+    //starting health of unit
+    uint16 maxHealth;
+    // health remaining on this unit
+    uint16 curHealth;
+    //what type of unit this is
+    UnitType utype;
+    //A name associated with this unit
+    string name;
+}
+
+enum squadType {
+    triangle, square, circle
+}
+//To check if a unit exists check if it's sate is dead
+enum UnitState {
+    Dead,Deployed,Auctioning,Default,Promised
+}
+
+enum DeploymentState{
+    Retired,TierOne,TierTwo,TierThree,TierFour
+}
+
+struct Squad{
+    //list of the units in this squad
+    uint256[] unitIds;
+    //count of remaining units
+    uint8 unitCount;
+    //Tokens that will be returned when this squad returns
+    uint16 stashedTokens;
+    //tracks wether this squad is deployed
+    DeploymentState state;
+    //timer for when the squad was deployed
+    uint16 deployTime;
+}
+
+struct Auction {
+        uint256 highestBid;
+        uint256[] assetIds;
+        address highestBidder;
+        address host;
         string name;
+        //this seems like fun
+        string highestBidText;
+        //add some stuff for timeout
+        uint256 endTime;
     }
 
-    enum squadType {
-        triangle, square, circle
+library AutoChessHelpers {
+    // Predictable random number generator. Used for unit generation
+    //the 
+    //from https://fravoll.github.io/solidity-patterns/randomness.html
+    function randomNumber(uint options) public view returns (uint16) {
+        return uint16(uint(blockhash(block.number - 1)) % options);
     }
-    //To check if a unit exists check if it's sate is dead
-    enum UnitState {
-        Dead,Deployed,Auctioning,Default,Promised
-    }
-
-    enum DeploymentState{
-        Retired,TierOne,TierTwo,TierThree,TierFour
-    }
-
     
-    struct Squad{
-        //list of the units in this squad
-        uint256[] unitIds;
-        //count of remaining units
-        uint8 unitCount;
-        //Tokens that will be returned when this squad returns
-        uint16 stashedTokens;
-        //tracks wether this squad is deployed
-        DeploymentState state;
-        //timer for when the squad was deployed
-        uint16 deployTime;
-        //total ammount of atk, defense in the squad for making calculations easier
-        uint16 totalAttack;
+    function createUnit(Unit[] storage units, mapping(uint256 => UnitState) storage stateMap, UnitType _type, string memory _name) public returns(uint256 newUnitId){
+        
+        Unit memory _unit = Unit({
+                            attack: 0,
+                            defence: 0,
+                            //functions as a multiplier on the other attributes
+                            level: 1,
+                            //starting health of unit
+                            maxHealth: 0,
+                            // health remaining on this unit
+                            curHealth: 0,
+                            //what type of unit this is
+                            utype: _type,
+                            //A name associated with this unit
+                            name: _name
+                            });
+
+        if (_type == UnitType.Archer) {
+            // archer, high attack
+            _unit.attack += 15;
+            _unit.defence += 1;
+            _unit.maxHealth += 50;
+        } else if (_type == UnitType.Warrior) {
+            // warrior, high defence
+            _unit.attack += 10;
+            _unit.defence += 5;
+            _unit.maxHealth += 50;
+        } else if (_type == UnitType.Cavalry){
+            // cavalry, high health
+            _unit.attack += 10;
+            _unit.defence += 1;
+            _unit.maxHealth += 75;
+        }
+
+        // create units with max health
+        _unit.curHealth = _unit.maxHealth;
+        // create units with max health
+        _unit.curHealth = _unit.maxHealth;
+        //TODO modify this now that unitIDS are permanent
+		units.push(_unit);
+		require(units.length > 0, "units should not be empty");
+		newUnitId = units.length  - 1;
+        stateMap[newUnitId] = UnitState.Default;
+        
+    }
+    
+    function getUnitCost(UnitType _type) public pure returns(uint256 cost){
+        if(_type == UnitType.Warrior){
+            cost+=10;
+        }else if(_type == UnitType.Archer){
+            cost+=15;
+        }else if(_type == UnitType.Cavalry){
+            cost+=20;
+        }else{
+            require(false, "Not a valid unit type");
+        }
+        return cost;
+    }
+    
+     function _getTier(uint _unitCount) public pure returns(DeploymentState state){
+        if(_unitCount == 1){
+            state = DeploymentState.TierOne;
+        }else if(_unitCount == 3){
+            state = DeploymentState.TierTwo;
+        }else if(_unitCount == 5){
+            state = DeploymentState.TierThree;
+        }else if(_unitCount == 7){
+            state = DeploymentState.TierFour;
+        }else{
+            //error otherwise
+            assert(false);
+        }
     }
 }
 
+
+
 // has all the basic data etc
-contract AutoChessBase is IAutoChessBase {
+contract AutoChessBase{
 
     ///@dev global list of all units and squads. Maybe there is a better way
     Unit[] public units;
@@ -246,34 +330,6 @@ contract AutoChessBase is IAutoChessBase {
 
     mapping (address => uint256[]) public ownerToUnitIndices;
     
-    
-    // Predictable random number generator. Used for unit generation
-    //the 
-    //from https://fravoll.github.io/solidity-patterns/randomness.html
-    function randomNumber(uint options) internal view returns (uint16) {
-        return uint16(uint(blockhash(block.number - 1)) % options);
-    }
-    
-    //TODO add constants for TIER sizes
-    //TODO add constants for DEFAULT STATS
-
-    // TODO consider using enum directly instead of this function
-    //      not sure if solidity supports it
-    //      for now using this function
-    function _getTier(uint _unitCount) internal pure returns(DeploymentState state){
-        if(_unitCount == 1){
-            return DeploymentState.TierOne;
-        }else if(_unitCount == 3){
-            return DeploymentState.TierTwo;
-        }else if(_unitCount == 5){
-            return DeploymentState.TierThree;
-        }else if(_unitCount == 7){
-            return DeploymentState.TierFour;
-        }
-        //error otherwise
-        assert(false);
-    }
-
 }
 
 // File: UnitToken.sol
@@ -311,11 +367,7 @@ interface ERC721 {
 }
 
 
-interface IUnitToken is IAutoChessBase, ERC721{
-
-}
-
-contract UnitToken is AutoChessBase, IUnitToken {
+contract UnitToken is AutoChessBase, ERC721{
     //TODO fill these in
     // Required methods
 
@@ -402,19 +454,8 @@ contract UnitToken is AutoChessBase, IUnitToken {
 
 
 
-interface IUnitMarketplace is IUnitToken{
-    struct Auction {
-        uint256 highestBid;
-        uint256[] assetIds;
-        address highestBidder;
-        address host;
-        string name;
-        //this seems like fun
-        string highestBidText;
-        //add some stuff for timeout
-        uint256 endTime;
-    }
-
+interface IUnitMarketplace{
+    
     function bid(uint256 _auctionId, uint256 _value) external returns(bool success);
     function bid(uint256 _auctionId, uint256 _value,string calldata _msg) external returns(bool success);
     function startAuction(uint256[] calldata _assets, uint256 _asking) external returns(bool success);
@@ -478,12 +519,10 @@ contract UnitMarketplace is UnitToken,IUnitMarketplace {
     }
 
     function withdrawAuction(uint256 _auctionId) public override returns(bool success){
-        //TODO make sure this auction actually exists
-        Auction memory auction = _auctions[_auctionId];
-        require(auction.host == msg.sender, "You are not the host of this auction!");
-        require(auction.endTime > block.timestamp, "It is too late to withdraw this auction!");
+        require(_auctions[_auctionId].host == msg.sender, "You are not the host of this auction!");
+        require(_auctions[_auctionId].endTime > block.timestamp, "It is too late to withdraw this auction!");
         //withdraw the highestbidders bid
-        CurrencyProvider.autoUnApprove(auction.highestBidder,auction.highestBid);
+        CurrencyProvider.autoUnApprove(_auctions[_auctionId].highestBidder,_auctions[_auctionId].highestBid);
         //TODO reset ownership of units back to the host or use approval system instead
         return true;
     }
@@ -496,9 +535,9 @@ contract UnitMarketplace is UnitToken,IUnitMarketplace {
 
 
 interface ISquadBuilder is IUnitMarketplace{
-    function buyUnit(UnitType _type) external returns (uint256 _unitId);
-    function buyUnit(UnitType _type, string memory _name) external returns (uint256 _unitId);
-    event UnitCreated(address owner, uint256 indexed  id);
+    function buyUnit(UnitType _type) external returns (uint256);
+    function buyUnit(UnitType _type, string memory _name) external returns (uint256);
+    event UnitCreated(address owner, uint256 indexed id);
     event SquadCreated(address owner, uint256 _id);
 }
 
@@ -506,85 +545,27 @@ contract SquadBuilder is UnitMarketplace, ISquadBuilder {
 
     //TODO implement this so that units can be efficiently deleted etc
     //other approach is to update id of last unit(probably a bad idea)
-    uint256[] unusedIndices;
     string constant DEFAULT_NAME = "Maurice, the Mediocre";
     /// @dev creates and stores a new unit
     
     constructor() UnitMarketplace(){}
     
-    function _generateUnit(UnitType _type,string memory _name) internal returns (uint)
-    {
-        Unit memory _unit = Unit({
-                            attack: 0,
-                            defence: 0,
-                            //functions as a multiplier on the other attributes
-                            level: 1,
-                            //starting health of unit
-                            maxHealth: 0,
-                            // health remaining on this unit
-                            curHealth: 0,
-                            //what type of unit this is
-                            utype: _type,
-                            //A name associated with this unit
-                            name: _name
-                            });
-
-        if (_type == UnitType.Archer) {
-            // archer, high attack
-            _unit.attack += 15;
-            _unit.defence += 1;
-            _unit.maxHealth += 50;
-        } else if (_type == UnitType.Warrior) {
-            // warrior, high defence
-            _unit.attack += 10;
-            _unit.defence += 5;
-            _unit.maxHealth += 50;
-        } else if (_type == UnitType.Cavalry){
-            // cavalry, high health
-            _unit.attack += 10;
-            _unit.defence += 1;
-            _unit.maxHealth += 75;
-        }
-
-        // create units with max health
-        _unit.curHealth = _unit.maxHealth;
-
-        //TODO modify this now that unitIDS are permanent
-        uint256 newUnitId;
-		units.push(_unit);
-		require(units.length > 0, "units should not be empty");
-		newUnitId = units.length  - 1;
-        unitIndexToState[newUnitId] = UnitState.Default;
-        return newUnitId;
-    }
     
     function _buyUnit(address _owner, UnitType _type, string memory _name) internal returns (uint256 _unitId){
-        uint256 _cost = 0;
-        uint256 _id;
-        if(_type == UnitType.Warrior){
-            _cost+=10;
-        }else if(_type == UnitType.Archer){
-            _cost+=15;
-        }else if(_type == UnitType.Cavalry){
-            _cost+=20;
-        }else{
-            require(false, "Not a valid unit type");
-        }
-        
+        uint256 _cost = AutoChessHelpers.getUnitCost(_type);
         CurrencyProvider.spend(_owner,_cost);
-        _id = _generateUnit(_type, _name);
-        emit UnitCreated(_owner,_id);
-        unitIndexToOwner[_id] = _owner;
+        _unitId = AutoChessHelpers.createUnit(units, unitIndexToState, _type, _name);
+        emit UnitCreated(_owner,_unitId);
+        unitIndexToOwner[_unitId] = _owner;
         ownerToUnitCount[_owner]+=1;
-        ownerToUnitIndices[_owner].push(_id);
-        return _id;
+        ownerToUnitIndices[_owner].push(_unitId);
     }
     
-    function buyUnit(UnitType _type) public override returns (uint256 _unitId){
+    function buyUnit(UnitType _type) public override returns (uint256){
         return _buyUnit(msg.sender, _type, DEFAULT_NAME);
     }
     
-    function buyUnit(UnitType _type, string calldata _name) public override returns (uint256 _unitId){
+    function buyUnit(UnitType _type, string calldata _name) public override returns (uint256){
         return _buyUnit(msg.sender,_type,_name);
     }
     
@@ -592,22 +573,19 @@ contract SquadBuilder is UnitMarketplace, ISquadBuilder {
     // create squad
     //TODO remove the workaround where you have to send 7 unitIds
     function _createSquad(address _owner, uint256[] memory _unitIds) internal returns(uint256 squadId, DeploymentState tier){
-        uint16 atkSum=0;
         //TODO make sure that _unitIds is one of the correct lengths
         require(_unitIds.length <= 7, "Invalid number of units");
         for(uint8 i=0; i < _unitIds.length; i+=1){
             require(unitIndexToOwner[_unitIds[i]] == _owner, "You don't own this unit!");
             require(unitIndexToState[_unitIds[i]] == UnitState.Default, "Unit is busy");//check that this unit isn't doing something else
             unitIndexToState[_unitIds[i]] = UnitState.Deployed;
-            atkSum+=units[_unitIds[i]].attack;
         }
-        DeploymentState _tier = _getTier(_unitIds.length);
+        tier = AutoChessHelpers._getTier(_unitIds.length);
         Squad memory _squad = Squad({
                     unitIds: new uint256[](0),
                     unitCount:uint8(_unitIds.length),
-                    state:_tier,
+                    state:tier,
                     deployTime:uint16(block.timestamp), //TODO this seems sketch
-                    totalAttack:atkSum,
                     stashedTokens:0
                     });
                     
@@ -621,7 +599,7 @@ contract SquadBuilder is UnitMarketplace, ISquadBuilder {
         ownerToSquadIndex[_owner].push(squads.length -1);
         squadIndexToOwner[squads.length - 1] = _owner;
         emit SquadCreated(_owner,squads.length-1);
-        return (squads.length-1,_tier);
+        squadId = squads.length-1;
     }
 }
 
@@ -638,16 +616,12 @@ interface IGameEngine is ISquadBuilder{
 contract GameEngine is SquadBuilder, IGameEngine{
 
     constructor() SquadBuilder(){}
-    
-    function unitDeath(uint256 _unitId) internal returns (bool success){
-        return true;
-    }
 
     //TODO This doesn't match what was discussed on Friday
     function _squadBattle(uint attackerSquadId, uint defenderSquadId) internal returns(uint winnings) {
         Squad memory attacker = squads[attackerSquadId];
-        Squad memory  defender = squads[defenderSquadId];
-
+        Squad memory defender = squads[defenderSquadId];
+        
         require(attacker.state == defender.state);
         require(attacker.state != DeploymentState.Retired);
         
@@ -676,13 +650,13 @@ contract GameEngine is SquadBuilder, IGameEngine{
             
             // attacker attacks phase
             // choose attacker unit
-            atkIdxAP = randomNumber(attacker.unitIds.length);
+            atkIdxAP = AutoChessHelpers.randomNumber(attacker.unitIds.length);
             while(atkUnits[atkIdxAP].curHealth <= 0) {
                 atkIdxAP = (atkIdxAP + 1) % attacker.unitIds.length;
             }
 
             // choose defending unit
-            dfdIdxAP = randomNumber(defender.unitIds.length);
+            dfdIdxAP = AutoChessHelpers.randomNumber(defender.unitIds.length);
             while(dfdUnits[dfdIdxAP].curHealth <= 0) {
                 dfdIdxAP = (dfdIdxAP + 1) % defender.unitIds.length;
             }
@@ -699,13 +673,13 @@ contract GameEngine is SquadBuilder, IGameEngine{
 
             // defender attacks phase
             // choose attacker unit
-            atkIdxDP = randomNumber(defender.unitIds.length);
+            atkIdxDP = AutoChessHelpers.randomNumber(defender.unitIds.length);
             while(dfdUnits[atkIdxDP].curHealth <= 0) {
                 atkIdxDP = (atkIdxDP + 1) % defender.unitIds.length;
             }
 
             // choose defender unit
-            dfdIdxDP = randomNumber(attacker.unitIds.length);
+            dfdIdxDP = AutoChessHelpers.randomNumber(attacker.unitIds.length);
             while(atkUnits[dfdIdxDP].curHealth <= 0) {
                 dfdIdxDP = (dfdIdxDP + 1) % attacker.unitIds.length;
             }
@@ -743,14 +717,12 @@ contract GameEngine is SquadBuilder, IGameEngine{
 
 /// connects players and arranges for who plays what games
 
-
-
 ///handles all the adding of units and whatnot
 
 interface IMatchMaker is IGameEngine{
-
-    function randomChallenge(uint256[] calldata unitIds) external returns (uint256 winnings);
-    function targetedChallenge(uint256[] calldata unitIds, uint256 _targetId) external returns (uint256 winnings);
+    
+    function randomChallenge(uint256[] calldata unitIds) external returns (uint256 squadId);
+    function targetedChallenge(uint256[] calldata unitIds, uint256 _targetId) external returns (uint256 squadId);
     function withdrawSquad(uint256 _squadId) external returns (bool success);
     function getSquadIdsInTier(DeploymentState _tier) external view returns (uint256[] memory deployed); //This is subject to change
 
@@ -791,31 +763,28 @@ contract MatchMaker is GameEngine, IMatchMaker{
    }
 
     //TODO make this create a squad
-    function randomChallenge(uint256[] calldata _unitIds) public override returns (uint256 winnings){
-        uint256 squadId;
+    function randomChallenge(uint256[] calldata _unitIds) public override returns (uint256 squadId){
         DeploymentState tier;
         (squadId, tier) = _createSquad(msg.sender, _unitIds);
-        uint256 targetId = randomNumber(tierToSquadIndex[tier].length);
-        return _squadBattle(squadId,targetId);//TODO update this so that wining sgo on the squad and the id is returned instead
+        uint256 targetId = AutoChessHelpers.randomNumber(tierToSquadIndex[tier].length);
+        _squadBattle(squadId,targetId);
     }
 
 
-    function targetedChallenge(uint256[] calldata _unitIds, uint256 _targetId) public override returns (uint256 winnings){
-        uint256 squadId;
+    function targetedChallenge(uint256[] calldata _unitIds, uint256 _targetId) public override returns (uint256 squadId){
+        
         DeploymentState tier;
         (squadId, tier) = _createSquad(msg.sender,_unitIds);
         //make sure it's a valid target
         assert(tierToSquadIndex[tier].length > _targetId);
-        return _squadBattle(squadId,_targetId);
+         _squadBattle(squadId,_targetId);
     }
 
 
-    function getSquadIdsInTier(DeploymentState _tier) public override view returns (uint256[] memory deployed){
+    function getSquadIdsInTier(DeploymentState _tier) public override view returns (uint256[] memory){
         return tierToSquadIndex[_tier];
     }
-
-
-
+    
     function withdrawSquad(uint256 _squadId) public override returns (bool success){
 
     }

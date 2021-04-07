@@ -88,18 +88,13 @@
 						"type": "uint16"
 					},
 					{
-						"internalType": "enum IAutoChessBase.DeploymentState",
+						"internalType": "enum DeploymentState",
 						"name": "state",
 						"type": "uint8"
 					},
 					{
 						"internalType": "uint16",
 						"name": "deployTime",
-						"type": "uint16"
-					},
-					{
-						"internalType": "uint16",
-						"name": "totalAttack",
 						"type": "uint16"
 					}
 				],
@@ -174,7 +169,7 @@
 				"name": "unitIndexToState",
 				"outputs": [
 					{
-						"internalType": "enum IAutoChessBase.UnitState",
+						"internalType": "enum UnitState",
 						"name": "",
 						"type": "uint8"
 					}
@@ -218,7 +213,7 @@
 						"type": "uint16"
 					},
 					{
-						"internalType": "enum IAutoChessBase.UnitType",
+						"internalType": "enum UnitType",
 						"name": "utype",
 						"type": "uint8"
 					},
@@ -283,17 +278,17 @@
 		},
 		"optimizer": {
 			"enabled": true,
-			"runs": 200
+			"runs": 1
 		},
 		"remappings": []
 	},
 	"sources": {
 		"MatchMaker_flat.sol": {
-			"keccak256": "0xca6915ac8eebe87a0245abf12570876f38d005f876e86f2527c0d49e8f244a31",
+			"keccak256": "0xd023f3871d27555a9b49ed365f54d8e4538b7d0707c61bb3a2a8d5192a9e4b34",
 			"license": "UNLICENSED",
 			"urls": [
-				"bzz-raw://9fde37dadaa388c777dd571af83809557954d2e77655beab9e714482c5b14a3e",
-				"dweb:/ipfs/QmesojfX7vxrq9ywc9v6PDtHyGMsKKqCrb1XydhvM6XvfL"
+				"bzz-raw://c542dbcea1511f84e22a96541bfe069785587b3c8f6704367abe339c251a9773",
+				"dweb:/ipfs/QmNWYAxC8aHoNnVrgha66kyYuhFsp64UQgShYSPK632ez9"
 			]
 		}
 	},
