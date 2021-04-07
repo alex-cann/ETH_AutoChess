@@ -50,27 +50,27 @@ library testFunctions{
 
 contract testSuite {
    
-    MatchMaker target;
-    StoreToken token;
-    function beforeAll () public {
+    MatchMaker private target;
+    StoreToken private token;
+    function beforeAll () external {
         target = new MatchMaker();
         token = target.CurrencyProvider();
         token.tokenFaucet();
     }
     
-    function testBuyUnit () public {
+    function testBuyUnit () external {
         testFunctions.testBuyUnit(target,token);
     }
     
-    function testCreateAuction () public {
+    function testCreateAuction () external {
        testFunctions.testCreateAuction(target,token);
     }
     
-    function testCreateSquadRandom() public{
+    function testCreateSquadRandom() external{
        testFunctions.testCreateSquadRandom(target,token);
     }
     
-    function testCreateSquad() public {
+    function testCreateSquad() external {
       testFunctions.testCreateSquad(target,token);
         
     }

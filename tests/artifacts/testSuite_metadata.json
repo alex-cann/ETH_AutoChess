@@ -85,10 +85,10 @@
 			]
 		},
 		"tests/AutoChess_test.sol": {
-			"keccak256": "0x308da471d651c190d41e0fb584f117854e0287c4bac8326dd09278d45cb450ea",
+			"keccak256": "0xfa8be5a1233d06ab1c5dcc608e4c4b0b6d414afd967cc3e3472b1a49cd4040ef",
 			"urls": [
-				"bzz-raw://bded83b2f28e2e33adb51b94321c366903e3ee8b4bf94d8f7d540c3799f1f3c1",
-				"dweb:/ipfs/QmeDRot4YhTJrKYkvSrYausYMcKTzaoDSEdJFWFfYZJ9JB"
+				"bzz-raw://230e7ec791be74d3cabcb5f4ae83071cdf0920b66e4885685c1299354fffae5c",
+				"dweb:/ipfs/Qmdxr6ZDGAEW6bqoczeeSPyfPhTgpDVu1pojVperYnFMSa"
 			]
 		}
 	},
