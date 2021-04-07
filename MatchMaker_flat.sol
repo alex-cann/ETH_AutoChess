@@ -695,7 +695,6 @@ contract GameEngine is SquadBuilder, IGameEngine{
         for(uint i=0; i < 1 && atkNum > 0 && dfdNum > 0;i++) {
             //TODO why is this random ordering it allows for users to structure squads better
             //otherwise why does it matter that you have warriors etc if enemies will randomly hit your archers
-            require(false,"iteration started");
             // attacker attacks phase
             // choose attacker unit
             atkIdxAP = AutoChessHelpers.randomNumber(atkNum);
