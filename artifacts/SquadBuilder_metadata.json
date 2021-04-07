@@ -219,13 +219,7 @@
 					}
 				],
 				"name": "bid",
-				"outputs": [
-					{
-						"internalType": "bool",
-						"name": "success",
-						"type": "bool"
-					}
-				],
+				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
 			},
@@ -248,13 +242,7 @@
 					}
 				],
 				"name": "bid",
-				"outputs": [
-					{
-						"internalType": "bool",
-						"name": "success",
-						"type": "bool"
-					}
-				],
+				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
 			},
@@ -440,14 +428,19 @@
 						"internalType": "uint256",
 						"name": "_asking",
 						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "title",
+						"type": "string"
 					}
 				],
 				"name": "startAuction",
 				"outputs": [
 					{
-						"internalType": "bool",
-						"name": "success",
-						"type": "bool"
+						"internalType": "uint256",
+						"name": "auctionId",
+						"type": "uint256"
 					}
 				],
 				"stateMutability": "nonpayable",
@@ -705,11 +698,7 @@
 		],
 		"devdoc": {
 			"kind": "dev",
-			"methods": {
-				"constructor": {
-					"details": "creates and stores a new unit"
-				}
-			},
+			"methods": {},
 			"version": 1
 		},
 		"userdoc": {
@@ -733,17 +722,32 @@
 		},
 		"optimizer": {
 			"enabled": true,
-			"runs": 1
+			"runs": 200
 		},
 		"remappings": []
 	},
 	"sources": {
 		"MatchMaker_flat.sol": {
-			"keccak256": "0xd023f3871d27555a9b49ed365f54d8e4538b7d0707c61bb3a2a8d5192a9e4b34",
+			"keccak256": "0x1a8664e22d4a932357b397fdab98223a4a126eab06d986215194e1592fd4fbf0",
 			"license": "UNLICENSED",
 			"urls": [
-				"bzz-raw://c542dbcea1511f84e22a96541bfe069785587b3c8f6704367abe339c251a9773",
-				"dweb:/ipfs/QmNWYAxC8aHoNnVrgha66kyYuhFsp64UQgShYSPK632ez9"
+				"bzz-raw://1ee73cce15fbfc0c5df771b3fdfe5c225d07241c24e3be4e5aa7b4cd71b302e7",
+				"dweb:/ipfs/QmWzNdy4CM4EgBpkJeoQSagnDvkkuQdf4XorYEaJonxqfg"
+			]
+		},
+		"remix_tests.sol": {
+			"keccak256": "0xe2783cdc204cba8c72494119339f1d90f9022b15d6c718c668b7f097d8e29787",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://bb6a22e64c7f16bcaab63b1c1a1b269d5be8a6d37bdd9dec1718477ab916b18e",
+				"dweb:/ipfs/QmdkW1tT5iadBvaHMCoskhDGZKnfdg8o1D9CcoQYtdJet7"
+			]
+		},
+		"tests/AutoChess_test.sol": {
+			"keccak256": "0xb8c686ddb26d6087c67dcdc3b237fd80859f737e9171c70bc54bc1a706f458cf",
+			"urls": [
+				"bzz-raw://fce1366ac5b7ae4f4a028925fa727f240dbd23727ddea228d2e366b585f8fc11",
+				"dweb:/ipfs/QmYp6UxRMVPe3WM8p6rQFk3JL1x7NHrMg5NZosY8dnBpVy"
 			]
 		}
 	},

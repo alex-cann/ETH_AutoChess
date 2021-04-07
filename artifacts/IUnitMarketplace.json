@@ -49,7 +49,7 @@
 		"methodIdentifiers": {
 			"bid(uint256,uint256)": "598647f8",
 			"bid(uint256,uint256,string)": "76d4fc57",
-			"startAuction(uint256[],uint256)": "40b53391",
+			"startAuction(uint256[],uint256,string)": "54c8a21e",
 			"withdrawAuction(uint256)": "b5fc9833"
 		}
 	},
@@ -68,13 +68,7 @@
 				}
 			],
 			"name": "bid",
-			"outputs": [
-				{
-					"internalType": "bool",
-					"name": "success",
-					"type": "bool"
-				}
-			],
+			"outputs": [],
 			"stateMutability": "nonpayable",
 			"type": "function"
 		},
@@ -97,13 +91,7 @@
 				}
 			],
 			"name": "bid",
-			"outputs": [
-				{
-					"internalType": "bool",
-					"name": "success",
-					"type": "bool"
-				}
-			],
+			"outputs": [],
 			"stateMutability": "nonpayable",
 			"type": "function"
 		},
@@ -118,14 +106,19 @@
 					"internalType": "uint256",
 					"name": "_asking",
 					"type": "uint256"
+				},
+				{
+					"internalType": "string",
+					"name": "title",
+					"type": "string"
 				}
 			],
 			"name": "startAuction",
 			"outputs": [
 				{
-					"internalType": "bool",
-					"name": "success",
-					"type": "bool"
+					"internalType": "uint256",
+					"name": "auctionId",
+					"type": "uint256"
 				}
 			],
 			"stateMutability": "nonpayable",

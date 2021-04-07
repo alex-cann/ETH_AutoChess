@@ -27,17 +27,17 @@
 		},
 		"optimizer": {
 			"enabled": true,
-			"runs": 1
+			"runs": 200
 		},
 		"remappings": []
 	},
 	"sources": {
 		"MatchMaker_flat.sol": {
-			"keccak256": "0xd023f3871d27555a9b49ed365f54d8e4538b7d0707c61bb3a2a8d5192a9e4b34",
+			"keccak256": "0x115dbbe648118aed1c02ebb38ccc748c2a42a9717c6803ba953c1c2014ba67c1",
 			"license": "UNLICENSED",
 			"urls": [
-				"bzz-raw://c542dbcea1511f84e22a96541bfe069785587b3c8f6704367abe339c251a9773",
-				"dweb:/ipfs/QmNWYAxC8aHoNnVrgha66kyYuhFsp64UQgShYSPK632ez9"
+				"bzz-raw://133ddb441d306500a6b380f3067863b54b7a36f9de3aaa2aee970a9d958ff173",
+				"dweb:/ipfs/QmNsBnepEZR2z62J5oDnn8a9Kij5uCks9oT5AsECeGAUts"
 			]
 		},
 		"remix_tests.sol": {
@@ -49,10 +49,10 @@
 			]
 		},
 		"tests/AutoChess_test.sol": {
-			"keccak256": "0xfa8be5a1233d06ab1c5dcc608e4c4b0b6d414afd967cc3e3472b1a49cd4040ef",
+			"keccak256": "0xb8c686ddb26d6087c67dcdc3b237fd80859f737e9171c70bc54bc1a706f458cf",
 			"urls": [
-				"bzz-raw://230e7ec791be74d3cabcb5f4ae83071cdf0920b66e4885685c1299354fffae5c",
-				"dweb:/ipfs/Qmdxr6ZDGAEW6bqoczeeSPyfPhTgpDVu1pojVperYnFMSa"
+				"bzz-raw://fce1366ac5b7ae4f4a028925fa727f240dbd23727ddea228d2e366b585f8fc11",
+				"dweb:/ipfs/QmYp6UxRMVPe3WM8p6rQFk3JL1x7NHrMg5NZosY8dnBpVy"
 			]
 		}
 	},

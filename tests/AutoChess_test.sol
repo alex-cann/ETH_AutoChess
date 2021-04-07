@@ -18,7 +18,7 @@ library testFunctions{
     function testCreateAuction (MatchMaker target, StoreToken token) public {
        testBuyUnit(target,token);
        uint256[] memory unitIds = target.tokensOfOwner(address(this));
-       target.startAuction(unitIds, 500);
+       target.startAuction(unitIds, 500, "It's a me");
        for(uint256 i; i < unitIds.length; i++){
            Assert.equal(uint8(target.unitIndexToState(unitIds[i])), uint8(UnitState.Auctioning), "Incorrect Unit State");
        }
@@ -28,22 +28,23 @@ library testFunctions{
        testBuyUnit(target,token);
        uint256[] memory unitIds = target.tokensOfOwner(address(this));
        target.randomChallenge(unitIds);
+       require(false, "challenge succesfful");
        for(uint256 i; i < unitIds.length; i++){
-           Assert.equal(uint8(target.unitIndexToState(unitIds[i])), uint8(UnitState.Deployed), "Incorrect Unit State");
+           require(target.unitIndexToState(unitIds[i]) == UnitState.Deployed, "Incorrect Unit State");
        }
-       Assert.greaterThan(target.getSquadIdsInTier(DeploymentState.TierTwo).length, uint(1), "Squad wasn't added");
-       Assert.equal(target.squadIndexToOwner(target.getSquadIdsInTier(DeploymentState.TierTwo)[1]),address(this),"Squad owner wasn't updated");
+       require(target.getSquadIdsInTier(DeploymentState.TierTwo).length >= 1, "Squad wasn't added");
+       require(target.squadIndexToOwner(target.getSquadIdsInTier(DeploymentState.TierTwo)[1]) == address(this),"Squad owner wasn't updated");
+       
     }
-    
     function testCreateSquad(MatchMaker target, StoreToken  token) public {
        testBuyUnit(target,token);
        uint256[] memory unitIds = target.tokensOfOwner(address(this));
        target.targetedChallenge(unitIds,0);
        for(uint256 i; i < unitIds.length; i++){
-           Assert.equal(uint8(target.unitIndexToState(unitIds[i])), uint8(UnitState.Deployed), "Incorrect Unit State");
+           require(target.unitIndexToState(unitIds[i]) == UnitState.Deployed, "Incorrect Unit State");
        }
-       Assert.greaterThan(target.getSquadIdsInTier(DeploymentState.TierTwo).length, uint(1), "Squad wasn't added");
-       Assert.equal(target.squadIndexToOwner(target.getSquadIdsInTier(DeploymentState.TierTwo)[1]),address(this),"Squad owner wasn't updated");
+       require(target.getSquadIdsInTier(DeploymentState.TierTwo).length >= 1, "Squad wasn't added");
+       require(target.squadIndexToOwner(target.getSquadIdsInTier(DeploymentState.TierTwo)[1]) == address(this),"Squad owner wasn't updated");
     }
     
 }
@@ -57,6 +58,7 @@ contract testSuite {
         token = target.CurrencyProvider();
         token.tokenFaucet();
     }
+    
     
     function testBuyUnit () external {
         testFunctions.testBuyUnit(target,token);
@@ -72,6 +74,7 @@ contract testSuite {
     
     function testCreateSquad() external {
       testFunctions.testCreateSquad(target,token);
-        
     }
+    
+    
 }

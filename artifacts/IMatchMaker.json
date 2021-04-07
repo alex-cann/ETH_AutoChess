@@ -53,7 +53,7 @@
 			"buyUnit(uint8,string)": "898f4299",
 			"getSquadIdsInTier(uint8)": "64e0b81f",
 			"randomChallenge(uint256[])": "dba7f943",
-			"startAuction(uint256[],uint256)": "40b53391",
+			"startAuction(uint256[],uint256,string)": "54c8a21e",
 			"targetedChallenge(uint256[],uint256)": "e56053eb",
 			"withdrawAuction(uint256)": "b5fc9833",
 			"withdrawSquad(uint256)": "198b367d"
@@ -112,13 +112,7 @@
 				}
 			],
 			"name": "bid",
-			"outputs": [
-				{
-					"internalType": "bool",
-					"name": "success",
-					"type": "bool"
-				}
-			],
+			"outputs": [],
 			"stateMutability": "nonpayable",
 			"type": "function"
 		},
@@ -141,13 +135,7 @@
 				}
 			],
 			"name": "bid",
-			"outputs": [
-				{
-					"internalType": "bool",
-					"name": "success",
-					"type": "bool"
-				}
-			],
+			"outputs": [],
 			"stateMutability": "nonpayable",
 			"type": "function"
 		},
@@ -243,14 +231,19 @@
 					"internalType": "uint256",
 					"name": "_asking",
 					"type": "uint256"
+				},
+				{
+					"internalType": "string",
+					"name": "title",
+					"type": "string"
 				}
 			],
 			"name": "startAuction",
 			"outputs": [
 				{
-					"internalType": "bool",
-					"name": "success",
-					"type": "bool"
+					"internalType": "uint256",
+					"name": "auctionId",
+					"type": "uint256"
 				}
 			],
 			"stateMutability": "nonpayable",

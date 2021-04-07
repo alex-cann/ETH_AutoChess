@@ -1,10 +1,8 @@
-
-// File: StoreToken.sol
-
-///ERC20 token used to buy units from the store etc
-
 pragma solidity ^0.8.1;
 //SPDX-License-Identifier: UNLICENSED
+import "./tests/AutoChess_test.sol"; //TODO remove this once testing is done
+
+
 /// @title Interface for contracts conforming to ERC-20: Fungible Tokens
 interface ERC20 {
     // Required methods
@@ -207,12 +205,25 @@ struct Auction {
         uint256 endTime;
     }
 
-library AutoChessHelpers {
-    // Predictable random number generator. Used for unit generation
-    //the 
-    //from https://fravoll.github.io/solidity-patterns/randomness.html
-    function randomNumber(uint options) public view returns (uint16) {
-        return uint16(uint(blockhash(block.number - 1)) % options);
+
+library UnitHelpers {
+    
+    
+    function getCost(UnitType _type) public pure returns(uint256 cost){
+        if(_type == UnitType.Warrior){
+            cost+=10;
+        }else if(_type == UnitType.Archer){
+            cost+=15;
+        }else if(_type == UnitType.Cavalry){
+            cost+=20;
+        }else{
+            require(false, "Not a valid unit type");
+        }
+        return cost;
+    }
+    
+    function getCost(Unit storage unit) public view returns(uint256 cost){
+        return getCost(unit.utype);
     }
     
     function createUnit(Unit[] storage units, mapping(uint256 => UnitState) storage stateMap, UnitType _type, string memory _name) public returns(uint256 newUnitId){
@@ -261,40 +272,86 @@ library AutoChessHelpers {
         
     }
     
-    function getUnitCost(UnitType _type) public pure returns(uint256 cost){
-        if(_type == UnitType.Warrior){
-            cost+=10;
-        }else if(_type == UnitType.Archer){
-            cost+=15;
-        }else if(_type == UnitType.Cavalry){
-            cost+=20;
-        }else{
-            require(false, "Not a valid unit type");
-        }
-        return cost;
+}
+
+library SquadHelpers {
+    
+    
+    
+}
+
+library AutoChessHelpers {
+    // Predictable random number generator. Used for unit generation
+    //the 
+    //from https://fravoll.github.io/solidity-patterns/randomness.html
+    function randomNumber(uint options) public view returns (uint16) {
+        return uint16(uint(blockhash(block.number - 1)) % options);
     }
     
-     function _getTier(uint _unitCount) public pure returns(DeploymentState state){
-        if(_unitCount == 1){
+    
+    
+    function getTier(uint unitCount) public pure returns(DeploymentState state){
+        if(unitCount == 1){
             state = DeploymentState.TierOne;
-        }else if(_unitCount == 3){
+        }else if(unitCount == 3){
             state = DeploymentState.TierTwo;
-        }else if(_unitCount == 5){
+        }else if(unitCount == 5){
             state = DeploymentState.TierThree;
-        }else if(_unitCount == 7){
+        }else if(unitCount == 7){
             state = DeploymentState.TierFour;
-        }else{
-            //error otherwise
-            assert(false);
         }
     }
 }
-
-
+//TODO some refactoring
+library AuctionFunctions{
+    
+    function bid(Auction storage auction, uint256 _value, StoreToken currency) public {
+        //check if this bid is big enough
+        require(_value > auction.highestBid, "This is not a new highest bid!");
+        require(auction.endTime <= block.timestamp, "It is too late to bid!");
+        //preapprove the transaction to the Auction
+        currency.autoApprove(address(this), _value);
+        //remove hold on previous highest bidders currency
+        currency.autoUnApprove(auction.highestBidder,auction.highestBid);
+        auction.highestBid = _value;
+        auction.highestBidder = msg.sender;
+    }
+    
+    
+    function claimAuction(Auction storage auction, StoreToken currency, ERC721 assetProvider) public {
+        require(auction.endTime > block.timestamp, "It is too late to withdraw this auction!");
+        //withdraw the highestbidders bid
+        for (uint i=0; i < auction.assetIds.length; i++){
+            assetProvider.transferFrom(auction.host,auction.highestBidder,auction.assetIds[i]);
+            
+        }
+        currency.transferFrom(auction.highestBidder, auction.host, auction.highestBid);
+    }
+    
+    function createAuction(Auction[] storage auctions, uint256[] calldata _assets, uint256 _asking, string calldata title) public returns(uint256 auctionId){
+         auctions.push(Auction({
+                        highestBid:_asking,
+                        highestBidder: msg.sender,
+                        host: msg.sender,
+                        name: title,
+                        assetIds: new uint256[](0),
+                        highestBidText: "Default Bid",
+                        endTime: block.timestamp + 1 hours
+                        }));
+        //transfer all the assets to the auctionhouse
+        for(uint i =0; i < _assets.length; i++){
+            auctions[auctions.length - 1].assetIds.push(_assets[i]);
+        }
+        return auctions.length-1;
+    }
+}
 
 // has all the basic data etc
 contract AutoChessBase{
-
+    
+    using SquadHelpers for Squad;
+    using UnitHelpers for Unit;
+    using UnitHelpers for UnitType;
     ///@dev global list of all units and squads. Maybe there is a better way
     Unit[] public units;
 
@@ -321,10 +378,10 @@ contract AutoChessBase{
 
     ///@dev maps owners to their count of units
     mapping (address => uint256) public ownerToUnitCount;
-
-    ///@dev maps units to users allowed to call transferFrom
+    
+    ///@dev maps to the state of the unit for easy access
     mapping (uint256 => address) public unitIndexToAllowed;
-
+    
     ///@dev maps to the state of the unit for easy access
     mapping (uint256 => UnitState) public unitIndexToState;
 
@@ -399,7 +456,8 @@ contract UnitToken is AutoChessBase, ERC721{
         unitIndexToState[_tokenId] = UnitState.Promised;
         emit Approval(msg.sender, _to, _tokenId);
     }
-
+    
+    
     function _transfer(address _from, address _to, uint256 _tokenId) internal {
         ownerToUnitCount[_from]-=1;
         unitIndexToOwner[_tokenId] = _to;
@@ -452,23 +510,22 @@ contract UnitToken is AutoChessBase, ERC721{
 // File: UnitMarketplace.sol
 
 
-
-
 interface IUnitMarketplace{
     
-    function bid(uint256 _auctionId, uint256 _value) external returns(bool success);
-    function bid(uint256 _auctionId, uint256 _value,string calldata _msg) external returns(bool success);
-    function startAuction(uint256[] calldata _assets, uint256 _asking) external returns(bool success);
+    function bid(uint256 _auctionId, uint256 _value) external;
+    function bid(uint256 _auctionId, uint256 _value,string calldata _msg) external;
+    function startAuction(uint256[] calldata _assets, uint256 _asking,string calldata title) external returns(uint256 auctionId);
     function withdrawAuction(uint256 _auctionId) external returns(bool success);
 }
 
 
 contract UnitMarketplace is UnitToken,IUnitMarketplace {
     //objects:
-
+    using AuctionFunctions for Auction;
+    
     address public ProviderAddress;
     StoreToken public CurrencyProvider;
-
+    
     //A list of all ongoing auctions
     Auction[] public _auctions;
 
@@ -477,45 +534,31 @@ contract UnitMarketplace is UnitToken,IUnitMarketplace {
         ProviderAddress = address(CurrencyProvider);
     }
 
-    function bid(uint256 _auctionId, uint256 _value) public override returns(bool success) {
-        Auction memory auction = _auctions[_auctionId];
-        //check if this bid is big enough
-        require(_value > auction.highestBid, "This is not a new highest bid!");
-        //preapprove the transaction to the Auction
-        CurrencyProvider.autoApprove(msg.sender, _value);
-        //remove hold on previous highest bidders currency
-        CurrencyProvider.autoUnApprove(auction.highestBidder,auction.highestBid);
-        auction.highestBid = _value;
-        auction.highestBidder = msg.sender;
-        return true;
+    function bid(uint256 _auctionId, uint256 _value) public override {
+       _auctions[_auctionId].bid(_value, CurrencyProvider);
     }
 
     /// So people can bid with a message etc
     /// just for funzies
-    function bid(uint256 _auctionId, uint256 _value,string calldata _msg) public override returns(bool success) {
-        assert(bid(_auctionId,_value));
+    function bid(uint256 _auctionId, uint256 _value,string calldata _msg) public override {
+        _auctions[_auctionId].bid(_value, CurrencyProvider);
         _auctions[_auctionId].highestBidText = _msg;
-        return true;
     }
 
-    function startAuction(uint256[] calldata _assets, uint256 _asking) public override returns(bool success) {
-        //TODO verify that all the units up for auction aren't in a squad etc
-        _auctions.push(Auction({
-                        highestBid:_asking,
-                        highestBidder: msg.sender,
-                        host: msg.sender,
-                        name: "PLACEHOLDER",
-                        assetIds: new uint256[](0),
-                        highestBidText: "Default Bid",
-                        endTime: block.timestamp + 1 hours
-                        }));
+    function auctionApprove(address _from, uint256 _tokenId) internal {
+        require(_from == ownerOf(_tokenId),"You don't own this unit");
+        require(unitIndexToState[_tokenId] == UnitState.Default, "Unit is unavailable");
+        require(_from != address(0));
+        unitIndexToAllowed[_tokenId] = _from;
+        unitIndexToState[_tokenId] = UnitState.Auctioning;
+    }
+
+    function startAuction(uint256[] calldata _assets, uint256 _asking, string calldata title) external override returns(uint256 auctionId) {
         //transfer all the assets to the auctionhouse
         for(uint i =0; i < _assets.length; i++){
-            _transfer(msg.sender,address(this),_assets[i]);
-            _auctions[_auctions.length - 1].assetIds.push(_assets[i]);
+            auctionApprove(msg.sender,_assets[i]);
         }
-        //TODO add an auction event
-        return true;
+        auctionId = AuctionFunctions.createAuction(_auctions, _assets, _asking, title);
     }
 
     function withdrawAuction(uint256 _auctionId) public override returns(bool success){
@@ -547,14 +590,18 @@ contract SquadBuilder is UnitMarketplace, ISquadBuilder {
     //other approach is to update id of last unit(probably a bad idea)
     string constant DEFAULT_NAME = "Maurice, the Mediocre";
     /// @dev creates and stores a new unit
+    using SquadHelpers for Squad;
+    using SquadHelpers for uint8;
+    using UnitHelpers for Unit;
+    using UnitHelpers for UnitType;
     
     constructor() UnitMarketplace(){}
     
     
     function _buyUnit(address _owner, UnitType _type, string memory _name) internal returns (uint256 _unitId){
-        uint256 _cost = AutoChessHelpers.getUnitCost(_type);
+        uint256 _cost = _type.getCost();
         CurrencyProvider.spend(_owner,_cost);
-        _unitId = AutoChessHelpers.createUnit(units, unitIndexToState, _type, _name);
+        _unitId = UnitHelpers.createUnit(units, unitIndexToState, _type, _name);
         emit UnitCreated(_owner,_unitId);
         unitIndexToOwner[_unitId] = _owner;
         ownerToUnitCount[_owner]+=1;
@@ -571,7 +618,6 @@ contract SquadBuilder is UnitMarketplace, ISquadBuilder {
     
     
     // create squad
-    //TODO remove the workaround where you have to send 7 unitIds
     function _createSquad(address _owner, uint256[] memory _unitIds) internal returns(uint256 squadId, DeploymentState tier){
         //TODO make sure that _unitIds is one of the correct lengths
         require(_unitIds.length <= 7, "Invalid number of units");
@@ -580,7 +626,7 @@ contract SquadBuilder is UnitMarketplace, ISquadBuilder {
             require(unitIndexToState[_unitIds[i]] == UnitState.Default, "Unit is busy");//check that this unit isn't doing something else
             unitIndexToState[_unitIds[i]] = UnitState.Deployed;
         }
-        tier = AutoChessHelpers._getTier(_unitIds.length);
+        tier = AutoChessHelpers.getTier(_unitIds.length);
         Squad memory _squad = Squad({
                     unitIds: new uint256[](0),
                     unitCount:uint8(_unitIds.length),
@@ -590,16 +636,16 @@ contract SquadBuilder is UnitMarketplace, ISquadBuilder {
                     });
                     
         squads.push(_squad);
+        squadId = squads.length-1;
         //TODO figure out a better way of making this work
         //https://medium.com/loom-network/ethereum-solidity-memory-vs-storage-how-to-initialize-an-array-inside-a-struct-184baf6aa2eb
          for(uint8 i=0; i < _unitIds.length; i+=1){
-            squads[squads.length - 1].unitIds.push(_unitIds[i]);
+            squads[squadId].unitIds.push(_unitIds[i]);
         }
-        
-        ownerToSquadIndex[_owner].push(squads.length -1);
-        squadIndexToOwner[squads.length - 1] = _owner;
+        ownerToSquadIndex[_owner].push(squadId);
+        squadIndexToOwner[squadId] = _owner;
+        tierToSquadIndex[tier].push(squadId);
         emit SquadCreated(_owner,squads.length-1);
-        squadId = squads.length-1;
     }
 }
 
@@ -617,87 +663,87 @@ contract GameEngine is SquadBuilder, IGameEngine{
 
     constructor() SquadBuilder(){}
 
-    //TODO This doesn't match what was discussed on Friday
+    
     function _squadBattle(uint attackerSquadId, uint defenderSquadId) internal returns(uint winnings) {
         Squad memory attacker = squads[attackerSquadId];
         Squad memory defender = squads[defenderSquadId];
         
-        require(attacker.state == defender.state);
-        require(attacker.state != DeploymentState.Retired);
+        require(attacker.state == defender.state, "wrong tier");
+        require(attacker.state != DeploymentState.Retired, "Units are already retired");
         
         //Making these storage variables is very dubious
        
         uint8 atkNum = attacker.unitCount;
         uint8 dfdNum = defender.unitCount;
+        require(atkNum == dfdNum, "inequal sizes");
         Unit[] memory atkUnits = new Unit[](atkNum);
         Unit[] memory dfdUnits = new Unit[](dfdNum);
-        
+
         for (uint8 i=0; i<atkNum; i++) {
             atkUnits[i] = units[attacker.unitIds[i]];
             dfdUnits[i] = units[defender.unitIds[i]];
         }
-
+        
         //TODO include more details wrt squad formation
         //     also include formation in the Squad structure
         uint atkIdxAP;
         uint atkIdxDP;
         uint dfdIdxAP;
         uint dfdIdxDP;
-
-        while (atkNum > 0 && dfdNum > 0) {
+        uint dmg;
+        //Hard cap on the number of rounds for gas reasons
+        for(uint i=0; i < 1 && atkNum > 0 && dfdNum > 0;i++) {
             //TODO why is this random ordering it allows for users to structure squads better
             //otherwise why does it matter that you have warriors etc if enemies will randomly hit your archers
-            
+            require(false,"iteration started");
             // attacker attacks phase
             // choose attacker unit
-            atkIdxAP = AutoChessHelpers.randomNumber(attacker.unitIds.length);
-            while(atkUnits[atkIdxAP].curHealth <= 0) {
-                atkIdxAP = (atkIdxAP + 1) % attacker.unitIds.length;
-            }
+            atkIdxAP = AutoChessHelpers.randomNumber(atkNum);
 
-            // choose defending unit
-            dfdIdxAP = AutoChessHelpers.randomNumber(defender.unitIds.length);
-            while(dfdUnits[dfdIdxAP].curHealth <= 0) {
-                dfdIdxAP = (dfdIdxAP + 1) % defender.unitIds.length;
-            }
+            //choose defending unit
+            //is the guy with the largest id in the list
+            //guaranteed to be alive
+            dfdIdxAP = dfdNum - 1;
 
             // attack happens
-            // TODO maybe add fancy stuff here
-            //      like counter attack or something similar
-            dfdUnits[dfdIdxAP].curHealth -= (atkUnits[atkIdxAP].attack - dfdUnits[dfdIdxAP].defence);
-
-            if (dfdUnits[dfdIdxAP].curHealth <= 0) {
+            dmg = atkUnits[atkIdxAP].attack - dfdUnits[dfdIdxAP].defence;
+            //convert to uint16 when updating health since we know dmg fits
+            
+            if (dfdUnits[dfdIdxAP].curHealth <= dmg) {
                 //TODO handle unit death
                 dfdNum--;
+            }else{
+                dfdUnits[dfdIdxAP].curHealth -= uint16(dmg);
             }
 
             // defender attacks phase
             // choose attacker unit
-            atkIdxDP = AutoChessHelpers.randomNumber(defender.unitIds.length);
-            while(dfdUnits[atkIdxDP].curHealth <= 0) {
-                atkIdxDP = (atkIdxDP + 1) % defender.unitIds.length;
-            }
+            atkIdxDP = AutoChessHelpers.randomNumber(dfdNum);
 
             // choose defender unit
-            dfdIdxDP = AutoChessHelpers.randomNumber(attacker.unitIds.length);
-            while(atkUnits[dfdIdxDP].curHealth <= 0) {
-                dfdIdxDP = (dfdIdxDP + 1) % attacker.unitIds.length;
-            }
+            dfdIdxDP = atkNum - 1;
 
             // attack happens
-            atkUnits[dfdIdxDP].curHealth -= (dfdUnits[atkIdxDP].attack - atkUnits[dfdIdxDP].defence);
+            dmg = dfdUnits[atkIdxDP].attack - atkUnits[dfdIdxDP].defence;
 
-            if (atkUnits[dfdIdxDP].curHealth <= 0) {
+            if (atkUnits[dfdIdxDP].curHealth <= dmg) {
                 //TODO handle unit death
                 atkNum--;
+            }else{
+                atkUnits[dfdIdxDP].curHealth -= uint16(dmg);
             }
+            require(false,"iteration finished");
         }
 
         // copy defender squad units state back to chain
         for (uint8 i=0; i<dfdUnits.length; i++) {
             units[defender.unitIds[i]] = dfdUnits[i];
         }
-        defender.unitCount = dfdNum;
+        //TODO finish updating defender state
+        defender.state = DeploymentState.Retired;
+        squads[defenderSquadId] = defender;
+        //Uncomment this when unitCount is up and running
+        //defender.unitCount = dfdNum;
         // TODO should squad be retired if all died
 
         if (atkNum == 0) {
@@ -761,23 +807,24 @@ contract MatchMaker is GameEngine, IMatchMaker{
         _createSquad(address(this), _ids3);
         _createSquad(address(this), _ids1);
    }
-
-    //TODO make this create a squad
+   
+    //TODO figure out why this doesn't work but targeted does
     function randomChallenge(uint256[] calldata _unitIds) public override returns (uint256 squadId){
         DeploymentState tier;
-        (squadId, tier) = _createSquad(msg.sender, _unitIds);
         uint256 targetId = AutoChessHelpers.randomNumber(tierToSquadIndex[tier].length);
-        _squadBattle(squadId,targetId);
+        (squadId, tier) = _createSquad(msg.sender, _unitIds);
+        _squadBattle(squadId,tierToSquadIndex[tier][targetId]);
     }
 
 
-    function targetedChallenge(uint256[] calldata _unitIds, uint256 _targetId) public override returns (uint256 squadId){
+    function targetedChallenge(uint256[] calldata _unitIds, uint256 targetId) public override returns (uint256 squadId){
         
         DeploymentState tier;
         (squadId, tier) = _createSquad(msg.sender,_unitIds);
         //make sure it's a valid target
-        assert(tierToSquadIndex[tier].length > _targetId);
-         _squadBattle(squadId,_targetId);
+        require(tierToSquadIndex[tier].length > targetId, "Invalid unit ID");
+        require(squadId != targetId, "unit can't fight itself");
+        _squadBattle(squadId,tierToSquadIndex[tier][targetId]);
     }
 
 

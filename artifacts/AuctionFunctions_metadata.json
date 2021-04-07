@@ -4,43 +4,7 @@
 	},
 	"language": "Solidity",
 	"output": {
-		"abi": [
-			{
-				"inputs": [],
-				"name": "beforeAll",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "testBuyUnit",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "testCreateAuction",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "testCreateSquad",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "testCreateSquadRandom",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			}
-		],
+		"abi": [],
 		"devdoc": {
 			"kind": "dev",
 			"methods": {},
@@ -54,7 +18,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"tests/AutoChess_test.sol": "testSuite"
+			"MatchMaker_flat.sol": "AuctionFunctions"
 		},
 		"evmVersion": "istanbul",
 		"libraries": {},
@@ -69,11 +33,11 @@
 	},
 	"sources": {
 		"MatchMaker_flat.sol": {
-			"keccak256": "0x115dbbe648118aed1c02ebb38ccc748c2a42a9717c6803ba953c1c2014ba67c1",
+			"keccak256": "0x1a8664e22d4a932357b397fdab98223a4a126eab06d986215194e1592fd4fbf0",
 			"license": "UNLICENSED",
 			"urls": [
-				"bzz-raw://133ddb441d306500a6b380f3067863b54b7a36f9de3aaa2aee970a9d958ff173",
-				"dweb:/ipfs/QmNsBnepEZR2z62J5oDnn8a9Kij5uCks9oT5AsECeGAUts"
+				"bzz-raw://1ee73cce15fbfc0c5df771b3fdfe5c225d07241c24e3be4e5aa7b4cd71b302e7",
+				"dweb:/ipfs/QmWzNdy4CM4EgBpkJeoQSagnDvkkuQdf4XorYEaJonxqfg"
 			]
 		},
 		"remix_tests.sol": {
