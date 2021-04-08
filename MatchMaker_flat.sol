@@ -335,7 +335,8 @@ library SquadHelpers {
         delete squadData.toOwner[squadId];
         winnings = squadData.squads[squadId].stashedTokens;
         delete squadData.squads[squadId];
-        squadData.unusedIds.push(squadId);
+        squadData.unusedIds.push(squadId); 
+        squadData.toCount[squadData.toOwner[squadId]]-=1;
     }
     
     function createSquad(SquadSet storage squadData, UnitSet storage unitData, uint256[] calldata unitIds, address _owner) public returns(uint256 squadId, DeploymentState tier){
@@ -711,6 +712,7 @@ contract SquadBuilder is UnitMarketplace, ISquadBuilder {
     // create squad
     function _createSquad(address _owner, uint256[] memory _unitIds) internal returns(uint256 squadId, DeploymentState tier){
         (squadId,tier) = squadData.createSquad(unitData,_unitIds,_owner);
+        emit SquadCreated(_owner,squadId);
     }
     
    
@@ -733,6 +735,7 @@ contract GameEngine is SquadBuilder, IGameEngine{
     using UnitHelpers for Unit;
     using SquadHelpers for Squad;
     using SquadHelpers for SquadSet;
+    uint8 constant ROUNDLIMIT = 2;
     
     function _squadBattle(uint attackerSquadId, uint defenderSquadId) internal returns(uint winnings) {
         require(squadData.toState[attackerSquadId] == squadData.toState[defenderSquadId], "wrong tier");
@@ -752,7 +755,7 @@ contract GameEngine is SquadBuilder, IGameEngine{
         uint dfdId;
         bool turn = true;
         //Hard cap on the number of rounds for gas reasons
-        for(uint i=0; i < 2 && atkNum > 0 && dfdNum > 0;i++) {
+        for(uint8 i=0; i < ROUNDLIMIT && atkNum > 0 && dfdNum > 0;i++) {
             if(turn){
                 //challenger is attacking
                 atkId = AutoChessHelpers.randomNumber(atkNum);
@@ -878,11 +881,12 @@ contract MatchMaker is GameEngine, IMatchMaker{
     }
     
     function squadsOf(address _owner) public view returns (uint256[] memory squadIds){
-       uint256 count;
+        uint256 count;
         squadIds = new uint256[](squadData.toCount[_owner]);
         for(uint i=0; i < unitData.units.length;i++){
            if(unitData.toOwner[i] == _owner){
-            squadIds[count++] = i;
+            squadIds[count] = i;
+            count++;
            }
         }
     }
