@@ -215,6 +215,7 @@ struct SquadSet{
     mapping(uint256 => address) toOwner;
     mapping(DeploymentState => uint256[]) fromTier;
     mapping(uint256 => DeploymentState) toState;
+    mapping(address => uint256) toCount;
 }
 
 
@@ -305,7 +306,6 @@ library UnitHelpers {
         unitData.unusedIds.push(unitData.units.length);
     }
     
-    
 }
 
 library SquadHelpers {
@@ -328,7 +328,6 @@ library SquadHelpers {
             unitData.unusedIds.push(squadData.squads[squadId].unitIds[i]);
         }
     }
-    
     
     function deleteSquad(SquadSet storage squadData, uint256 squadId) public returns(uint256 winnings){
         require(squadData.toState[squadId] == DeploymentState.Retired, "unit is already dead");
@@ -372,6 +371,7 @@ library SquadHelpers {
         }
         squadData.toOwner[squadId] = _owner;
         squadData.fromTier[tier].push(squadId);
+        squadData.toCount[_owner]+=1;
     }
     
 }
@@ -441,6 +441,7 @@ library AuctionFunctions{
         }
         return auctions.length-1;
     }
+    
 }
 
 // has all the basic data etc
@@ -454,7 +455,6 @@ contract AutoChessBase{
     SquadSet squadData;
     
     mapping(address => uint256) ownerToUnitCount;
-
 }
 
 // File: UnitToken.sol
@@ -574,6 +574,10 @@ contract UnitToken is AutoChessBase, ERC721{
         }
     }
 
+    function getToken(uint256 tokenId) public view returns(Unit memory unit){
+        return unitData.units[tokenId];
+    }
+
     //function tokenMetadata(uint256 _tokenId, string calldata _preferredTransport) public view override returns (string memory infoUrl){}
 
     // ERC-165 Compatibility (https://github.com/ethereum/EIPs/issues/165)
@@ -645,6 +649,14 @@ contract UnitMarketplace is UnitToken,IUnitMarketplace {
         return true;
     }
 
+    function getAssetIds(uint256 _auctionId) public view returns(uint256[] memory assetIds){
+        assetIds = _auctions[_auctionId].assetIds;
+    }
+
+    function getAuctionCount() public view returns(uint256 count){
+        return _auctions.length;
+    }
+
     //TODO add reverse auctions where someone offers tokens. Maybe?
 }
 
@@ -697,6 +709,9 @@ contract SquadBuilder is UnitMarketplace, ISquadBuilder {
     function _createSquad(address _owner, uint256[] memory _unitIds) internal returns(uint256 squadId, DeploymentState tier){
         (squadId,tier) = squadData.createSquad(unitData,_unitIds,_owner);
     }
+    
+   
+    
 }
 
 // File: GameEngine.sol
@@ -859,13 +874,37 @@ contract MatchMaker is GameEngine, IMatchMaker{
         return squadData.fromTier[_tier];
     }
     
+    function squadsOf(address _owner) public view returns (uint256[] memory squadIds){
+       uint256 count;
+        squadIds = new uint256[](squadData.toCount[_owner]);
+        for(uint i=0; i < unitData.units.length;i++){
+           if(unitData.toOwner[i] == _owner){
+            squadIds[count++] = i;
+           }
+        }
+    }
+    
+    function squadCount(address _owner) public view returns(uint256){
+        return squadData.toCount[_owner];
+    }
+    
     function collectSquad(uint256 _squadId) public{
         //remove the squad from the tier
         
     }
     
+    function getSquadUnitIds(uint256 squadId) public view returns (uint256[] memory){
+        return squadData.squads[squadId].unitIds;
+    }
+    
+    function getSquads() public view returns (Squad[] memory){
+        return squadData.squads;
+    }
+    
     
     function withdrawSquad(uint256 _squadId) public override returns (bool success){
-
+        
     }
+    
+    
 }

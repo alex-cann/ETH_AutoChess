@@ -93,6 +93,57 @@
 				"type": "function"
 			},
 			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "tokenId",
+						"type": "uint256"
+					}
+				],
+				"name": "getToken",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "uint16",
+								"name": "power",
+								"type": "uint16"
+							},
+							{
+								"internalType": "uint16",
+								"name": "defence",
+								"type": "uint16"
+							},
+							{
+								"internalType": "uint16",
+								"name": "level",
+								"type": "uint16"
+							},
+							{
+								"internalType": "uint16",
+								"name": "health",
+								"type": "uint16"
+							},
+							{
+								"internalType": "enum UnitType",
+								"name": "utype",
+								"type": "uint8"
+							},
+							{
+								"internalType": "string",
+								"name": "name",
+								"type": "string"
+							}
+						],
+						"internalType": "struct Unit",
+						"name": "unit",
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
 				"inputs": [],
 				"name": "name",
 				"outputs": [
@@ -258,11 +309,11 @@
 	},
 	"sources": {
 		"MatchMaker_flat.sol": {
-			"keccak256": "0x73203e8afc0f0ffdecd54ea22ea92599f508bbd92d6b91b670d6b85473ebd4b3",
+			"keccak256": "0x6333e7800a21af959b3fddbd4600e58e456c2139c8cf30681c7c9dfab26be520",
 			"license": "UNLICENSED",
 			"urls": [
-				"bzz-raw://d71453b36adaeac4e4dc0359c5901411f3706c4994600436d3b36f91345620bb",
-				"dweb:/ipfs/QmeWgDNFprkvBHyP4oQUKvjZ1Eo67Lg2rekydRSKZgWTi7"
+				"bzz-raw://7f61d06d7b79e6b7464eb1326a608832005f2c442a280fd576ceea84be308961",
+				"dweb:/ipfs/QmdnybUHQV2t45nnzmQNNRp6yF5VTiiAUmKhkFM36eGnj6"
 			]
 		}
 	},
