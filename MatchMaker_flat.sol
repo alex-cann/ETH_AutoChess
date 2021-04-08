@@ -901,6 +901,9 @@ contract MatchMaker is GameEngine, IMatchMaker{
         return squadData.squads;
     }
     
+    function getSquad(uint256 squadId) public view returns (Squad memory){
+        return squadData.squads[squadId];
+    }
     
     function withdrawSquad(uint256 _squadId) public override returns (bool success){
         
