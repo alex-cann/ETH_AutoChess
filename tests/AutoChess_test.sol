@@ -20,7 +20,7 @@ library testFunctions{
        uint256[] memory unitIds = target.tokensOfOwner(address(this));
        target.startAuction(unitIds, 500, "It's a me");
        for(uint256 i; i < unitIds.length; i++){
-           Assert.equal(uint8(target.unitIndexToState(unitIds[i])), uint8(UnitState.Auctioning), "Incorrect Unit State");
+           Assert.equal(uint8(target.unitData().toState[unitIds[i]]), uint8(UnitState.Auctioning), "Incorrect Unit State");
        }
     }
     
@@ -39,6 +39,7 @@ library testFunctions{
     function testCreateSquad(MatchMaker target, StoreToken  token) public {
        testBuyUnit(target,token);
        uint256[] memory unitIds = target.tokensOfOwner(address(this));
+       require(unitIds.length == 3, "buying units failed");
        target.targetedChallenge(unitIds,0);
        for(uint256 i; i < unitIds.length; i++){
            require(target.unitIndexToState(unitIds[i]) == UnitState.Deployed, "Incorrect Unit State");
