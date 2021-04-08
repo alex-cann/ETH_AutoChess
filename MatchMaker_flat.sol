@@ -533,7 +533,7 @@ contract UnitToken is AutoChessBase, ERC721{
     
     function _transfer(address _from, address _to, uint256 _tokenId) internal {
         require(unitData.toState[_tokenId] == UnitState.Default, "Unit is busy");
-        require(unitData.toOwner[_tokenId] == _from, "Unit is busy");
+        require(unitData.toOwner[_tokenId] == _from, "Incorrect owner");
         unitData.toOwner[_tokenId] = _to;
         delete unitData.toApproved[_tokenId];
         //the contract calling this is the unit generator
@@ -575,7 +575,7 @@ contract UnitToken is AutoChessBase, ERC721{
         }
     }
 
-    function getToken(uint256 tokenId) public view returns(Unit memory unit){
+    function getToken(uint256 tokenId) public view returns(Unit memory){
         return unitData.units[tokenId];
     }
     
@@ -883,10 +883,9 @@ contract MatchMaker is GameEngine, IMatchMaker{
     function squadsOf(address _owner) public view returns (uint256[] memory squadIds){
         uint256 count;
         squadIds = new uint256[](squadData.toCount[_owner]);
-        for(uint i=0; i < unitData.units.length;i++){
-           if(unitData.toOwner[i] == _owner){
-            squadIds[count] = i;
-            count++;
+        for(uint i=0; i < squadData.squads.length;i++){
+           if(squadData.toOwner[i] == _owner){
+            squadIds[count++] = i;
            }
         }
     }
