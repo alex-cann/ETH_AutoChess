@@ -144,6 +144,25 @@
 				"type": "function"
 			},
 			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "unitId",
+						"type": "uint256"
+					}
+				],
+				"name": "getUnitState",
+				"outputs": [
+					{
+						"internalType": "enum UnitState",
+						"name": "state",
+						"type": "uint8"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
 				"inputs": [],
 				"name": "name",
 				"outputs": [
@@ -302,18 +321,18 @@
 			"bytecodeHash": "ipfs"
 		},
 		"optimizer": {
-			"enabled": true,
+			"enabled": false,
 			"runs": 200
 		},
 		"remappings": []
 	},
 	"sources": {
 		"MatchMaker_flat.sol": {
-			"keccak256": "0xd1092ac57bc8635767f732d4b28361c92016ab31169996769e8b90e653dd3d80",
+			"keccak256": "0xc532cc90223ff7846be7e98f08a13473cce8eec09eadc84d9d5c950062f43de4",
 			"license": "UNLICENSED",
 			"urls": [
-				"bzz-raw://f86461f5145fefb6c3b5f6c24f30ba20588abbe09c75dcc4b4cc09fde9a38b14",
-				"dweb:/ipfs/QmbRFqn99CuCfVEE9PSDTxyYt5z5nzobPqhGHGpsv5HQn8"
+				"bzz-raw://98902e209b79fff9db18ca643686462d4a998b645e22bc3a5b3f5ac56ea4d25b",
+				"dweb:/ipfs/Qma3uSTBBV4yBvXBCtmoWdr83xBa23CepSyxme2i14F3L8"
 			]
 		}
 	},

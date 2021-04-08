@@ -577,7 +577,10 @@ contract UnitToken is AutoChessBase, ERC721{
     function getToken(uint256 tokenId) public view returns(Unit memory unit){
         return unitData.units[tokenId];
     }
-
+    
+    function getUnitState(uint256 unitId) public view returns(UnitState state){
+        return unitData.toState[unitId];
+    }
     //function tokenMetadata(uint256 _tokenId, string calldata _preferredTransport) public view override returns (string memory infoUrl){}
 
     // ERC-165 Compatibility (https://github.com/ethereum/EIPs/issues/165)
