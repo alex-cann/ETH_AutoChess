@@ -48,7 +48,6 @@
 		"gasEstimates": null,
 		"methodIdentifiers": {
 			"getSquadIdsInTier(uint8)": "64e0b81f",
-			"randomChallenge(uint256[])": "dba7f943",
 			"targetedChallenge(uint256[],uint256)": "e56053eb"
 		}
 	},
@@ -70,25 +69,6 @@
 				}
 			],
 			"stateMutability": "view",
-			"type": "function"
-		},
-		{
-			"inputs": [
-				{
-					"internalType": "uint256[]",
-					"name": "unitIds",
-					"type": "uint256[]"
-				}
-			],
-			"name": "randomChallenge",
-			"outputs": [
-				{
-					"internalType": "uint256",
-					"name": "squadId",
-					"type": "uint256"
-				}
-			],
-			"stateMutability": "nonpayable",
 			"type": "function"
 		},
 		{

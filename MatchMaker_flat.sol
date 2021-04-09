@@ -207,9 +207,9 @@ struct SquadSet{
     uint256[] unusedIds;
     Squad[] squads;
     mapping(uint256 => address) toOwner;
-    mapping(DeploymentState => uint256[]) fromTier;
     mapping(uint256 => DeploymentState) toState;
     mapping(address => uint256) toCount;
+    mapping(DeploymentState => uint256) toTierSize;
 }
 
 struct AuctionSet{
@@ -344,6 +344,7 @@ library SquadHelpers {
             unitData.unusedIds.push(getUnit(squadData,squadId,i));
         }
        squadData.toState[squadId] = DeploymentState.Unused;
+       squadData.toTierSize[squadData.toState[squadId]]--;
        get(squadData,squadId).stashedTokens+=recovered * 4/10;
        return recovered * 6/10;
     }
@@ -372,7 +373,7 @@ library SquadHelpers {
             squadData.squads[squadId].unitIds.push(unitIds[i]);
         }
         squadData.toOwner[squadId] = _owner;
-        squadData.fromTier[tier].push(squadId);
+        squadData.toTierSize[tier]++;
         squadData.toCount[_owner]+=1;
     }
     
@@ -396,10 +397,6 @@ library SquadHelpers {
     
     function get(SquadSet storage data, uint256 id) internal view returns(Squad storage){
         return data.squads[id];
-    }
-    
-    function get(SquadSet storage data, DeploymentState tier, uint256 id) internal view returns(uint256){
-        return data.fromTier[tier][id];
     }
     
     function getUnit(SquadSet storage data, uint256 id, uint256 uid) internal view returns (uint256){
@@ -862,7 +859,6 @@ contract GameEngine is SquadBuilder, IGameEngine{
 
 interface IMatchMaker{
     
-    function randomChallenge(uint256[] calldata unitIds) external returns (uint256 squadId);
     function targetedChallenge(uint256[] calldata unitIds, uint256 _targetId) external returns (uint256 squadId);
     function getSquadIdsInTier(DeploymentState _tier) external view returns (uint256[] memory deployed); //This is subject to change
 }
@@ -901,27 +897,26 @@ contract MatchMaker is GameEngine, IMatchMaker{
         _createSquad(address(this), _ids1);
    }
    
-    //TODO figure out why this doesn't work but targeted does
-    function randomChallenge(uint256[] calldata _unitIds) public override returns (uint256 squadId){
-        DeploymentState tier;
-        uint256 targetId = AutoChessHelpers.randomNumber(squadData.fromTier[tier].length);
-        (squadId, tier) = _createSquad(msg.sender, _unitIds);
-        _squadBattle(squadId,squadData.fromTier[tier][targetId]);
-    }
-
 
     function targetedChallenge(uint256[] calldata _unitIds, uint256 targetId) public override returns (uint256 squadId){
         DeploymentState tier;
         (squadId, tier) = _createSquad(msg.sender,_unitIds);
+        
         //make sure it's a valid target
-        require(squadData.fromTier[tier].length > targetId, "Invalid unit ID");
         require(squadId != targetId, "unit can't fight itself");
-        _squadBattle(squadId,squadData.get(tier,targetId));
+        _squadBattle(squadId,targetId);
     }
 
 
-    function getSquadIdsInTier(DeploymentState _tier) public override view returns (uint256[] memory){
-        return squadData.fromTier[_tier];
+    function getSquadIdsInTier(DeploymentState _tier) public override view returns (uint256[] memory squadIds){
+        require(_tier != DeploymentState.Unused, "Invalid choice");
+        uint256 count;
+        squadIds = new uint256[](squadData.toTierSize[_tier]);
+        for(uint i=0; i < squadData.squads.length;i++){
+           if(squadData.toState[i] == _tier){
+            squadIds[count++] = i;
+           }
+        }
     }
     
     function squadsOf(address _owner) public view returns (uint256[] memory squadIds){
