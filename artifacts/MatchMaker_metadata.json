@@ -390,6 +390,25 @@
 						"type": "uint256"
 					}
 				],
+				"name": "getSquadState",
+				"outputs": [
+					{
+						"internalType": "enum DeploymentState",
+						"name": "",
+						"type": "uint8"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "squadId",
+						"type": "uint256"
+					}
+				],
 				"name": "getSquadUnitIds",
 				"outputs": [
 					{
@@ -778,11 +797,11 @@
 	},
 	"sources": {
 		"MatchMaker_flat.sol": {
-			"keccak256": "0x90e952317ab48bc70cc2e2398fa47f9e291144fdb8879ae1ac50a30a7efa8408",
+			"keccak256": "0x9fbbfb84faf3c02ccb6ab9ac3cb284a36913f540d1cc658822f1bae36d9f4492",
 			"license": "UNLICENSED",
 			"urls": [
-				"bzz-raw://c8a4f82e9b681e79f23a337a7e6fc6406c01db0f70e1d08f615a3e3f122db4f3",
-				"dweb:/ipfs/QmegimP4X3yiwwHVUWyvSu6GXawxb6sRJnvheXUwfis7go"
+				"bzz-raw://148075f383dbf21bad3d0b85246ae2d74005fb749a10c25e222ba2ad3596dfab",
+				"dweb:/ipfs/QmTpqNgKSgJZ9Pzb8k2m6AkXQC6MdDwpcqYEyrkrnkZaT6"
 			]
 		}
 	},
