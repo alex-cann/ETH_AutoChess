@@ -6,11 +6,6 @@
 	"output": {
 		"abi": [
 			{
-				"inputs": [],
-				"stateMutability": "nonpayable",
-				"type": "constructor"
-			},
-			{
 				"anonymous": false,
 				"inputs": [
 					{
@@ -106,63 +101,6 @@
 						"internalType": "contract StoreToken",
 						"name": "",
 						"type": "address"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "ProviderAddress",
-				"outputs": [
-					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"name": "_auctions",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "highestBid",
-						"type": "uint256"
-					},
-					{
-						"internalType": "address",
-						"name": "highestBidder",
-						"type": "address"
-					},
-					{
-						"internalType": "address",
-						"name": "host",
-						"type": "address"
-					},
-					{
-						"internalType": "string",
-						"name": "name",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "highestBidText",
-						"type": "string"
-					},
-					{
-						"internalType": "uint256",
-						"name": "endTime",
-						"type": "uint256"
 					}
 				],
 				"stateMutability": "view",
@@ -297,11 +235,24 @@
 						"type": "uint256"
 					}
 				],
+				"name": "claimAuction",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_auctionId",
+						"type": "uint256"
+					}
+				],
 				"name": "getAssetIds",
 				"outputs": [
 					{
 						"internalType": "uint256[]",
-						"name": "assetIds",
+						"name": "",
 						"type": "uint256[]"
 					}
 				],
@@ -316,6 +267,56 @@
 						"internalType": "uint256",
 						"name": "count",
 						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getAuctions",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "uint256",
+								"name": "highestBid",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256[]",
+								"name": "assetIds",
+								"type": "uint256[]"
+							},
+							{
+								"internalType": "address",
+								"name": "highestBidder",
+								"type": "address"
+							},
+							{
+								"internalType": "address",
+								"name": "host",
+								"type": "address"
+							},
+							{
+								"internalType": "string",
+								"name": "name",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "highestBidText",
+								"type": "string"
+							},
+							{
+								"internalType": "uint256",
+								"name": "endTime",
+								"type": "uint256"
+							}
+						],
+						"internalType": "struct Auction[]",
+						"name": "",
+						"type": "tuple[]"
 					}
 				],
 				"stateMutability": "view",
@@ -453,25 +454,6 @@
 				"type": "function"
 			},
 			{
-				"inputs": [
-					{
-						"internalType": "bytes4",
-						"name": "_interfaceID",
-						"type": "bytes4"
-					}
-				],
-				"name": "supportsInterface",
-				"outputs": [
-					{
-						"internalType": "bool",
-						"name": "",
-						"type": "bool"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
 				"inputs": [],
 				"name": "symbol",
 				"outputs": [
@@ -566,13 +548,7 @@
 					}
 				],
 				"name": "withdrawAuction",
-				"outputs": [
-					{
-						"internalType": "bool",
-						"name": "success",
-						"type": "bool"
-					}
-				],
+				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
 			}
@@ -610,11 +586,11 @@
 	},
 	"sources": {
 		"MatchMaker_flat.sol": {
-			"keccak256": "0xa3f8165f35c52f49a3350cb4de617013970640965e5593b1a5e0a18982a7e730",
+			"keccak256": "0x90e952317ab48bc70cc2e2398fa47f9e291144fdb8879ae1ac50a30a7efa8408",
 			"license": "UNLICENSED",
 			"urls": [
-				"bzz-raw://7df08f400d1ff2c69e8b9d5a8e4747ee5600354a1e52a63a674dd598404631db",
-				"dweb:/ipfs/QmVNPktfP1QXsY8Qifvv3kYgo6HcCPEQtm5anHZC7W2n9s"
+				"bzz-raw://c8a4f82e9b681e79f23a337a7e6fc6406c01db0f70e1d08f615a3e3f122db4f3",
+				"dweb:/ipfs/QmegimP4X3yiwwHVUWyvSu6GXawxb6sRJnvheXUwfis7go"
 			]
 		}
 	},

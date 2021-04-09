@@ -47,12 +47,8 @@
 		},
 		"gasEstimates": null,
 		"methodIdentifiers": {
-			"bid(uint256,uint256)": "598647f8",
-			"bid(uint256,uint256,string)": "76d4fc57",
 			"buyUnit(uint8)": "27e78202",
-			"buyUnit(uint8,string)": "898f4299",
-			"startAuction(uint256[],uint256,string)": "54c8a21e",
-			"withdrawAuction(uint256)": "b5fc9833"
+			"buyUnit(uint8,string)": "898f4299"
 		}
 	},
 	"abi": [
@@ -97,47 +93,6 @@
 		{
 			"inputs": [
 				{
-					"internalType": "uint256",
-					"name": "_auctionId",
-					"type": "uint256"
-				},
-				{
-					"internalType": "uint256",
-					"name": "_value",
-					"type": "uint256"
-				}
-			],
-			"name": "bid",
-			"outputs": [],
-			"stateMutability": "nonpayable",
-			"type": "function"
-		},
-		{
-			"inputs": [
-				{
-					"internalType": "uint256",
-					"name": "_auctionId",
-					"type": "uint256"
-				},
-				{
-					"internalType": "uint256",
-					"name": "_value",
-					"type": "uint256"
-				},
-				{
-					"internalType": "string",
-					"name": "_msg",
-					"type": "string"
-				}
-			],
-			"name": "bid",
-			"outputs": [],
-			"stateMutability": "nonpayable",
-			"type": "function"
-		},
-		{
-			"inputs": [
-				{
 					"internalType": "enum UnitType",
 					"name": "_type",
 					"type": "uint8"
@@ -173,54 +128,6 @@
 					"internalType": "uint256",
 					"name": "",
 					"type": "uint256"
-				}
-			],
-			"stateMutability": "nonpayable",
-			"type": "function"
-		},
-		{
-			"inputs": [
-				{
-					"internalType": "uint256[]",
-					"name": "_assets",
-					"type": "uint256[]"
-				},
-				{
-					"internalType": "uint256",
-					"name": "_asking",
-					"type": "uint256"
-				},
-				{
-					"internalType": "string",
-					"name": "title",
-					"type": "string"
-				}
-			],
-			"name": "startAuction",
-			"outputs": [
-				{
-					"internalType": "uint256",
-					"name": "auctionId",
-					"type": "uint256"
-				}
-			],
-			"stateMutability": "nonpayable",
-			"type": "function"
-		},
-		{
-			"inputs": [
-				{
-					"internalType": "uint256",
-					"name": "_auctionId",
-					"type": "uint256"
-				}
-			],
-			"name": "withdrawAuction",
-			"outputs": [
-				{
-					"internalType": "bool",
-					"name": "success",
-					"type": "bool"
 				}
 			],
 			"stateMutability": "nonpayable",

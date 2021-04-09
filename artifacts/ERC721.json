@@ -51,7 +51,6 @@
 			"balanceOf(address)": "70a08231",
 			"name()": "06fdde03",
 			"ownerOf(uint256)": "6352211e",
-			"supportsInterface(bytes4)": "01ffc9a7",
 			"symbol()": "95d89b41",
 			"tokensOfOwner(address)": "8462151c",
 			"totalSupply()": "18160ddd",
@@ -174,25 +173,6 @@
 					"internalType": "address",
 					"name": "owner",
 					"type": "address"
-				}
-			],
-			"stateMutability": "view",
-			"type": "function"
-		},
-		{
-			"inputs": [
-				{
-					"internalType": "bytes4",
-					"name": "_interfaceID",
-					"type": "bytes4"
-				}
-			],
-			"name": "supportsInterface",
-			"outputs": [
-				{
-					"internalType": "bool",
-					"name": "",
-					"type": "bool"
 				}
 			],
 			"stateMutability": "view",

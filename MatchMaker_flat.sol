@@ -24,7 +24,7 @@ interface ERC20 {
     //function decimals() external view returns (uint8);
 
     // ERC-165 Compatibility (https://github.com/ethereum/EIPs/issues/165)
-    function supportsInterface(bytes4 _interfaceID) external view returns (bool);
+    //function supportsInterface(bytes4 _interfaceID) external view returns (bool);
 }
 
 
@@ -89,16 +89,13 @@ contract StoreToken is ERC20 {
     }
     
     //@dev A function for the store to preapprove transactions for a user
-    function autoApprove(address _from, uint256 _value) public _storeOnly returns (bool success) {
-        return _approve(_from, StoreAddress, _value);
-    }
-
-    //@dev A function for the store to unapprove transactions for other users
-    function autoUnApprove(address _from, uint256 _value) public _storeOnly returns (bool success) {
-        ownerToApprovedWithdrawals[_from][msg.sender] -= _value;
-        ownerToTotalApproved[_from] -= _value;
+    function deposit(address _to, uint256 _value) public _storeOnly returns (bool success) {
+        totalTokens+=_value;
+        ownerToBalance[_to] += _value;
+        emit Transfer(StoreAddress, _to, _value);
         return true;
     }
+    
     
     
     function _approve(address _from, address _to, uint256 _value) internal returns (bool success) {
@@ -126,10 +123,6 @@ contract StoreToken is ERC20 {
         ownerToBalance[msg.sender]+= 100000;
     }
     
-    function verifyTransaction(uint256 _value) public view returns(bool success){
-        //TODO fill this in
-        return true;
-    }
     
     // Optional
     function name() public override pure returns (string memory){
@@ -141,10 +134,7 @@ contract StoreToken is ERC20 {
     //function decimals() virtual public view returns (uint8);
 
     // ERC-165 Compatibility (https://github.com/ethereum/EIPs/issues/165)
-    function supportsInterface(bytes4 _interfaceID) public override view returns (bool){
-        //TODO this is not the way to be
-        return true;
-    }
+    //function supportsInterface(bytes4 _interfaceID) public override view returns (bool){return true;}
 }   
 
 
@@ -179,6 +169,9 @@ enum DeploymentState{
     Unused,Retired,TierOne,TierTwo,TierThree,TierFour
 }
 
+
+
+
 struct Squad{
     //list of the units in this squad
     uint256[] unitIds;
@@ -201,24 +194,28 @@ struct Auction {
     }
 
 struct UnitSet{
-    Unit[] units;
     uint256[] unusedIds;
+    Unit[] units;
     mapping(uint256 => UnitState) toState;
     mapping(uint256 => address) toOwner;
     mapping(uint256 => address) toApproved;
     mapping(uint256 => uint256) toSquad;
+    mapping(address => uint256) toCount;
 }
 
 struct SquadSet{
-    Squad[] squads;
     uint256[] unusedIds;
+    Squad[] squads;
     mapping(uint256 => address) toOwner;
     mapping(DeploymentState => uint256[]) fromTier;
     mapping(uint256 => DeploymentState) toState;
     mapping(address => uint256) toCount;
 }
 
-
+struct AuctionSet{
+    Auction[] auctions;
+    uint256[] unusedIds;
+}
 
 library UnitHelpers {
     
@@ -235,7 +232,7 @@ library UnitHelpers {
         }
     }
     
-    function getCost(UnitType _type) public pure returns(uint256 cost){
+    function getCost(UnitType _type) public pure returns(uint16 cost){
         if(_type == UnitType.Warrior){
             cost+=10;
         }else if(_type == UnitType.Archer){
@@ -248,16 +245,15 @@ library UnitHelpers {
         return cost;
     }
     
-    function getCost(Unit storage unit) public view returns(uint256 cost){
+    function getCost(Unit storage unit) internal view returns(uint16 cost){
         return getCost(unit.utype);
     }
     
-    function getCost(UnitSet storage unitData, uint256 unitId) public view returns(uint256 cost){
+    function getCost(UnitSet storage unitData, uint256 unitId) internal view returns(uint16 cost){
         return getCost(unitData.units[unitId].utype);
     }
     
     function createUnit(UnitSet storage unitData, UnitType _type, string memory _name) public returns(uint256 newUnitId){
-        
         Unit memory _unit = Unit({
                             power: 0,
                             defence: 0,
@@ -287,23 +283,43 @@ library UnitHelpers {
             _unit.defence += 1;
             _unit.health += 75;
         }
-        if(unitData.unusedIds.length > 0){
-            newUnitId = unitData.unusedIds[unitData.unusedIds.length -1];
-            unitData.unusedIds.pop();
-            unitData.units[newUnitId] = _unit;
-        }else{
-            unitData.units.push(_unit);
-    		require(unitData.units.length > 0, "units should not be empty");
-    		newUnitId = unitData.units.length  - 1;
-        }
-        unitData.toState[newUnitId] = UnitState.Default;
+        newUnitId = add(unitData,_unit);
     }
     
     function killUnit(UnitSet storage unitData, uint256 unitId) public returns (uint256 value){
         require(unitData.toState[unitId] != UnitState.Dead, "unit is already dead");
         unitData.toState[unitId] = UnitState.Dead;
         value = getCost(unitData,unitId);
-        unitData.unusedIds.push(unitData.units.length);
+        unitData.unusedIds.push(unitId);
+    }
+    
+    function transfer(UnitSet storage unitData, address _from, address _to, uint256 unitId) public{
+        unitData.toOwner[unitId] = _to;
+        delete unitData.toApproved[unitId];
+        unitData.toCount[_from]--;
+        unitData.toCount[_to]++;
+        unitData.toState[unitId] = UnitState.Default;
+    }
+    
+    function add(UnitSet storage data, Unit memory _unit) internal returns (uint256 newId){
+        if(data.unusedIds.length > 0){
+            newId = data.unusedIds[data.unusedIds.length -1];
+            data.unusedIds.pop();
+            data.units[newId] = _unit;
+        }else{
+            data.units.push(_unit);
+    		newId = data.units.length  - 1;
+        }
+        data.toState[newId] = UnitState.Default;
+    }
+    
+    function remove(UnitSet storage data, uint256 id) internal{
+        data.unusedIds.push(id);
+        data.toState[id] = UnitState.Dead;
+    }
+    
+    function get(UnitSet storage data, uint256 id) internal view returns(Unit storage){
+        return data.units[id];
     }
     
 }
@@ -317,27 +333,21 @@ library SquadHelpers {
         }
     }
     
-    function afterBattle(SquadSet storage squadData, UnitSet storage unitData, uint256 squadId, uint8 lastLiving) public returns (uint256 value){
+    function afterBattle(SquadSet storage squadData, UnitSet storage unitData, uint256 squadId, uint8 lastLiving) public returns (uint16){
         for(uint i=0; i < lastLiving; i++){
-            unitData.toState[squadData.squads[squadId].unitIds[i]] = UnitState.Default;
+            unitData.toState[getUnit(squadData,squadId,i)] = UnitState.Default;
         }
-        
+        uint16 recovered;
         for(uint i=lastLiving; i < squadData.squads[squadId].unitIds.length; i++){
-            value += UnitHelpers.getCost(unitData,squadData.squads[squadId].unitIds[i]);
-            unitData.toState[squadData.squads[squadId].unitIds[i]] = UnitState.Default;
-            unitData.unusedIds.push(squadData.squads[squadId].unitIds[i]);
+            recovered += UnitHelpers.getCost(unitData,getUnit(squadData,squadId,i));
+            unitData.toState[getUnit(squadData,squadId,i)] = UnitState.Default;
+            unitData.unusedIds.push(getUnit(squadData,squadId,i));
         }
+       squadData.toState[squadId] = DeploymentState.Unused;
+       get(squadData,squadId).stashedTokens+=recovered * 4/10;
+       return recovered * 6/10;
     }
     
-    function deleteSquad(SquadSet storage squadData, uint256 squadId) public returns(uint256 winnings){
-        require(squadData.toState[squadId] == DeploymentState.Retired, "unit is already dead");
-        delete squadData.toState[squadId];
-        delete squadData.toOwner[squadId];
-        winnings = squadData.squads[squadId].stashedTokens;
-        delete squadData.squads[squadId];
-        squadData.unusedIds.push(squadId); 
-        squadData.toCount[squadData.toOwner[squadId]]-=1;
-    }
     
     function createSquad(SquadSet storage squadData, UnitSet storage unitData, uint256[] calldata unitIds, address _owner) public returns(uint256 squadId, DeploymentState tier){
         //TODO make sure that _unitIds is one of the correct lengths
@@ -354,18 +364,9 @@ library SquadHelpers {
                     stashedTokens:0
                     });
        
+        squadId = add(squadData,_squad);
         
-        if(squadData.unusedIds.length > 0){
-            squadId = unitData.unusedIds[squadData.unusedIds.length - 1];
-            delete squadData.unusedIds[squadData.unusedIds.length - 1];
-            squadData.squads[squadId] = _squad;
-        }else{
-            squadData.squads.push(_squad);
-    		require(unitData.units.length > 0, "units should not be empty");
-    		squadId = squadData.squads.length  - 1;
-        }
-         squadData.toState[squadId] = tier;
-        //TODO figure out a better way of making this work
+        squadData.toState[squadId] = tier;
         //https://medium.com/loom-network/ethereum-solidity-memory-vs-storage-how-to-initialize-an-array-inside-a-struct-184baf6aa2eb
          for(uint8 i=0; i < unitIds.length; i+=1){
             squadData.squads[squadId].unitIds.push(unitIds[i]);
@@ -375,6 +376,35 @@ library SquadHelpers {
         squadData.toCount[_owner]+=1;
     }
     
+    function add(SquadSet storage data, Squad memory _squad) internal returns (uint256 newId){
+        if(data.unusedIds.length > 0){
+            newId = data.unusedIds[data.unusedIds.length -1];
+            data.unusedIds.pop();
+            data.squads[newId] = _squad;
+        }else{
+            data.squads.push(_squad);
+    		newId = data.squads.length  - 1;
+        }
+    }
+    
+    function remove(SquadSet storage data, uint256 id) internal{
+        data.unusedIds.push(id);
+        delete data.toState[id];
+        delete data.toOwner[id]; //Not necessary but this way it doesn't show up erroneously 
+        data.toCount[data.toOwner[id]]-=1;
+    }
+    
+    function get(SquadSet storage data, uint256 id) internal view returns(Squad storage){
+        return data.squads[id];
+    }
+    
+    function get(SquadSet storage data, DeploymentState tier, uint256 id) internal view returns(uint256){
+        return data.fromTier[tier][id];
+    }
+    
+    function getUnit(SquadSet storage data, uint256 id, uint256 uid) internal view returns (uint256){
+        return get(data,id).unitIds[uid];
+    }
 }
 
 library AutoChessHelpers {
@@ -406,28 +436,39 @@ library AuctionFunctions{
     function bid(Auction storage auction, uint256 _value, StoreToken currency) public {
         //check if this bid is big enough
         require(_value > auction.highestBid, "This is not a new highest bid!");
-        require(auction.endTime <= block.timestamp, "It is too late to bid!");
+        require(auction.endTime >= block.timestamp, "It is too late to bid!");
         //preapprove the transaction to the Auction
-        currency.autoApprove(address(this), _value);
+        currency.spend(msg.sender, _value);
         //remove hold on previous highest bidders currency
-        currency.autoUnApprove(auction.highestBidder,auction.highestBid);
+        currency.deposit(auction.highestBidder, auction.highestBid);
         auction.highestBid = _value;
         auction.highestBidder = msg.sender;
     }
     
-    
-    function claimAuction(Auction storage auction, StoreToken currency, ERC721 assetProvider) public {
-        require(auction.endTime > block.timestamp, "It is too late to withdraw this auction!");
-        //withdraw the highestbidders bid
-        for (uint i=0; i < auction.assetIds.length; i++){
-            assetProvider.transferFrom(auction.host,auction.highestBidder,auction.assetIds[i]);
-            
-        }
-        currency.transferFrom(auction.highestBidder, auction.host, auction.highestBid);
+    function bid(AuctionSet storage auctionData, uint256 id, uint256 _value, StoreToken currency) internal{
+        return bid(auctionData.auctions[id],_value,currency);
     }
     
-    function createAuction(Auction[] storage auctions, uint256[] calldata _assets, uint256 _asking, string calldata title) public returns(uint256 auctionId){
-         auctions.push(Auction({
+    
+    function settle(Auction storage auction, UnitSet storage unitData, StoreToken currency) public{
+        //if nobody bid just close the auction
+        if(auction.host == auction.highestBidder){
+            for (uint i=0; i < auction.assetIds.length; i++){
+                unitData.toState[auction.assetIds[i]] = UnitState.Default;
+            }
+        
+        }else{
+            for (uint i=0; i < auction.assetIds.length; i++){
+                UnitHelpers.transfer(unitData,auction.highestBidder,auction.host,auction.assetIds[i]);
+                currency.deposit(auction.host, auction.highestBid);
+            }
+        }
+    }
+    
+    
+    
+    function createAuction(AuctionSet storage auctionData, uint256[] calldata _assets, uint256 _asking, string calldata title) public returns(uint256 auctionId){
+        auctionId = add(auctionData,Auction({
                         highestBid:_asking,
                         highestBidder: msg.sender,
                         host: msg.sender,
@@ -438,24 +479,35 @@ library AuctionFunctions{
                         }));
         //transfer all the assets to the auctionhouse
         for(uint i =0; i < _assets.length; i++){
-            auctions[auctions.length - 1].assetIds.push(_assets[i]);
+            auctionData.auctions[auctionId].assetIds.push(_assets[i]);
         }
-        return auctions.length-1;
     }
     
+    function add(AuctionSet storage data, Auction memory _auction) internal returns (uint256 newId){
+        if(data.unusedIds.length > 0){
+            newId = data.unusedIds[data.unusedIds.length -1];
+            data.unusedIds.pop();
+            data.auctions[newId] = _auction;
+        }else{
+            data.auctions.push(_auction);
+    		newId = data.auctions.length  - 1;
+        }
+    }
+    
+    function remove(AuctionSet storage data, uint256 id) internal{
+        data.unusedIds.push(id);
+        delete data.auctions[id];
+    }
+    
+    function get(AuctionSet storage data, uint256 id) internal view returns(Auction storage){
+        return data.auctions[id];
+    }
 }
 
 // has all the basic data etc
 contract AutoChessBase{
-    
-    using SquadHelpers for SquadSet;
-    using UnitHelpers for UnitSet;
-    ///@dev global list of all units and squads. Maybe there is a better way
     UnitSet unitData;
-
     SquadSet squadData;
-    
-    mapping(address => uint256) ownerToUnitCount;
 }
 
 // File: UnitToken.sol
@@ -487,19 +539,18 @@ interface ERC721 {
     function symbol() external view returns (string memory);
     function tokensOfOwner(address _owner) external view returns (uint256[] memory tokenIds);
     // function tokenMetadata(uint256 _tokenId, string _preferredTransport) public view returns (string infoUrl);
-
+    //TODO fill in this bit
     // ERC-165 Compatibility (https://github.com/ethereum/EIPs/issues/165)
-    function supportsInterface(bytes4 _interfaceID) external view returns (bool);
+    //function supportsInterface(bytes4 _interfaceID) external view returns (bool);
 }
 
 
 contract UnitToken is AutoChessBase, ERC721{
-    //TODO fill these in
-    // Required methods
 
     //TODO remove hard coded value
     uint256 private totalUnits = 1000000000;
-
+    using UnitHelpers for UnitSet;
+    
     modifier _validTx(address _from, address _to, uint256 _tokenId){
         require(_from == ownerOf(_tokenId),"You don't own this unit");
         require(_from != _to, "You already own this unit");
@@ -532,26 +583,27 @@ contract UnitToken is AutoChessBase, ERC721{
     
     
     function _transfer(address _from, address _to, uint256 _tokenId) internal {
-        require(unitData.toState[_tokenId] == UnitState.Default, "Unit is busy");
-        require(unitData.toOwner[_tokenId] == _from, "Incorrect owner");
         unitData.toOwner[_tokenId] = _to;
         delete unitData.toApproved[_tokenId];
-        //the contract calling this is the unit generator
-        //Trigger the transfer Event
-        emit Transfer(_from,_to,_tokenId);
+        unitData.toCount[_from]--;
+        unitData.toCount[_to]++;
     }
 
 
     function transfer(address _to, uint256 _tokenId) public _validTx(msg.sender,_to, _tokenId) override {
-        _transfer(msg.sender,_to,_tokenId);
+        unitData.transfer(msg.sender,_to,_tokenId);
+        emit Transfer(msg.sender,_to,_tokenId);
     }
 
 
     function transferFrom(address _from, address _to, uint256 _tokenId) public _validTx(_from,_to,_tokenId) override {
         require(unitData.toApproved[_tokenId] == _to, "Unit is not promised to that user");
+        require(unitData.toState[_tokenId] == UnitState.Default, "Unit is busy");
+        require(unitData.toOwner[_tokenId] == _from, "Incorrect owner");
         //Require that it is not in a squad (this could be changed to something smarter)
         //Example uses double map
         _transfer(_from,_to,_tokenId);
+        emit Transfer(_from,_to,_tokenId);
     }
 
 
@@ -567,7 +619,7 @@ contract UnitToken is AutoChessBase, ERC721{
     
     function tokensOfOwner(address _owner) public view override returns (uint256[] memory tokenIds){
         uint256 count;
-        tokenIds = new uint256[](ownerToUnitCount[_owner]);
+        tokenIds = new uint256[](unitData.toCount[_owner]);
         for(uint i=0; i < unitData.units.length;i++){
            if(unitData.toOwner[i] == _owner){
             tokenIds[count++] = i;
@@ -585,9 +637,7 @@ contract UnitToken is AutoChessBase, ERC721{
     //function tokenMetadata(uint256 _tokenId, string calldata _preferredTransport) public view override returns (string memory infoUrl){}
 
     // ERC-165 Compatibility (https://github.com/ethereum/EIPs/issues/165)
-    function supportsInterface(bytes4 _interfaceID) public view override returns (bool) {
-
-    }
+    //function supportsInterface(bytes4 _interfaceID) public view override returns (bool) {}
 }	
 
 // File: UnitMarketplace.sol
@@ -598,42 +648,47 @@ interface IUnitMarketplace{
     function bid(uint256 _auctionId, uint256 _value) external;
     function bid(uint256 _auctionId, uint256 _value,string calldata _msg) external;
     function startAuction(uint256[] calldata _assets, uint256 _asking,string calldata title) external returns(uint256 auctionId);
-    function withdrawAuction(uint256 _auctionId) external returns(bool success);
+    function withdrawAuction(uint256 _auctionId) external;
 }
 
 
 contract UnitMarketplace is UnitToken,IUnitMarketplace {
     //objects:
+    using AuctionFunctions for AuctionSet;
     using AuctionFunctions for Auction;
+    StoreToken public CurrencyProvider = new StoreToken(address(this));
     
-    address public ProviderAddress;
-    StoreToken public CurrencyProvider;
+   
     
     //A list of all ongoing auctions
-    Auction[] public _auctions;
-
-    constructor() {
-        CurrencyProvider = new StoreToken(address(this));
-        ProviderAddress = address(CurrencyProvider);
-    }
+    AuctionSet auctionData;
+    
+    
 
     function bid(uint256 _auctionId, uint256 _value) public override {
-       _auctions[_auctionId].bid(_value, CurrencyProvider);
+       auctionData.bid(_auctionId,_value, CurrencyProvider);
     }
 
     /// So people can bid with a message etc
     /// just for funzies
     function bid(uint256 _auctionId, uint256 _value,string calldata _msg) public override {
-        _auctions[_auctionId].bid(_value, CurrencyProvider);
-        _auctions[_auctionId].highestBidText = _msg;
+        auctionData.bid(_auctionId,_value, CurrencyProvider);
+        auctionData.auctions[_auctionId].highestBidText = _msg;
     }
 
     function auctionApprove(address _from, uint256 _tokenId) internal {
         require(_from == ownerOf(_tokenId),"You don't own this unit");
         require(unitData.toState[_tokenId] == UnitState.Default, "Unit is unavailable");
         require(_from != address(0));
-        unitData.toApproved[_tokenId] = _from;
         unitData.toState[_tokenId] = UnitState.Auctioning;
+    }
+    
+    function auctionTransfer(address _to, uint256 _tokenId) internal {
+        require(unitData.toState[_tokenId] == UnitState.Auctioning, "Unit is not in auction");
+        unitData.toState[_tokenId] = UnitState.Default;
+        delete unitData.toApproved[_tokenId];
+        unitData.toOwner[_tokenId] = _to;
+        unitData.toCount[_to]+=1;
     }
 
     function startAuction(uint256[] calldata _assets, uint256 _asking, string calldata title) external override returns(uint256 auctionId) {
@@ -641,26 +696,35 @@ contract UnitMarketplace is UnitToken,IUnitMarketplace {
         for(uint i =0; i < _assets.length; i++){
             auctionApprove(msg.sender,_assets[i]);
         }
-        auctionId = AuctionFunctions.createAuction(_auctions, _assets, _asking, title);
+        auctionId = AuctionFunctions.createAuction(auctionData, _assets, _asking, title);
     }
-
-    function withdrawAuction(uint256 _auctionId) public override returns(bool success){
-        require(_auctions[_auctionId].host == msg.sender, "You are not the host of this auction!");
-        require(_auctions[_auctionId].endTime > block.timestamp, "It is too late to withdraw this auction!");
+    
+    function claimAuction(uint256 _auctionId) public {
+        auctionData.get(_auctionId).settle(unitData, CurrencyProvider);
+        auctionData.remove(_auctionId);
+    }
+    
+    function withdrawAuction(uint256 _auctionId) public override{
+        require(auctionData.get(_auctionId).host == msg.sender, "You are not the host of this auction!");
+        require(auctionData.get(_auctionId).highestBidder == msg.sender);
+        
         //withdraw the highestbidders bid
-        CurrencyProvider.autoUnApprove(_auctions[_auctionId].highestBidder,_auctions[_auctionId].highestBid);
-        //TODO reset ownership of units back to the host or use approval system instead
-        return true;
+        for (uint i=0; i < auctionData.get(_auctionId).assetIds.length; i++){
+                unitData.toState[auctionData.get(_auctionId).assetIds[i]] = UnitState.Default;
+        }
     }
 
-    function getAssetIds(uint256 _auctionId) public view returns(uint256[] memory assetIds){
-        assetIds = _auctions[_auctionId].assetIds;
+    function getAssetIds(uint256 _auctionId) public view returns(uint256[] memory){
+        return auctionData.get(_auctionId).assetIds;
     }
 
     function getAuctionCount() public view returns(uint256 count){
-        return _auctions.length;
+        return auctionData.auctions.length;
     }
-
+    
+    function getAuctions() public view returns(Auction[] memory){
+        return auctionData.auctions;
+    }
     //TODO add reverse auctions where someone offers tokens. Maybe?
 }
 
@@ -668,7 +732,7 @@ contract UnitMarketplace is UnitToken,IUnitMarketplace {
 
 
 
-interface ISquadBuilder is IUnitMarketplace{
+interface ISquadBuilder{
     function buyUnit(UnitType _type) external returns (uint256);
     function buyUnit(UnitType _type, string memory _name) external returns (uint256);
     event UnitCreated(address owner, uint256 indexed id);
@@ -688,8 +752,6 @@ contract SquadBuilder is UnitMarketplace, ISquadBuilder {
     using UnitHelpers for Unit;
     using UnitHelpers for UnitType;
     
-    constructor() UnitMarketplace(){}
-    
     
     function _buyUnit(address _owner, UnitType _type, string memory _name) internal returns (uint256 _unitId){
         uint256 _cost = _type.getCost();
@@ -697,7 +759,7 @@ contract SquadBuilder is UnitMarketplace, ISquadBuilder {
         _unitId = UnitHelpers.createUnit(unitData, _type, _name);
         emit UnitCreated(_owner,_unitId);
         unitData.toOwner[_unitId] = _owner;
-        ownerToUnitCount[_owner]+=1;
+        unitData.toCount[_owner]+=1;
     }
     
     function buyUnit(UnitType _type) public override returns (uint256){
@@ -731,13 +793,12 @@ interface IGameEngine is ISquadBuilder{
 /// Handles the actual playing of the game
 contract GameEngine is SquadBuilder, IGameEngine{
 
-    constructor() SquadBuilder(){}
     using UnitHelpers for Unit;
     using SquadHelpers for Squad;
     using SquadHelpers for SquadSet;
     uint8 constant ROUNDLIMIT = 2;
     
-    function _squadBattle(uint attackerSquadId, uint defenderSquadId) internal returns(uint winnings) {
+    function _squadBattle(uint attackerSquadId, uint defenderSquadId) internal returns(uint16 winnings) {
         require(squadData.toState[attackerSquadId] == squadData.toState[defenderSquadId], "wrong tier");
         
         //Making these storage variables is very dubious
@@ -783,23 +844,11 @@ contract GameEngine is SquadBuilder, IGameEngine{
             turn = !turn;
         }
         
-        // copy defender squad units state back to chain
-        squadData.afterBattle(unitData, defenderSquadId, dfdNum);
-        
-        //TODO finish updating defender state
-        squadData.toState[defenderSquadId] = DeploymentState.Retired;
-        //Uncomment this when unitCount is up and running
-        //defender.unitCount = dfdNum;
-        // TODO should squad be retired if all died
-
-        if (atkNum == 0) {
-            // attacker lost the battle
-            return 0;
-        } else {
-            // calculate winnings here
-            // for now returning static value of 10
-            return 10;
-        }
+        //update defender squad
+        winnings = squadData.afterBattle(unitData, defenderSquadId, dfdNum);
+        //stash the attackers winnings
+        squadData.get(attackerSquadId).stashedTokens += winnings;
+        CurrencyProvider.deposit(squadData.toOwner[defenderSquadId],squadData.get(defenderSquadId).stashedTokens);
     }
     
     
@@ -811,20 +860,18 @@ contract GameEngine is SquadBuilder, IGameEngine{
 
 ///handles all the adding of units and whatnot
 
-interface IMatchMaker is IGameEngine{
+interface IMatchMaker{
     
     function randomChallenge(uint256[] calldata unitIds) external returns (uint256 squadId);
     function targetedChallenge(uint256[] calldata unitIds, uint256 _targetId) external returns (uint256 squadId);
-    function withdrawSquad(uint256 _squadId) external returns (bool success);
     function getSquadIdsInTier(DeploymentState _tier) external view returns (uint256[] memory deployed); //This is subject to change
-    
 }
 
 
 contract MatchMaker is GameEngine, IMatchMaker{
-    
+    using SquadHelpers for SquadSet;
     /// Calls the parent constructor
-    constructor() GameEngine(){
+    constructor(){
         //Generate enough units to fill each tier
         uint256[] memory _ids7 = new uint256[](7);
         uint256[] memory _ids5 = new uint256[](5);
@@ -846,7 +893,7 @@ contract MatchMaker is GameEngine, IMatchMaker{
         
         require(unitData.units.length<=16,"too many units created");
         //TODO figure out why this fixes things
-        require(ownerToUnitCount[address(this)] <= 16, "hmmm");
+        require(unitData.toCount[address(this)] <= 16, "hmmm");
         //make all the units into a squad
         _createSquad(address(this), _ids7);
         _createSquad(address(this), _ids5);
@@ -860,19 +907,16 @@ contract MatchMaker is GameEngine, IMatchMaker{
         uint256 targetId = AutoChessHelpers.randomNumber(squadData.fromTier[tier].length);
         (squadId, tier) = _createSquad(msg.sender, _unitIds);
         _squadBattle(squadId,squadData.fromTier[tier][targetId]);
-        squadData.toState[squadData.fromTier[tier][targetId]] = DeploymentState.Retired;
-        squadData.toState[squadData.fromTier[tier][targetId]];
     }
 
 
     function targetedChallenge(uint256[] calldata _unitIds, uint256 targetId) public override returns (uint256 squadId){
-        
         DeploymentState tier;
         (squadId, tier) = _createSquad(msg.sender,_unitIds);
         //make sure it's a valid target
         require(squadData.fromTier[tier].length > targetId, "Invalid unit ID");
         require(squadId != targetId, "unit can't fight itself");
-        _squadBattle(squadId,squadData.fromTier[tier][targetId]);
+        _squadBattle(squadId,squadData.get(tier,targetId));
     }
 
 
@@ -894,10 +938,6 @@ contract MatchMaker is GameEngine, IMatchMaker{
         return squadData.toCount[_owner];
     }
     
-    function collectSquad(uint256 _squadId) public{
-        //remove the squad from the tier
-        
-    }
     
     function getSquadUnitIds(uint256 squadId) public view returns (uint256[] memory){
         return squadData.squads[squadId].unitIds;
@@ -909,10 +949,6 @@ contract MatchMaker is GameEngine, IMatchMaker{
     
     function getSquad(uint256 squadId) public view returns (Squad memory){
         return squadData.squads[squadId];
-    }
-    
-    function withdrawSquad(uint256 _squadId) public override returns (bool success){
-        
     }
     
     

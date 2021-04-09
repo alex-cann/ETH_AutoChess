@@ -47,141 +47,12 @@
 		},
 		"gasEstimates": null,
 		"methodIdentifiers": {
-			"bid(uint256,uint256)": "598647f8",
-			"bid(uint256,uint256,string)": "76d4fc57",
-			"buyUnit(uint8)": "27e78202",
-			"buyUnit(uint8,string)": "898f4299",
 			"getSquadIdsInTier(uint8)": "64e0b81f",
 			"randomChallenge(uint256[])": "dba7f943",
-			"startAuction(uint256[],uint256,string)": "54c8a21e",
-			"targetedChallenge(uint256[],uint256)": "e56053eb",
-			"withdrawAuction(uint256)": "b5fc9833",
-			"withdrawSquad(uint256)": "198b367d"
+			"targetedChallenge(uint256[],uint256)": "e56053eb"
 		}
 	},
 	"abi": [
-		{
-			"anonymous": false,
-			"inputs": [
-				{
-					"indexed": false,
-					"internalType": "address",
-					"name": "owner",
-					"type": "address"
-				},
-				{
-					"indexed": false,
-					"internalType": "uint256",
-					"name": "_id",
-					"type": "uint256"
-				}
-			],
-			"name": "SquadCreated",
-			"type": "event"
-		},
-		{
-			"anonymous": false,
-			"inputs": [
-				{
-					"indexed": false,
-					"internalType": "address",
-					"name": "owner",
-					"type": "address"
-				},
-				{
-					"indexed": true,
-					"internalType": "uint256",
-					"name": "id",
-					"type": "uint256"
-				}
-			],
-			"name": "UnitCreated",
-			"type": "event"
-		},
-		{
-			"inputs": [
-				{
-					"internalType": "uint256",
-					"name": "_auctionId",
-					"type": "uint256"
-				},
-				{
-					"internalType": "uint256",
-					"name": "_value",
-					"type": "uint256"
-				}
-			],
-			"name": "bid",
-			"outputs": [],
-			"stateMutability": "nonpayable",
-			"type": "function"
-		},
-		{
-			"inputs": [
-				{
-					"internalType": "uint256",
-					"name": "_auctionId",
-					"type": "uint256"
-				},
-				{
-					"internalType": "uint256",
-					"name": "_value",
-					"type": "uint256"
-				},
-				{
-					"internalType": "string",
-					"name": "_msg",
-					"type": "string"
-				}
-			],
-			"name": "bid",
-			"outputs": [],
-			"stateMutability": "nonpayable",
-			"type": "function"
-		},
-		{
-			"inputs": [
-				{
-					"internalType": "enum UnitType",
-					"name": "_type",
-					"type": "uint8"
-				}
-			],
-			"name": "buyUnit",
-			"outputs": [
-				{
-					"internalType": "uint256",
-					"name": "",
-					"type": "uint256"
-				}
-			],
-			"stateMutability": "nonpayable",
-			"type": "function"
-		},
-		{
-			"inputs": [
-				{
-					"internalType": "enum UnitType",
-					"name": "_type",
-					"type": "uint8"
-				},
-				{
-					"internalType": "string",
-					"name": "_name",
-					"type": "string"
-				}
-			],
-			"name": "buyUnit",
-			"outputs": [
-				{
-					"internalType": "uint256",
-					"name": "",
-					"type": "uint256"
-				}
-			],
-			"stateMutability": "nonpayable",
-			"type": "function"
-		},
 		{
 			"inputs": [
 				{
@@ -224,35 +95,6 @@
 			"inputs": [
 				{
 					"internalType": "uint256[]",
-					"name": "_assets",
-					"type": "uint256[]"
-				},
-				{
-					"internalType": "uint256",
-					"name": "_asking",
-					"type": "uint256"
-				},
-				{
-					"internalType": "string",
-					"name": "title",
-					"type": "string"
-				}
-			],
-			"name": "startAuction",
-			"outputs": [
-				{
-					"internalType": "uint256",
-					"name": "auctionId",
-					"type": "uint256"
-				}
-			],
-			"stateMutability": "nonpayable",
-			"type": "function"
-		},
-		{
-			"inputs": [
-				{
-					"internalType": "uint256[]",
 					"name": "unitIds",
 					"type": "uint256[]"
 				},
@@ -268,44 +110,6 @@
 					"internalType": "uint256",
 					"name": "squadId",
 					"type": "uint256"
-				}
-			],
-			"stateMutability": "nonpayable",
-			"type": "function"
-		},
-		{
-			"inputs": [
-				{
-					"internalType": "uint256",
-					"name": "_auctionId",
-					"type": "uint256"
-				}
-			],
-			"name": "withdrawAuction",
-			"outputs": [
-				{
-					"internalType": "bool",
-					"name": "success",
-					"type": "bool"
-				}
-			],
-			"stateMutability": "nonpayable",
-			"type": "function"
-		},
-		{
-			"inputs": [
-				{
-					"internalType": "uint256",
-					"name": "_squadId",
-					"type": "uint256"
-				}
-			],
-			"name": "withdrawSquad",
-			"outputs": [
-				{
-					"internalType": "bool",
-					"name": "success",
-					"type": "bool"
 				}
 			],
 			"stateMutability": "nonpayable",

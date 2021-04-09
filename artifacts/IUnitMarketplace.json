@@ -133,13 +133,7 @@
 				}
 			],
 			"name": "withdrawAuction",
-			"outputs": [
-				{
-					"internalType": "bool",
-					"name": "success",
-					"type": "bool"
-				}
-			],
+			"outputs": [],
 			"stateMutability": "nonpayable",
 			"type": "function"
 		}

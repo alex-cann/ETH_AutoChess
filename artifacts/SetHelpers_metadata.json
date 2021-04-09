@@ -18,7 +18,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"MatchMaker_flat.sol": "SquadHelpers"
+			"MatchMaker_flat.sol": "SetHelpers"
 		},
 		"evmVersion": "istanbul",
 		"libraries": {},
@@ -33,11 +33,11 @@
 	},
 	"sources": {
 		"MatchMaker_flat.sol": {
-			"keccak256": "0x90e952317ab48bc70cc2e2398fa47f9e291144fdb8879ae1ac50a30a7efa8408",
+			"keccak256": "0x9e296dba3b6adeaf34adf010eb0a6a5de7e57ad0c7a6188425bc4b4a07d7ffaa",
 			"license": "UNLICENSED",
 			"urls": [
-				"bzz-raw://c8a4f82e9b681e79f23a337a7e6fc6406c01db0f70e1d08f615a3e3f122db4f3",
-				"dweb:/ipfs/QmegimP4X3yiwwHVUWyvSu6GXawxb6sRJnvheXUwfis7go"
+				"bzz-raw://f33c704ee55e1efa020d19c7194012a82159e46370a605f3fd2fcce546941d84",
+				"dweb:/ipfs/QmepnDEwA4b47XjgdRyG3EW86rGDvjmhbJhoUsAVJaZt9J"
 			]
 		}
 	},
