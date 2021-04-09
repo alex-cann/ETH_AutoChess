@@ -32,9 +32,9 @@ contract StoreToken is ERC20 {
     //TODO support fancy bidding where you can approve more than you actually have
 
     uint256 private totalTokens = 1000000000;
-    mapping (address => uint256) ownerToBalance;
-    mapping (address => mapping(address => uint256)) ownerToApprovedWithdrawals;
-    mapping (address => uint256) ownerToTotalApproved;
+    mapping (address => uint256) private ownerToBalance;
+    mapping (address => mapping(address => uint256)) private ownerToApprovedWithdrawals;
+    mapping (address => uint256) private ownerToTotalApproved;
     address StoreAddress;
 
     constructor(address _owner) {
@@ -578,13 +578,6 @@ contract UnitToken is AutoChessBase, ERC721{
         emit Approval(msg.sender, _to, _tokenId);
     }
     
-    
-    function _transfer(address _from, address _to, uint256 _tokenId) internal {
-        unitData.toOwner[_tokenId] = _to;
-        delete unitData.toApproved[_tokenId];
-        unitData.toCount[_from]--;
-        unitData.toCount[_to]++;
-    }
 
 
     function transfer(address _to, uint256 _tokenId) public _validTx(msg.sender,_to, _tokenId) override {
@@ -595,11 +588,9 @@ contract UnitToken is AutoChessBase, ERC721{
 
     function transferFrom(address _from, address _to, uint256 _tokenId) public _validTx(_from,_to,_tokenId) override {
         require(unitData.toApproved[_tokenId] == _to, "Unit is not promised to that user");
-        require(unitData.toState[_tokenId] == UnitState.Default, "Unit is busy");
-        require(unitData.toOwner[_tokenId] == _from, "Incorrect owner");
         //Require that it is not in a squad (this could be changed to something smarter)
         //Example uses double map
-        _transfer(_from,_to,_tokenId);
+        unitData.transfer(_from,_to,_tokenId);
         emit Transfer(_from,_to,_tokenId);
     }
 
@@ -655,13 +646,9 @@ contract UnitMarketplace is UnitToken,IUnitMarketplace {
     using AuctionFunctions for Auction;
     StoreToken public CurrencyProvider = new StoreToken(address(this));
     
-   
-    
     //A list of all ongoing auctions
     AuctionSet auctionData;
     
-    
-
     function bid(uint256 _auctionId, uint256 _value) public override {
        auctionData.bid(_auctionId,_value, CurrencyProvider);
     }
@@ -783,12 +770,8 @@ contract SquadBuilder is UnitMarketplace, ISquadBuilder {
 /// handles the game calculations and logic etc
 
 
-interface IGameEngine is ISquadBuilder{
-    //TODO add events here
-}
-
 /// Handles the actual playing of the game
-contract GameEngine is SquadBuilder, IGameEngine{
+contract GameEngine is SquadBuilder{
 
     using UnitHelpers for Unit;
     using SquadHelpers for Squad;

@@ -1,0 +1,24 @@
+// This is an example from https://zokrates.github.io/gettingstarted.html
+
+
+struct Unit {
+    field power
+    field defence
+    field health
+}
+
+def main(Unit[3] attacker, Unit[3] defender) -> (field):
+    field lastAttacker = 2
+    field lastDefender = 2
+    bool turn = true
+	for field round in 0..10 do
+	    Unit target = if turn then defender[lastDefender] else attacker[lastAttacker] fi
+        Unit assailant = if turn then attacker[0] else defender[0] fi
+        field dmg = assailant.power - target.defence
+        target.health = if dmg >= target.health then 0 else target.health - dmg fi
+        lastAttacker = if !turn && dmg >= target.health then lastAttacker-1 else lastAttacker fi
+        lastDefender = if turn && dmg >= target.health then lastDefender-1 else lastDefender fi
+	endfor
+	return lastDefender
+
+
