@@ -62,11 +62,11 @@
 	},
 	"sources": {
 		"MatchMaker_flat.sol": {
-			"keccak256": "0x636f9669013b3fd3c383c1690c8b5fe14708e62358bda3fbac42be579db66d6b",
+			"keccak256": "0x0cc89f3500525518e5a9141e144096d6a71c5c1cba2d83cef08fdf379259b50a",
 			"license": "UNLICENSED",
 			"urls": [
-				"bzz-raw://0c1343a894453621d6039321bb4b542ee60526acacab1b3fe78d021d2036af1e",
-				"dweb:/ipfs/QmZdYPEaV6mUrDdz1R6Hsa5ysLRAFiw2QTot1oLJpr7pvD"
+				"bzz-raw://dadbc5c9c354aaed57072fe45d8797ea27c6979758df92d253ea7ec10b022ff0",
+				"dweb:/ipfs/QmWH6WH8vrgXEjLuE3T4UAdtcnPtft3dkMQDyAgo77sfQW"
 			]
 		},
 		"remix_tests.sol": {
@@ -78,10 +78,10 @@
 			]
 		},
 		"tests/AutoChess_test.sol": {
-			"keccak256": "0x22cb3629a3c2a621e25d79b7d84db2abaf5bf20b7eaa4d865947a919c518349d",
+			"keccak256": "0xadc9926817ed46d93938b518e3cae55c6b164685c0f1196a3bb738ad59ca64c3",
 			"urls": [
-				"bzz-raw://f9adf5e7b3e8ddb0dcafdc7b058c8c573fc49d9d8afefb20c4b77827e277e577",
-				"dweb:/ipfs/QmUJo5TPjL2JxtNvbtbkUNvhs9ft25bhmJzycZpyp5rp3g"
+				"bzz-raw://4f3f8fb22d7c52767ae190705160d855342ed5b24b0e02d6b7006421c0a156d8",
+				"dweb:/ipfs/QmP6J44pyL39ux9ksQwj9cSusFwWouRJgyQxzLZR89Njz5"
 			]
 		}
 	},

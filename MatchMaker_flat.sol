@@ -357,6 +357,14 @@ library SquadHelpers {
         return recovered * 6/10;
     }
     
+    function adminAfterBattle(SquadSet storage squadData, UnitSet storage unitData, uint256 squadId, uint8 lastLiving) public returns (uint16){
+        uint16 recovered;
+        for(uint i=lastLiving; i < squadData.squads[squadId].unitIds.length; i++){
+            recovered += UnitHelpers.getCost(unitData,getUnit(squadData,squadId,i));
+        }
+        return recovered * 6/10;
+    }
+    
     
     function createSquad(SquadSet storage squadData, UnitSet storage unitData, uint256[] calldata unitIds, address _owner) public returns(uint256 squadId, DeploymentState tier){
         require(unitIds.length <= 7, "Invalid number of units");
@@ -754,7 +762,6 @@ contract SquadBuilder is UnitMarketplace, ISquadBuilder {
     
 }
 
-/// handles the game calculations and logic etc
 
 /// Handles the actual playing of the game
 contract GameEngine is SquadBuilder{
@@ -811,11 +818,16 @@ contract GameEngine is SquadBuilder{
             turn = !turn;
         }
 
-        //update defender squad
-        winnings = squadData.afterBattle(unitData, defenderSquadId, dfdNum);
+        
+        //Default squads don't die the same way
+        if(squadData.toOwner[defenderSquadId] == address(this)){
+            winnings = squadData.adminAfterBattle(unitData, defenderSquadId, dfdNum);
+        }else{
+            winnings = squadData.afterBattle(unitData, defenderSquadId, dfdNum);
+            CurrencyProvider.deposit(squadData.toOwner[defenderSquadId],squadData.get(defenderSquadId).stashedTokens);
+        }
         //stash the attackers winnings
         squadData.get(attackerSquadId).stashedTokens += winnings;
-        CurrencyProvider.deposit(squadData.toOwner[defenderSquadId],squadData.get(defenderSquadId).stashedTokens);
     }
     
     
