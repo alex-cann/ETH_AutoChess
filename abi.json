@@ -1,0 +1,61 @@
+{
+  "inputs": [
+    {
+      "name": "attacker",
+      "public": true,
+      "type": "array",
+      "components": {
+        "size": 7,
+        "type": "struct",
+        "components": {
+          "name": "Unit",
+          "members": [
+            {
+              "name": "power",
+              "type": "field"
+            },
+            {
+              "name": "defence",
+              "type": "field"
+            },
+            {
+              "name": "health",
+              "type": "field"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "defender",
+      "public": true,
+      "type": "array",
+      "components": {
+        "size": 7,
+        "type": "struct",
+        "components": {
+          "name": "Unit",
+          "members": [
+            {
+              "name": "power",
+              "type": "field"
+            },
+            {
+              "name": "defence",
+              "type": "field"
+            },
+            {
+              "name": "health",
+              "type": "field"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "outputs": [
+    {
+      "type": "field"
+    }
+  ]
+}

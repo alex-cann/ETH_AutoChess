@@ -32,13 +32,6 @@
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "testCreateSquadRandom",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
 			}
 		],
 		"devdoc": {
@@ -69,11 +62,11 @@
 	},
 	"sources": {
 		"MatchMaker_flat.sol": {
-			"keccak256": "0x48b3689c4eac1f9109124b258f1dc24a019439688575d732b37956bff64bbaf0",
+			"keccak256": "0x636f9669013b3fd3c383c1690c8b5fe14708e62358bda3fbac42be579db66d6b",
 			"license": "UNLICENSED",
 			"urls": [
-				"bzz-raw://d73b99e14ef5506ec673498d68f29bdb7f8a6aa0531a0c839953c40a89e58888",
-				"dweb:/ipfs/QmUPoLziYuKRZVHBrs9fyLVax9UHbSf5iDanSqP6LrovAN"
+				"bzz-raw://0c1343a894453621d6039321bb4b542ee60526acacab1b3fe78d021d2036af1e",
+				"dweb:/ipfs/QmZdYPEaV6mUrDdz1R6Hsa5ysLRAFiw2QTot1oLJpr7pvD"
 			]
 		},
 		"remix_tests.sol": {
@@ -85,10 +78,10 @@
 			]
 		},
 		"tests/AutoChess_test.sol": {
-			"keccak256": "0x756db4ac942696bc6c3cd5a4e5aea9c7174ddd27d3072c6c0503d874139be7a7",
+			"keccak256": "0x22cb3629a3c2a621e25d79b7d84db2abaf5bf20b7eaa4d865947a919c518349d",
 			"urls": [
-				"bzz-raw://9a83cea7c37438ffb1b23135989c15e29753988c052876b2d05e9d81172aa47f",
-				"dweb:/ipfs/QmRSgYaKFuDC11xB4GFer8hrRGGsSDegekip4f88e7X5ap"
+				"bzz-raw://f9adf5e7b3e8ddb0dcafdc7b058c8c573fc49d9d8afefb20c4b77827e277e577",
+				"dweb:/ipfs/QmUJo5TPjL2JxtNvbtbkUNvhs9ft25bhmJzycZpyp5rp3g"
 			]
 		}
 	},

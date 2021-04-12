@@ -170,8 +170,6 @@ enum DeploymentState{
 }
 
 
-
-
 struct Squad{
     //list of the units in this squad
     uint256[] unitIds;
@@ -246,7 +244,7 @@ library UnitHelpers {
     }
     
     function getCost(Unit storage unit) internal view returns(uint16 cost){
-        return getCost(unit.utype);
+        return getCost(unit.utype) * unit.level;
     }
     
     function getCost(UnitSet storage unitData, uint256 unitId) internal view returns(uint16 cost){
@@ -318,6 +316,14 @@ library UnitHelpers {
         data.toState[id] = UnitState.Dead;
     }
     
+    function levelUp(Unit storage unit) internal{
+        //quadratic stat boosts from leveling up
+        unit.level+=1;
+        unit.defence+=unit.level;
+        unit.power+=unit.level;
+        unit.health+=5;
+    }
+    
     function get(UnitSet storage data, uint256 id) internal view returns(Unit storage){
         return data.units[id];
     }
@@ -336,6 +342,8 @@ library SquadHelpers {
     function afterBattle(SquadSet storage squadData, UnitSet storage unitData, uint256 squadId, uint8 lastLiving) public returns (uint16){
         for(uint i=0; i < lastLiving; i++){
             unitData.toState[getUnit(squadData,squadId,i)] = UnitState.Default;
+            //give all the survivors a level
+            UnitHelpers.levelUp(unitData.units[getUnit(squadData,squadId,i)]);
         }
         uint16 recovered;
         for(uint i=lastLiving; i < squadData.squads[squadId].unitIds.length; i++){
@@ -343,15 +351,14 @@ library SquadHelpers {
             unitData.toState[getUnit(squadData,squadId,i)] = UnitState.Default;
             unitData.unusedIds.push(getUnit(squadData,squadId,i));
         }
-       squadData.toState[squadId] = DeploymentState.Unused;
-       squadData.toTierSize[squadData.toState[squadId]]--;
-       get(squadData,squadId).stashedTokens+=recovered * 4/10;
-       return recovered * 6/10;
+        squadData.toTierSize[squadData.toState[squadId]]--;
+        squadData.toState[squadId] = DeploymentState.Unused;
+        get(squadData,squadId).stashedTokens+=recovered * 4/10;
+        return recovered * 6/10;
     }
     
     
     function createSquad(SquadSet storage squadData, UnitSet storage unitData, uint256[] calldata unitIds, address _owner) public returns(uint256 squadId, DeploymentState tier){
-        //TODO make sure that _unitIds is one of the correct lengths
         require(unitIds.length <= 7, "Invalid number of units");
         for(uint8 i=0; i < unitIds.length; i+=1){
             require(unitData.toOwner[unitIds[i]] == _owner, "You don't own this unit!");
@@ -361,7 +368,7 @@ library SquadHelpers {
         tier = AutoChessHelpers.getTier(unitIds.length);
         Squad memory _squad = Squad({
                     unitIds: new uint256[](0),
-                    deployTime:uint16(block.timestamp), //TODO this seems sketch
+                    deployTime:uint16(block.timestamp),
                     stashedTokens:0
                     });
        
@@ -427,7 +434,7 @@ library AutoChessHelpers {
         }
     }
 }
-//TODO some refactoring
+
 library AuctionFunctions{
     
     function bid(Auction storage auction, uint256 _value, StoreToken currency) public {
@@ -535,17 +542,14 @@ interface ERC721 {
     function name() external  view returns (string memory);
     function symbol() external view returns (string memory);
     function tokensOfOwner(address _owner) external view returns (uint256[] memory tokenIds);
-    // function tokenMetadata(uint256 _tokenId, string _preferredTransport) public view returns (string infoUrl);
-    //TODO fill in this bit
-    // ERC-165 Compatibility (https://github.com/ethereum/EIPs/issues/165)
-    //function supportsInterface(bytes4 _interfaceID) external view returns (bool);
+
 }
 
 
 contract UnitToken is AutoChessBase, ERC721{
 
-    //TODO remove hard coded value
-    uint256 private totalUnits = 1000000000;
+
+    uint256 private totalUnits = 0;
     using UnitHelpers for UnitSet;
     
     modifier _validTx(address _from, address _to, uint256 _tokenId){
@@ -578,13 +582,10 @@ contract UnitToken is AutoChessBase, ERC721{
         emit Approval(msg.sender, _to, _tokenId);
     }
     
-
-
     function transfer(address _to, uint256 _tokenId) public _validTx(msg.sender,_to, _tokenId) override {
         unitData.transfer(msg.sender,_to,_tokenId);
         emit Transfer(msg.sender,_to,_tokenId);
     }
-
 
     function transferFrom(address _from, address _to, uint256 _tokenId) public _validTx(_from,_to,_tokenId) override {
         require(unitData.toApproved[_tokenId] == _to, "Unit is not promised to that user");
@@ -593,7 +594,6 @@ contract UnitToken is AutoChessBase, ERC721{
         unitData.transfer(_from,_to,_tokenId);
         emit Transfer(_from,_to,_tokenId);
     }
-
 
     // Optional
     function name() public override pure returns (string memory) {
@@ -604,7 +604,6 @@ contract UnitToken is AutoChessBase, ERC721{
         return "ACHSSU";
     }
 
-    
     function tokensOfOwner(address _owner) public view override returns (uint256[] memory tokenIds){
         uint256 count;
         tokenIds = new uint256[](unitData.toCount[_owner]);
@@ -622,13 +621,8 @@ contract UnitToken is AutoChessBase, ERC721{
     function getUnitState(uint256 unitId) public view returns(UnitState state){
         return unitData.toState[unitId];
     }
-    //function tokenMetadata(uint256 _tokenId, string calldata _preferredTransport) public view override returns (string memory infoUrl){}
 
-    // ERC-165 Compatibility (https://github.com/ethereum/EIPs/issues/165)
-    //function supportsInterface(bytes4 _interfaceID) public view override returns (bool) {}
 }	
-
-// File: UnitMarketplace.sol
 
 
 interface IUnitMarketplace{
@@ -709,10 +703,7 @@ contract UnitMarketplace is UnitToken,IUnitMarketplace {
     function getAuctions() public view returns(Auction[] memory){
         return auctionData.auctions;
     }
-    //TODO add reverse auctions where someone offers tokens. Maybe?
 }
-
-// File: SquadBuilder.sol
 
 
 
@@ -725,8 +716,6 @@ interface ISquadBuilder{
 
 contract SquadBuilder is UnitMarketplace, ISquadBuilder {
 
-    //TODO implement this so that units can be efficiently deleted etc
-    //other approach is to update id of last unit(probably a bad idea)
     string constant DEFAULT_NAME = "Maurice, the Mediocre";
     uint256[] unusedUnitIds;
     uint256[] unusedSquadIds;
@@ -765,10 +754,7 @@ contract SquadBuilder is UnitMarketplace, ISquadBuilder {
     
 }
 
-// File: GameEngine.sol
-
 /// handles the game calculations and logic etc
-
 
 /// Handles the actual playing of the game
 contract GameEngine is SquadBuilder{
@@ -777,6 +763,8 @@ contract GameEngine is SquadBuilder{
     using SquadHelpers for Squad;
     using SquadHelpers for SquadSet;
     uint8 constant ROUNDLIMIT = 2;
+    
+    
     
     function _squadBattle(uint attackerSquadId, uint defenderSquadId) internal returns(uint16 winnings) {
         require(squadData.toState[attackerSquadId] == squadData.toState[defenderSquadId], "wrong tier");
@@ -790,8 +778,7 @@ contract GameEngine is SquadBuilder{
         uint8 dfdNum = uint8(dfdUnits.length);
         require(atkNum == dfdNum, "inequal sizes");
         
-        //TODO include more details wrt squad formation
-        //     also include formation in the Squad structure
+        
         uint atkId;
         uint dfdId;
         bool turn = true;
@@ -823,7 +810,7 @@ contract GameEngine is SquadBuilder{
             }
             turn = !turn;
         }
-        
+
         //update defender squad
         winnings = squadData.afterBattle(unitData, defenderSquadId, dfdNum);
         //stash the attackers winnings
@@ -833,8 +820,6 @@ contract GameEngine is SquadBuilder{
     
     
 }
-
-// File: MatchMaker.sol
 
 /// connects players and arranges for who plays what games
 
@@ -870,14 +855,18 @@ contract MatchMaker is GameEngine, IMatchMaker{
             _ids1[i] = _buyUnit(address(this),UnitType.Cavalry,"DEFAULT");
         }
         
+        //Sanity check
         require(unitData.units.length<=16,"too many units created");
-        //TODO figure out why this fixes things
         require(unitData.toCount[address(this)] <= 16, "hmmm");
+        
         //make all the units into a squad
         _createSquad(address(this), _ids7);
         _createSquad(address(this), _ids5);
         _createSquad(address(this), _ids3);
         _createSquad(address(this), _ids1);
+        
+        //Some squad sanity checks
+        require(squadData.squads.length<=4, "Too many squads created");
    }
    
 
