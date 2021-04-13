@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.1+commit.df193b15"
+		"version": "0.6.12+commit.27d51765"
 	},
 	"language": "Solidity",
 	"output": {
@@ -26,18 +26,18 @@
 			"bytecodeHash": "ipfs"
 		},
 		"optimizer": {
-			"enabled": true,
-			"runs": 10
+			"enabled": false,
+			"runs": 200
 		},
 		"remappings": []
 	},
 	"sources": {
 		"verifier.sol": {
-			"keccak256": "0xe90575e3b7649d9e4845f39eb6223beed85340bc62ea53c5c4118ca9f8853ce4",
+			"keccak256": "0xee397a0dac6fa65881f05bb9c77da4c40422bed72ab041b1d6a958f43daf5db3",
 			"license": "LGPL-3.0-only",
 			"urls": [
-				"bzz-raw://fe42a588397e7bc8820f1018299198aec3c568dbb68c3c3ce07fa1f23678888e",
-				"dweb:/ipfs/Qmb7cLZQSW8Yn4LvaWu1yasbMdCwsuXxHPrSoRVdbTZwSx"
+				"bzz-raw://ab037951cc3683e01d2a349e5f7e5887e1454e139fb88151ed3ae3e591afaf87",
+				"dweb:/ipfs/QmVbCRBHpPSjgyueKTtN6NEoVzmisHzogAuvTo1UHYxqkW"
 			]
 		}
 	},

@@ -320,7 +320,7 @@ library UnitHelpers {
         return data.units[id];
     }
     
-    function storeStats(UnitSet storage data, uint256[44] memory stats, uint256 unitId, uint16 i) internal{
+    function storeStats(UnitSet storage data, uint256[44] memory stats, uint256 unitId, uint16 i) view internal{
         stats[i] = get(data, unitId).power;
         stats[i+1] = get(data,unitId).defence;
         stats[i+2] = get(data,unitId).health;

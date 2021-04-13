@@ -23,6 +23,8 @@ The rest of this report is structured as following. Section 2 introduces some re
 
 ## Related Work
 
+Initially there were two main types of blockchain games that were developed. First is the Non-fungible token games. Such games introduced non-fungible tokens(NFTs) that users own. Users can then sell these NFT assets. Examples of such games are Cryptokitties, cryptozombies and many more. The Second category of games is gambling games. These games allow users to bet their tokens on some event and then reap rewards based on outcomes. Fomo3d is one such game. With AutoChess we try to include both types of functionality in one game. We allow NFT type units to be owned by users. Users can trade and auction these units.
+
 ## AutoChess
 
 This section covers the basic game design of the game and its core features. AutoChess is broadly a battle simulation game inspired by auto battlers like Dota Auto Chess or Team Fight Tactics. It lets players initiate squad battles with other players. The incentive for players is to win these battles to earn rewards. Squads themselves are formed with units, so to build a squad, players need units. Units need to be purchased from the store using tokens which is an investment from the players to play the game. Once a player creates their squad for battle they can challenge the squads of other players. The result of the battle and the winnings if any are then communicated back to the player. There is however more to AutoChess than just a battle simulation and more details follow in the following subsections.
