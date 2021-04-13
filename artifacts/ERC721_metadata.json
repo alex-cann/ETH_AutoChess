@@ -226,7 +226,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"MatchMaker_flat.sol": "ERC721"
+			"MatchMaker_small.sol": "ERC721"
 		},
 		"evmVersion": "istanbul",
 		"libraries": {},
@@ -240,20 +240,12 @@
 		"remappings": []
 	},
 	"sources": {
-		"MatchMaker_flat.sol": {
-			"keccak256": "0xa80f2fee44d589561a3bd18d1b36c69f194e80002728cd3bf0533ed23195f350",
+		"MatchMaker_small.sol": {
+			"keccak256": "0x44ceed703a2d49936b508203dbc9e04131997255623f3b1e00a92960929325f3",
 			"license": "UNLICENSED",
 			"urls": [
-				"bzz-raw://145e87d75913788139fad3df9d11abed3e15dafb570aa9b8a2089206ca59c117",
-				"dweb:/ipfs/QmST9ewcc5pcv3R6z9Pa3oqhH4eeydCpYEwWURmHZDxdYn"
-			]
-		},
-		"verifier.sol": {
-			"keccak256": "0xee397a0dac6fa65881f05bb9c77da4c40422bed72ab041b1d6a958f43daf5db3",
-			"license": "LGPL-3.0-only",
-			"urls": [
-				"bzz-raw://ab037951cc3683e01d2a349e5f7e5887e1454e139fb88151ed3ae3e591afaf87",
-				"dweb:/ipfs/QmVbCRBHpPSjgyueKTtN6NEoVzmisHzogAuvTo1UHYxqkW"
+				"bzz-raw://726b7587cd90db1989d540e665209de032531bf0409c2a44c458b49583e25b6a",
+				"dweb:/ipfs/QmYpddczTDWnXuxe18Wvu7TQZ47TE8b7x3fyHWADTrYyUc"
 			]
 		}
 	},
