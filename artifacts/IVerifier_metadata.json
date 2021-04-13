@@ -1,0 +1,118 @@
+{
+	"compiler": {
+		"version": "0.6.1+commit.e6f7d5a4"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"components": [
+							{
+								"components": [
+									{
+										"internalType": "uint256",
+										"name": "X",
+										"type": "uint256"
+									},
+									{
+										"internalType": "uint256",
+										"name": "Y",
+										"type": "uint256"
+									}
+								],
+								"internalType": "struct Pairing.G1Point",
+								"name": "a",
+								"type": "tuple"
+							},
+							{
+								"components": [
+									{
+										"internalType": "uint256[2]",
+										"name": "X",
+										"type": "uint256[2]"
+									},
+									{
+										"internalType": "uint256[2]",
+										"name": "Y",
+										"type": "uint256[2]"
+									}
+								],
+								"internalType": "struct Pairing.G2Point",
+								"name": "b",
+								"type": "tuple"
+							},
+							{
+								"components": [
+									{
+										"internalType": "uint256",
+										"name": "X",
+										"type": "uint256"
+									},
+									{
+										"internalType": "uint256",
+										"name": "Y",
+										"type": "uint256"
+									}
+								],
+								"internalType": "struct Pairing.G1Point",
+								"name": "c",
+								"type": "tuple"
+							}
+						],
+						"internalType": "struct IVerifier.Proof",
+						"name": "proof",
+						"type": "tuple"
+					},
+					{
+						"internalType": "uint256[43]",
+						"name": "input",
+						"type": "uint256[43]"
+					}
+				],
+				"name": "verifyTx",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "r",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"methods": {}
+		},
+		"userdoc": {
+			"methods": {}
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"verifier.sol": "IVerifier"
+		},
+		"evmVersion": "istanbul",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": true,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"verifier.sol": {
+			"keccak256": "0xd22c9bb9d01186211c6a9ea7f967ccf2177286e147b58e29bbdeeed1991663ce",
+			"urls": [
+				"bzz-raw://443de366e3577b7c11c6726fbe9d5fe1690fa0b3a8c82615c82c004613775448",
+				"dweb:/ipfs/QmZvucFcEQYFvWJTzmdNZKDh6k5s9gmCXAoJrMQVSnbbXJ"
+			]
+		}
+	},
+	"version": 1
+}

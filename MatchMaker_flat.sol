@@ -1,6 +1,6 @@
 pragma solidity ^0.8.1;
 //SPDX-License-Identifier: UNLICENSED
-//import "./tests/AutoChess_test.sol"; //TODO remove this once testing is done
+import "./verifier.sol";
 
 
 /// @title Interface for contracts conforming to ERC-20: Fungible Tokens
@@ -18,13 +18,9 @@ interface ERC20 {
     event Approval(address indexed _owner, address indexed _spender, uint256 _value);
 
     // Optional
-    //If you label the return values remix screams so I've omitted them
     function name() external view returns (string memory);
     function symbol() external view returns (string memory);
-    //function decimals() external view returns (uint8);
 
-    // ERC-165 Compatibility (https://github.com/ethereum/EIPs/issues/165)
-    //function supportsInterface(bytes4 _interfaceID) external view returns (bool);
 }
 
 
@@ -131,10 +127,7 @@ contract StoreToken is ERC20 {
     function symbol() public override pure returns (string memory){
         return "ACHSST";
     }
-    //function decimals() virtual public view returns (uint8);
-
-    // ERC-165 Compatibility (https://github.com/ethereum/EIPs/issues/165)
-    //function supportsInterface(bytes4 _interfaceID) public override view returns (bool){return true;}
+   
 }   
 
 
@@ -168,7 +161,6 @@ enum UnitState {
 enum DeploymentState{
     Unused,Retired,TierOne,TierTwo,TierThree,TierFour
 }
-
 
 struct Squad{
     //list of the units in this squad
@@ -328,6 +320,11 @@ library UnitHelpers {
         return data.units[id];
     }
     
+    function storeStats(UnitSet storage data, uint256[44] memory stats, uint256 unitId, uint16 i) internal{
+        stats[i] = get(data, unitId).power;
+        stats[i+1] = get(data,unitId).defence;
+        stats[i+2] = get(data,unitId).health;
+    }
 }
 
 library SquadHelpers {
@@ -417,6 +414,11 @@ library SquadHelpers {
     function getUnit(SquadSet storage data, uint256 id, uint256 uid) internal view returns (uint256){
         return get(data,id).unitIds[uid];
     }
+    
+    function size(SquadSet storage data, uint256 id) internal view returns (uint256){
+         return get(data,id).unitIds.length;
+    }
+    
 }
 
 library AutoChessHelpers {
@@ -522,15 +524,7 @@ contract AutoChessBase{
     SquadSet squadData;
 }
 
-// File: UnitToken.sol
 
-
-
-///implementation based on https://medium.com/crypto-currently/the-anatomy-of-erc721-e9db77abfc24
-/// Handles ERC771 implementation of units
-
-
-///Note these have been marked as virtual for now
 /// @title Interface for contracts conforming to ERC-721: Non-Fungible Tokens
 /// @author Dieter Shirley <dete@axiomzen.co> (https://github.com/dete)
 interface ERC721 {
@@ -714,7 +708,6 @@ contract UnitMarketplace is UnitToken,IUnitMarketplace {
 }
 
 
-
 interface ISquadBuilder{
     function buyUnit(UnitType _type) external returns (uint256);
     function buyUnit(UnitType _type, string memory _name) external returns (uint256);
@@ -724,7 +717,8 @@ interface ISquadBuilder{
 
 contract SquadBuilder is UnitMarketplace, ISquadBuilder {
 
-    string constant DEFAULT_NAME = "Maurice, the Mediocre";
+    //Shortened to hopefully reduce gas costs
+    string constant DEFAULT_NAME = "";
     uint256[] unusedUnitIds;
     uint256[] unusedSquadIds;
     /// @dev creates and stores a new unit
@@ -765,8 +759,7 @@ contract SquadBuilder is UnitMarketplace, ISquadBuilder {
 
 /// Handles the actual playing of the game
 contract GameEngine is SquadBuilder{
-
-    using UnitHelpers for Unit;
+    using UnitHelpers for *;
     using SquadHelpers for Squad;
     using SquadHelpers for SquadSet;
     uint8 constant ROUNDLIMIT = 2;
@@ -830,6 +823,39 @@ contract GameEngine is SquadBuilder{
         squadData.get(attackerSquadId).stashedTokens += winnings;
     }
     
+    function _verify(uint attackerSquadId, 
+            uint defenderSquadId,
+            uint[2] memory a,
+            uint[2][2] memory b,
+            uint[2] memory c,
+            uint result) internal returns(uint winnings){
+                
+        require(squadData.toState[attackerSquadId] == squadData.toState[defenderSquadId], "wrong tier");
+        
+        //Making these storage variables is very dubious
+        
+        uint[44] memory vinputs;
+        
+        for (uint8 i=0; i < squadData.size(attackerSquadId); i++) {
+            unitData.storeStats(vinputs,squadData.getUnit(attackerSquadId,i), i*3);
+            //store the defender in the second half of the array
+            unitData.storeStats(vinputs,squadData.getUnit(defenderSquadId, i), i*3 + 21);
+        }
+        vinputs[42] = squadData.size(attackerSquadId);
+        vinputs[43] = result; 
+
+        require(Verifier.verifyTx(a,b,c, vinputs),"Incorrect submission");
+        //Default squads don't die the same way
+        if(squadData.toOwner[defenderSquadId] == address(this)){
+            winnings = squadData.adminAfterBattle(unitData, defenderSquadId, uint8(result));
+        }else{
+            winnings = squadData.afterBattle(unitData, defenderSquadId, uint8(result));
+            CurrencyProvider.deposit(squadData.toOwner[defenderSquadId],squadData.get(defenderSquadId).stashedTokens);
+        }
+        //stash the attackers winnings
+        squadData.get(attackerSquadId).stashedTokens += uint16(winnings);
+    }
+    
     
 }
 
@@ -838,7 +864,7 @@ contract GameEngine is SquadBuilder{
 ///handles all the adding of units and whatnot
 
 interface IMatchMaker{
-    
+   
     function targetedChallenge(uint256[] calldata unitIds, uint256 _targetId) external returns (uint256 squadId);
     function getSquadIdsInTier(DeploymentState _tier) external view returns (uint256[] memory deployed); //This is subject to change
 }
@@ -890,8 +916,22 @@ contract MatchMaker is GameEngine, IMatchMaker{
         require(squadId != targetId, "unit can't fight itself");
         _squadBattle(squadId,targetId);
     }
-
-
+    
+    function cheapChallenge(
+            uint256[] calldata _unitIds, 
+            uint targetId,
+            uint[2] memory a,
+            uint[2][2] memory b,
+            uint[2] memory c,
+            uint result) public returns (uint256 squadId) {
+        DeploymentState tier;
+        (squadId, tier) = _createSquad(msg.sender,_unitIds);
+        //make sure it's a valid target
+        require(squadId != targetId, "unit can't fight itself");
+        _verify(squadId,targetId,a,b,c,result);
+    }
+    
+    
     function getSquadIdsInTier(DeploymentState _tier) public override view returns (uint256[] memory squadIds){
         require(_tier != DeploymentState.Unused, "Invalid choice");
         uint256 count;

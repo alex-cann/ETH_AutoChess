@@ -1,0 +1,228 @@
+{
+	"compiler": {
+		"version": "0.8.1+commit.df193b15"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "pt1xx",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "pt1xy",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "pt1yx",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "pt1yy",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "pt2xx",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "pt2xy",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "pt2yx",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "pt2yy",
+						"type": "uint256"
+					}
+				],
+				"name": "ECTwistAdd",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "s",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "pt1xx",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "pt1xy",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "pt1yx",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "pt1yy",
+						"type": "uint256"
+					}
+				],
+				"name": "ECTwistMul",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "GetFieldModulus",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"author": "Mustafa Al-Bassam (mus@musalbas.com)",
+			"details": "Homepage: https://github.com/musalbas/solidity-BN256G2",
+			"kind": "dev",
+			"methods": {
+				"ECTwistAdd(uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint256)": {
+					"params": {
+						"pt1xx": "Coefficient 1 of x on point 1",
+						"pt1xy": "Coefficient 2 of x on point 1",
+						"pt1yx": "Coefficient 1 of y on point 1",
+						"pt1yy": "Coefficient 2 of y on point 1",
+						"pt2xx": "Coefficient 1 of x on point 2",
+						"pt2xy": "Coefficient 2 of x on point 2",
+						"pt2yx": "Coefficient 1 of y on point 2",
+						"pt2yy": "Coefficient 2 of y on point 2"
+					},
+					"returns": {
+						"_0": "(pt3xx, pt3xy, pt3yx, pt3yy)"
+					}
+				},
+				"ECTwistMul(uint256,uint256,uint256,uint256,uint256)": {
+					"params": {
+						"pt1xx": "Coefficient 1 of x",
+						"pt1xy": "Coefficient 2 of x",
+						"pt1yx": "Coefficient 1 of y",
+						"pt1yy": "Coefficient 2 of y",
+						"s": "Scalar to multiply by"
+					},
+					"returns": {
+						"_0": "(pt2xx, pt2xy, pt2yx, pt2yy)"
+					}
+				},
+				"GetFieldModulus()": {
+					"returns": {
+						"_0": "The field modulus"
+					}
+				}
+			},
+			"title": "Elliptic curve operations on twist points for alt_bn128",
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {
+				"ECTwistAdd(uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint256)": {
+					"notice": "Add two twist points"
+				},
+				"ECTwistMul(uint256,uint256,uint256,uint256,uint256)": {
+					"notice": "Multiply a twist point by a scalar"
+				},
+				"GetFieldModulus()": {
+					"notice": "Get the field modulus"
+				}
+			},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"verifier.sol": "BN256G2"
+		},
+		"evmVersion": "istanbul",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": true,
+			"runs": 10
+		},
+		"remappings": []
+	},
+	"sources": {
+		"verifier.sol": {
+			"keccak256": "0xe90575e3b7649d9e4845f39eb6223beed85340bc62ea53c5c4118ca9f8853ce4",
+			"license": "LGPL-3.0-only",
+			"urls": [
+				"bzz-raw://fe42a588397e7bc8820f1018299198aec3c568dbb68c3c3ce07fa1f23678888e",
+				"dweb:/ipfs/Qmb7cLZQSW8Yn4LvaWu1yasbMdCwsuXxHPrSoRVdbTZwSx"
+			]
+		}
+	},
+	"version": 1
+}

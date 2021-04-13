@@ -238,17 +238,25 @@
 		},
 		"optimizer": {
 			"enabled": true,
-			"runs": 200
+			"runs": 10
 		},
 		"remappings": []
 	},
 	"sources": {
 		"MatchMaker_flat.sol": {
-			"keccak256": "0x32f2ee53dc83a53d310ed7b347cb67fb774a2f2f56745f7467fe301b0a87ff98",
+			"keccak256": "0x0bfca6854836994fb2f7d2bdd44555ba312903c2e6627e990d91f6180e368b9f",
 			"license": "UNLICENSED",
 			"urls": [
-				"bzz-raw://06332e3d0f694eb90d3a6289da6134689ee3de83e84189fd73d44dcc24ceca59",
-				"dweb:/ipfs/QmcnfcRX8cQybzg6Bjz7qDoQAC9RsQ5tdYU4JQy7EcY4hu"
+				"bzz-raw://9826962da17fd42d8e7aef4d9d94ac3f2268a867b30a59beb7968b5b5d50f61b",
+				"dweb:/ipfs/QmRL4CaL9Am6zARqJUiHdX2AYmc75EU7HfhcBucBgiDFfD"
+			]
+		},
+		"verifier.sol": {
+			"keccak256": "0xe90575e3b7649d9e4845f39eb6223beed85340bc62ea53c5c4118ca9f8853ce4",
+			"license": "LGPL-3.0-only",
+			"urls": [
+				"bzz-raw://fe42a588397e7bc8820f1018299198aec3c568dbb68c3c3ce07fa1f23678888e",
+				"dweb:/ipfs/Qmb7cLZQSW8Yn4LvaWu1yasbMdCwsuXxHPrSoRVdbTZwSx"
 			]
 		}
 	},

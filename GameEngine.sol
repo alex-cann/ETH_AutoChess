@@ -112,5 +112,27 @@ contract GameEngine is SquadBuilder,IGameEngine {
         }
     }
     
+    function _verify(uint attackerSquadId, uint defenderSquadId) internal returns(uint winnings){
+        Squad memory attacker = squads[attackerSquadId];
+        Squad memory  defender = squads[defenderSquadId];
+
+        require(attacker.state == defender.state);
+        require(attacker.state != DeploymentState.Retired);
+        
+        //Making these storage variables is very dubious
+       
+        uint8 atkNum = attacker.unitCount;
+        uint8 dfdNum = defender.unitCount;
+        Unit[] memory atkUnits = new Unit[](atkNum);
+        Unit[] memory dfdUnits = new Unit[](dfdNum);
+        
+        for (uint8 i=0; i<atkNum; i++) {
+            atkUnits[i] = units[attacker.unitIds[i]];
+            dfdUnits[i] = units[defender.unitIds[i]];
+        }
+        
+        
+        
+    }
     
 }

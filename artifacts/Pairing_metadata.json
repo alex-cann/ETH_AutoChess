@@ -4,27 +4,7 @@
 	},
 	"language": "Solidity",
 	"output": {
-		"abi": [
-			{
-				"inputs": [
-					{
-						"internalType": "enum UnitType",
-						"name": "_type",
-						"type": "UnitType"
-					}
-				],
-				"name": "getCost",
-				"outputs": [
-					{
-						"internalType": "uint16",
-						"name": "cost",
-						"type": "uint16"
-					}
-				],
-				"stateMutability": "pure",
-				"type": "function"
-			}
-		],
+		"abi": [],
 		"devdoc": {
 			"kind": "dev",
 			"methods": {},
@@ -38,7 +18,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"MatchMaker_flat.sol": "UnitHelpers"
+			"verifier.sol": "Pairing"
 		},
 		"evmVersion": "istanbul",
 		"libraries": {},
@@ -52,14 +32,6 @@
 		"remappings": []
 	},
 	"sources": {
-		"MatchMaker_flat.sol": {
-			"keccak256": "0x0bfca6854836994fb2f7d2bdd44555ba312903c2e6627e990d91f6180e368b9f",
-			"license": "UNLICENSED",
-			"urls": [
-				"bzz-raw://9826962da17fd42d8e7aef4d9d94ac3f2268a867b30a59beb7968b5b5d50f61b",
-				"dweb:/ipfs/QmRL4CaL9Am6zARqJUiHdX2AYmc75EU7HfhcBucBgiDFfD"
-			]
-		},
 		"verifier.sol": {
 			"keccak256": "0xe90575e3b7649d9e4845f39eb6223beed85340bc62ea53c5c4118ca9f8853ce4",
 			"license": "LGPL-3.0-only",
