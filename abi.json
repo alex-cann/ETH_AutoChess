@@ -51,6 +51,11 @@
           ]
         }
       }
+    },
+    {
+      "name": "count",
+      "public": true,
+      "type": "field"
     }
   ],
   "outputs": [

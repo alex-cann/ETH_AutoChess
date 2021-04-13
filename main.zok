@@ -1,29 +1,28 @@
-// This is an example from https://zokrates.github.io/gettingstarted.html
-
-
 struct Unit {
     field power
     field defence
     field health
 }
 
-def attackUnit(Unit attacker, Unit defender, bool allDead) -> (field):
-    field dmg = if allDead then 0 else attacker.power - defender.defence fi
-    field health = if dmg >= defender.health then 0 else defender.health - dmg fi
-    return health
+def attackUnit(field power, field defence, field health) -> (field):
+    field dmg = if defence >= power then 0 else power - defence fi
+    return if dmg >= health then 0 else health - dmg fi
+
+def safe(field val) -> (field):
+	return if val == 0 || val == 1 then 0 else val-1 fi
+
 
 def main(Unit[7] attacker, Unit[7] defender, field count) -> (field):
-    field lastAttacker = count - 1
-    field lastDefender = count - 1
+    field lastAttacker = count
+    field lastDefender = count
     bool turn = true
 	for field round in 0..50 do
-	    bool allDead = lastDefender == 0 || lastAttacker == 0
-	    Unit target = if turn then defender[lastDefender] else attacker[lastAttacker] fi
+		bool allDead = lastAttacker == 0 || lastDefender == 0
+	    Unit target = if turn then defender[safe(lastAttacker)] else attacker[safe(lastAttacker)] fi
         Unit assailant = if turn then attacker[0] else defender[0] fi
-        field health = attackUnit(assailant, target, allDead)
-        
-        attacker[lastAttacker].health = if !turn then health else attacker[lastAttacker].health fi
-        defender[lastDefender].health = if turn then health else defender[lastDefender].health fi
+        field health = attackUnit(assailant.power, target.defence, target.health)
+        attacker[safe(lastAttacker)].health = if !turn then health else attacker[safe(lastAttacker)].health fi
+        defender[safe(lastDefender)].health = if turn then health else defender[safe(lastAttacker)].health fi
         lastAttacker = if !turn && 0 == health && !allDead then lastAttacker-1 else lastAttacker fi
         lastDefender = if turn && 0 == health && !allDead then lastDefender-1 else lastDefender fi
         turn = !turn
